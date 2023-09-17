@@ -1,0 +1,44 @@
+name: مقولة اليوم 📮 📜
+
+on:
+  push:
+    branches:
+      - daily
+  pull_request:
+    branches:
+      - master
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: daily
+        fetch-depth: 0
+    - name: Run 🚔 دق سلف
+      run: |
+        php .github/scripts/quote_hourly.php
+    - name: Commit 🚧 التزم
+      run: |
+        git config --local user.email "aldoyh@gmail.com"
+        git config --local user.name "Hasan"
+        git config advice.skippedCherryPicks false
+        git config pull.rebase true
+        # Go git
+        git pull origin master
+        git checkout daily
+        git merge master
+        git add .
+        git push -u origin daily
+        
+    - name: Push 🫸 دزهم
+      uses: ad-m/github-push-action@master
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+
