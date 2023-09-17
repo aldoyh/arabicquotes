@@ -21,7 +21,7 @@ jobs:
         fetch-depth: 0
     - name: Run 🚔 دق سلف
       run: |
-        php .github/scripts/quote_hourly.php
+        php .github/scripts/hourly.php
     - name: Commit 🚧 التزم
       run: |
         git config --local user.email "aldoyh@gmail.com"
