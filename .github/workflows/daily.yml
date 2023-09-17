@@ -13,7 +13,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 */1 * * *"
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,7 +31,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
-    - name: Commit 🚧 التزم
+    - name: Commit 🚧 قَصها الدوي
       run: |
         git config --local user.email "aldoyh@gmail.com"
         git config --local user.name "Hasan"
@@ -43,8 +42,6 @@ jobs:
         git checkout daily
         git merge master
         git add .
-        git push -u origin daily
-
     - name: Push 🫸 دزهم
       uses: ad-m/github-push-action@master
       with:
