@@ -1,0 +1,25 @@
+name: مقتبس جديد 📜
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  process_issue:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout 🚧
+      uses: actions/checkout@v2
+
+    - name: Setup 🐘 PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: json,mbstring
+
+    - name: Process 🚚
+      run: php .github/scripts/process_issue.php
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        ISSUE_TITLE: ${{ github.event.issue.title }}
+        ISSUE_BODY: ${{ github.event.issue.body }}

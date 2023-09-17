@@ -1,0 +1,39 @@
+[
+    [
+        ""
+    ],
+    [
+        "NewPP limit report",
+        "Parsed by mw1389",
+        "Cached time: 20230906155551",
+        "Cache expiry: 1814400",
+        "Reduced expiry: false",
+        "Complications: []",
+        "DiscussionTools time usage: 0.285 seconds",
+        "CPU time usage: 2.780 seconds",
+        "Real time usage: 3.632 seconds",
+        "Preprocessor visited node count: 14596/1000000",
+        "Post‐expand include size: 1871396/2097152 bytes",
+        "Template argument size: 115176/2097152 bytes",
+        "Highest expansion depth: 8/100",
+        "Expensive parser function count: 701/500",
+        "Unstrip recursion depth: 0/20",
+        "Unstrip post‐expand size: 100572/5000000 bytes",
+        "Lua time usage: 0.811/10.000 seconds",
+        "Lua memory usage: 4990177/52428800 bytes",
+        "Number of Wikibase entities loaded: 0/400"
+    ],
+    [
+        "Transclusion expansion time report (%,ms,calls,template)",
+        "100.00% 1641.403      1 -total",
+        "  6.84%  112.211    500 قالب:كلمة_اليوم",
+        "  4.79%   78.693     72 قالب:أبيات",
+        "  2.90%   47.682      1 قالب:كلمة_اليوم/154",
+        "  2.45%   40.221      1 قالب:إخطار",
+        "  2.35%   38.602      1 قالب:كلمة_اليوم/246",
+        "  2.33%   38.196      1 قالب:صندوق_رسالة_نطاق",
+        "  1.34%   21.937      1 قالب:كلمة_اليوم/380",
+        "  1.32%   21.639      1 قالب:كلمة_اليوم/422",
+        "  1.30%   21.257      1 قالب:كلمة_اليوم/235"
+    ]
+]
