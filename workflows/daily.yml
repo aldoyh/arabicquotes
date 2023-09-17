@@ -20,8 +20,7 @@ jobs:
         ref: daily
         fetch-depth: 0
     - name: Run 🚔 دق سلف
-      run: |
-        php .github/scripts/quote_hourly.php
+      run: php .github/scripts/hourly.php
     - name: Commit 🚧 التزم
       run: |
         git config --local user.email "aldoyh@gmail.com"
@@ -34,7 +33,8 @@ jobs:
         git merge master
         git add .
         git push -u origin daily
-        
+        echo "Done 🎉"
+
     - name: Push 🫸 دزهم
       uses: ad-m/github-push-action@master
       with:

@@ -17,9 +17,9 @@ jobs:
         php-version: '8.3'
         extensions: json,mbstring
 
-    - name: Process 🚚 
+    - name: Process 🚚
       run: php .github/scripts/process_issue.php
       env:
-        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         ISSUE_TITLE: ${{ github.event.issue.title }}
         ISSUE_BODY: ${{ github.event.issue.body }}

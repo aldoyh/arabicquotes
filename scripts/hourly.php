@@ -45,9 +45,11 @@ function get_random_quote()
 function connectDB()
 {
 
+    $db_info_prod = getenv('DB_INFO_PROD');
+
     // TODO: Move these credentials to GitHub Secrets
     $db_info_dev = isset($_ENV['DB_INFO_DEV']) ? $_ENV['DB_INFO_DEV'] : die("No DB info found");
-    $db_info_prod = isset($_ENV['DB_INFO_PROD'])? $_ENV['DB_INFO_PROD'] : die("No DB info found");
+    // $db_info_prod = isset($_ENV['DB_INFO_PROD'])? $_ENV['DB_INFO_PROD'] : die("No DB info found");
 
     if (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] == "dev") {
         $db_info = $db_info_dev;
@@ -178,4 +180,3 @@ $ReadMeA = update_readme($GLOBALS['cwd_now'] . "/README.md");
 echo "Daily quote updated.\n"
     . "🎯 Updating Todoist next...\n";
 
-    
