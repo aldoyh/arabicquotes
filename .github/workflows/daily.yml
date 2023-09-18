@@ -42,6 +42,7 @@ jobs:
         git pull origin master
         git merge master
         git add .
+        git commit -m "تم الإخراج بنجاح ؏ ❤️"
         git push -u origin master
 
     - name: Push 🫸 دزهم
