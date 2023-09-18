@@ -45,6 +45,7 @@ jobs:
         git merge master
         git commit -m "تم الإخراج بنجاح ؏ ❤️"
         git push -u origin master
+
     - name: Push 🫸 دزهم
       uses: ad-m/github-push-action@master
       with:
