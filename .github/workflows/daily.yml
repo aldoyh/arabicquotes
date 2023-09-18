@@ -40,7 +40,7 @@ jobs:
         git pull origin master
         # git add .
         # git checkout daily
-        git merge master
+        # git merge master
         git commit -m "تم الإخراج بنجاح ؏ ❤️"
         git push -u origin master
 
