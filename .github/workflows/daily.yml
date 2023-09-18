@@ -42,7 +42,7 @@ jobs:
         git pull origin master
         git merge master
         git add .
-        git push origin master
+        git push -u origin master
 
     - name: Push 🫸 دزهم
       uses: ad-m/github-push-action@master
