@@ -43,7 +43,7 @@ jobs:
         git checkout daily
         git merge master
         git add .
-        git push -u origin daily
+        git push
 
     - name: Push 🫸 دزهم
       uses: ad-m/github-push-action@master
