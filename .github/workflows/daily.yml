@@ -40,8 +40,9 @@ jobs:
         git config pull.rebase true
         # Go git
         git pull origin master
+        # git add .
+        git checkout daily
         git merge master
-        git add .
         git commit -m "تم الإخراج بنجاح ؏ ❤️"
         git push -u origin master
 
