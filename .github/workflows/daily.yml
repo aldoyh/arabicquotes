@@ -40,10 +40,9 @@ jobs:
         git config pull.rebase true
         # Go git
         git pull origin master
-        git checkout daily
         git merge master
         git add .
-        git push
+        git push master
 
     - name: Push 🫸 دزهم
       uses: ad-m/github-push-action@master
