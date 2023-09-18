@@ -8,7 +8,6 @@ on:
   pull_request:
     branches:
       - master
-      - daily
       - testing
   workflow_dispatch:
   schedule:
@@ -36,12 +35,15 @@ jobs:
         git config --local user.email "aldoyh@gmail.com"
         git config --local user.name "Hasan"
         git config advice.skippedCherryPicks false
-        git config pull.rebase true
+        # git config pull.rebase true
         # Go git
         git pull origin master
-        git checkout daily
+        # git add .
+        # git checkout daily
         git merge master
-        git add .
+        git commit -m "تم الإخراج بنجاح ؏ ❤️"
+        git push -u origin master
+
     - name: Push 🫸 دزهم
       uses: ad-m/github-push-action@master
       with:
