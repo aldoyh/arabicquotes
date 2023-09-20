@@ -15,7 +15,6 @@ on:
           DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
   schedule:
     - cron: "0 */2 * * *"
-    
 jobs:
   build:
     env:
