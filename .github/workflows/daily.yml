@@ -1,6 +1,5 @@
-name: مقولة اليوم 📮 📜 ؏
-run-name: عملية زتاتيه ✈️ ✈️
-
+name: TheDailyQuote 📮 📜 ؏ من قال اليوم
+run-name: عملية زتاتيه ✈️ Rapid mission ✈️
 on:
   push:
     branches:
@@ -9,7 +8,10 @@ on:
     branches:
       - master
       - testing
+      - production
   workflow_dispatch:
+      inputs:
+          DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
   schedule:
     - cron: "0 */2 * * *"
 jobs:
