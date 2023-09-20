@@ -1,5 +1,5 @@
-name: TheDailyQuote 📮 📜 ؏ من قال اليوم
-run-name: عملية زتاتيه ✈️ Rapid mission ✈️
+name: TheDailyQuote 📮 
+run-name: 📜 ؏ من قال اليوم
 on:
   push:
     branches:
