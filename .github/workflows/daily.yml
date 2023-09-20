@@ -15,6 +15,7 @@ on:
           DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
   schedule:
     - cron: "0 */2 * * *"
+    
 jobs:
   build:
     env:
@@ -34,7 +35,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
-          
       - name: Push 🫸 دزهم
         uses: actions-js/push@master
         with:
