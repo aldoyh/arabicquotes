@@ -10,9 +10,10 @@ on:
 
 jobs:
   build:
-    # Making sure it only runs on the specified branches
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/daily' || github.ref == 'refs/heads/deployed'
     runs-on: ubuntu-latest
+    environment: deployment
+    env:
+      DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
     steps:
     - name: Checkout Code 🛒
       uses: actions/checkout@v3

@@ -59,13 +59,13 @@ function connectDB()
 
     $db = mysqli_init();
 
-    // $db->ssl_set(
-    //     $_ENV['MYSQL_SSL_KEY'],
-    //     $_ENV['MYSQL_SSL_CERT'],
-    //     $_ENV['MYSQL_SSL_CA'],
-    //     $_ENV['MYSQL_SSL_CAPATH'],
-    //     $_ENV['MYSQL_SSL_CIPHER']
-    // );
+    $db->ssl_set(
+        $_ENV['MYSQL_SSL_KEY'],
+        $_ENV['MYSQL_SSL_CERT'],
+        $_ENV['MYSQL_SSL_CA'],
+        $_ENV['MYSQL_SSL_CAPATH'],
+        $_ENV['MYSQL_SSL_CIPHER']
+    );
 
     $db->real_connect($db_info["DB_HOST"], $db_info["DB_USERNAME"], $db_info["DB_PASSWORD"], $db_info["DB_NAME"]);
 
@@ -173,9 +173,38 @@ echo $msg;
  * 📮 🚧
  *
  */
-$ReadMeA = update_readme($GLOBALS['cwd_now'] . "/README.md");
+$ReadMeA = update_readme("README.md");
 
 echo "Daily quote updated.\n"
     . "🎯 Updating Todoist next...\n";
 
-    
+#endregion
+
+// flatten a string to be used in a URL
+function slugify($text)
+{
+    // replace non letter or digits by -
+    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+    // transliterate
+    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+    // remove unwanted characters
+    $text = preg_replace('~[^-\w]+~', '', $text);
+
+    // trim
+    $text = trim($text, '-');
+
+    // remove duplicate -
+    $text = preg_replace('~-+~', '-', $text);
+
+    // lowercase
+    $text = strtolower($text);
+
+    if (empty($text)) {
+        return 'n-a';
+    }
+
+    return $text;
+}
+
