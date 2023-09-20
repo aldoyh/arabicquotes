@@ -1,5 +1,6 @@
 name: TheDailyQuote 📮 
 run-name: 📜 ؏ من قال اليوم
+
 on:
   push:
     branches:
@@ -22,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-            ref: daily
+            ref: master
       - name: سوي ركب 🐘 PHP
         uses: shivammathur/setup-php@v2
         with:
