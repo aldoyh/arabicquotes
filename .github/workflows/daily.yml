@@ -1,5 +1,5 @@
-name: TheDailyQuote 📮 
-run-name: ؏ من قال اليوم ✈️
+name: TheDailyQuote 📮؏
+run-name: من قال اليوم ✈️
 
 on:
   push:
