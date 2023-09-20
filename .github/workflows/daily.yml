@@ -1,43 +1,50 @@
-name: TheDailyQuote 📮؏
-run-name: من قال اليوم ✈️
+name: مقولة اليوم 📮 📜
 
 on:
-  push:
-    branches:
-      - daily
   pull_request:
-    branches:
-      - master
-      - testing
-      - production
+    paths: [".github/workflows/daily.yml", "daily/*"]
+    branches: [main, daily]
   workflow_dispatch:
-      inputs:
-          DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
   schedule:
-    - cron: "0 */2 * * *"
-    
+    - cron: "0 */1 * * *"
+
 jobs:
   build:
-    env:
-      DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
+    # Making sure it only runs on the specified branches
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/daily' || github.ref == 'refs/heads/deployed'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-            ref: master
-      - name: سوي ركب 🐘 PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          extensions: json,mbstring,zip,pcntl
-      - name: Run 🚔 دق سلف
-        run: php .github/scripts/hourly.php
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
-      - name: Push 🫸 دزهم
-        uses: actions-js/push@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          
+    - name: Checkout Code 🛒
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
+        fetch-depth: 0
 
+    - name: Setup PHP 🐘
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: json,mbstring,zip,pcntl
+        coverage: none
+
+    - name: Run PHP Script 🚔
+      run: php ./.github/scripts/hourly.php
+
+    - name: Git Config 🛠️
+      run: |
+        git config --local user.email "aldoyh@gmail.com"
+        git config --local user.name "Hasan"
+        git config advice.skippedCherryPicks false
+        git config pull.rebase true
+
+    - name: Add & Commit Changes 📝
+      run: |
+        git add .
+        git commit -m "Update daily.yml 📜" || echo "No changes to commit"
+
+    - name: Push to Master 🚀
+      run: |
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/aldoyh/arabicquotes.git
+        git fetch origin ${{ github.base_ref }}
+        git merge -s ours origin/${{ github.base_ref }}
+        git push origin ${{ github.base_ref }}
