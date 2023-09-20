@@ -11,27 +11,30 @@ on:
       - testing
   workflow_dispatch:
   schedule:
-    - cron: "0 */1 * * *"
+    - cron: "0 */2 * * *"
 jobs:
   build:
+    env:
+      DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: daily
-    - name: Setup 🐘 PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.3'
-        extensions: json,mbstring,zip,pcntl
-    - name: Run 🚔 دق سلف
-      run: php .github/scripts/hourly.php
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
-        
-    - name: Push 🫸 دزهم
-      uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        
+      - uses: actions/checkout@v3
+        with:
+            ref: daily
+      - name: سوي ركب 🐘 PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: json,mbstring,zip,pcntl
+      - name: Run 🚔 دق سلف
+        run: php .github/scripts/hourly.php
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
+          
+      - name: Push 🫸 دزهم
+        uses: actions-js/push@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+
