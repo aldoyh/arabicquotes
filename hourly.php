@@ -6,6 +6,10 @@ error_reporting(E_ALL);
 
 error_log("Current directory: " . getcwd());
 
+error_log("Env DB: " . (isset($_ENV['DB_INFO_PROD']) ? "Okay!" : "No DB info found"));
+
+error_log("Env APP_ENV: " . (isset($_ENV['APP_ENV']) ? $_ENV['APP_ENV'] : "No APP_ENV found"));
+
 
 /**
  * Selects a random quote from the DB, then updates the hits
