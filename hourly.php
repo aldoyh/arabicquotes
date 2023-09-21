@@ -47,6 +47,11 @@ function connectDB()
     // $db_info_dev = getenv('DB_INFO_DEV') ? getenv('DB_INFO_DEV') : die("No DB info found");
     $db_info_prod = getenv('DB_INFO');
 
+    if (!$db_info_prod) {
+        error_log("No DB info found");
+        return false;
+    }
+
     $db_info = json_decode($db_info_prod, false);
 
     $db = mysqli_init();
