@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: deployment
     env:
-      DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
+      DB_INFO: ${{ secrets.DB_INFO }}
       APP_ENV: production
       APP_DEBUG: false
       APP_URL: https://arabicquotes.github.io
