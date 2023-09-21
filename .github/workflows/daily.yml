@@ -14,6 +14,9 @@ jobs:
     environment: deployment
     env:
       DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
+      APP_ENV: production
+      APP_DEBUG: false
+      APP_URL: https://arabicquotes.github.io
     steps:
     - name: Checkout Code 🛒
       uses: actions/checkout@v2
@@ -21,12 +24,11 @@ jobs:
     - name: Setup PHP 🐘
       uses: shivammathur/setup-php@v2
       with:
-        tools: composer:2, php-cs-fixer, phpunit
-        php-version-file: composer.json
         php-version: '8.3'
         extensions: json,mbstring,zip,pcntl
     - name: Run 🚔 إشرد
-      run: php hourly.php
+      run: php ${GITHUB_WORKSPACE}/hourly.php
+
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:

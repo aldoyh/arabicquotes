@@ -4,13 +4,6 @@
 error_reporting(E_ALL);
 
 
-error_log("Current directory: " . getcwd());
-
-error_log("Env DB: " . (isset($_ENV['DB_INFO_PROD']) ? "Okay!" : "No DB info found"));
-
-error_log("Env APP_ENV: " . (isset($_ENV['APP_ENV']) ? $_ENV['APP_ENV'] : "No APP_ENV found"));
-
-
 /**
  * Selects a random quote from the DB, then updates the hits
  *
@@ -51,21 +44,17 @@ function connectDB()
 {
 
     // TODO: Move these credentials to GitHub Secrets
-    $db_info_dev = isset($_ENV['DB_INFO_DEV']) ? $_ENV['DB_INFO_DEV'] : die("No DB info found");
-    $db_info_prod = isset($_ENV['DB_INFO_PROD'])? $_ENV['DB_INFO_PROD'] : die("No DB info found");
+    $db_info_dev = getenv('DB_INFO_DEV') ? getenv('DB_INFO_DEV') : die("No DB info found");
+    $db_info_prod = getenv('DB_INFO_PROD') ? getenv('DB_INFO_PROD') : die("No DB info found");
 
-    if (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] == "dev") {
-        $db_info = $db_info_dev;
-    } else {
-        $db_info = $db_info_prod;
-    }
+    echo "App ENv: " . getenv('APP_ENV') . "\n";
 
-    $db_info = json_decode($db_info, true);
+    $db_info = json_decode($db_info_prod, true);
 
     $db = mysqli_init();
 
     $db->ssl_set(
-        $_ENV['MYSQL_SSL_KEY'],
+        getenv('MYSQL_SSL_KEY'),
         null,
         null,
         null,

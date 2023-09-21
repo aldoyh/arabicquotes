@@ -12,14 +12,14 @@
         <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right">
             <div class="flex items-center gap-4">
                 <div class="quote-header">
-                    <p class="quote-date" style="font-size: smaller;">اليوم: Thursday 21st of September 2023 - 15:34 🎯 المشاهدات: 0</p>
+                    <p class="quote-date" style="font-size: smaller;">اليوم: Thursday 21st of September 2023 - 16:02 🎯 المشاهدات: 86</p>
                 </div>
                 <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 quote-content" dir="rtl">
-                    <h1 class="quote-text">يظل الرجل طفلاً حتى تموت أمه فإن ماتت شاخ فجأة.</h1>
+                    <h1 class="quote-text">إنَّ الحِكْمَة تسكن القلب الوَادِع السَّاكن.</h1>
                 </div>
                 <div class="quote-footer">
-                    <p class="quote-author">— <a href="/wiki/%D8%A3%D8%AF%D9%88%D9%84%D9%81_%D9%87%D8%AA%D9%84%D8%B1"
-                        title="أدولف هتلر">أدولف هتلر</a></p>
+                    <p class="quote-author">— <a href="/wiki/%D9%88%D9%87%D8%A8_%D8%A8%D9%86_%D9%85%D9%86%D8%A8%D9%87"
+                        title="وهب بن منبه">وهب بن منبه</a></p>
                 </div>
             </div>
         </div>
