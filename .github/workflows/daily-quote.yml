@@ -1,0 +1,33 @@
+name: سحب المحتوى 📮 📜
+
+on:
+  pull_request:
+    paths: [".github/workflows/daily.yml", "daily/*"]
+    branches: ["master", "daily"]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */2 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: deployment
+    env:
+      db_info_prod: ${{ secrets.DB_INFO_PROD }}
+    steps:
+    - name: Checkout Code 🛒
+      uses: actions/checkout@v2
+
+    - name: Setup PHP 🐘
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: json,mbstring,zip,pcntl
+
+    - name: Run PHP Script 🚔 إشرد
+      run: php wikiquotes_pull.php
+
+    - name: Commit & Push changes 📦
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
