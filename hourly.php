@@ -45,11 +45,9 @@ function connectDB()
 
     // TODO: Move these credentials to GitHub Secrets
     // $db_info_dev = getenv('DB_INFO_DEV') ? getenv('DB_INFO_DEV') : die("No DB info found");
-    $db_info_prod = getenv('DB_INFO_PROD') ? getenv('DB_INFO_PROD') : '';
+    $db_info_prod = getenv('DB_INFO');
 
-    echo "App ENv: " . getenv('APP_ENV') . "\n";
-
-    $db_info = json_decode($db_info_prod, true);
+    $db_info = json_decode($db_info_prod);
 
     $db = mysqli_init();
 
@@ -61,7 +59,7 @@ function connectDB()
         null
     );
 
-    $db->real_connect($db_info["DB_HOST"], $db_info["DB_USERNAME"], $db_info["DB_PASSWORD"], $db_info["DB_NAME"]);
+    $db->real_connect($db_info->host, $db_info->username, $db_info->password, $db_info->database, $db_info->port, null, MYSQLI_CLIENT_SSL);
 
     if ($db->connect_errno) {
         error_log("Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error);

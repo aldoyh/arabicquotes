@@ -12,14 +12,15 @@
         <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right">
             <div class="flex items-center gap-4">
                 <div class="quote-header">
-                    <p class="quote-date" style="font-size: smaller;">اليوم: Thursday 21st of September 2023 - 16:19 🎯 المشاهدات: 9</p>
+                    <p class="quote-date" style="font-size: smaller;">اليوم: Thursday 21st of September 2023 - 16:25 🎯 المشاهدات: 49</p>
                 </div>
                 <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 quote-content" dir="rtl">
-                    <h1 class="quote-text">الوطن هو حيث يكون المرء في خير.</h1>
+                    <h1 class="quote-text">تعلموا العلم، واعملوا به، ولا تتعلموه لتتجملوا به، فإنه يوشك إن طال بكم
+                    زمان، أن يتجمل بالعلم كما يتجمل الرجل بثوبه.</h1>
                 </div>
                 <div class="quote-footer">
-                    <p class="quote-author">— <a href="/wiki/%D8%A3%D8%B1%D9%8A%D8%B3%D8%AA%D9%88%D9%81%D8%A7%D9%86"
-                        title="أريستوفان">أريستوفان</a></p>
+                    <p class="quote-author">— <a href="/wiki/%D8%A3%D8%A8%D9%8A_%D8%A8%D9%86_%D9%83%D8%B9%D8%A8"
+                        title="أبي بن كعب">أبي بن كعب</a></p>
                 </div>
             </div>
         </div>
