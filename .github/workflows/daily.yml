@@ -3,49 +3,29 @@ name: مقولة اليوم 📮 📜
 on:
   pull_request:
     paths: [".github/workflows/daily.yml", "daily/*"]
-    branches: [main, daily]
+    branches: ["master", "daily"]
   workflow_dispatch:
   schedule:
-    - cron: "0 */1 * * *"
-
+    - cron: "0 */2 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
     environment: deployment
     env:
-      DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
+      db_info_prod: ${{ secrets.DB_INFO_PROD }}
     steps:
-    - name: Checkout Code 🛒
-      uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }}
-        fetch-depth: 0
-
     - name: Setup PHP 🐘
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.3'
         extensions: json,mbstring,zip,pcntl
-        coverage: none
-
-    - name: Run PHP Script 🚔
+    - name: Run 🚔 إشرد
       run: php ./.github/scripts/hourly.php
-
-    - name: Git Config 🛠️
-      run: |
-        git config --local user.email "aldoyh@gmail.com"
-        git config --local user.name "Hasan"
-        git config advice.skippedCherryPicks false
-        git config pull.rebase true
-
-    - name: Add & Commit Changes 📝
-      run: |
-        git add .
-        git commit -m "Update daily.yml 📜" || echo "No changes to commit"
-
-    - name: Push to Master 🚀
-      run: |
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/aldoyh/arabicquotes.git
-        git fetch origin ${{ github.base_ref }}
-        git merge -s ours origin/${{ github.base_ref }}
-        git push origin ${{ github.base_ref }}
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Commit & Push changes
+      uses: actions-js/push@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        
