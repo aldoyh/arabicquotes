@@ -44,7 +44,7 @@ function connectDB()
 {
 
     // TODO: Move these credentials to GitHub Secrets
-    $db_info_dev = getenv('DB_INFO_DEV') ? getenv('DB_INFO_DEV') : die("No DB info found");
+    // $db_info_dev = getenv('DB_INFO_DEV') ? getenv('DB_INFO_DEV') : die("No DB info found");
     $db_info_prod = getenv('DB_INFO_PROD') ? getenv('DB_INFO_PROD') : die("No DB info found");
 
     echo "App ENv: " . getenv('APP_ENV') . "\n";
