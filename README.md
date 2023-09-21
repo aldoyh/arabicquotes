@@ -12,13 +12,15 @@
         <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right">
             <div class="flex items-center gap-4">
                 <div class="quote-header">
-                    <p class="quote-date" style="font-size: smaller;">اليوم: Wednesday 13th of September 2023 - 18:43 🎯 المشاهدات: 11</p>
+                    <p class="quote-date" style="font-size: smaller;">اليوم: Thursday 21st of September 2023 - 15:01 🎯 المشاهدات: 0</p>
                 </div>
                 <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 quote-content" dir="rtl">
-                    <h1 class="quote-text">ماعرفت ترقص قالت الأرض عويه.</h1>
+                    <h1 class="quote-text">إذا تركت الأمور كما هي، فإنها ستتجه من سيّئ إلى أسوأ.</h1>
                 </div>
                 <div class="quote-footer">
-                    <p class="quote-author">مطر اللوز</p>
+                    <p class="quote-author">— <a
+                        href="/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D9%85%D9%88%D8%B1%D9%81%D9%8A"
+                        title="قانون مورفي">قانون مورفي</a></p>
                 </div>
             </div>
         </div>
@@ -38,14 +40,6 @@
 <img src="https://i.ibb.co/7CFzDHp/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-1.jpg" />
 
 <img src="https://i.ibb.co/NnFpS1Z/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-0.jpg" />
-
-<img src="https://i.ibb.co/YLLXFz7/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-4.jpg" />
-
-<img src="https://i.ibb.co/Z2PgV09/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-5.jpg" />
-
-<img src="https://i.ibb.co/HV1tCpZ/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-6.jpg" />
-
-<img src="https://i.ibb.co/bHP93gw/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-7.jpg" />
 
 <img src="https://i.ibb.co/ZJ9Vb0Y/Photo-Real-the-daily-quote-0.jpg" />
 

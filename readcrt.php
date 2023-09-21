@@ -28,7 +28,7 @@ if (isset($argv[1])) {
         // $output = preg_replace('/\s+/', ' ', $output);
 
         // file_put_contents("output.txt", "VAR=" . $output);
-        file_put_contents("output.txt", "VAR=" . $pem);
+        file_put_contents("output.txt", $pem);
 
         exec("cat output.txt | pbcopy");
 

@@ -1,9 +1,14 @@
 <?php
 
 
-$GLOBALS['cwd_now'] = __DIR__ . "/../../";
+error_reporting(E_ALL);
 
-error_log("CWD: " . $GLOBALS['cwd_now']);
+error_log("Current directory: " . __DIR__ . "/../..");
+
+// change working directory
+chdir(__DIR__ . "/../..");
+
+// current directory
 
 /**
  * Selects a random quote from the DB, then updates the hits
@@ -24,9 +29,8 @@ function get_random_quote()
     // $row = $result->fetchArray(SQLITE3_ASSOC);
     $row = $result->fetch_assoc();
 
-    die(print_r($row, true) . "\n");
+    // die(print_r($row, true) . "\n");
 
-    // $db->exec("UPDATE quotes SET hits = hits + 1 WHERE id = " . $row['id']);
     $db->query("UPDATE `quotes` SET hits = hits + 1 WHERE id = " . $row['id']);
 
     $db->close();
@@ -61,10 +65,10 @@ function connectDB()
 
     $db->ssl_set(
         $_ENV['MYSQL_SSL_KEY'],
-        $_ENV['MYSQL_SSL_CERT'],
-        $_ENV['MYSQL_SSL_CA'],
-        $_ENV['MYSQL_SSL_CAPATH'],
-        $_ENV['MYSQL_SSL_CIPHER']
+        null,
+        null,
+        null,
+        null
     );
 
     $db->real_connect($db_info["DB_HOST"], $db_info["DB_USERNAME"], $db_info["DB_PASSWORD"], $db_info["DB_NAME"]);
@@ -92,7 +96,7 @@ function hit_log($log)
 {
     $log = date('Y-m-d H:i:s') . " - " . $log . "\n";
 
-    file_put_contents($GLOBALS['cwd_now'] . "/assets/DEPLOYMENT.log", $log, FILE_APPEND);
+    file_put_contents("assets/DEPLOYMENT.log", $log, FILE_APPEND);
 }
 
 
@@ -160,7 +164,7 @@ if (!$the_quote) {
     die("No quote found");
 }
 
-$msg = "Quote of the day: " . $the_quote['quote'] . " - " . $the_quote['author'];
+$msg = "Quote of the day: " . $the_quote['id'] . " - " . $the_quote['hits'] . $the_quote['author'];
 
 echo $msg;
 
@@ -175,8 +179,7 @@ echo $msg;
  */
 $ReadMeA = update_readme("README.md");
 
-echo "Daily quote updated.\n"
-    . "🎯 Updating Todoist next...\n";
+echo "Daily quote updated.\n";
 
 #endregion
 
@@ -207,4 +210,10 @@ function slugify($text)
 
     return $text;
 }
+
+// TODO: Move these credentials to GitHub Secrets
+
+// delete the ssl cert file
+// unlink("assets/ssl_ca.pem");
+// unlink("assets/ssl_cert.pem");
 
