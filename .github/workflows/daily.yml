@@ -21,9 +21,6 @@ jobs:
         extensions: json,mbstring,zip,pcntl
     - name: Run 🚔 إشرد
       run: php ./.github/scripts/hourly.php
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
