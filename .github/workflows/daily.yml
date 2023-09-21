@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: deployment
     env:
-      db_info_prod: ${{ secrets.DB_INFO_PROD }}
+      DB_INFO_PROD: ${{ secrets.DB_INFO_PROD }}
     steps:
     - name: Checkout Code 🛒
       uses: actions/checkout@v2
