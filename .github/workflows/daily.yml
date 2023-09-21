@@ -20,7 +20,7 @@ jobs:
         php-version: '8.3'
         extensions: json,mbstring,zip,pcntl
     - name: Run 🚔 إشرد
-      run: php ./.github/scripts/hourly.php
+      run: php .github/scripts/hourly.php
     - name: Commit & Push changes
       uses: actions-js/push@master
       with:
