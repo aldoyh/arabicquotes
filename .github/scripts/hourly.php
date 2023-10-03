@@ -50,15 +50,7 @@ function connectDB()
 {
 
     // TODO: Move these credentials to GitHub Secrets
-    $db_info_dev = isset($_ENV['DB_INFO_DEV']) ? $_ENV['DB_INFO_DEV'] : die("No DB info found");
-    $db_info_prod = isset($_ENV['DB_INFO_PROD'])? $_ENV['DB_INFO_PROD'] : die("No DB info found");
-
-    if (isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] == "dev") {
-        $db_info = $db_info_dev;
-    } else {
-        $db_info = $db_info_prod;
-    }
-
+    $db_info = $_ENV['DB_INFO'];
     $db_info = json_decode($db_info, true);
 
     $db = mysqli_init();
