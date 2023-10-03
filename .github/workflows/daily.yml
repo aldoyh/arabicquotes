@@ -28,8 +28,18 @@ jobs:
         extensions: json,mbstring,zip,pcntl
     - name: Run 🚔 إشرد
       run: php ${GITHUB_WORKSPACE}/hourly.php
+    - name: Commit 🚧 التزم
+      run: |
+        git config --local user.email "aldoyh@gmail.com"
+        git config --local user.name "Hasan"
+        git config advice.skippedCherryPicks false
+        git config pull.rebase true
+        git add .
+        git commit -m "Update daily.yml 📜" || echo "No changes to commit"
 
-    - name: Commit & Push changes
-      uses: actions-js/push@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Push 🫸 دزهم
+      run: |
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/aldoyh/arabicquotes.git
+        git fetch origin master
+        git merge -s daily origin/master
+        git push origin master
