@@ -56,7 +56,7 @@ function connectDB()
     $db = mysqli_init();
 
     $db->ssl_set(
-        $_ENV['MYSQL_SSL_KEY'],
+        $GLOBALS['MYSQL_SSL_KEY'],
         null,
         null,
         null,
