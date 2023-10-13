@@ -1,0 +1,46 @@
+name: مقولة اليوم 📮 📜
+
+on:
+  push:
+    branches: ["daily", "master"]
+  pull_request:
+    branches: ["daily"]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */1 * * *"
+
+jobs:
+  build:
+    env:
+      GH_PAT: ${{ secrets.GH_PAT }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_USERNAME: ${{ secrets.DB_USERNAME }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_DATABASE: ${{ secrets.DB_DATABASE }}
+      DB_PORT: ${{ secrets.DB_PORT }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        ref: daily
+
+    - name: سوي ركب 🐘 PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.3'
+        extensions: json,mbstring,zip,pcntl
+        coverage: none
+
+    - name: Run 🚔 دق سلف
+      run: php .github/scripts/hourly.php
+
+    - name: Commit 🚧 إصطلب
+      run: |
+        git config --local user.email "aldoyh@gmail.com"
+        git config --local user.name "Hasan"
+        # git config advice.skippedCherryPicks false
+        git checkout daily
+        git add .
+        git commit -m "Update daily.yml 📜" || echo "No changes to commit"
+        git pull
+        git push origin daily
