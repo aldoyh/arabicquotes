@@ -1,0 +1,55 @@
+repo_name: aldoyh/arabicquotes
+report_id: ea877bceecec1f2f9037127a51cd9c35
+version: 0.1
+repo_type: Public
+timestamp: '2024-01-10T18:23:35+00:00'
+requested_by: aldoyh
+provider: github
+branch: master
+detected_tools_count: 4
+tools:
+- name: PHP
+  description: A popular general-purpose scripting language that is especially suited
+    to web development
+  website_url: http://www.php.net/
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/991/hwUcGZ41_400x400.jpg
+  detection_source_url: https://github.com/aldoyh/arabicquotes
+  detection_source: Repo Metadata
+- name: SQL
+  description: It is a domain-specific language used in programming
+  website_url: https://en.wikipedia.org/wiki/SQL
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/2271/default_068d33483bba6b81ee13fbd4dc7aab9780896a54.png
+  detection_source_url: https://github.com/aldoyh/arabicquotes/blob/master/assets/importDb.sql
+  detection_source: assets/importDb.sql
+  last_updated_by: Hasan
+  last_updated_on: 2023-09-17 20:02:38.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/aldoyh/arabicquotes
+  detection_source: Repo Metadata
+- name: GitHub Actions
+  description: Automate your workflow from idea to production
+  website_url: https://github.com/features/actions
+  open_source: false
+  hosted_saas: true
+  category: Build, Test, Deploy
+  sub_category: Continuous Integration
+  image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/aldoyh/arabicquotes/blob/master/.github/workflows/DailyQuotes.yml
+  detection_source: ".github/workflows/DailyQuotes.yml"
+  last_updated_by: Hasan AlDoy
+  last_updated_on: 2023-10-13 17:49:04.000000000 Z
