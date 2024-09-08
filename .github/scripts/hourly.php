@@ -80,7 +80,10 @@ function update_readme()
     // get the README.md file
     $path = "./README.md";
     $readme = file_get_contents($path);
-
+    if (!$readme) {
+        error_log("No README.md file found");
+        return false;
+    }
     $readme = preg_replace("/<!-- QUOTE:START -->.*<!-- QUOTE:END -->/s", "<!-- QUOTE:START -->\n" . $theChosen . "\n<!-- QUOTE:END -->", $readme);
 
     // save the new README.md file
