@@ -1,7 +1,13 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss-dark-mode@0.2.0/dist/dark-mode.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss-typography@0.4.0/dist/tailwind-typography.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss-aspect-ratio@0.2.0/dist/tailwind-aspect-ratio.min.css">
+<link rel="stylesheet" href="/assets/css/style.css">
+
 <div style="direction: rtl">
 # أروع ما قيل من العرب ؏
 
-# مقولة اليوم
+## مقولة اليوم
 
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem;">
 
@@ -14,8 +20,8 @@
                 <div class="quote-header">
                     <p class="quote-date" style="font-size: smaller;">اليوم: Thursday 21st of September 2023 - 16:25 🎯 المشاهدات: 49</p>
                 </div>
-                <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 quote-content" dir="rtl">
-                    <h1 class="quote-text">تعلموا العلم، واعملوا به، ولا تتعلموه لتتجملوا به، فإنه يوشك إن طال بكم
+                <div class="ml-4 text-center text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 quote-content" dir="rtl">
+                    <h1>تعلموا العلم، واعملوا به، ولا تتعلموه لتتجملوا به، فإنه يوشك إن طال بكم
                     زمان، أن يتجمل بالعلم كما يتجمل الرجل بثوبه.</h1>
                 </div>
                 <div class="quote-footer">
@@ -94,100 +100,5 @@
 </summary>
 </details>
 
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');
-body {
-    font-family: 'Cairo', sans-serif;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #374151;
-    text-align: left;
-    background-image: url(https://github.com/aldoyh/arabicquotes/blob/master/assets/PhotoReal_scroll_0.jpg?raw%3Dtrue);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    direction: rtl;
-}
-.quote-of-the-day {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.quote-header {
-    width: 100%;
-    text-align: left;
-}
-.quote-footer {
-    width: 100%;
-    text-align: right;
-}
-.quote-text {
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-    /* color: #374151; */
-}
-.quote-author {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #6B7280;
-}
-.quote-date {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: orange;
-}
-.quote-content {
-    width: 100%;
-    text-align: right;
-}
-.quote-content p {
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-    color: #374151;
-}
-.quote-content a {
-    color: #374151;
-}
-.quote-content a:hover {
-    color: #374151;
-    text-decoration: underline;
-}
-.quote-content a:visited {
-    color: #374151;
-}
-.quote-content a:active {
-    color: #374151;
-}
-.quote-content a:focus {
-    color: #374151;
-}
-.quote-content a:link {
-    color: #374151;
-}
-.quote-content a:target {
-    color: #374151;
-}
-.quote-content a:-webkit-any-link {
-    color: #374151;
-}
-.quote-content a:-webkit-any-link:visited {
-    color: #374151;
-}
-.quote-content a:-webkit-any-link:hover {
-    color: #374151;
-    text-decoration: underline;
-}
-.quote-content a:-webkit-any-link:active {
-    color: #374151;
-}
-.quote-content a:-webkit-any-link:focus {
-    color: #374151;
-}
-
-</style>
 
 

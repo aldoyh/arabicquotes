@@ -40,40 +40,27 @@ function get_random_quote()
 
 #region Database
 
-/**
- * Connect to the DB MySQL PlanetScale
- *
- *
- * @return void
- */
 function connectDB()
 {
+    $db_host = $_ENV['DB_HOST'] ?? false;
+    $db_name = $_ENV['DB_NAME'] ?? false;
+    $db_username = $_ENV['DB_USERNAME'] ?? false;
+    $db_password = $_ENV['DB_PASSWORD'] ?? false;
 
-    // TODO: Move these credentials to GitHub Secrets
-    $db_info = $_ENV['DB_INFO'];
-    $db_info = json_decode($db_info, true);
+    if (!$db_host || !$db_name || !$db_username || !$db_password) {
+        error_log("Database credentials not found in environment variables");
+        die("Database credentials not found in environment variables");
+    }
 
     $db = mysqli_init();
-
-    $db->ssl_set(
-        $GLOBALS['MYSQL_SSL_KEY'],
-        null,
-        null,
-        null,
-        null
-    );
-
-    $db->real_connect($db_info["DB_HOST"], $db_info["DB_USERNAME"], $db_info["DB_PASSWORD"], $db_info["DB_NAME"]);
-
+    $db->real_connect($db_host, $db_username, $db_password, $db_name);
     if ($db->connect_errno) {
         error_log("Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error);
         return false;
     }
-
     $db->query("SET NAMES utf8mb4");
     $db->query("SET CHARACTER SET utf8mb4");
     $db->query("SET SESSION collation_connection = 'utf8mb4_unicode_ci'");
-
     return $db;
 }
 

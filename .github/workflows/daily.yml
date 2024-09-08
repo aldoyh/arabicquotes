@@ -1,12 +1,14 @@
 name: مقولة اليوم 📮 📜
 
 on:
+  push:
+    branches: [ "master" ]
   pull_request:
-    paths: [".github/workflows/daily.yml", "daily/*"]
-    branches: ["master", "daily"]
+    branches: [ "master", "daily" ]
   workflow_dispatch:
-  schedule:
-    - cron: "0 */2 * * *"
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -16,18 +18,23 @@ jobs:
       APP_ENV: production
       APP_DEBUG: false
       APP_URL: https://arabicquotes.github.io
+
     steps:
     - name: Checkout Code 🛒
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Setup PHP 🐘
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.3'
+        php-version: '8.1'
         extensions: json,mbstring,zip,pcntl
+
     - name: Run 🚔 إشرد
-      run: php ${GITHUB_WORKSPACE}/hourly.php
-    - name: Commit 🚧 التزم
+      run: |
+        composer install --no-dev
+        php ./hourly.php
+
+    - name: Commit 🚧 إلتزم
       run: |
         git config --local user.email "aldoyh@gmail.com"
         git config --local user.name "Hasan"

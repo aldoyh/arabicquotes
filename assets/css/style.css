@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');
+
+body {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #374151;
+    text-align: left;
+    background-image: url(https://github.com/aldoyh/arabicquotes/blob/master/assets/PhotoReal_scroll_0.jpg?raw%3Dtrue);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    direction: rtl;
+}
+
+.quote-of-the-day {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.quote-header {
+    width: 100%;
+    text-align: left;
+}
+
+.quote-footer {
+    width: 100%;
+    text-align: right;
+}
+
+.quote-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    /* color: #374151; */
+}
+
+.quote-author {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #6B7280;
+}
+
+.quote-date {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: orange;
+}
+
+.quote-content {
+    width: 100%;
+    text-align: right;
+}
+
+.quote-content p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    color: #374151;
+}
+
+.quote-content a {
+    color: #374151;
+}
+
+.quote-content a:hover {
+    color: #374151;
+    text-decoration: underline;
+}
+
+.quote-content a:visited {
+    color: #374151;
+}
+
+.quote-content a:active {
+    color: #374151;
+}
+
+.quote-content a:focus {
+    color: #374151;
+}
+
+.quote-content a:link {
+    color: #374151;
+}
+
+.quote-content a:target {
+    color: #374151;
+}
+
+.quote-content a:-webkit-any-link {
+    color: #374151;
+}
+
+.quote-content a:-webkit-any-link:visited {
+    color: #374151;
+}
+
+.quote-content a:-webkit-any-link:hover {
+    color: #374151;
+    text-decoration: underline;
+}
+
+.quote-content a:-webkit-any-link:active {
+    color: #374151;
+}
+
+.quote-content a:-webkit-any-link:focus {
+    color: #374151;
+}
