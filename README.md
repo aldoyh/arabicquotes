@@ -7,27 +7,12 @@
 
 <!-- QUOTE:START -->
 
-<div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between quote-of-the-day">
-    <div class="flex flex-col items-center w-full max-w-xl px-4 py-8 mx-auto bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
-        <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right">
-            <div class="flex items-center gap-4">
-                <div class="quote-header">
-                    <p class="quote-date" style="font-size: smaller;">اليوم: Sunday 8th of September 2024 - 21:24 🎯 المشاهدات: 0</p>
-                </div>
-                <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 quote-content" dir="rtl">
-                    <h1 class="quote-text">إن أقسى ما في <a href="/wiki/%D8%AD%D9%8A%D8%A7%D8%A9"
-                        title="حياة">الحياة</a> ليس أن تسأم، بل أن تكون مكرها على أن تبدو <a
-                        href="/wiki/%D8%B3%D8%B9%D8%A7%D8%AF%D8%A9" title="سعادة">مسرورا</a>.</h1>
-                </div>
-                <div class="quote-footer">
-                    <p class="quote-author">— <a
-                        href="/wiki/%D8%A8%D9%8A%D9%8A%D8%B1_%D8%AF%D8%A7%D9%86%D9%8A%D9%86%D9%88%D8%B3"
-                        title="بيير دانينوس">بيير دانينوس</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+# لسان العاقل وراء قلبه وقلب الاحمق وراء لسانه
+
+- — <a
+                        href="/wiki/%D8%B9%D9%84%D9%8A_%D8%A8%D9%86_%D8%A3%D8%A8%D9%8A_%D8%B7%D8%A7%D9%84%D8%A8"
+                        title="علي بن أبي طالب">علي بن أبي طالب</a>
+
 
 <!-- QUOTE:END -->
 
