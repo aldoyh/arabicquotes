@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 error_log("Current directory: " . __DIR__ . "/../..");
 
 // change working directory
-chdir(__DIR__ . "/../..");
+// chdir(__DIR__ . "/../..");
 
 // current directory
 
@@ -18,6 +18,12 @@ chdir(__DIR__ . "/../..");
 function get_random_quote()
 {
     $db = getDB();
+    if (!$db) {
+        error_log("No DB found");
+        // load the JSON and return a random quote
+        $quotes = json_decode(file_get_contents("assets/quotes.json"), true);
+        return $quotes[array_rand($quotes)];
+    }
 
     $result = $db->query("SELECT * FROM `quotes` ORDER BY RAND() LIMIT 1");
 
@@ -40,40 +46,32 @@ function get_random_quote()
 
 #region Database
 
-/**
- * Connect to the DB MySQL PlanetScale
- *
- *
- * @return void
- */
 function connectDB()
 {
+    $db_host = $_ENV['DB_HOST'] ?? false;
+    if (!$db_host) {
+        return false;
+    }
 
-    // TODO: Move these credentials to GitHub Secrets
-    $db_info = $_ENV['DB_INFO'];
-    $db_info = json_decode($db_info, true);
+    // Database credentials (replace with your own)
+    $db_name = $_ENV['DB_NAME'] ?? false;
+    $db_username = $_ENV['DB_USERNAME'] ?? false;
+    $db_password = $_ENV['DB_PASSWORD'] ?? false;
+
+    if (!$db_host || !$db_name || !$db_username || !$db_password) {
+        error_log("Database credentials not found in environment variables");
+        die("Database credentials not found in environment variables");
+    }
 
     $db = mysqli_init();
-
-    $db->ssl_set(
-        $GLOBALS['MYSQL_SSL_KEY'],
-        null,
-        null,
-        null,
-        null
-    );
-
-    $db->real_connect($db_info["DB_HOST"], $db_info["DB_USERNAME"], $db_info["DB_PASSWORD"], $db_info["DB_NAME"]);
-
+    $db->real_connect($db_host, $db_username, $db_password, $db_name);
     if ($db->connect_errno) {
         error_log("Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error);
         return false;
     }
-
     $db->query("SET NAMES utf8mb4");
     $db->query("SET CHARACTER SET utf8mb4");
     $db->query("SET SESSION collation_connection = 'utf8mb4_unicode_ci'");
-
     return $db;
 }
 
@@ -103,19 +101,18 @@ function getDB()
 }
 
 
-function update_readme($path)
+function update_readme()
 {
-
-
     $the_quote = get_random_quote();
 
     if (!$the_quote) {
         error_log("No quote found");
         return false;
+    } else {
+        error_log("Quote found: " . $the_quote['id']);
     }
 
-    $theChosen =
-        '
+    $theChosen = '
 <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between quote-of-the-day">
     <div class="flex flex-col items-center w-full max-w-xl px-4 py-8 mx-auto bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
         <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right">
@@ -135,6 +132,8 @@ function update_readme($path)
 </div>
 ';
 
+    // get the README.md file
+    $path = "./README.md";
     $readme = file_get_contents($path);
 
     $readme = preg_replace("/<!-- QUOTE:START -->.*<!-- QUOTE:END -->/s", "<!-- QUOTE:START -->\n" . $theChosen . "\n<!-- QUOTE:END -->", $readme);
@@ -148,7 +147,6 @@ function update_readme($path)
 }
 
 
-
 $the_quote = get_random_quote();
 
 if (!$the_quote) {
@@ -158,7 +156,7 @@ if (!$the_quote) {
 
 $msg = "Quote of the day: " . $the_quote['id'] . " - " . $the_quote['hits'] . $the_quote['author'];
 
-echo $msg;
+// echo $msg;
 
 /**
  * Ignite the function to update the README.md, then pass it to

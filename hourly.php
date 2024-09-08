@@ -18,6 +18,12 @@ error_log("Current directory: " . __DIR__ . "/../..");
 function get_random_quote()
 {
     $db = getDB();
+    if (!$db) {
+        error_log("No DB found");
+        // load the JSON and return a random quote
+        $quotes = json_decode(file_get_contents("assets/quotes.json"), true);
+        return $quotes[array_rand($quotes)];
+    }
 
     $result = $db->query("SELECT * FROM `quotes` ORDER BY RAND() LIMIT 1");
 
@@ -43,6 +49,11 @@ function get_random_quote()
 function connectDB()
 {
     $db_host = $_ENV['DB_HOST'] ?? false;
+    if (!$db_host) {
+        return false;
+    }
+
+    // Database credentials (replace with your own)
     $db_name = $_ENV['DB_NAME'] ?? false;
     $db_username = $_ENV['DB_USERNAME'] ?? false;
     $db_password = $_ENV['DB_PASSWORD'] ?? false;
@@ -90,15 +101,16 @@ function getDB()
 }
 
 
-function update_readme($path)
+function update_readme()
 {
-
-
     $the_quote = get_random_quote();
 
     if (!$the_quote) {
         error_log("No quote found");
         return false;
+    } else {
+        error_log("Quote found: " . $the_quote['id']);
+        die(print_r($the_quote, true));
     }
 
     $theChosen = '
@@ -121,7 +133,8 @@ function update_readme($path)
 </div>
 ';
 
-    $readme = file_get_contents($path);
+    // get the README.md file
+    $path = "./README.md";
 
     $readme = preg_replace("/<!-- QUOTE:START -->.*<!-- QUOTE:END -->/s", "<!-- QUOTE:START -->\n" . $theChosen . "\n<!-- QUOTE:END -->", $readme);
 
@@ -134,7 +147,6 @@ function update_readme($path)
 }
 
 
-
 $the_quote = get_random_quote();
 
 if (!$the_quote) {
@@ -144,7 +156,7 @@ if (!$the_quote) {
 
 $msg = "Quote of the day: " . $the_quote['id'] . " - " . $the_quote['hits'] . $the_quote['author'];
 
-echo $msg;
+// echo $msg;
 
 /**
  * Ignite the function to update the README.md, then pass it to
