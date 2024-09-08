@@ -17,64 +17,9 @@ error_log("Current directory: " . __DIR__ . "/../..");
  */
 function get_random_quote()
 {
-    $db = getDB();
-    if (!$db) {
-        error_log("No DB found");
-        // load the JSON and return a random quote
         $quotes = json_decode(file_get_contents("assets/quotes.json"), true);
-        return $quotes[array_rand($quotes)];
-    }
-
-    $result = $db->query("SELECT * FROM `quotes` ORDER BY RAND() LIMIT 1");
-
-    if (!$result) {
-        error_log("No result found");
-        return false;
-    }
-
-    // $row = $result->fetchArray(SQLITE3_ASSOC);
-    $row = $result->fetch_assoc();
-
-    // die(print_r($row, true) . "\n");
-
-    $db->query("UPDATE `quotes` SET hits = hits + 1 WHERE id = " . $row['id']);
-
-    $db->close();
-
-    return $row;
+    return $quotes[array_rand($quotes)];
 }
-
-#region Database
-
-function connectDB()
-{
-    $db_host = $_ENV['DB_HOST'] ?? false;
-    if (!$db_host) {
-        return false;
-    }
-
-    // Database credentials (replace with your own)
-    $db_name = $_ENV['DB_NAME'] ?? false;
-    $db_username = $_ENV['DB_USERNAME'] ?? false;
-    $db_password = $_ENV['DB_PASSWORD'] ?? false;
-
-    if (!$db_host || !$db_name || !$db_username || !$db_password) {
-        error_log("Database credentials not found in environment variables");
-        die("Database credentials not found in environment variables");
-    }
-
-    $db = mysqli_init();
-    $db->real_connect($db_host, $db_username, $db_password, $db_name);
-    if ($db->connect_errno) {
-        error_log("Failed to connect to MySQL: (" . $db->connect_errno . ") " . $db->connect_error);
-        return false;
-    }
-    $db->query("SET NAMES utf8mb4");
-    $db->query("SET CHARACTER SET utf8mb4");
-    $db->query("SET SESSION collation_connection = 'utf8mb4_unicode_ci'");
-    return $db;
-}
-
 
 /**
  * Hits the log for every new Quote of the day
