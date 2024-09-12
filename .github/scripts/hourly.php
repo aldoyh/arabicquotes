@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Created by the Mastermind himself
+ *
+ * @package ma-qeal
+ * @subpackage index.php
+ * @since ma-qeal 1.0
+ *
+ */
+
 error_reporting(E_ALL);
 error_log("Current directory: " . __DIR__ . "/../..");
 
@@ -55,7 +64,7 @@ function updateReadme()
         $quoteMarkdown .= PHP_EOL . "![Quote Image](" . $selectedQuote['image'] . ")";
     }
 
-    $readmePath = __DIR__ . "/../../README.md";
+    $readmePath = __DIR__ . "/README.md";
     if (!file_exists($readmePath)) {
         error_log("README.md file not found");
         return false;
@@ -172,14 +181,7 @@ function fetchFromWiki()
     ];
 }
 
-// Main execution
-$updatedQuote = updateReadme();
 
-if ($updatedQuote) {
-    echo "Daily quote updated successfully.\n";
-} else {
-    echo "Failed to update daily quote.\n";
-}
 
 function fetchRandomWikiQuote()
 {
@@ -208,13 +210,18 @@ function fetchRaw()
     return $html;
 }
 
+// Main execution
+$updatedQuote = updateReadme();
 
-echo "Fetching a random quote from Wikipedia...\n";
-$wikiQuote = fetchRandomWikiQuote();
+if (!$updatedQuote) {
+    echo "Failed to update daily quote.\n";
 
-if ($wikiQuote) {
-    echo "Quote: " . $wikiQuote['quote'] . "\n";
-    echo "Author: " . $wikiQuote['author'] . "\n";
+    echo "Fetching a random quote from Wikipedia...\n";
+    $wikiQuote = fetchRandomWikiQuote();
+    if (!$wikiQuote) {
+        echo "Failed to fetch a random quote from Wikipedia.\n";
+    }
 } else {
-    echo "Failed to fetch a random quote from Wikipedia.\n";
+    echo "✅ Daily quote updated successfully.\n";
+    echo "Quote ID: " . $updatedQuote['id'];
 }
