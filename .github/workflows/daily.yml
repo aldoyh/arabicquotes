@@ -24,15 +24,15 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup PHP 🐘
-      uses: shivammathur/setup-php@v2
+      uses: shivammathur/setup-php@v3
       with:
-        php-version: '8.1'
+        php-version: '8.3'
         extensions: json,mbstring,zip,pcntl
 
     - name: Run 🚔 إشرد
       run: |
         composer install --no-dev
-        php ./hourly.php
+        php ./.github/scripts/hourly.php
 
     - name: Commit 🚧 إلتزم
       run: |
