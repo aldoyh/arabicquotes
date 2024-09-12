@@ -22,6 +22,8 @@ jobs:
     steps:
     - name: Checkout Code 🛒
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
     - name: Setup PHP 🐘
       uses: shivammathur/setup-php@v2
@@ -31,6 +33,7 @@ jobs:
 
     - name: Run 🚔 إشرد
       run: php ./.github/scripts/hourly.php
+      id: run_script
 
     - name: Commit 🚧 إلتزم
       run: |
@@ -39,10 +42,10 @@ jobs:
         git config advice.skippedCherryPicks false
         git config pull.rebase true
         git add .
-        git commit -m "Update daily.yml 📜" || echo "No changes to commit"
+        git diff --staged --quiet || git commit -m "Update quotes $(date +'%Y-%m-%d %H:%M:%S')"
 
     - name: Push 🫸 دزهم
       run: |
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/aldoyh/arabicquotes.git
-        git merge -s daily origin/master
-        git push origin master
+        git push origin HEAD:master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
