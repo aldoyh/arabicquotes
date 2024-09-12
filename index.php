@@ -20,11 +20,14 @@ error_log("Current directory: " . __DIR__ . "/../..");
  */
 function getRandomQuote()
 {
-    $quotes = json_decode(file_get_contents("assets/quotes.json"), true);
-    if (!$quotes) {
+    $jsonPath = __DIR__ . "/assets/quotes.json";
+
+    if (!file_exists($jsonPath)) {
         error_log('Error opening json file.');
+        return null;
     }
-    return $quotes ? $quotes[array_rand($quotes)] : null;
+    return $quotes = json_decode(file_get_contents($jsonPath), true);
+
 }
 
 /**
@@ -93,7 +96,7 @@ function updateReadme()
 
 /**
  * Creates a new GitHub issue with a body content made from the passed quoteHtml
- * 
+ *
  * @param string
  * @response boolean
  */

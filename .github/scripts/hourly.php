@@ -9,9 +9,7 @@
  *
  */
 
-error_reporting(E_ALL);
-error_log("Current directory: " . __DIR__ . "/../..");
-
+error_reporting(0);
 
 /**
  * Selects a random quote from the JSON file
@@ -20,11 +18,22 @@ error_log("Current directory: " . __DIR__ . "/../..");
  */
 function getRandomQuote()
 {
-    $quotes = json_decode(file_get_contents("assets/quotes.json"), true);
-    if (!$quotes) {
+    $jsonPath = __DIR__ . "/../../assets/quotes.json";
+
+    if (!file_exists($jsonPath)) {
         error_log('Error opening json file.');
+        die('Error opening json file.');
+        return null;
     }
-    return $quotes ? $quotes[array_rand($quotes)] : null;
+    if (!$quotes = json_decode(file_get_contents($jsonPath), true)) {
+        error_log('Error decoding json file.');
+        die('Error decoding json file.');
+        return null;
+    } else {
+        $randomIndex = array_rand($quotes);
+        return $quotes[$randomIndex];
+    }
+
 }
 
 /**
@@ -50,7 +59,7 @@ function updateReadme()
 
     if (!$selectedQuote) {
         error_log("No quote found");
-        return false;
+        return null;
     }
     $selectedQuote['hits'] = $selectedQuote['hits'] + 1;
     // remove new lines from the quote
@@ -64,7 +73,7 @@ function updateReadme()
         $quoteMarkdown .= PHP_EOL . "![Quote Image](" . $selectedQuote['image'] . ")";
     }
 
-    $readmePath = __DIR__ . "/README.md";
+    $readmePath = __DIR__ . "/../../README.md";
     if (!file_exists($readmePath)) {
         error_log("README.md file not found");
         return false;
@@ -93,7 +102,7 @@ function updateReadme()
 
 /**
  * Creates a new GitHub issue with a body content made from the passed quoteHtml
- * 
+ *
  * @param string
  * @response boolean
  */
