@@ -12,6 +12,9 @@ error_log("Current directory: " . __DIR__ . "/../..");
 function getRandomQuote()
 {
     $quotes = json_decode(file_get_contents("assets/quotes.json"), true);
+    if (!$quotes) {
+        error_log('Error opening json file.');
+    }
     return $quotes ? $quotes[array_rand($quotes)] : null;
 }
 
@@ -47,7 +50,7 @@ function updateReadme()
     $quoteHtml = generateQuoteHtml($selectedQuote);
 
     $quoteMarkdown = PHP_EOL . "# " . $selectedQuote['quote'] . PHP_EOL . PHP_EOL . "- " . $selectedQuote['author']
-    . PHP_EOL . PHP_EOL;
+        . PHP_EOL . PHP_EOL;
     if (isset($selectedQuote['image'])) {
         $quoteMarkdown .= PHP_EOL . "![Quote Image](" . $selectedQuote['image'] . ")";
     }
@@ -74,8 +77,18 @@ function updateReadme()
     file_put_contents($readmePath, $updatedReadme);
     logQuoteUpdate($selectedQuote['id'] . " - " . $selectedQuote['hits']);
 
+
+
     return $selectedQuote;
 }
+
+/**
+ * Creates a new GitHub issue with a body content made from the passed quoteHtml
+ * 
+ * @param string
+ * @response boolean
+ */
+
 
 /**
  * Generates HTML for the quote
