@@ -30,9 +30,7 @@ jobs:
         extensions: json,mbstring,zip,pcntl
 
     - name: Run 🚔 إشرد
-      run: |
-        composer install --no-dev
-        php ./.github/scripts/hourly.php
+      run: php ./.github/scripts/hourly.php
 
     - name: Commit 🚧 إلتزم
       run: |
