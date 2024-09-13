@@ -213,6 +213,12 @@ function fetchRaw()
     return $html;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once 'calIngest.php';
+
+    die('Done!');
+}
+
 // Main execution
 $updatedQuote = updateReadme();
 
