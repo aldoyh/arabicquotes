@@ -5,16 +5,14 @@
 
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem;">
 
-<!-- QUOTE:START -->
 
-# أيها الناس اسمعوا وعوا؛ من <a href="/wiki/%D8%AD%D9%8A%D8%A7%D8%A9"                         title="حياة">عاش</a> <a href="/wiki/%D9%85%D9%88%D8%AA" title="موت">مات</a>، ومن <a                         href="/wiki/%D9%85%D9%88%D8%AA" title="موت">مات</a> فات، وكل ما هو آت آت
+# كلمة حِكْمَة لك من أخيك، خير لك من مال يعطيك؛ لأنَّ المال يطغيك، والكلمة                     تهديك.
 
-- — <a href="/wiki/%D9%82%D8%B3_%D8%A8%D9%86_%D8%B3%D8%A7%D8%B9%D8%AF%D8%A9"
-                        title="قس بن ساعدة">قس
-                        بن ساعدة الإيادي</a>
+- — <a
+                        href="/w/index.php?title=%D8%A3%D8%A8%D8%A7%D9%86_%D8%A8%D9%86_%D8%B3%D9%84%D9%8A%D9%85&amp;action=edit&amp;redlink=1"
+                        class="new" title="أبان بن سليم (الصفحة غير موجودة)">أبان بن سليم</a>
 
 
-<!-- QUOTE:END -->
 
 </div>
 
