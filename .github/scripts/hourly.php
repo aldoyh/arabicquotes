@@ -6,7 +6,7 @@
  * @since ma-qeal 1.0
  */
 
-// error_reporting(E_ALL);
+error_reporting(E_ALL);
 
 /**
  * Quote Manager
@@ -147,6 +147,13 @@ class QuoteManager
 class WikiquoteFetcher
 {
 
+    public $updatedQuote;
+
+    public function __construct()
+    {
+        $this->updatedQuote = $this->fetchRandomWikiQuote();
+    }
+
     /**
      * Fetches a random quote from Wikiquote.
      *
@@ -181,20 +188,13 @@ class WikiquoteFetcher
         @$dom->loadHTML($html);
         $xpath = new DOMXPath($dom);
 
-        $quoteNodes = $xpath->query('//div[@class="mw-parser-output"]/ul/li');
-        if ($quoteNodes->length === 0) {
-            error_log("No quote nodes found in Heystack!");
-            return null;
-        }
-
-        $totalFound = $quoteNodes->length;
-        error_log("Total quotes found: " . $totalFound);
-
-        $randomQuote = $quoteNodes->item(rand(0, $quoteNodes->length - 1))->textContent;
-
-        $authorNode = $xpath->query('//h1[@id="firstHeading"]');
-        $author = $authorNode->length > 0 ? $authorNode->item(0)->textContent : 'Unknown';
-
+        $chunk = $xpath->query('/html/body/div[2]/div/div[3]/main/div[3]/div[3]/div[1]/table[1]/tbody/tr[1]/td/div[2]/div[2]/center/table/tbody/tr/td[3]');
+        $chunk = explode("\n", trim($chunk->item(0)->textContent));
+        $chunk = array_filter($chunk, function ($value) {
+            return !empty(trim($value));
+        });
+        $randomQuote = $chunk[0];
+        $author = $chunk[2];
         return [
             'quote' => trim($randomQuote),
             'author' => trim($author)
@@ -223,17 +223,16 @@ class WikiquoteFetcher
 $quoteManager = new QuoteManager();
 $wikiquoteFetcher = new WikiquoteFetcher();
 
-echo $wikiquoteFetcher->$updatedQuote = $quoteManager->updateReadme();
-
-if (!$updatedQuote) {
+if (!$wikiQuote = $wikiquoteFetcher->fetchRandomWikiQuote()) {
     echo "Failed to update daily quote.\n";
 
     echo "Fetching a random quote from Wikipedia...\n";
-    $wikiQuote = $wikiquoteFetcher->fetchRandomWikiQuote();
+
     if (!$wikiQuote) {
         echo "Failed to fetch a random quote from Wikipedia.\n";
     }
 } else {
     echo "✅ Daily quote updated successfully.\n";
-    echo "Quote ID: " . $updatedQuote['id'];
+    echo "Quote: " . $wikiQuote['quote'] . PHP_EOL;
+    echo "Author: " . $wikiQuote['author'] . PHP_EOL;
 }

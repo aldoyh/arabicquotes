@@ -1,6 +1,16 @@
 <?php
 
+function getDB()
+{
+    $db = new SQLite3(__DIR__ . "/assets/QuotesDB.db");
 
+    if (!$db) {
+        error_log("Failed to connect to the DB");
+        return false;
+    }
+
+    return $db;
+}
 
 function getDBSQLite()
 {

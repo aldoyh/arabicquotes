@@ -18,7 +18,7 @@ error_log("Current directory: " . __DIR__);
 class QuoteManager
 {
 
-    private $basePath = __DIR__ . "/";
+    private $basePath;
 
     /**
      * Selects a random quote from the JSON file.
