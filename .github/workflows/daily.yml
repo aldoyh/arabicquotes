@@ -44,5 +44,5 @@ jobs:
     - name: Push 🫸 دزهم
       run: |
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/aldoyh/arabicquotes.git
-        git merge -s daily origin/master
+        git merge -s octopus daily origin/master
         git push origin master
