@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^Work\.ics$ index.php [L]

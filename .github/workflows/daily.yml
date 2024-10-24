@@ -1,10 +1,8 @@
 name: مقولة اليوم 📮 📜
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master", "daily" ]
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at midnight
   workflow_dispatch:
 
 permissions:
@@ -22,7 +20,9 @@ jobs:
     steps:
     - name: Checkout Code 🛒
       uses: actions/checkout@v4
-
+      with:
+        ref: gh-pages # Checkout the deployment branch
+        
     - name: Setup PHP 🐘
       uses: shivammathur/setup-php@v2
       with:
@@ -31,6 +31,7 @@ jobs:
 
     - name: Run 🚔 إشرد
       run: php ./.github/scripts/hourly.php
+      id: run_script
 
     - name: Commit 🚧 إلتزم
       run: |
@@ -39,7 +40,7 @@ jobs:
         git config advice.skippedCherryPicks false
         git config pull.rebase true
         git add .
-        git commit -m "Update daily.yml 📜" || echo "No changes to commit"
+        git diff --staged --quiet || git commit -m "Update quotes $(date +'%Y-%m-%d %H:%M:%S')"
 
     - name: Push 🫸 دزهم
       run: |

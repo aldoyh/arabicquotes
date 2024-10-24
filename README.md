@@ -5,14 +5,14 @@
 
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem;">
 
-<!-- QUOTE:START -->
 
-# ليست الشجاعة غياب الخوف، ولكنها الإقرار بأن هناك ما هو أهم من الخوف.
+# كلمة حِكْمَة لك من أخيك، خير لك من مال يعطيك؛ لأنَّ المال يطغيك، والكلمة                     تهديك.
 
-- — أمبروز ريدمون
+- — <a
+                        href="/w/index.php?title=%D8%A3%D8%A8%D8%A7%D9%86_%D8%A8%D9%86_%D8%B3%D9%84%D9%8A%D9%85&amp;action=edit&amp;redlink=1"
+                        class="new" title="أبان بن سليم (الصفحة غير موجودة)">أبان بن سليم</a>
 
 
-<!-- QUOTE:END -->
 
 </div>
 
@@ -22,23 +22,23 @@
 
 <div id="gallery" style="display: grid; grid-template-columns: repeat(5, 1fr); grid-gap: 2rem;">
 
-<img src="https://i.ibb.co/7CFzDHp/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-1.jpg" />
+<img src="https://i.ibb.co/7CFzDHp/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-1.jpg" style="width: 8em" />
 
-<img src="https://i.ibb.co/NnFpS1Z/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-0.jpg" />
+<img src="https://i.ibb.co/NnFpS1Z/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-0.jpg" style="width: 8em" />
 
-<img src="https://i.ibb.co/YLLXFz7/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-4.jpg" />
+<img src="https://i.ibb.co/YLLXFz7/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-4.jpg" style="width: 8em" />
 
-<img src="https://i.ibb.co/Z2PgV09/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-5.jpg" />
+<img src="https://i.ibb.co/Z2PgV09/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-5.jpg" style="width: 8em" />
 
-<img src="https://i.ibb.co/HV1tCpZ/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-6.jpg" />
+<img src="https://i.ibb.co/HV1tCpZ/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-6.jpg" style="width: 8em" />
 
-<img src="https://i.ibb.co/bHP93gw/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-7.jpg" />
+<img src="https://i.ibb.co/bHP93gw/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-7.jpg" style="width: 8em" />
 
-<img src="https://i.ibb.co/ZJ9Vb0Y/Photo-Real-the-daily-quote-0.jpg" />
+<img src="https://i.ibb.co/ZJ9Vb0Y/Photo-Real-the-daily-quote-0.jpg" style="width: 10em" />
 
-<img src="https://i.ibb.co/sFs2LTF/Photo-Real-the-daily-quote-2.jpg" />
+<img src="https://i.ibb.co/sFs2LTF/Photo-Real-the-daily-quote-2.jpg" style="width: 10em" />
 
-<img src="https://i.ibb.co/Ms2KVnb/Photo-Real-the-daily-quote-1.jpg" />
+<img src="https://i.ibb.co/Ms2KVnb/Photo-Real-the-daily-quote-1.jpg" style="width: 10em" />
 
 </div>
 

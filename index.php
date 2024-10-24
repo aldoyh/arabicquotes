@@ -1,226 +1,229 @@
 <?php
 
 /**
- * Created by the Mastermind himself
- *
  * @package ma-qeal
  * @subpackage index.php
  * @since ma-qeal 1.0
- *
  */
 
 error_reporting(E_ALL);
-error_log("Current directory: " . __DIR__ . "/../..");
-
+error_log("Current directory: " . __DIR__);
 
 /**
- * Selects a random quote from the JSON file
+ * Quote Manager
  *
- * @return array|null
+ * This class manages quotes, including fetching random quotes, 
+ * updating the README file with a new quote, and logging updates.
  */
-function getRandomQuote()
+class QuoteManager
 {
-    $jsonPath = __DIR__ . "/assets/quotes.json";
 
-    if (!file_exists($jsonPath)) {
-        error_log('Error opening json file.');
-        return null;
-    }
-    return $quotes = json_decode(file_get_contents($jsonPath), true);
+    private $basePath;
 
-}
-
-/**
- * Logs the new Quote of the day
- *
- * @param string $logMessage
- * @return void
- */
-function logQuoteUpdate($logMessage)
-{
-    $logEntry = date('Y-m-d H:i:s') . " - " . $logMessage . "\n";
-    file_put_contents("assets/DEPLOYMENT.log", $logEntry, FILE_APPEND);
-}
-
-/**
- * Updates the README.md file with a new quote
- *
- * @return array|false
- */
-function updateReadme()
-{
-    $selectedQuote = getRandomQuote();
-
-    if (!$selectedQuote) {
-        error_log("No quote found");
-        return false;
-    }
-    $selectedQuote['hits'] = $selectedQuote['hits'] + 1;
-    // remove new lines from the quote
-    $selectedQuote['quote'] = str_replace("\n", " ", $selectedQuote['quote']);
-
-    $quoteHtml = generateQuoteHtml($selectedQuote);
-
-    $quoteMarkdown = PHP_EOL . "# " . $selectedQuote['quote'] . PHP_EOL . PHP_EOL . "- " . $selectedQuote['author']
-        . PHP_EOL . PHP_EOL;
-    if (isset($selectedQuote['image'])) {
-        $quoteMarkdown .= PHP_EOL . "![Quote Image](" . $selectedQuote['image'] . ")";
+    /**
+     * Selects a random quote from the JSON file.
+     *
+     * @return array|null The random quote, or null if an error occurs.
+     */
+    public function getRandomQuote()
+    {
+        $quotes = json_decode(file_get_contents("assets/quotes.json"), true);
+        if (!$quotes) {
+            error_log('Error opening json file.');
+            return null;
+        }
+        return $quotes[array_rand($quotes)];
     }
 
-    $readmePath = __DIR__ . "/README.md";
-    if (!file_exists($readmePath)) {
-        error_log("README.md file not found");
-        return false;
+    /**
+     * Logs the new Quote of the day.
+     *
+     * @param string $logMessage The message to log.
+     */
+    public function logQuoteUpdate($logMessage)
+    {
+        $logEntry = date('Y-m-d H:i:s') . " - " . $logMessage . "\n";
+        file_put_contents($this->basePath . "assets/DEPLOYMENT.log", $logEntry, FILE_APPEND);
     }
-    $readmeContent = file_get_contents($readmePath);
 
-    if (!$readmeContent) {
-        error_log("No README.md file found");
-        return false;
+    /**
+     * Updates the README.md file with a new quote.
+     *
+     * @return array|false The selected quote, or false if an error occurs.
+     */
+    public function updateReadme()
+    {
+        $selectedQuote = $this->getRandomQuote();
+
+        if (!$selectedQuote) {
+            error_log("No quote found");
+            return false;
+        }
+
+        $selectedQuote['hits']++;
+        $selectedQuote['quote'] = str_replace("\n", " ", $selectedQuote['quote']);
+
+        $quoteMarkdown = $this->generateQuoteMarkdown($selectedQuote);
+
+        $readmePath = $this->basePath . "README.md";
+        if (!file_exists($readmePath)) {
+            error_log("README.md file not found");
+            return false;
+        }
+
+        $readmeContent = file_get_contents($readmePath);
+        if (!$readmeContent) {
+            error_log("No README.md file found");
+            return false;
+        }
+
+        $updatedReadme = preg_replace(
+            "/[\s\S]*/",
+            "\n" . $quoteMarkdown . "\n",
+            $readmeContent
+        );
+
+        file_put_contents($readmePath, $updatedReadme);
+        $this->logQuoteUpdate($selectedQuote['id'] . " - " . $selectedQuote['hits']);
+
+        return $selectedQuote;
     }
 
-    $updatedReadme = preg_replace(
-        "/<!-- QUOTE:START -->[\s\S]*<!-- QUOTE:END -->/",
-        // "<!-- QUOTE:START -->\n" . $quoteHtml . "\n<!-- QUOTE:END -->",
-        "<!-- QUOTE:START -->\n" . $quoteMarkdown . "\n<!-- QUOTE:END -->",
-        $readmeContent
-    );
+    /**
+     * Generates Markdown for the quote.
+     *
+     * @param array $quote The quote data.
+     * @return string The Markdown representation of the quote.
+     */
+    private function generateQuoteMarkdown($quote)
+    {
+        $quoteMarkdown = PHP_EOL . "# " . $quote['quote'] . PHP_EOL . PHP_EOL . "- " . $quote['author'] . PHP_EOL . PHP_EOL;
+        if (isset($quote['image'])) {
+            $quoteMarkdown .= PHP_EOL . "![Quote Image](" . $quote['image'] . ")";
+        }
+        return $quoteMarkdown;
+    }
 
-    file_put_contents($readmePath, $updatedReadme);
-    logQuoteUpdate($selectedQuote['id'] . " - " . $selectedQuote['hits']);
-
-
-
-    return $selectedQuote;
-}
-
-/**
- * Creates a new GitHub issue with a body content made from the passed quoteHtml
- *
- * @param string
- * @response boolean
- */
-
-
-/**
- * Generates HTML for the quote
- *
- * @param array $quote
- * @return string
- */
-function generateQuoteHtml($quote)
-{
-    return '
-    <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between quote-of-the-day">
-        <div class="flex flex-col items-center w-full max-w-xl px-4 py-8 mx-auto bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
-            <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right">
-                <div class="flex items-center gap-4">
-                    <div class="quote-header">
-                        <p class="quote-date" style="font-size: smaller;">اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
-                    </div>
-                    <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 quote-content" dir="rtl">
-                        <h1 class="quote-text">' . $quote['quote'] . '</h1>
-                    </div>
-                    <div class="quote-footer">
-                        <p class="quote-author">' . $quote['author'] .
-        '</p>
+    /**
+     * Generates HTML for the quote.
+     *
+     * @param array $quote The quote data.
+     * @return string The HTML representation of the quote.
+     */
+    public function generateQuoteHtml($quote)
+    {
+        return '
+        <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between quote-of-the-day">
+            <div class="flex flex-col items-center w-full max-w-xl px-4 py-8 mx-auto bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
+                <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right">
+                    <div class="flex items-center gap-4">
+                        <div class="quote-header">
+                            <p class="quote-date" style="font-size: smaller;">اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
+                        </div>
+                        <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 quote-content" dir="rtl">
+                            <h1 class="quote-text">' . $quote['quote'] . '</h1>
+                        </div>
+                        <div class="quote-footer">
+                            <p class="quote-author">' . $quote['author'] . '</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>';
+        </div>';
+    }
 }
 
 /**
- * Converts a string to a URL-friendly slug
+ * Wikiquote Fetcher
  *
- * @param string $text
- * @return string
+ * This class fetches quotes from Wikiquote.
  */
-function slugify($text)
+class WikiquoteFetcher
 {
-    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
-    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
-    $text = preg_replace('~[^-\w]+~', '', $text);
-    $text = trim($text, '-');
-    $text = preg_replace('~-+~', '-', $text);
-    $text = strtolower($text);
 
-    return empty($text) ? 'n-a' : $text;
-}
+    /**
+     * Fetches a random quote from Wikiquote.
+     *
+     * @return array|null The fetched quote, or null if an error occurs.
+     */
+    public function fetchRandomWikiQuote()
+    {
+        $htmlChunk = $this->fetchFromWiki();
+        if (!$htmlChunk) {
+            return null;
+        }
 
-/**
- * Fetches a random quote from Wikiquote
- *
- */
-function fetchFromWiki()
-{
-    $html = fetchRaw();
-    if (!$html) {
-        return null;
+        return [
+            'quote' => $htmlChunk['quote'],
+            'author' => $htmlChunk['author']
+        ];
     }
 
-    $dom = new DOMDocument();
-    @$dom->loadHTML($html);
-    $xpath = new DOMXPath($dom);
+    /**
+     * Fetches and parses a quote from Wikiquote.
+     *
+     * @return array|null The parsed quote, or null if an error occurs.
+     */
+    private function fetchFromWiki()
+    {
+        $html = $this->fetchRaw();
+        if (!$html) {
+            return null;
+        }
 
-    $quoteNodes = $xpath->query('//div[@class="mw-parser-output"]/ul/li');
-    if ($quoteNodes->length === 0) {
-        error_log("No quote nodes found in Heystack!");
-        return null;
+        $dom = new DOMDocument();
+        @$dom->loadHTML($html);
+        $xpath = new DOMXPath($dom);
+
+        $quoteNodes = $xpath->query('//div[@class="mw-parser-output"]/ul/li');
+        if ($quoteNodes->length === 0) {
+            error_log("No quote nodes found in Heystack!");
+            return null;
+        }
+
+        $totalFound = $quoteNodes->length;
+        error_log("Total quotes found: " . $totalFound);
+
+        $randomQuote = $quoteNodes->item(rand(0, $quoteNodes->length - 1))->textContent;
+
+        $authorNode = $xpath->query('//h1[@id="firstHeading"]');
+        $author = $authorNode->length > 0 ? $authorNode->item(0)->textContent : 'Unknown';
+
+        return [
+            'quote' => trim($randomQuote),
+            'author' => trim($author)
+        ];
     }
 
-    $totalFound = $quoteNodes->length;
-    error_log("Total quotes found: " . $totalFound);
+    /**
+     * Fetches raw HTML content from Wikiquote.
+     *
+     * @return string|null The HTML content, or null if an error occurs.
+     */
+    private function fetchRaw()
+    {
+        $url = "https://ar.wikiquote.org/wiki/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9";
+        if (!$html = file_get_contents($url)) {
+            return null;
+        }
 
-    $randomQuote = $quoteNodes->item(rand(0, $quoteNodes->length - 1))->textContent;
-
-    $authorNode = $xpath->query('//h1[@id="firstHeading"]');
-    $author = $authorNode->length > 0 ? $authorNode->item(0)->textContent : 'Unknown';
-
-    return [
-        'quote' => trim($randomQuote),
-        'author' => trim($author)
-    ];
-}
-
-
-
-function fetchRandomWikiQuote()
-{
-    $htmlChunk = fetchFromWiki();
-    if (!$htmlChunk) {
-        return null;
+        return $html;
     }
-
-    $quote = $htmlChunk['quote'];
-    $author = $htmlChunk['author'];
-
-    return [
-        'quote' => $quote,
-        'author' => $author
-    ];
 }
 
-// fetch an html page from a url
-function fetchRaw()
-{
-    $url = "https://ar.wikiquote.org/wiki/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9";
-    if (!$html = file_get_contents($url)) {
-        return null;
-    }
-
-    return $html;
-}
 
 // Main execution
-$updatedQuote = updateReadme();
+
+$quoteManager = new QuoteManager();
+$wikiquoteFetcher = new WikiquoteFetcher();
+
+$updatedQuote = $quoteManager->updateReadme();
 
 if (!$updatedQuote) {
     echo "Failed to update daily quote.\n";
 
     echo "Fetching a random quote from Wikipedia...\n";
-    $wikiQuote = fetchRandomWikiQuote();
+    $wikiQuote = $wikiquoteFetcher->fetchRandomWikiQuote();
     if (!$wikiQuote) {
         echo "Failed to fetch a random quote from Wikipedia.\n";
     }
