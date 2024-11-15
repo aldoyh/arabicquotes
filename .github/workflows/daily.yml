@@ -22,7 +22,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: gh-pages # Checkout the deployment branch
-
+        
     - name: Setup PHP 🐘
       uses: shivammathur/setup-php@v2
       with:
@@ -45,4 +45,5 @@ jobs:
     - name: Push 🫸 دزهم
       run: |
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/aldoyh/arabicquotes.git
-        git push origin gh-pages # Push to the deployment branch
+        git merge -s octopus daily origin/master
+        git push origin master
