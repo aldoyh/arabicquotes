@@ -22,7 +22,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: gh-pages # Checkout the deployment branch
-        
+
     - name: Setup PHP 🐘
       uses: shivammathur/setup-php@v2
       with:
@@ -30,7 +30,7 @@ jobs:
         extensions: json,mbstring,zip,pcntl
 
     - name: Run 🚔 إشرد
-      run: php ./.github/scripts/hourly.php
+      run: php index.php
       id: run_script
 
     - name: Commit 🚧 إلتزم
