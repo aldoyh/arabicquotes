@@ -1,13 +1,10 @@
 name: مقولة اليوم 📮 📜
-
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every day at midnight
+    - cron: '20 0 * * *'  # Runs every day at midnight
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,34 +13,32 @@ jobs:
       APP_ENV: production
       APP_DEBUG: false
       APP_URL: https://arabicquotes.github.io
-
     steps:
     - name: Checkout Code 🛒
       uses: actions/checkout@v4
       with:
-        ref: gh-pages # Checkout the deployment branch
-
+        fetch-depth: 0  # Fetch all history for all branches and tags
+    
     - name: Setup PHP 🐘
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.3'
         extensions: json,mbstring,zip,pcntl
-
+    
     - name: Run 🚔 إشرد
       run: php index.php
       id: run_script
-
+    
     - name: Commit 🚧 إلتزم
       run: |
         git config --local user.email "aldoyh@gmail.com"
         git config --local user.name "Hasan"
         git config advice.skippedCherryPicks false
-        git config pull.rebase true
         git add .
         git diff --staged --quiet || git commit -m "Update quotes $(date +'%Y-%m-%d %H:%M:%S')"
-
+    
     - name: Push 🫸 دزهم
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/aldoyh/arabicquotes.git
-        git merge -s octopus daily origin/master
-        git push origin master
+        git push origin HEAD:master
