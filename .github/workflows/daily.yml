@@ -1,8 +1,7 @@
 name: مقولة اليوم 📮 📜
-
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every day at midnight
+    - cron: '0 0 * * *' # Runs daily at midnight
   workflow_dispatch:
 
 permissions:
@@ -11,38 +10,28 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DB_INFO: ${{ secrets.DB_INFO }}
-      APP_ENV: production
-      APP_DEBUG: false
-      APP_URL: https://arabicquotes.github.io
-
     steps:
-    - name: Checkout Code 🛒
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
       with:
-        ref: gh-pages # Checkout the deployment branch
+        ref: main  # Use your main development branch
+        fetch-depth: 0  # Important for git operations
 
-    - name: Setup PHP 🐘
-      uses: shivammathur/setup-php@v2
+    - uses: shivammathur/setup-php@v2
       with:
         php-version: '8.3'
         extensions: json,mbstring,zip,pcntl
 
-    - name: Run 🚔 إشرد
+    - name: Run Quote Script
       run: php index.php
-      id: run_script
 
-    - name: Commit 🚧 إلتزم
+    - name: Commit Changes
       run: |
-        git config --local user.email "aldoyh@gmail.com"
-        git config --local user.name "Hasan"
-        git config advice.skippedCherryPicks false
-        git config pull.rebase true
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
         git add .
-        git diff --staged --quiet || git commit -m "Update quotes $(date +'%Y-%m-%d %H:%M:%S')"
+        git commit -m "Update daily quote $(date +'%Y-%m-%d')" || exit 0
 
-    - name: Push 🫸 دزهم
-      run: |
-        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/aldoyh/arabicquotes.git
-        git push origin master
+    - name: Push Changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
