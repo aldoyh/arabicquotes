@@ -16,7 +16,7 @@ jobs:
         ref: main  # Use your main development branch
         fetch-depth: 0  # Important for git operations
 
-    - uses: shivammathur/setup-php@v2
+    - uses: shivammathur/setup-php@v3
       with:
         php-version: '8.3'
         extensions: json,mbstring,zip,pcntl
