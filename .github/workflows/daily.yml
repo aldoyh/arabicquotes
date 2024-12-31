@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: main  # Use your main development branch
+        ref: master
         fetch-depth: 0  # Important for git operations
 
     - uses: shivammathur/setup-php@v2
