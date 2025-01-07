@@ -45,3 +45,6 @@ private-docs/*
 private_*/**
 private_*/.env
 private_*/.env.local
+.codegpt
+
+vendor/

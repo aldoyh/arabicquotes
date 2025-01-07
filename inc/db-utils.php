@@ -14,7 +14,7 @@ function getDB()
 
 function getDBSQLite()
 {
-    $db = new SQLite3(__DIR__ . "/assets/QuotesDB.db");
+    $db = new SQLite3(dirname(__DIR__) . "/quotes.db");
 
     if (!$db) {
         error_log("Failed to connect to the DB");
@@ -53,25 +53,21 @@ function create_table()
 
     $data = json_decode($json, true);
 
-    $db = getDB();
+    $db = getDBSQLite();
 
-    // $db->exec("DROP TABLE IF EXISTS quotes;") or die("Failed to drop table");
+    // Drop the table if it exists
     $db->query("DROP TABLE IF EXISTS quotes;");
 
-    // $db->exec("CREATE TABLE quotes (
-    $db->query("CREATE TABLE
-  `quotes` (
-    `id` int(11) NOT NULL DEFAULT 'AUTOINCREMENT',
-    `head` text CHARACTER SET utf8 COLLATE utf8_general_ci,
-    `quote` text CHARACTER SET utf8 COLLATE utf8_general_ci,
-    `author` text CHARACTER SET utf8 COLLATE utf8_general_ci,
-    `hits` int(11) DEFAULT NULL,
-    `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-    `category` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT 'General',
-    UNIQUE KEY `PRIMARY` (`id`) USING HASH,
-    SHARD KEY `__SHARDKEY` (`id`),
-    SORT KEY `__UNORDERED` ()
-  ) AUTOSTATS_CARDINALITY_MODE = INCREMENTAL AUTOSTATS_HISTOGRAM_MODE = CREATE AUTOSTATS_SAMPLING = ON SQL_MODE = 'STRICT_ALL_TABLES' ");
+    $db->query("CREATE TABLE quotes (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        head TEXT,
+        quote TEXT,
+        author TEXT,
+        hits INTEGER DEFAULT 0,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        category TEXT DEFAULT 'General'
+    
+  )") or die("Failed to create table");
 
     // bulk insert into tables from json
     foreach ($data as $row) {

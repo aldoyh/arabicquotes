@@ -92,18 +92,6 @@ class QuoteManager
                 throw new Exception('Failed to write to README.md');
             }
 
-            // Update hits in database
-            try {
-                $db = new SQLite3($this->dbFile);
-                $stmt = $db->prepare('UPDATE quotes SET hits = :hits WHERE id = :id');
-                $stmt->bindValue(':hits', $selectedQuote['hits'], SQLITE3_INTEGER);
-                $stmt->bindValue(':id', $selectedQuote['id'], SQLITE3_INTEGER);
-                $stmt->execute();
-                $db->close();
-            } catch (Exception $e) {
-                error_log("Failed to update quote hits: " . $e->getMessage());
-            }
-
             return $selectedQuote;
         } catch (Exception $e) {
             error_log("Error in updateReadme: " . $e->getMessage());
@@ -118,19 +106,11 @@ class QuoteManager
      */
     public function generateQuoteMarkdown($quote)
     {
-        try {
-            if (!isset($quote['quote']) || !isset($quote['author'])) {
-                throw new Exception('Invalid quote data');
-            }
-            $quoteMarkdown = PHP_EOL . "# " . $quote['quote'] . PHP_EOL . PHP_EOL . "- " . $quote['author'] . PHP_EOL . PHP_EOL;
-            if (isset($quote['image'])) {
-                $quoteMarkdown .= "![" . $quote['author'] . "](" . $quote['image'] . ")" . PHP_EOL . PHP_EOL;
-            }
-            return $quoteMarkdown;
-        } catch (Exception $e) {
-            error_log("Error generating markdown: " . $e->getMessage());
-            return null;
+        $quoteMarkdown = PHP_EOL . "# " . $quote['quote'] . PHP_EOL . PHP_EOL . "- " . $quote['author'] . PHP_EOL . PHP_EOL;
+        if (isset($quote['image'])) {
+            $quoteMarkdown .= "![" . $quote['author'] . "](" . $quote['image'] . ")" . PHP_EOL . PHP_EOL;
         }
+        return $quoteMarkdown;
     }
 
     /**
@@ -140,42 +120,108 @@ class QuoteManager
      */
     public function generateQuoteHtml($quote)
     {
-        try {
-            if (!isset($quote['quote']) || !isset($quote['author']) || !isset($quote['hits'])) {
-                throw new Exception('Invalid quote data for HTML generation');
-            }
-            $html = '<div class="quote-wrapper" style="text-align: center; font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
-                        <div class="quote-text" style="font-size: 24px; color: #333; margin-bottom: 10px;">
-                            ' . htmlspecialchars($quote['quote']) . '
-                        </div>
-                        <div class="quote-author" style="font-size: 18px; color: #666;">
-                            - ' . htmlspecialchars($quote['author']) . '
-                        </div>
-                        <div class="quote-meta" style="margin-top: 20px; color: #999;">
-                            <p class="quote-date" style="font-size: smaller;">اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
-                        </div>
-                    </div>';
-            return $html;
-        } catch (Exception $e) {
-            error_log("Error generating HTML: " . $e->getMessage());
-            return null;
-        }
+        $html = '<div class="quote-wrapper" style="text-align: center; font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
+                    <div class="quote-text" style="font-size: 24px; color: #333; margin-bottom: 10px;">
+                        ' . htmlspecialchars($quote['quote']) . '
+                    </div>
+                    <div class="quote-author" style="font-size: 18px; color: #666;">
+                        - ' . htmlspecialchars($quote['author']) . '
+                    </div>
+                    <div class="quote-meta" style="margin-top: 20px; color: #999;">
+                        <p class="quote-date" style="font-size: smaller;">اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
+                    </div>
+                </div>';
+        return $html;
     }
 }
 
-// Initialize database if running as main script
-if (basename(__FILE__) === basename($_SERVER['PHP_SELF'])) {
-    try {
-        $quoteManager = new QuoteManager();
-        $updatedQuote = $quoteManager->updateReadme();
-        if ($updatedQuote) {
-            echo "✅ Quote updated successfully!\n";
-            echo json_encode($updatedQuote, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n";
-        } else {
-            echo "❌ Failed to update quote.\n";
+/**
+ * Class WikiquoteFetcher
+ * Handles fetching quotes from Wikiquote.
+ */
+class WikiquoteFetcher
+{
+    private $maxRetries = 3;
+    private $timeout = 10;
+    
+    public function __construct($maxRetries = 3, $timeout = 10)
+    {
+        $this->maxRetries = $maxRetries;
+        $this->timeout = $timeout;
+    }
+
+    /**
+     * Fetches a random quote from Wikiquote.
+     * @return array|null The quote data or null on error.
+     */
+    public function fetchRandomWikiQuote()
+    {
+        $htmlChunk = $this->fetchFromWiki();
+        if (!$htmlChunk) {
+            return null;
         }
-    } catch (Exception $e) {
-        error_log("Error in main execution: " . $e->getMessage());
-        echo "❌ Error: " . $e->getMessage() . "\n";
+
+        // ... Process the HTML chunk and return quote data
+        return [
+            'quote' => 'Sample quote',
+            'author' => 'Sample author'
+        ];
+    }
+
+    /**
+     * Fetches content from Wikiquote.
+     * @return string|null The HTML content or null on error.
+     */
+    private function fetchFromWiki()
+    {
+        $html = $this->fetchRaw();
+        if (!$html) {
+            error_log("Failed to fetch raw HTML from Wikiquote");
+            return null;
+        }
+
+        $dom = new DOMDocument();
+        @$dom->loadHTML($html);
+        $xpath = new DOMXPath($dom);
+        $quoteNodes = $xpath->query("//div[@class='quote']");
+
+        if ($quoteNodes->length === 0) {
+            error_log("No quotes found in the HTML");
+            return null;
+        }
+
+        return $html;
+    }
+
+    /**
+     * Fetches raw content from a URL with retry mechanism.
+     * @return string|null The raw content or null on error.
+     */
+    private function fetchRaw()
+    {
+        $url = "https://ar.wikiquote.org/wiki/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9";
+        $context = stream_context_create([
+            'http' => [
+                'timeout' => $this->timeout
+            ]
+        ]);
+        
+        for ($attempt = 1; $attempt <= $this->maxRetries; $attempt++) {
+            try {
+                $html = @file_get_contents($url, false, $context);
+                if ($html !== false) {
+                    return $html;
+                }
+                if ($attempt < $this->maxRetries) {
+                    sleep(1);
+                }
+            } catch (Exception $e) {
+                error_log("Attempt $attempt failed: " . $e->getMessage());
+                if ($attempt === $this->maxRetries) {
+                    throw $e;
+                }
+            }
+        }
+        return null;
     }
 }
