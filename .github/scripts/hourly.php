@@ -70,8 +70,8 @@ class QuoteManager
         $selectedQuote['quote'] = str_replace("\n", " ", $selectedQuote['quote']);
 
         $quoteMarkdown = $this->generateQuoteMarkdown($selectedQuote);
-
         $readmePath = $this->basePath . "README.md";
+
         if (!file_exists($readmePath)) {
             error_log("README.md file not found");
             return false;
@@ -79,19 +79,28 @@ class QuoteManager
 
         $readmeContent = file_get_contents($readmePath);
         if (!$readmeContent) {
-            error_log("No README.md file found");
+            error_log("Failed to read README.md");
             return false;
         }
 
-        $updatedReadme = preg_replace(
-            "/<!-- QUOTE:START -->.*?<!-- QUOTE:END -->/s",
-            $quoteMarkdown,
+        // Use the same specific markers for consistency
+        $updatedContent = preg_replace(
+            '/<!-- QUOTE:START -->.*?<!-- QUOTE:END -->/s',
+            "<!-- QUOTE:START -->\n" . $quoteMarkdown . "\n<!-- QUOTE:END -->",
             $readmeContent
         );
 
-        file_put_contents($readmePath, $updatedReadme);
-        $this->logQuoteUpdate($selectedQuote['id'] . " - " . $selectedQuote['hits']);
+        if ($updatedContent === null || $updatedContent === $readmeContent) {
+            error_log("Failed to replace quote section");
+            return false;
+        }
 
+        if (file_put_contents($readmePath, $updatedContent) === false) {
+            error_log("Failed to write to README.md");
+            return false;
+        }
+
+        $this->logQuoteUpdate($selectedQuote['id'] . " - " . $selectedQuote['hits']);
         return $selectedQuote;
     }
 

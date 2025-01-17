@@ -72,8 +72,8 @@ class QuoteManager
             }
 
             $selectedQuote['hits']++;
-
             $readmePath = $this->basePath . "README.md";
+            
             if (!file_exists($readmePath)) {
                 throw new Exception('README.md not found');
             }
@@ -84,30 +84,43 @@ class QuoteManager
             }
 
             $quoteMarkdown = $this->generateQuoteMarkdown($selectedQuote);
-            if (!$quoteMarkdown) {
-                throw new Exception('Failed to generate quote markdown');
+            
+            // Use specific markers to replace only the quote section
+            $updatedContent = preg_replace(
+                '/<!-- QUOTE:START -->.*?<!-- QUOTE:END -->/s',
+                "<!-- QUOTE:START -->\n" . $quoteMarkdown . "\n<!-- QUOTE:END -->",
+                $readmeContent
+            );
+
+            if ($updatedContent === null || $updatedContent === $readmeContent) {
+                throw new Exception('Failed to replace quote section');
             }
 
-            if (file_put_contents($readmePath, $quoteMarkdown) === false) {
+            if (file_put_contents($readmePath, $updatedContent) === false) {
                 throw new Exception('Failed to write to README.md');
             }
 
             // Update hits in database
-            try {
-                $db = new SQLite3($this->dbFile);
-                $stmt = $db->prepare('UPDATE quotes SET hits = :hits WHERE id = :id');
-                $stmt->bindValue(':hits', $selectedQuote['hits'], SQLITE3_INTEGER);
-                $stmt->bindValue(':id', $selectedQuote['id'], SQLITE3_INTEGER);
-                $stmt->execute();
-                $db->close();
-            } catch (Exception $e) {
-                error_log("Failed to update quote hits: " . $e->getMessage());
-            }
+            $this->updateQuoteHits($selectedQuote);
 
             return $selectedQuote;
         } catch (Exception $e) {
             error_log("Error in updateReadme: " . $e->getMessage());
             return null;
+        }
+    }
+
+    private function updateQuoteHits($quote)
+    {
+        try {
+            $db = new SQLite3($this->dbFile);
+            $stmt = $db->prepare('UPDATE quotes SET hits = :hits WHERE id = :id');
+            $stmt->bindValue(':hits', $quote['hits'], SQLITE3_INTEGER);
+            $stmt->bindValue(':id', $quote['id'], SQLITE3_INTEGER);
+            $stmt->execute();
+            $db->close();
+        } catch (Exception $e) {
+            error_log("Failed to update quote hits: " . $e->getMessage());
         }
     }
 
