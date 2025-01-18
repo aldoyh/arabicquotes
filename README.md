@@ -1,15 +1,19 @@
-<div style="direction: rtl">
 # أروع ما قيل من العرب ؏
 
-# مقولة اليوم
+<div style="direction: rtl; text-align: right">
 
-<div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem;">
+### مقولة اليوم
+
+<div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 
 <!-- QUOTE:START -->
 
-# الحكمة ضالة المؤمن
+# نحن لن نستسلم ننتصر أو نموت.
 
-- الإمام علي عليه السلام
+- — <a
+                        href="/wiki/%D8%B9%D9%85%D8%B1_%D8%A7%D9%84%D9%85%D8%AE%D8%AA%D8%A7%D8%B1"
+                        title="عمر المختار">عمر المختار</a>
+
 
 <!-- QUOTE:END -->
 
@@ -57,7 +61,7 @@
 
 <div>
 
-هذة نسخة تحت التجربة
+<small> هذة نسخة تحت التجربة </small>
 
 ### الوصلة الرئيسية للمشروع
 
@@ -72,6 +76,7 @@
 > تاريخ الإصدار: 2021-09-12  > الإصدار: 1.2.0
 
 </div>
+</div>
 
 > CHNAGELOG: [CHANGELOG.md](CHANGELOG.md)
 
@@ -81,10 +86,14 @@
 <br />
 <br />
 
-<details>
-<summary><div style="font-size: 9px; text-align: center;">Made in Bahrain 🇧🇭 with ❤️</div>
+<summary>
+<div style="font-size: 9px; text-align: center;">Made with ♥️ صُنع بكل
+    <br />
+    in Bahrain 🇧🇭 في البحرين
+</div>
 </summary>
-</details>
+
+---
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');

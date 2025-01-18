@@ -17,6 +17,29 @@ class QuoteManager
     {
         $this->dbFile = $dbFile;
         $this->basePath = __DIR__ . '/';
+        if (!file_exists($this->dbFile)) {
+            throw new Exception("Database file not found: " . $this->dbFile);
+        }
+        if (!is_writable($this->dbFile)) {
+            throw new Exception("Database file is not writable: " . $this->dbFile);
+        }
+        $this->initDatabase();
+    }
+
+    private function initDatabase()
+    {
+        try {
+            $db = new SQLite3($this->dbFile);
+            $db->exec('CREATE TABLE IF NOT EXISTS quotes (id INTEGER PRIMARY KEY, quote TEXT, author TEXT, image TEXT, hits INTEGER DEFAULT 0)');
+            $db->close();
+        } catch (Exception $e) {
+            error_log("Error initializing database: " . $e->getMessage());
+        }
+
+        // populate the database if empty
+        if ($this->getQuoteCount() === 0) {
+            $this->populateDatabase();
+        }
     }
 
     /**
@@ -37,6 +60,37 @@ class QuoteManager
         } catch (Exception $e) {
             error_log("Error in getRandomQuote: " . $e->getMessage());
             return null;
+        }
+    }
+
+    private function getQuoteCount()
+    {
+        try {
+            $db = new SQLite3($this->dbFile);
+            $result = $db->querySingle("SELECT COUNT(*) FROM quotes");
+            $db->close();
+            return $result;
+        } catch (Exception $e) {
+            error_log("Error in getQuoteCount: " . $e->getMessage());
+            return 0;
+        }
+    }
+
+    private function populateDatabase()
+    {
+        try {
+            $db = new SQLite3($this->dbFile);
+            $quotes = json_decode(file_get_contents($this->basePath . 'assets/quotes.json'), true);
+            foreach ($quotes as $quote) {
+                $stmt = $db->prepare('INSERT INTO quotes (quote, author, image) VALUES (:quote, :author, :image)');
+                $stmt->bindValue(':quote', $quote['quote'], SQLITE3_TEXT);
+                $stmt->bindValue(':author', $quote['author'], SQLITE3_TEXT);
+                // $stmt->bindValue(':image', $quote['image'], SQLITE3_TEXT);
+                $stmt->execute();
+            }
+            $db->close();
+        } catch (Exception $e) {
+            error_log("Error in populateDatabase: " . $e->getMessage());
         }
     }
 
