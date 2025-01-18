@@ -189,9 +189,13 @@ class QuoteManager
             if (!isset($quote['quote']) || !isset($quote['author'])) {
                 throw new Exception('Invalid quote data');
             }
-            $quoteMarkdown = PHP_EOL . "# " . $quote['quote'] . PHP_EOL . PHP_EOL . "- " . $quote['author'] . PHP_EOL . PHP_EOL;
+            // Clean up quote text by removing newlines and extra spaces
+            $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
+            $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
+            
+            $quoteMarkdown = PHP_EOL . "# " . $cleanQuote . PHP_EOL . PHP_EOL . "- " . $cleanAuthor . PHP_EOL . PHP_EOL;
             if (isset($quote['image'])) {
-                $quoteMarkdown .= "![" . $quote['author'] . "](" . $quote['image'] . ")" . PHP_EOL . PHP_EOL;
+                $quoteMarkdown .= "![" . $cleanAuthor . "](" . $quote['image'] . ")" . PHP_EOL . PHP_EOL;
             }
             return $quoteMarkdown;
         } catch (Exception $e) {
@@ -211,12 +215,16 @@ class QuoteManager
             if (!isset($quote['quote']) || !isset($quote['author']) || !isset($quote['hits'])) {
                 throw new Exception('Invalid quote data for HTML generation');
             }
+            // Clean up quote text by removing newlines and extra spaces
+            $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
+            $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
+            
             $html = '<div class="quote-wrapper" style="text-align: center; font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
                         <div class="quote-text" style="font-size: 24px; color: #333; margin-bottom: 10px;">
-                            ' . htmlspecialchars($quote['quote']) . '
+                            ' . htmlspecialchars($cleanQuote) . '
                         </div>
                         <div class="quote-author" style="font-size: 18px; color: #666;">
-                            - ' . htmlspecialchars($quote['author']) . '
+                            - ' . htmlspecialchars($cleanAuthor) . '
                         </div>
                         <div class="quote-meta" style="margin-top: 20px; color: #999;">
                             <p class="quote-date" style="font-size: smaller;">اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
@@ -237,7 +245,7 @@ if (basename(__FILE__) === basename($_SERVER['PHP_SELF'])) {
         $updatedQuote = $quoteManager->updateReadme();
         if ($updatedQuote) {
             echo "✅ Quote updated successfully!\n";
-            echo json_encode($updatedQuote, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n";
+            // echo json_encode($updatedQuote, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n";
         } else {
             echo "❌ Failed to update quote.\n";
         }

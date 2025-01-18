@@ -112,7 +112,11 @@ class QuoteManager
      */
     private function generateQuoteMarkdown($quote)
     {
-        $quoteMarkdown = PHP_EOL . "# " . $quote['quote'] . PHP_EOL . PHP_EOL . "- " . $quote['author'] . PHP_EOL . PHP_EOL;
+        // Clean up quote text by removing newlines and extra spaces
+        $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
+        $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
+        
+        $quoteMarkdown = PHP_EOL . "# " . $cleanQuote . PHP_EOL . PHP_EOL . "- " . $cleanAuthor . PHP_EOL . PHP_EOL;
         if (isset($quote['image'])) {
             $quoteMarkdown .= PHP_EOL . "![Quote Image](" . $quote['image'] . ")";
         }
@@ -186,7 +190,7 @@ class WikiquoteFetcher
      *
      * @return array|null The parsed quote, or null if an error occurs.
      */
-    private function fetchFromWiki()
+    public function fetchFromWiki()
     {
         $html = $this->fetchRaw();
         if (!$html) {
@@ -202,11 +206,11 @@ class WikiquoteFetcher
         $chunk = array_filter($chunk, function ($value) {
             return !empty(trim($value));
         });
-        $randomQuote = $chunk[0];
-        $author = $chunk[2];
+        $randomQuote = preg_replace('/\s+/', ' ', trim($chunk[0]));
+        $author = preg_replace('/\s+/', ' ', trim($chunk[2]));
         return [
-            'quote' => trim($randomQuote),
-            'author' => trim($author)
+            'quote' => $randomQuote,
+            'author' => $author
         ];
     }
 
