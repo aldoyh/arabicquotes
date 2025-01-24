@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# الناس لايثورون من جرّاء ظلم واقع عليهم ،إنما يثورون من جرّاء شعورهم بالظلم .فالشعور بالظلم هو أعظم أثراً في الناس من الظلم ذاته
+# خير خصلة في <a href="/wiki/%D9%83%D9%84%D8%A8" title="كلب">الكلب</a> أنه لا <a href="/wiki/%D9%86%D9%81%D8%A7%D9%82" title="نفاق">ينافق</a> في <a href="/wiki/%D8%AD%D8%A8" title="حب">محبته</a>.
 
-- — <a href="/wiki/%D8%B9%D9%84%D9%8A_%D8%A7%D9%84%D9%88%D8%B1%D8%AF%D9%8A" title="علي الوردي">علي الوردي</a>
+- — <a href="/wiki/%D8%B9%D8%A7%D9%85%D8%B1_%D8%A7%D9%84%D8%B4%D8%B9%D8%A8%D9%8A" title="عامر الشعبي">الشعبي</a>
 
 
 <!-- QUOTE:END -->
