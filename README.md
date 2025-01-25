@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# خير خصلة في <a href="/wiki/%D9%83%D9%84%D8%A8" title="كلب">الكلب</a> أنه لا <a href="/wiki/%D9%86%D9%81%D8%A7%D9%82" title="نفاق">ينافق</a> في <a href="/wiki/%D8%AD%D8%A8" title="حب">محبته</a>.
+# كلمة حِكْمَة لك من أخيك، خير لك من مال يعطيك؛ لأنَّ المال يطغيك، والكلمة تهديك.
 
-- — <a href="/wiki/%D8%B9%D8%A7%D9%85%D8%B1_%D8%A7%D9%84%D8%B4%D8%B9%D8%A8%D9%8A" title="عامر الشعبي">الشعبي</a>
+- — <a href="/w/index.php?title=%D8%A3%D8%A8%D8%A7%D9%86_%D8%A8%D9%86_%D8%B3%D9%84%D9%8A%D9%85&amp;action=edit&amp;redlink=1" class="new" title="أبان بن سليم (الصفحة غير موجودة)">أبان بن سليم</a>
 
 
 <!-- QUOTE:END -->
