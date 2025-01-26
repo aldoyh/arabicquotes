@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# كلمة حِكْمَة لك من أخيك، خير لك من مال يعطيك؛ لأنَّ المال يطغيك، والكلمة تهديك.
+# إنَّما العلم كالينابيع، فينفع به الله من شاء، ومَثَلُ حِكْمَة لا يُتَكلَّم بها، كجسد لا رُوح له.
 
-- — <a href="/w/index.php?title=%D8%A3%D8%A8%D8%A7%D9%86_%D8%A8%D9%86_%D8%B3%D9%84%D9%8A%D9%85&amp;action=edit&amp;redlink=1" class="new" title="أبان بن سليم (الصفحة غير موجودة)">أبان بن سليم</a>
+- — <a href="/wiki/%D8%B3%D9%84%D9%85%D8%A7%D9%86_%D8%A7%D9%84%D9%81%D8%A7%D8%B1%D8%B3%D9%8A" title="سلمان الفارسي">سلمان الفارسي</a>
 
 
 <!-- QUOTE:END -->
