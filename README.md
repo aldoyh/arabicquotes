@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# لو كان لديك <a href="/wiki/%D8%AA%D9%81%D8%A7%D8%AD" title="تفاح">تفاحة</a> ولدي تفاحة مثلها وتبادلناهما فيما بيننا سيبقى لدى كل منا تفاحة واحدة. لكن لو كان لديك <a href="/wiki/%D9%81%D9%83%D8%B1%D8%A9" title="فكرة">فكرة</a> ولدي فكرة وتبادلناهما، فسيكون لدى كل منا فكرتان.
+# <a href="/wiki/%D8%B9%D9%82%D9%84" title="عقل">العقول</a> العظيمة تناقش <a href="/wiki/%D9%81%D9%83%D8%B1%D8%A9" title="فكرة">الأفكار</a>، المتوسطة تناقش الأحداث، وأما الصغيرة فتناقش <a href="/wiki/%D8%A5%D9%86%D8%B3%D8%A7%D9%86" title="إنسان">الأشخاص</a>.
 
-- — <a href="/wiki/%D8%AC%D9%88%D8%B1%D8%AC_%D8%A8%D8%B1%D9%86%D8%A7%D8%B1%D8%AF_%D8%B4%D9%88" title="جورج برنارد شو">جورج برنارد شو</a>
+- — <a href="/wiki/%D8%A5%D9%84%D9%8A%D8%A7%D9%86%D9%88%D8%B1_%D8%B1%D9%88%D8%B2%D9%81%D9%84%D8%AA" title="إليانور روزفلت">إليانور روزفلت</a>
 
 
 <!-- QUOTE:END -->
