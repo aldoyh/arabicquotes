@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# <a href="/wiki/%D8%B9%D9%82%D9%84" title="عقل">العقول</a> العظيمة تناقش <a href="/wiki/%D9%81%D9%83%D8%B1%D8%A9" title="فكرة">الأفكار</a>، المتوسطة تناقش الأحداث، وأما الصغيرة فتناقش <a href="/wiki/%D8%A5%D9%86%D8%B3%D8%A7%D9%86" title="إنسان">الأشخاص</a>.
+# يا بني إذا افتخر الناس بحسن كلامهم، فافتخر بحسن صمتك.
 
-- — <a href="/wiki/%D8%A5%D9%84%D9%8A%D8%A7%D9%86%D9%88%D8%B1_%D8%B1%D9%88%D8%B2%D9%81%D9%84%D8%AA" title="إليانور روزفلت">إليانور روزفلت</a>
+- — <a href="/wiki/%D9%84%D9%82%D9%85%D8%A7%D9%86_%D8%A7%D9%84%D8%AD%D9%83%D9%8A%D9%85" title="لقمان الحكيم">لقمان الحكيم</a>
 
 
 <!-- QUOTE:END -->
