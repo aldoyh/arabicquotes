@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# يا بني إذا افتخر الناس بحسن كلامهم، فافتخر بحسن صمتك.
+# كُلَّما زاد نقاءُ المرء زادت تعاسته.
 
-- — <a href="/wiki/%D9%84%D9%82%D9%85%D8%A7%D9%86_%D8%A7%D9%84%D8%AD%D9%83%D9%8A%D9%85" title="لقمان الحكيم">لقمان الحكيم</a>
+- — <a href="/wiki/%D8%A3%D9%86%D8%B7%D9%88%D9%86_%D8%AA%D8%B4%D9%8A%D8%AE%D9%88%D9%81" title="أنطون تشيخوف">أنطون تشيخوف</a>
 
 
 <!-- QUOTE:END -->
