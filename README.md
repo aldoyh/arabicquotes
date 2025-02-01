@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# لقد أصبح من أكبر <a href="/w/index.php?title=%D8%B9%D8%A7%D8%B1&amp;action=edit&amp;redlink=1" class="new" title="عار (الصفحة غير موجودة)">العار</a> على أي فرد <a href="/wiki/%D9%85%D8%AF%D9%86%D9%8A%D8%A9_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="مدنية (توضيح)">متمدن</a> من أبناء هذا العصر أن يصغي إلى من يظن أن دين <a href="/wiki/%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85" title="الإسلام">الإسلام</a> <a href="/wiki/%D9%83%D8%B0%D8%A8" title="كذب">كذب</a>، وأن <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمدا</a> خداع مزور، وآن لنا أن نحارب ما يشاع من هذه الأقوال السخيفة المخجلة، فإن الرسالة التي أداها ذلك <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">الرسول</a> ما زالت <a href="/wiki/%D9%85%D8%B5%D8%A8%D8%A7%D8%AD" title="مصباح">السراج</a> المنير مدة اثني عشر قرنا لنحو مئتي مليون من الناس
+# إنما يراد العلم للعمل، لا تدع طلب العلم للعمل، ولا تدع العمل لطلب العلم.
 
-- — <a href="/wiki/%D8%AA%D9%88%D9%85%D8%A7%D8%B3_%D9%83%D8%A7%D8%B1%D9%84%D9%8A%D9%84" title="توماس كارليل">توماس كارليل</a>، <a href="/w/index.php?title=%D9%83%D8%AA%D8%A7%D8%A8_%D8%A7%D9%84%D8%A3%D8%A8%D8%B7%D8%A7%D9%84&amp;action=edit&amp;redlink=1" class="new" title="كتاب الأبطال (الصفحة غير موجودة)">كتاب الأبطال</a>
+- — <a href="/wiki/%D8%B3%D9%81%D9%8A%D8%A7%D9%86_%D8%A7%D9%84%D8%AB%D9%88%D8%B1%D9%8A" title="سفيان الثوري">سفيان الثوري</a>
 
 
 <!-- QUOTE:END -->
