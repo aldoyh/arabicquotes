@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إنما يراد العلم للعمل، لا تدع طلب العلم للعمل، ولا تدع العمل لطلب العلم.
+# كن في الطريقِ عفيف الخطى شريف <a href="/wiki/%D8%B3%D9%85%D8%B9" title="سمع">السمع</a> كريم <a href="/wiki/%D8%A5%D8%AF%D8%B1%D8%A7%D9%83_%D8%A8%D8%B5%D8%B1%D9%8A" title="إدراك بصري">النظر</a> وكن <a href="/wiki/%D8%B1%D8%AC%D9%84" title="رجل">رجلًا</a> إن أتوا بعده يقولون مـــرّ وهذا الأثر
 
-- — <a href="/wiki/%D8%B3%D9%81%D9%8A%D8%A7%D9%86_%D8%A7%D9%84%D8%AB%D9%88%D8%B1%D9%8A" title="سفيان الثوري">سفيان الثوري</a>
+- — <a href="/wiki/%D8%A3%D8%AD%D9%85%D8%AF_%D8%B4%D9%88%D9%82%D9%8A" title="أحمد شوقي">أحمد شوقي</a>
 
 
 <!-- QUOTE:END -->
