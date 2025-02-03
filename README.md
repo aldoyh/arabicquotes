@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# كن في الطريقِ عفيف الخطى شريف <a href="/wiki/%D8%B3%D9%85%D8%B9" title="سمع">السمع</a> كريم <a href="/wiki/%D8%A5%D8%AF%D8%B1%D8%A7%D9%83_%D8%A8%D8%B5%D8%B1%D9%8A" title="إدراك بصري">النظر</a> وكن <a href="/wiki/%D8%B1%D8%AC%D9%84" title="رجل">رجلًا</a> إن أتوا بعده يقولون مـــرّ وهذا الأثر
+# إن في حياة كل منا وهماً كبيراً اسمه الحب الأول.. لا تصدق أن حبك الأول هو حبك الأخير
 
-- — <a href="/wiki/%D8%A3%D8%AD%D9%85%D8%AF_%D8%B4%D9%88%D9%82%D9%8A" title="أحمد شوقي">أحمد شوقي</a>
+- — <a href="/wiki/%D8%A5%D8%AD%D8%B3%D8%A7%D9%86_%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D9%82%D8%AF%D9%88%D8%B3" title="إحسان عبد القدوس">إحسان عبد القدوس</a>
 
 
 <!-- QUOTE:END -->
