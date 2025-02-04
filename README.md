@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إن في حياة كل منا وهماً كبيراً اسمه الحب الأول.. لا تصدق أن حبك الأول هو حبك الأخير
+# خلق الله لنا <a href="/wiki/%D8%A3%D8%B0%D9%86" title="أذن">أذنين</a> <a href="/wiki/%D9%84%D8%B3%D8%A7%D9%86" title="لسان">ولسانًا</a> واحدًا ..<a href="/wiki/%D8%B3%D9%85%D8%B9" title="سمع">لنسمع</a> أكثر مما <a href="/wiki/%D9%83%D9%84%D8%A7%D9%85_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="كلام (توضيح)">نقول</a>
 
-- — <a href="/wiki/%D8%A5%D8%AD%D8%B3%D8%A7%D9%86_%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D9%82%D8%AF%D9%88%D8%B3" title="إحسان عبد القدوس">إحسان عبد القدوس</a>
+- — <a href="/wiki/%D8%B3%D9%82%D8%B1%D8%A7%D8%B7" title="سقراط">سقراط</a>
 
 
 <!-- QUOTE:END -->
