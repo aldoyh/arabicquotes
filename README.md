@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# خلق الله لنا <a href="/wiki/%D8%A3%D8%B0%D9%86" title="أذن">أذنين</a> <a href="/wiki/%D9%84%D8%B3%D8%A7%D9%86" title="لسان">ولسانًا</a> واحدًا ..<a href="/wiki/%D8%B3%D9%85%D8%B9" title="سمع">لنسمع</a> أكثر مما <a href="/wiki/%D9%83%D9%84%D8%A7%D9%85_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="كلام (توضيح)">نقول</a>
+# لن تزالوا بخيرٍ ما أحببتم خياركم، وما قيل فيكم الحقُّ فعرفتموه؛ فإنَّ عارفه كفاعله.
 
-- — <a href="/wiki/%D8%B3%D9%82%D8%B1%D8%A7%D8%B7" title="سقراط">سقراط</a>
+- — <a href="/wiki/%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D8%AF%D8%B1%D8%AF%D8%A7%D8%A1_%D8%A7%D9%84%D8%A3%D9%86%D8%B5%D8%A7%D8%B1%D9%8A" title="أبو الدرداء الأنصاري">أبو الدرداء</a>
 
 
 <!-- QUOTE:END -->
