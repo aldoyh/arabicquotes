@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# من قال الفقر ليس عيبًا أراد أن يُكمل فيقول بل جريمة، إلا أن الطبقة المخملية قاطعته بالتصفيق بحرارة
+# إذا أنت حمَّلتَ الخؤونَ أمانةً فإنَّك أسندتها شرَّ مسندِ
 
-- — <a href="/wiki/%D8%AA%D8%B4%D9%8A_%D8%AC%D9%8A%D9%81%D8%A7%D8%B1%D8%A7" title="تشي جيفارا">تشي جيفارا</a>
+- — <a href="/wiki/%D8%B9%D8%A8%D9%8A%D8%AF_%D8%A8%D9%86_%D8%A7%D9%84%D8%A3%D8%A8%D8%B1%D8%B5" title="عبيد بن الأبرص">عبيد بن الأبرص</a>
 
 
 <!-- QUOTE:END -->
