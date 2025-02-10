@@ -1,7 +1,7 @@
-name: مقولة اليوم 📮 📜
+name: Daily Quote Update 📮 📜
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs daily at midnight
+    - cron: '0 6 * * *' # Runs daily at 6 AM
   workflow_dispatch:
 
 permissions:
