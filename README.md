@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إذا ساء فعلُ المرءِ ساءتْ ظنونُه وصدَّق ما يعتادُه من توهُّمِ وعادى محبِّيه بقولِ عُـداتِه فأصبح في دَاجٍ من الشَّكِّ مظلمِ
+# الحق فوق القوة، والأمة فوق الحكومة.
 
-- — <a href="/wiki/%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D8%B7%D9%8A%D8%A8_%D8%A7%D9%84%D9%85%D8%AA%D9%86%D8%A8%D9%8A" title="أبو الطيب المتنبي">المتنبي</a>
+- — <a href="/wiki/%D8%B3%D8%B9%D8%AF_%D8%B2%D8%BA%D9%84%D9%88%D9%84" title="سعد زغلول">سعد زغلول</a>
 
 
 <!-- QUOTE:END -->
