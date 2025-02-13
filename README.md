@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إن <a href="/wiki/%D8%AA%D8%AC%D8%B1%D8%A8%D8%A9" title="تجربة">تجربتي</a> تؤهلني لكتابة <a href="/wiki/%D8%B1%D9%88%D8%A7%D9%8A%D8%A9_(%D8%A3%D8%AF%D8%A8)" title="رواية (أدب)">رواية</a> جديدة من دون <a href="/wiki/%D9%85%D8%B4%D9%83%D9%84%D8%A9" title="مشكلة">مشكلة</a>، لكن <a href="/wiki/%D9%82%D8%B1%D8%A7%D8%A1%D8%A9" title="قراءة">قرائي</a> سيجدون أنها ليست نابعة من الأعماق.
+# مَن لم يكن له رأس مال فليتخذ الأمَانَة رأس ماله.
 
-- — <a href="/wiki/%D8%BA%D8%A7%D8%A8%D8%B1%D9%8A%D9%8A%D9%84_%D8%BA%D8%A7%D8%B1%D8%AB%D9%8A%D8%A7_%D9%85%D8%A7%D8%B1%D9%83%D9%8A%D8%AB" title="غابرييل غارثيا ماركيث">جابرييل جارثيا ماركيز</a>
+- — <a href="/wiki/%D8%B3%D9%81%D9%8A%D8%A7%D9%86_%D8%A8%D9%86_%D8%B9%D9%8A%D9%8A%D9%86%D8%A9" title="سفيان بن عيينة">سفيان بن عيينة</a>
 
 
 <!-- QUOTE:END -->
