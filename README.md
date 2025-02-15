@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إنما يراد العلم للعمل، لا تدع طلب العلم للعمل، ولا تدع العمل لطلب العلم.
+# لا أحد يفهم <a href="/wiki/%D9%84%D8%A8%D9%86%D8%A7%D9%86" title="لبنان">لبنان</a>، لا أصحابه المجازيون ولا صناعه، لا مدمروه ولا <a href="/wiki/%D8%A7%D8%A8%D9%86" title="ابن">أبناؤه</a>، لا الداخلون إليه ولا الخارجون منه. لن نفهم <a href="/wiki/%D9%84%D8%A8%D9%86%D8%A7%D9%86" title="لبنان">لبنان</a> إلى الأبد.
 
-- — <a href="/wiki/%D8%B3%D9%81%D9%8A%D8%A7%D9%86_%D8%A7%D9%84%D8%AB%D9%88%D8%B1%D9%8A" title="سفيان الثوري">سفيان الثوري</a>
+- — <a href="/wiki/%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%AF%D8%B1%D9%88%D9%8A%D8%B4" title="محمود درويش">محمود درويش</a>
 
 
 <!-- QUOTE:END -->
