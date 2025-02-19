@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# المُصيبة ليست في ظلم الأشرار بل في صمت الأخيار.
+# انْصُرْ أَخَاكَ ظَالِمًا أَوْ مَظْلُومًا.
 
-- — <a href="/wiki/%D9%85%D8%A7%D8%B1%D8%AA%D9%86_%D9%84%D9%88%D8%AB%D8%B1_%D9%83%D9%8A%D9%86%D8%BA_%D8%A7%D9%84%D8%A7%D8%A8%D9%86" title="مارتن لوثر كينغ الابن">مارتن لوثر كينغ</a>
+- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">النبي محمد</a>
 
 
 <!-- QUOTE:END -->
