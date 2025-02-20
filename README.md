@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# انْصُرْ أَخَاكَ ظَالِمًا أَوْ مَظْلُومًا.
+# ليس المؤمن بالطعان، ولا اللعان، ولا الفاحش، ولا البذيء.
 
-- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">النبي محمد</a>
+- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد بن عبد الله</a>
 
 
 <!-- QUOTE:END -->
