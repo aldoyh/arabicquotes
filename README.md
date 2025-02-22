@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إذا غامرت في شرف مروم فلا تقنع بما دون <a href="/wiki/%D9%86%D8%AC%D9%85" title="نجم">النجوم</a> فطعم <a href="/wiki/%D9%85%D9%88%D8%AA" title="موت">الموت</a> في أمر حقير كطعم الموت في أمر عظيم
+# خير العمل ما نفع، وخير الهدى ما اتبع.
 
-- — <a href="/wiki/%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D8%B7%D9%8A%D8%A8_%D8%A7%D9%84%D9%85%D8%AA%D9%86%D8%A8%D9%8A" title="أبو الطيب المتنبي">المتنبي</a>
+- — <a href="/wiki/%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D9%84%D9%87_%D8%A8%D9%86_%D9%85%D8%B3%D8%B9%D9%88%D8%AF" title="عبد الله بن مسعود">عبد الله بن مسعود</a>
 
 
 <!-- QUOTE:END -->
