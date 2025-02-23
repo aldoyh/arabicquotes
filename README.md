@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# خير العمل ما نفع، وخير الهدى ما اتبع.
+# قبل أن <a href="/wiki/%D8%B2%D9%88%D8%A7%D8%AC" title="زواج">أتزوج</a> كان لدي <a href="/wiki/6_(%D8%B9%D8%AF%D8%AF)" title="6 (عدد)">ست</a> <a href="/wiki/%D9%86%D8%B8%D8%B1%D9%8A%D8%A9" title="نظرية">نظريات</a> في <a href="/wiki/%D8%B9%D9%84%D9%85_%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9" title="علم التربية">تربية</a> <a href="/wiki/%D8%B7%D9%81%D9%84" title="طفل">الأطفال</a>، أما الآن فعندي <a href="/wiki/6_(%D8%B9%D8%AF%D8%AF)" title="6 (عدد)">ستة</a> أطفال وليس عندي <a href="/wiki/%D9%86%D8%B8%D8%B1%D9%8A%D8%A9" title="نظرية">نظريات</a> لهم.
 
-- — <a href="/wiki/%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D9%84%D9%87_%D8%A8%D9%86_%D9%85%D8%B3%D8%B9%D9%88%D8%AF" title="عبد الله بن مسعود">عبد الله بن مسعود</a>
+- — <a href="/wiki/%D8%AC%D8%A7%D9%86_%D8%AC%D8%A7%D9%83_%D8%B1%D9%88%D8%B3%D9%88" title="جان جاك روسو">جان جاك روسو</a>
 
 
 <!-- QUOTE:END -->
