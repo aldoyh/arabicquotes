@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# من حسن خلق الرجل أن يحدث صاحبه وهو يبتسم.
+# إياكم وهدايا الفجار والسفهاء، فإنكم إن قبلتموها ظنوا أنكم قد رضيتم فعلهم.
 
-- — <a href="/wiki/%D8%AD%D8%A8%D9%8A%D8%A8_%D8%A8%D9%86_%D8%A3%D8%A8%D9%8A_%D8%AB%D8%A7%D8%A8%D8%AA" title="حبيب بن أبي ثابت">حبيب بن ثابت</a>
+- — <a href="/w/index.php?title=%D8%AD%D8%B0%D9%8A%D9%81%D8%A9_%D8%A7%D9%84%D9%85%D8%B1%D8%B9%D8%B4%D9%8A&amp;action=edit&amp;redlink=1" class="new" title="حذيفة المرعشي (الصفحة غير موجودة)">حذيفة المرعشي</a>
 
 
 <!-- QUOTE:END -->
