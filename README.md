@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إياكم وهدايا الفجار والسفهاء، فإنكم إن قبلتموها ظنوا أنكم قد رضيتم فعلهم.
+# أنا لست مني إن أتيت ولم أصِل، أنا لست مني إن <a href="/wiki/%D9%86%D8%B7%D9%82" title="نطق">نطقت</a> ولم <a href="/wiki/%D9%83%D9%84%D8%A7%D9%85_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="كلام (توضيح)">أقل</a>.
 
-- — <a href="/w/index.php?title=%D8%AD%D8%B0%D9%8A%D9%81%D8%A9_%D8%A7%D9%84%D9%85%D8%B1%D8%B9%D8%B4%D9%8A&amp;action=edit&amp;redlink=1" class="new" title="حذيفة المرعشي (الصفحة غير موجودة)">حذيفة المرعشي</a>
+- — <a href="/wiki/%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%AF%D8%B1%D9%88%D9%8A%D8%B4" title="محمود درويش">محمود درويش</a>
 
 
 <!-- QUOTE:END -->
