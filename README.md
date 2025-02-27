@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أنا لست مني إن أتيت ولم أصِل، أنا لست مني إن <a href="/wiki/%D9%86%D8%B7%D9%82" title="نطق">نطقت</a> ولم <a href="/wiki/%D9%83%D9%84%D8%A7%D9%85_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="كلام (توضيح)">أقل</a>.
+# ما نعلم شيئًا أفضل من طلب العلم بِنِيَّتِه.
 
-- — <a href="/wiki/%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%AF%D8%B1%D9%88%D9%8A%D8%B4" title="محمود درويش">محمود درويش</a>
+- — <a href="/wiki/%D8%B3%D9%81%D9%8A%D8%A7%D9%86_%D8%A7%D9%84%D8%AB%D9%88%D8%B1%D9%8A" title="سفيان الثوري">سفيان الثوري</a>
 
 
 <!-- QUOTE:END -->
