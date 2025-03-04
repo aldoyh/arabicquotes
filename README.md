@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# زوامل للأخبار لا علم عندها بمثقلها إلاّ كعلم الأباعرِ لعمرك ما يدري البعير إذا غدا بأوساقه أو راح ما في الغرائرِ
+# قدر الرجل على قدر همته.
 
-- — <a href="/wiki/%D8%A7%D9%84%D8%AD%D8%B7%D9%8A%D8%A6%D8%A9" title="الحطيئة">الحطيئة</a>
+- — <a href="/wiki/%D8%B9%D9%84%D9%8A_%D8%A8%D9%86_%D8%A3%D8%A8%D9%8A_%D8%B7%D8%A7%D9%84%D8%A8" title="علي بن أبي طالب">علي بن أبي طالب</a>
 
 
 <!-- QUOTE:END -->
