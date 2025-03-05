@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# قدر الرجل على قدر همته.
+# الناس لايثورون من جرّاء ظلم واقع عليهم ،إنما يثورون من جرّاء شعورهم بالظلم .فالشعور بالظلم هو أعظم أثراً في الناس من الظلم ذاته
 
-- — <a href="/wiki/%D8%B9%D9%84%D9%8A_%D8%A8%D9%86_%D8%A3%D8%A8%D9%8A_%D8%B7%D8%A7%D9%84%D8%A8" title="علي بن أبي طالب">علي بن أبي طالب</a>
+- — <a href="/wiki/%D8%B9%D9%84%D9%8A_%D8%A7%D9%84%D9%88%D8%B1%D8%AF%D9%8A" title="علي الوردي">علي الوردي</a>
 
 
 <!-- QUOTE:END -->
