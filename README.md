@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# الناس لايثورون من جرّاء ظلم واقع عليهم ،إنما يثورون من جرّاء شعورهم بالظلم .فالشعور بالظلم هو أعظم أثراً في الناس من الظلم ذاته
+# كفى بالمرء <a href="/wiki/%D8%AE%D9%8A%D8%A7%D9%86%D8%A9" title="خيانة">خيانةً</a> أن يكون <a href="/wiki/%D8%A3%D9%85%D9%8A%D9%86_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="أمين (توضيح)">أمينًا</a> للخونة.
 
-- — <a href="/wiki/%D8%B9%D9%84%D9%8A_%D8%A7%D9%84%D9%88%D8%B1%D8%AF%D9%8A" title="علي الوردي">علي الوردي</a>
+- — <a href="/wiki/%D8%B9%D9%84%D9%8A_%D8%A8%D9%86_%D8%A3%D8%A8%D9%8A_%D8%B7%D8%A7%D9%84%D8%A8" title="علي بن أبي طالب">علي بن أبي طالب</a>
 
 
 <!-- QUOTE:END -->
