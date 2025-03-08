@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# ولا أوفر اليوم في <a href="/wiki/%D8%AD%D8%B6%D8%A7%D8%B1%D8%A9" title="حضارة">الحضارة</a> من <a href="/wiki/%D9%85%D8%B5%D8%B1" title="مصر">مصر</a> فهي أم العالم وإيوان <a href="/wiki/%D8%A7%D9%84%D8%A5%D8%B3%D9%84%D8%A7%D9%85" title="الإسلام">الإسلام</a> وينبوع العلم والصنائع.
+# يرزق الله العلم السعداء، ويحرمه الأشقياء.
 
-- — <a href="/wiki/%D8%A7%D8%A8%D9%86_%D8%AE%D9%84%D8%AF%D9%88%D9%86" title="ابن خلدون">ابن خلدون</a>
+- — <a href="/wiki/%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D8%AF%D8%B1%D8%AF%D8%A7%D8%A1_%D8%A7%D9%84%D8%A3%D9%86%D8%B5%D8%A7%D8%B1%D9%8A" title="أبو الدرداء الأنصاري">أبو الدرداء</a>
 
 
 <!-- QUOTE:END -->
