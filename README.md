@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إذا مدح الرجل نفسه ذهب بهاؤه.
+# <a href="/wiki/%D8%AD%D9%8A%D8%A7%D8%A9" title="حياة">الحياة</a> أقصر من أن نقضيها في تسجيل الأخطاء التي ارتكبها غيرنا في حقنا وفي تغذية روح العداء بين <a href="/wiki/%D8%B4%D8%B9%D8%A8" title="شعب">الناس</a>.
 
-- — <a href="/wiki/%D9%85%D8%A7%D9%84%D9%83_%D8%A8%D9%86_%D8%A3%D9%86%D8%B3" title="مالك بن أنس">مالك بن أنس</a>
+- — <a href="/wiki/%D8%A8%D9%8A%D8%B1%D8%AA%D8%B1%D8%A7%D9%86%D8%AF_%D8%B1%D8%A7%D8%B3%D9%84" title="بيرتراند راسل">برتراند راسل</a>
 
 
 <!-- QUOTE:END -->
