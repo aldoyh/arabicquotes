@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# للمرائي ثلاث علامات: الكسل إذا كان وحده، وينشط إذا كان في الناس، ويزيد في العمل إذا أثنى عليه، وينقص إذا ذم.
+# من قال لست أدري فقد <a href="/wiki/%D9%81%D8%AA%D9%88%D9%89" title="فتوى">أفتى</a>.
 
-- — <a href="/wiki/%D8%B9%D9%84%D9%8A_%D8%A8%D9%86_%D8%A3%D8%A8%D9%8A_%D8%B7%D8%A7%D9%84%D8%A8" title="علي بن أبي طالب">علي بن أبي طالب</a>
+- — <a href="/wiki/%D9%85%D8%A7%D9%84%D9%83_%D8%A8%D9%86_%D8%A3%D9%86%D8%B3" title="مالك بن أنس">مالك بن أنس</a>
 
 
 <!-- QUOTE:END -->
