@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# من قال لست أدري فقد <a href="/wiki/%D9%81%D8%AA%D9%88%D9%89" title="فتوى">أفتى</a>.
+# إماطة الأذى عن الطريق <a href="/wiki/%D8%B5%D8%AF%D9%82%D8%A9" title="صدقة">صدقة</a>.
 
-- — <a href="/wiki/%D9%85%D8%A7%D9%84%D9%83_%D8%A8%D9%86_%D8%A3%D9%86%D8%B3" title="مالك بن أنس">مالك بن أنس</a>
+- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد بن عبد الله</a>
 
 
 <!-- QUOTE:END -->
