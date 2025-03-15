@@ -3,13 +3,9 @@
 <div style="direction: rtl; text-align: right">
 
 ## مقولة اليوم
+<!-- QUOTE:START -->
 
-<div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
-# إماطة الأذى عن الطريق <a href="/wiki/%D8%B5%D8%AF%D9%82%D8%A9" title="صدقة">صدقة</a>
-
-- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد بن عبد الله</a>
-
-</div>
+<!-- QUOTE:END -->
 
 ---
 
@@ -66,7 +62,7 @@
 </div>
 </div>
 
-> تغييرات الإصدار: [CHANGELOG.md](CHANGELOG.md)
+> تغييرات الإصدار: [CHANGELOG.md](../CHANGELOG.md)
 
 <br />
 <br />

@@ -11,7 +11,7 @@ error_reporting(E_ALL);
 /**
  * Quote Manager
  *
- * This class manages quotes, including fetching random quotes, 
+ * This class manages quotes, including fetching random quotes,
  * updating the README file with a new quote, and logging updates.
  */
 class QuoteManager
@@ -70,7 +70,7 @@ class QuoteManager
         $selectedQuote['quote'] = str_replace("\n", " ", $selectedQuote['quote']);
 
         $quoteMarkdown = $this->generateQuoteMarkdown($selectedQuote);
-        $readmePath = $this->basePath . "README.md";
+        $readmePath = $this->basePath . "README_TEMPLATE.md";
 
         if (!file_exists($readmePath)) {
             error_log("README.md file not found");
@@ -115,7 +115,7 @@ class QuoteManager
         // Clean up quote text by removing newlines and extra spaces
         $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
         $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
-        
+
         $quoteMarkdown = PHP_EOL . "# " . $cleanQuote . PHP_EOL . PHP_EOL . "- " . $cleanAuthor . PHP_EOL . PHP_EOL;
         if (isset($quote['image'])) {
             $quoteMarkdown .= PHP_EOL . "![Quote Image](" . $quote['image'] . ")";
