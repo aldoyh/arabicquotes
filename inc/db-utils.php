@@ -1,8 +1,10 @@
 <?php
 
+define("DB_NAME", __DIR__ . "/assets/QuotesDB.db");
+
 function getDB()
 {
-    $db = new SQLite3(__DIR__ . "/assets/QuotesDB.db");
+    $db = new SQLite3(DB_NAME);
 
     if (!$db) {
         error_log("Failed to connect to the DB");
@@ -14,7 +16,7 @@ function getDB()
 
 function getDBSQLite()
 {
-    $db = new SQLite3(dirname(__DIR__) . "/quotes.db");
+    $db = new SQLite3(DB_NAME);
 
     if (!$db) {
         error_log("Failed to connect to the DB");
@@ -49,7 +51,7 @@ function makeDBClone()
  */
 function create_table()
 {
-    $json = file_get_contents(__DIR__ . "/assets/quotes.json");
+    $json = file_get_contents(DB_NAME);
 
     $data = json_decode($json, true);
 
@@ -108,7 +110,7 @@ function create_table()
 function import_data()
 {
 
-    $json = file_get_contents(__DIR__ . "/assets/quotes.json");
+    $json =  file_get_contents(DB_NAME);
 
     $data = json_decode($json, true);
 

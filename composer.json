@@ -5,6 +5,12 @@
     "autoload": {
         "classmap": [
             "."
+        ],
+        "exclude-from-classmap": [
+            "vendor/"
         ]
+    },
+    "require": {
+        "spatie/crawler": "*"
     }
 }

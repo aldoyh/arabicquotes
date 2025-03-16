@@ -2,71 +2,85 @@
 
 <div style="direction: rtl; text-align: right">
 
-## مقولة اليوم
+### مقولة اليوم
 
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
-# إماطة الأذى عن الطريق <a href="/wiki/%D8%B5%D8%AF%D9%82%D8%A9" title="صدقة">صدقة</a>
+<!-- QUOTE:START -->
 
-- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد بن عبد الله</a>
+# مشاريع واضعي المناهج والأفكار قلّما تتحقّق نظريّاتهم وقلّما تطبّق بحذافيرها لأنّ العقل البشريّ يمكنه أن يُدرك الحقائق ويحدّد الأهداف تحديدا واضحًا أمّا التنفيذ فإنه يصطدم بالواقعْ
 
+- — <a href="/wiki/%D8%A3%D8%AF%D9%88%D9%84%D9%81_%D9%87%D8%AA%D9%84%D8%B1" title="أدولف هتلر">أدولف هتلر</a>
+
+<!-- QUOTE:END -->
 </div>
 
 ---
 
 ## من أقوال العرب
 
-<div id="gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); grid-gap: 1rem;">
+<div id="gallery" style="display: grid; grid-template-columns: repeat(5, 1fr); grid-gap: 2rem;">
 
-<img src="https://i.ibb.co/7CFzDHp/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-1.jpg" alt="مقولة عربية قديمة" style="width:100%; height:auto;">
-<img src="https://i.ibb.co/NnFpS1Z/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-0.jpg" alt="مقولة عربية قديمة" style="width:100%; height:auto;">
-<img src="https://i.ibb.co/YLLXFz7/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-4.jpg" alt="مقولة عربية قديمة" style="width:100%; height:auto;">
-<img src="https://i.ibb.co/Z2PgV09/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-5.jpg" alt="مقولة عربية قديمة" style="width:100%; height:auto;">
-<img src="https://i.ibb.co/HV1tCpZ/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-6.jpg" alt="مقولة عربية قديمة" style="width:100%; height:auto;">
-<img src="https://i.ibb.co/bHP93gw/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-7.jpg" alt="مقولة عربية قديمة" style="width:100%; height:auto;">
-<img src="https://i.ibb.co/ZJ9Vb0Y/Photo-Real-the-daily-quote-0.jpg" alt="مقولة عربية قديمة" style="width:100%; height:auto;">
-<img src="https://i.ibb.co/sFs2LTF/Photo-Real-the-daily-quote-2.jpg" alt="مقولة عربية قديمة" style="width:100%; height:auto;">
-<img src="https://i.ibb.co/Ms2KVnb/Photo-Real-the-daily-quote-1.jpg" alt="مقولة عربية قديمة" style="width:100%; height:auto;">
+<img src="https://i.ibb.co/7CFzDHp/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-1.jpg" />
+
+<img src="https://i.ibb.co/NnFpS1Z/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-0.jpg" />
+
+<img src="https://i.ibb.co/YLLXFz7/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-4.jpg" />
+
+<img src="https://i.ibb.co/Z2PgV09/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-5.jpg" />
+
+<img src="https://i.ibb.co/HV1tCpZ/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-6.jpg" />
+
+<img src="https://i.ibb.co/bHP93gw/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-7.jpg" />
+
+<img src="https://i.ibb.co/ZJ9Vb0Y/Photo-Real-the-daily-quote-0.jpg" />
+
+<img src="https://i.ibb.co/sFs2LTF/Photo-Real-the-daily-quote-2.jpg" />
+
+<img src="https://i.ibb.co/Ms2KVnb/Photo-Real-the-daily-quote-1.jpg" />
 
 </div>
 
 <hr>
 
+<div class="flex-row">
+
 ## نبذة عن التطبيق
 
 كل يوم مقولة جديدة من صفوة علماء وشخصيات عربية.
 
-يتم الإختيار تلقائيًا وعشوائيًا من خلال "الحركات" (GitHub Actions)، مع الأخذ في الاعتبار عدد مرات الظهور لتجنب تكرار المقولات الأكثر ظهوراً.
+يتم الإختيار تلقائيًا وعشوائيًا من خلال "الحركات" (GitHub Actions) وذات الوقت يقوم بإحتساب عدد مرات الظهور لإستبعاد المقولات الأكثر ظهوراً.
 
-نرحب بمشاركتكم بمقولاتكم عبر طلبات السحب (PR).
+يمكنكم المشاركة بمقولاتكم من خلال PR.
 
----
+</div>
 
-<small>هذه نسخة تجريبية.</small>
+<div>
 
-## المهام المستقبلية (TODO)
+<small> هذة نسخة تحت التجربة </small>
 
-- [ ] إضافة المزيد من المقولات.
-- [ ] إعطاء الأولوية للمقولات الأقل ظهوراً.
+## TODO
 
-### روابط المشروع
+- [] إضافة المزيد من المقولات
+- [] الأولوية للأقل ظهوراً
 
-- [https://arabicquotes.github.io/](https://arabicquotes.github.io/)
-- [aldoyh.github.io/arabicquotes](https://aldoyh.github.io/arabicquotes)
+### الوصلة الرئيسية للمشروع
 
-### المصدر
+[https://arabicquotes.github.io/](https://arabicquotes.github.io/)
 
-- الأقوال مستوحاة من ويكيبيديا العربية: [https://ar.wikiquote.org/wiki/الصفحة_الرئيسية](https://ar.wikiquote.org/wiki/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%A9)
+[aldoyh.github.io/arabicquotes](https://aldoyh.github.io/arabicquotes)
 
-### معلومات الإصدار
+#### الأقوال من ويكيبيديا العربية
 
-- تاريخ الإصدار: 2021-09-12
-- الإصدار: 1.2.0
-- آخر تحديث: 2025-01-18
+[https://ar.wikiquote.org/wiki/الصفحة_الرئيسية](https://ar.wikiquote.org/wiki/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%A9)
+
+> تاريخ الإصدار: 2021-09-12  > الإصدار: 1.2.0
+
+> آخر تحديث: 2025-01-18
 
 </div>
 </div>
 
-> تغييرات الإصدار: [CHANGELOG.md](CHANGELOG.md)
+> CHNAGELOG: [CHANGELOG.md](CHANGELOG.md)
 
 <br />
 <br />
@@ -75,37 +89,16 @@
 <br />
 
 <summary>
-<div style="font-size: 9px; text-align: center;">صُنع بكل ♥️ في البحرين 🇧🇭</div>
+<div style="font-size: 9px; text-align: center;">Made with ♥️ صُنع بكل
+    <br />
+    in Bahrain 🇧🇭 في البحرين
+</div>
 </summary>
 
 ---
 
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');
-body {
-    font-family: 'Cairo', sans-serif;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #374151;
-    text-align: right;
-    background-image: url(https://github.com/aldoyh/arabicquotes/blob/master/assets/PhotoReal_scroll_0.jpg?raw%3Dtrue);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    direction: rtl;
-}
-
-#gallery img {
-    border-radius: 8px; /* إضافة انحناء بسيط للصور */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* إضافة ظل بسيط للصور */
-    transition: transform 0.3s ease; /* إضافة تأثير الانتقال عند التحويم */
-}
-
-#gallery img:hover {
-    transform: scale(1.05); /* تكبير الصور قليلاً عند التحويم */
-}
-
 body {
     font-family: 'Cairo', sans-serif;
     font-size: 1rem;

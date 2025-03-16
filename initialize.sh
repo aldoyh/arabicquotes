@@ -5,7 +5,7 @@ echo "Making scripts executable..."
 chmod +x db-update.sh
 
 echo "Creating database..."
-./db-update.sh
+./inc/db-update.sh
 
 echo "Verifying database..."
 if [ ! -f quotes.db ]; then
