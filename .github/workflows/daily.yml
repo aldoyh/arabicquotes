@@ -2,8 +2,9 @@ name: Daily Quote Update 📮 📜
 on:
   schedule:
     - cron: '0 6 * * *' # Runs daily at 6 AM
-  workflow_dispatch:
-
+  workflow_run:
+    branches: 
+      - master
 permissions:
   contents: write
 
@@ -18,13 +19,16 @@ jobs:
 
     - uses: shivammathur/setup-php@v2
       with:
+        ref: master,gh-pages
         php-version: '8.3'
         extensions: json,mbstring,zip,pcntl
 
     - name: Run Quote Script
+      id: dailyQuote
       run: php index.php
 
     - name: Commit Changes
+      id: changes
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
