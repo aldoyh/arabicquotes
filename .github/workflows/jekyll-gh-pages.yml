@@ -3,11 +3,11 @@ name: Deploy to GitHub Pages 🚀
 on:
   workflow_run:
     workflows: 
-      - main
+      - master
       - gh-pages
   push:
     branches:
-      - main
+      - master
       - gh-pages
 jobs:
   build:
