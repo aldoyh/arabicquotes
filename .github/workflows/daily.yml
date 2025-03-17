@@ -3,6 +3,8 @@ on:
   schedule:
     - cron: '0 6 * * *' # Runs daily at 6 AM
   workflow_run:
+    workflows: 
+      - gh-pages
     branches: 
       - master
 permissions:
