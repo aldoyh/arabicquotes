@@ -4,11 +4,11 @@ on:
   workflow_run:
     workflows: 
       - main
-      - jekyll
+      - gh-pages
   push:
     branches:
       - main
-
+      - gh-pages
 jobs:
   build:
     runs-on: ubuntu-latest
