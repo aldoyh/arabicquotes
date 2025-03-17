@@ -1,4 +1,4 @@
-# أروع ما قيل من العرب ؏
+# أروع ما قيل من/عن العرب ؏
 
 <div style="direction: rtl; text-align: right">
 
@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أعلمه <a href="/wiki/%D8%B1%D9%85%D8%A7%D9%8A%D8%A9" title="رماية">الرماية</a> كل <a href="/wiki/%D9%8A%D9%88%D9%85" title="يوم">يوم</a> فلما اشتد <a href="/wiki/%D8%B3%D8%A7%D8%B9%D8%AF" title="ساعد">ساعده</a> رماني وكم علمته <a href="/wiki/%D8%B4%D8%B9%D8%B1_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="شعر (توضيح)">نظم</a> <a href="/wiki/%D9%82%D8%A7%D9%81%D9%8A%D8%A9" title="قافية">القوافي</a> فلما قال قافية هجاني
+# كن في الطريقِ عفيف الخطى شريف <a href="/wiki/%D8%B3%D9%85%D8%B9" title="سمع">السمع</a> كريم <a href="/wiki/%D8%A5%D8%AF%D8%B1%D8%A7%D9%83_%D8%A8%D8%B5%D8%B1%D9%8A" title="إدراك بصري">النظر</a> وكن <a href="/wiki/%D8%B1%D8%AC%D9%84" title="رجل">رجلًا</a> إن أتوا بعده يقولون مـــرّ وهذا الأثر
 
-- — <a href="/wiki/%D9%85%D8%A7%D9%84%D9%83_%D8%A8%D9%86_%D9%81%D9%87%D9%85" title="مالك بن فهم">مالك بن فهم الأزدي</a> أو <a href="/wiki/%D9%85%D8%B9%D9%86_%D8%A8%D9%86_%D8%A3%D9%88%D8%B3" title="معن بن أوس">معن بن أوس المزني</a>
+- — <a href="/wiki/%D8%A3%D8%AD%D9%85%D8%AF_%D8%B4%D9%88%D9%82%D9%8A" title="أحمد شوقي">أحمد شوقي</a>
 
 
 <!-- QUOTE:END -->
@@ -75,6 +75,7 @@
 [https://ar.wikiquote.org/wiki/الصفحة_الرئيسية](https://ar.wikiquote.org/wiki/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%A9)
 
 > تاريخ الإصدار: 2025-03-17  >  الإصدار: 1.2.1
+
 > تاريخ الإصدار: 2021-09-12  > الإصدار: 1.2.0
 
 > آخر تحديث: 2025-01-18
