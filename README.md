@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إذا كان الشغل مجهدة فإن الفراغ مفسدة
+# أعلمه <a href="/wiki/%D8%B1%D9%85%D8%A7%D9%8A%D8%A9" title="رماية">الرماية</a> كل <a href="/wiki/%D9%8A%D9%88%D9%85" title="يوم">يوم</a> فلما اشتد <a href="/wiki/%D8%B3%D8%A7%D8%B9%D8%AF" title="ساعد">ساعده</a> رماني وكم علمته <a href="/wiki/%D8%B4%D8%B9%D8%B1_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="شعر (توضيح)">نظم</a> <a href="/wiki/%D9%82%D8%A7%D9%81%D9%8A%D8%A9" title="قافية">القوافي</a> فلما قال قافية هجاني
 
-- — <a href="/wiki/%D8%B9%D9%85%D8%B1_%D8%A8%D9%86_%D8%A7%D9%84%D8%AE%D8%B7%D8%A7%D8%A8" title="عمر بن الخطاب">عمر بن الخطاب</a>
+- — <a href="/wiki/%D9%85%D8%A7%D9%84%D9%83_%D8%A8%D9%86_%D9%81%D9%87%D9%85" title="مالك بن فهم">مالك بن فهم الأزدي</a> أو <a href="/wiki/%D9%85%D8%B9%D9%86_%D8%A8%D9%86_%D8%A3%D9%88%D8%B3" title="معن بن أوس">معن بن أوس المزني</a>
 
 
 <!-- QUOTE:END -->
