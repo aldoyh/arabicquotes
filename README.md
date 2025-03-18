@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# كن في الطريقِ عفيف الخطى شريف <a href="/wiki/%D8%B3%D9%85%D8%B9" title="سمع">السمع</a> كريم <a href="/wiki/%D8%A5%D8%AF%D8%B1%D8%A7%D9%83_%D8%A8%D8%B5%D8%B1%D9%8A" title="إدراك بصري">النظر</a> وكن <a href="/wiki/%D8%B1%D8%AC%D9%84" title="رجل">رجلًا</a> إن أتوا بعده يقولون مـــرّ وهذا الأثر
+# إن <a href="/wiki/%D8%AF%D9%8A%D9%86%D8%A7%D9%85%D9%8A%D8%AA" title="ديناميت">الديناميت</a> الذي قمت باختراعه سيقود قريبًا إلى <a href="/wiki/%D8%B3%D9%84%D8%A7%D9%85" title="سلام">السلام</a> أسرع من عقد ألف اجتماع دولي. سيجنح الناس للسلم عندما يدركون أنه من الممكن نسف <a href="/wiki/%D8%AC%D9%8A%D8%B4" title="جيش">جيوش</a> بأكملها.
 
-- — <a href="/wiki/%D8%A3%D8%AD%D9%85%D8%AF_%D8%B4%D9%88%D9%82%D9%8A" title="أحمد شوقي">أحمد شوقي</a>
+- — <a href="/wiki/%D8%A3%D9%84%D9%81%D8%B1%D8%AF_%D9%86%D9%88%D8%A8%D9%84" title="ألفرد نوبل">ألفريد نوبل</a>
 
 
 <!-- QUOTE:END -->
