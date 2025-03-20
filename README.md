@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# المروءة: طلاقة الوجه، والتَّودُّد إلى النَّاس، وقضاء الحوائج.
+# لا تجالس أهل الأهواء فإن مجالستهم ممرضة للقلب.
 
-- — <a href="/wiki/%D9%85%D9%8A%D9%85%D9%88%D9%86_%D8%A8%D9%86_%D9%85%D9%87%D8%B1%D8%A7%D9%86" title="ميمون بن مهران">ميمون بن مهران</a>
+- — <a href="/wiki/%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D9%84%D9%87_%D8%A8%D9%86_%D8%B9%D8%A8%D8%A7%D8%B3" title="عبد الله بن عباس">عبد الله بن عباس</a>
 
 
 <!-- QUOTE:END -->
