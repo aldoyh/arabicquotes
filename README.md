@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أَوَلَا أَدُلُّكُمْ عَلَى شَيْءٍ إِذَا فَعَلْتُمُوهُ تَحَابَبْتُمْ، أَفْشُوا السَّلَامَ بَيْنَكُمْ.
+# كناطح صخرة يومًا ليفلقها فلم يضرها وأوهى قرنه الوعلُ
 
-- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد بن عبد الله</a> ﷺ
+- — <a href="/wiki/%D8%A3%D8%B9%D8%B4%D9%89_%D9%82%D9%8A%D8%B3" title="أعشى قيس">الأعشى</a>
 
 
 <!-- QUOTE:END -->
