@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# كناطح صخرة يومًا ليفلقها فلم يضرها وأوهى قرنه الوعلُ
+# حَقِيقَةُ حُسْنِ الْخُلُقِ بَذْلُ الْمَعْرُوف، وَكَفُّ الْأَذَى وَطَلَاقَةُ الْوَجْه.
 
-- — <a href="/wiki/%D8%A3%D8%B9%D8%B4%D9%89_%D9%82%D9%8A%D8%B3" title="أعشى قيس">الأعشى</a>
+- — <a href="/wiki/%D8%A7%D9%84%D8%AD%D8%B3%D9%86_%D8%A7%D9%84%D8%A8%D8%B5%D8%B1%D9%8A" title="الحسن البصري">الحسن البصري</a>
 
 
 <!-- QUOTE:END -->
