@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# <a href="/wiki/%D8%B3%D9%84%D8%A7%D9%85" title="سلام">السلام</a> ليس فقط أفضل من <a href="/wiki/%D8%AD%D8%B1%D8%A8" title="حرب">الحرب</a> وإنما أصعب منالاً.
+# زعمت الحكماء أنَّ القليل مع طلاقة الوجه أوقع بقلوب ذوي المروءات من الكثير مع العبوس والانقباض.
 
-- — <a href="/wiki/%D8%AC%D9%88%D8%B1%D8%AC_%D8%A8%D8%B1%D9%86%D8%A7%D8%B1%D8%AF_%D8%B4%D9%88" title="جورج برنارد شو">جورج برنارد شو</a>
+- — <a href="/wiki/%D8%A7%D9%84%D8%AC%D8%A7%D8%AD%D8%B8" title="الجاحظ">الجاحظ</a>
 
 
 <!-- QUOTE:END -->
