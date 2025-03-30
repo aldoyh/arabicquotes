@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# زعمت الحكماء أنَّ القليل مع طلاقة الوجه أوقع بقلوب ذوي المروءات من الكثير مع العبوس والانقباض.
+# من يأب اليوم قبول النصيحة التي لا تكلفه شيئاً، فسوف يضطر في الغد إلى شراء الأسف بأغلى ثمن
 
-- — <a href="/wiki/%D8%A7%D9%84%D8%AC%D8%A7%D8%AD%D8%B8" title="الجاحظ">الجاحظ</a>
+- — <a href="/wiki/%D8%A3%D9%81%D9%84%D8%A7%D8%B7%D9%88%D9%86" title="أفلاطون">أفلاطون</a>
 
 
 <!-- QUOTE:END -->
