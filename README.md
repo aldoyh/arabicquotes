@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أيا ليت الشباب يعود يومًا فأخبره بما فعل المشيب
+# إن الرجل ليحدثني بالحديث قد سمعته أنا قبل أن تلده أمه، فيحملني حسن الأدب أن أسمعه منه.
 
-- — <a href="/wiki/%D8%A3%D8%A8%D9%88_%D8%A7%D9%84%D8%B9%D8%AA%D8%A7%D9%87%D9%8A%D8%A9" title="أبو العتاهية">أبو العتاهية</a>
+- — <a href="/wiki/%D8%B3%D9%81%D9%8A%D8%A7%D9%86_%D8%A7%D9%84%D8%AB%D9%88%D8%B1%D9%8A" title="سفيان الثوري">سفيان الثوري</a>
 
 
 <!-- QUOTE:END -->
