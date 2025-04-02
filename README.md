@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إن الرجل ليحدثني بالحديث قد سمعته أنا قبل أن تلده أمه، فيحملني حسن الأدب أن أسمعه منه.
+# يقولُ لك المُرشدون: اقرأ ما ينفعُك، ولكني أقول: بل انتفع بما تقرأ.
 
-- — <a href="/wiki/%D8%B3%D9%81%D9%8A%D8%A7%D9%86_%D8%A7%D9%84%D8%AB%D9%88%D8%B1%D9%8A" title="سفيان الثوري">سفيان الثوري</a>
+- — <a href="/wiki/%D8%B9%D8%A8%D8%A7%D8%B3_%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%AF" title="عباس محمود العقاد">عبَّاس محمود العقَّاد</a>
 
 
 <!-- QUOTE:END -->
