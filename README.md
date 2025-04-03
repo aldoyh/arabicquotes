@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# يقولُ لك المُرشدون: اقرأ ما ينفعُك، ولكني أقول: بل انتفع بما تقرأ.
+# نظريًا الكل لديه <a href="/wiki/%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A9" title="معلومة">معلومات</a>، لكن لا شيء يعمل! وتطبيقيًا الكل يعمل، لكن لا أحد يعرف لماذا؟!
 
-- — <a href="/wiki/%D8%B9%D8%A8%D8%A7%D8%B3_%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%A7%D9%84%D8%B9%D9%82%D8%A7%D8%AF" title="عباس محمود العقاد">عبَّاس محمود العقَّاد</a>
+- — <a href="/wiki/%D8%A3%D9%84%D8%A8%D8%B1%D8%AA_%D8%A3%D9%8A%D9%86%D8%B4%D8%AA%D8%A7%D9%8A%D9%86" title="ألبرت أينشتاين">أينشتاين</a>
 
 
 <!-- QUOTE:END -->
