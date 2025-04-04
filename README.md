@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# نظريًا الكل لديه <a href="/wiki/%D9%85%D8%B9%D9%84%D9%88%D9%85%D8%A9" title="معلومة">معلومات</a>، لكن لا شيء يعمل! وتطبيقيًا الكل يعمل، لكن لا أحد يعرف لماذا؟!
+# من السهل جداً أن تضحي من أجل <a href="/wiki/%D8%B5%D8%AF%D8%A7%D9%82%D8%A9" title="صداقة">صديقك</a>، ولكن من الصعوبة أن تجـد من يستحق هذه <a href="/wiki/%D8%AA%D8%B6%D8%AD%D9%8A%D8%A9" title="تضحية">التضحية</a>
 
-- — <a href="/wiki/%D8%A3%D9%84%D8%A8%D8%B1%D8%AA_%D8%A3%D9%8A%D9%86%D8%B4%D8%AA%D8%A7%D9%8A%D9%86" title="ألبرت أينشتاين">أينشتاين</a>
+- — <a href="/wiki/%D8%B3%D9%82%D8%B1%D8%A7%D8%B7" title="سقراط">سقراط</a>
 
 
 <!-- QUOTE:END -->
