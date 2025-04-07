@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# التواضع أن تَخْضَع للحق وتنقاد له وتقبل الحق من كل من تسمعه له.
+# ليس المؤمن بالطعان، ولا اللعان، ولا الفاحش، ولا البذيء.
 
-- — <a href="/wiki/%D8%A7%D9%84%D9%81%D8%B6%D9%8A%D9%84_%D8%A8%D9%86_%D8%B9%D9%8A%D8%A7%D8%B6" title="الفضيل بن عياض">الفضيل بن عياض</a>
+- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد بن عبد الله</a>
 
 
 <!-- QUOTE:END -->
