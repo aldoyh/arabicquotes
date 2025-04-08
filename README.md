@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# ليس المؤمن بالطعان، ولا اللعان، ولا الفاحش، ولا البذيء.
+# لو كان لديك <a href="/wiki/%D8%AA%D9%81%D8%A7%D8%AD" title="تفاح">تفاحة</a> ولدي تفاحة مثلها وتبادلناهما فيما بيننا سيبقى لدى كل منا تفاحة واحدة. لكن لو كان لديك <a href="/wiki/%D9%81%D9%83%D8%B1%D8%A9" title="فكرة">فكرة</a> ولدي فكرة وتبادلناهما، فسيكون لدى كل منا فكرتان.
 
-- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد بن عبد الله</a>
+- — <a href="/wiki/%D8%AC%D9%88%D8%B1%D8%AC_%D8%A8%D8%B1%D9%86%D8%A7%D8%B1%D8%AF_%D8%B4%D9%88" title="جورج برنارد شو">جورج برنارد شو</a>
 
 
 <!-- QUOTE:END -->
