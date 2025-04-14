@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# اجتنِبوا الخمر؛ فإنَّها أمُّ الخبائث.
+# رأيتُ جُرذاًيخطُبُ اليومَ عن النَّظافَةويُنْذِرُ الأوساخَ بالعِقَابِوحَوْلَهُ يُصَفِّقُ الذُّبَابْ.
 
-- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد بن عبد الله</a>
+- — <a href="/wiki/%D8%A3%D8%AD%D9%85%D8%AF_%D9%85%D8%B7%D8%B1" title="أحمد مطر">أحمد مطر</a>
 
 
 <!-- QUOTE:END -->
