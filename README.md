@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# ما وُصِفَت <a href="/wiki/%D8%AC%D9%86%D8%A9" title="جنة">الجنةُ</a> بشيء إلا وفي <a href="/wiki/%D8%AF%D9%85%D8%B4%D9%82" title="دمشق">دمشقَ</a> مثله
+# وطني لو شغلت بالخلد عنه نازعتني إليه في الخلد نفسي
 
-- — <a href="/wiki/%D9%8A%D8%A7%D9%82%D9%88%D8%AA_%D8%A7%D9%84%D8%AD%D9%85%D9%88%D9%8A" title="ياقوت الحموي">ياقوت الحموي</a>
+- — <a href="/wiki/%D8%A3%D8%AD%D9%85%D8%AF_%D8%B4%D9%88%D9%82%D9%8A" title="أحمد شوقي">أحمد شوقي</a>
 
 
 <!-- QUOTE:END -->
