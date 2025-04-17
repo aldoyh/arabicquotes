@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# وطني لو شغلت بالخلد عنه نازعتني إليه في الخلد نفسي
+# من الغباء أن تخسر نفسك وأنت تحاول الحفاظ على شخص .. لا يهتم أصلاً بفقدانك
 
-- — <a href="/wiki/%D8%A3%D8%AD%D9%85%D8%AF_%D8%B4%D9%88%D9%82%D9%8A" title="أحمد شوقي">أحمد شوقي</a>
+- — <a href="/wiki/%D8%A3%D9%81%D9%84%D8%A7%D8%B7%D9%88%D9%86" title="أفلاطون">أفلاطون</a>
 
 
 <!-- QUOTE:END -->
