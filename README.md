@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# من الغباء أن تخسر نفسك وأنت تحاول الحفاظ على شخص .. لا يهتم أصلاً بفقدانك
+# أوّلُ العلم الصمت، والثاني الاستماع، والثالث الحفظ، والرابع العمل، والخامس نشره.
 
-- — <a href="/wiki/%D8%A3%D9%81%D9%84%D8%A7%D8%B7%D9%88%D9%86" title="أفلاطون">أفلاطون</a>
+- — <a href="/wiki/%D8%A7%D9%84%D8%A3%D8%B5%D9%85%D8%B9%D9%8A" title="الأصمعي">الأصمعي</a>
 
 
 <!-- QUOTE:END -->
