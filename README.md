@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# عندما يكونُ الحديثُ عن المال، فإنَّ كُلَّ الناس على دينٍ واحد.
+# يمكنهم هزيمتنا إذا نجحوا باختراق معنوياتنا.
 
-- — <a href="/wiki/%D9%81%D9%88%D9%84%D8%AA%D9%8A%D8%B1" title="فولتير">فولتير</a>
+- — <a href="/wiki/%D8%B9%D9%85%D8%B1_%D8%A7%D9%84%D9%85%D8%AE%D8%AA%D8%A7%D8%B1" title="عمر المختار">عمر المختار</a>
 
 
 <!-- QUOTE:END -->
