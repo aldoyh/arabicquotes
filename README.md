@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# دعامة العقل الحِلْم، وجماع الأمر الصَّبر، وخير الأمور العفو.
+# اعرف قيمة حريتك أو ستفقدها، لقد علمنا التاريخ ذلك.
 
-- — <a href="/wiki/%D8%A3%D9%83%D8%AB%D9%85_%D8%A8%D9%86_%D8%B5%D9%8A%D9%81%D9%8A_%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%85%D9%8A" title="أكثم بن صيفي التميمي">أكثم بن صيفي</a>
+- — <a href="/wiki/%D8%B1%D9%8A%D8%AA%D8%B4%D8%A7%D8%B1%D8%AF_%D8%B3%D8%AA%D9%88%D9%84%D9%85%D9%86" title="ريتشارد ستولمن">ريتشارد ستولمن</a>
 
 
 <!-- QUOTE:END -->
