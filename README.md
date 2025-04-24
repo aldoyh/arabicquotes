@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إذا أطعَمتَ فأشبِع وإذا ضَربتَ فأوجِع فإنَّ المَلامة واحِدة.
+# إن اللغة تحيا بحياة أهلها، وتموت بموتهم، وتزهو بزهوهم، وتنحط بانحطاطهم
 
-- — <a href="/wiki/%D8%B9%D9%85%D8%B1_%D8%A8%D9%86_%D8%A7%D9%84%D8%AE%D8%B7%D8%A7%D8%A8" title="عمر بن الخطاب">عمر بن الخطاب</a>
+- — <a href="/wiki/%D8%AC%D8%B1%D8%AC%D9%8A_%D8%B2%D9%8A%D8%AF%D8%A7%D9%86" title="جرجي زيدان">جرجي زيدان</a> <a href="/wiki/%D8%A3%D8%AF%D9%8A%D8%A8" title="أديب">أديب</a> <a href="/wiki/%D9%85%D8%A4%D8%B1%D8%AE" title="مؤرخ">ومؤرخ</a> <a href="/wiki/%D9%84%D8%A8%D9%86%D8%A7%D9%86" title="لبنان">لبناني</a>
 
 
 <!-- QUOTE:END -->
