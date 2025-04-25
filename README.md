@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# إن اللغة تحيا بحياة أهلها، وتموت بموتهم، وتزهو بزهوهم، وتنحط بانحطاطهم
+# هذه هي <a href="/wiki/%D8%AD%D9%8A%D8%A7%D8%A9" title="حياة">الحياة</a> أنك تتنازل عن متعك الواحدة بعد الأخرى حتى لا يبقى منها شيء، وعندئذ تعلم أنه قد حان وقت الرحيل
 
-- — <a href="/wiki/%D8%AC%D8%B1%D8%AC%D9%8A_%D8%B2%D9%8A%D8%AF%D8%A7%D9%86" title="جرجي زيدان">جرجي زيدان</a> <a href="/wiki/%D8%A3%D8%AF%D9%8A%D8%A8" title="أديب">أديب</a> <a href="/wiki/%D9%85%D8%A4%D8%B1%D8%AE" title="مؤرخ">ومؤرخ</a> <a href="/wiki/%D9%84%D8%A8%D9%86%D8%A7%D9%86" title="لبنان">لبناني</a>
+- — <a href="/wiki/%D9%86%D8%AC%D9%8A%D8%A8_%D9%85%D8%AD%D9%81%D9%88%D8%B8" title="نجيب محفوظ">نجيب محفوظ</a>
 
 
 <!-- QUOTE:END -->
