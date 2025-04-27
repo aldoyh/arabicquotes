@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أعرف أن <a href="/wiki/%D9%85%D8%B1%D9%83%D8%A8_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="مركب (توضيح)">المراكب</a> في المرفأ تشكو <a href="/wiki/%D8%B3%D8%A3%D9%85" title="سأم">الضجر</a>، ولكن المراكب المبحرة تشكو <a href="/wiki/%D8%BA%D8%B1%D8%A8%D8%A9" title="غربة">الغربة</a> وتشهد أن موسم <a href="/wiki/%D9%87%D8%AC%D8%B1%D8%A9_(%D8%AA%D9%88%D8%B6%D9%8A%D8%AD)" class="mw-disambig" title="هجرة (توضيح)">الهجرة</a> إلى <a href="/wiki/%D9%88%D8%B7%D9%86" title="وطن">الوطن</a> قد حان. وصحيح أن الطفل يقطع حبل سرته حين يغادر رحم أمه، لكنه يوم يغادر رحم وطنه يزداد الحبل الذي يربطه به سماكةً وثخنًا حتى يتحول جسرًا لا تهدمه الزلازل العاطفية كلها.
+# من لا يملك ثلثي يومه فهو عبد
 
-- — <a href="/wiki/%D8%BA%D8%A7%D8%AF%D8%A9_%D8%A7%D9%84%D8%B3%D9%85%D8%A7%D9%86" title="غادة السمان">غادة السمان</a>، <a href="/wiki/7" title="7">7</a>-<a href="/wiki/11" title="11">11</a>-<a href="/wiki/1973" title="1973">1973</a><a href="/wiki/%D9%82%D8%A7%D8%A6%D9%85%D8%A9_%D9%85%D8%A4%D9%84%D9%81%D8%A7%D8%AA_%D8%BA%D8%A7%D8%AF%D8%A9_%D8%A7%D9%84%D8%B3%D9%85%D8%A7%D9%86" title="قائمة مؤلفات غادة السمان">ختم الذاكرة بالشمع الأحمر</a>ص <a href="/wiki/17" title="17">17</a>
+- — فريدريش نيتشه
 
 
 <!-- QUOTE:END -->
