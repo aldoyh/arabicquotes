@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# من لا يملك ثلثي يومه فهو عبد
+# التحدث كثيرًا عن النفس يمكن أن يكون وسيلةً لإخفاء النفس.
 
-- — فريدريش نيتشه
+- — <a href="/wiki/%D9%81%D8%B1%D9%8A%D8%AF%D8%B1%D9%8A%D9%83_%D9%86%D9%8A%D8%AA%D8%B4%D9%87" title="فريدريك نيتشه">فريدريك نيتشه</a>
 
 
 <!-- QUOTE:END -->
