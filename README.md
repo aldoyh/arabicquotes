@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# التحدث كثيرًا عن النفس يمكن أن يكون وسيلةً لإخفاء النفس.
+# أنت للمال إذا أمسكته وإذا أنفقته فالمال لك
 
-- — <a href="/wiki/%D9%81%D8%B1%D9%8A%D8%AF%D8%B1%D9%8A%D9%83_%D9%86%D9%8A%D8%AA%D8%B4%D9%87" title="فريدريك نيتشه">فريدريك نيتشه</a>
+- — <a href="/wiki/%D8%A3%D8%A8%D9%88_%D9%86%D9%88%D8%A7%D8%B3" title="أبو نواس">أبو نواس</a>
 
 
 <!-- QUOTE:END -->
