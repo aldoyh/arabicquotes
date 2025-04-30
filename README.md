@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أنت للمال إذا أمسكته وإذا أنفقته فالمال لك
+# سامح <a href="/wiki/%D8%B9%D8%AF%D8%A7%D9%88%D8%A9" title="عداوة">أعداءك</a> دائما، فلا شيء يغيظهم أكثر من ذلك.
 
-- — <a href="/wiki/%D8%A3%D8%A8%D9%88_%D9%86%D9%88%D8%A7%D8%B3" title="أبو نواس">أبو نواس</a>
+- — <a href="/wiki/%D8%A3%D9%88%D8%B3%D9%83%D8%A7%D8%B1_%D9%88%D8%A7%D9%8A%D9%84%D8%AF" title="أوسكار وايلد">أوسكار ويلد</a>
 
 
 <!-- QUOTE:END -->
