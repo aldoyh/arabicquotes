@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# سامح <a href="/wiki/%D8%B9%D8%AF%D8%A7%D9%88%D8%A9" title="عداوة">أعداءك</a> دائما، فلا شيء يغيظهم أكثر من ذلك.
+# أجد <a href="/wiki/%D8%AA%D9%84%D9%81%D8%A7%D8%B2" title="تلفاز">التلفاز</a> مصدرا <a href="/wiki/%D8%AB%D9%82%D8%A7%D9%81%D8%A9" title="ثقافة">ثقافيا</a> هاما؛ في كل مرة يشغل أحدهم التلفاز، أذهب إلى الغرفة الأخرى وأقرأ <a href="/wiki/%D9%83%D8%AA%D8%A7%D8%A8" title="كتاب">كتابا</a>.
 
-- — <a href="/wiki/%D8%A3%D9%88%D8%B3%D9%83%D8%A7%D8%B1_%D9%88%D8%A7%D9%8A%D9%84%D8%AF" title="أوسكار وايلد">أوسكار ويلد</a>
+- — <a href="/wiki/%D8%BA%D8%B1%D9%88%D8%AA%D8%B4%D9%88_%D9%85%D8%A7%D8%B1%D9%83%D8%B3" title="غروتشو ماركس">غروتشو ماركس</a>
 
 
 <!-- QUOTE:END -->
