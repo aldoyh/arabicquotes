@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أجد <a href="/wiki/%D8%AA%D9%84%D9%81%D8%A7%D8%B2" title="تلفاز">التلفاز</a> مصدرا <a href="/wiki/%D8%AB%D9%82%D8%A7%D9%81%D8%A9" title="ثقافة">ثقافيا</a> هاما؛ في كل مرة يشغل أحدهم التلفاز، أذهب إلى الغرفة الأخرى وأقرأ <a href="/wiki/%D9%83%D8%AA%D8%A7%D8%A8" title="كتاب">كتابا</a>.
+# لم <a href="/wiki/%D9%85%D8%B9%D8%B1%D9%81%D8%A9" title="معرفة">نعرف</a> شيئًا حتى الآن عن <a href="/wiki/%D8%AD%D9%8A%D8%A7%D8%A9" title="حياة">الحياة</a>، فكيف <a href="/wiki/%D9%85%D8%B9%D8%B1%D9%81%D8%A9" title="معرفة">نعرف</a> عن <a href="/wiki/%D9%85%D9%88%D8%AA" title="موت">الموت</a>.
 
-- — <a href="/wiki/%D8%BA%D8%B1%D9%88%D8%AA%D8%B4%D9%88_%D9%85%D8%A7%D8%B1%D9%83%D8%B3" title="غروتشو ماركس">غروتشو ماركس</a>
+- — <a href="/wiki/%D9%83%D9%88%D9%86%D9%81%D9%88%D8%B4%D9%8A%D9%88%D8%B3" title="كونفوشيوس">كونفوشيوس</a>
 
 
 <!-- QUOTE:END -->
