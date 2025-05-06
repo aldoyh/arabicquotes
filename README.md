@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# يكفيني فخراً أني أطول من <a href="/wiki/%D9%86%D8%A7%D8%A8%D9%84%D9%8A%D9%88%D9%86_%D8%A8%D9%88%D9%86%D8%A7%D8%A8%D8%B1%D8%AA" title="نابليون بونابرت">نابليون بونابرت</a> بثلاث سنتيمترات
+# خير خصلة في <a href="/wiki/%D9%83%D9%84%D8%A8" title="كلب">الكلب</a> أنه لا <a href="/wiki/%D9%86%D9%81%D8%A7%D9%82" title="نفاق">ينافق</a> في <a href="/wiki/%D8%AD%D8%A8" title="حب">محبته</a>.
 
-- — <a href="/wiki/%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D8%B9%D8%B2%D9%8A%D8%B2_%D8%A8%D9%88%D8%AA%D9%81%D9%84%D9%8A%D9%82%D8%A9" title="عبد العزيز بوتفليقة">عبد العزيز بوتفليقة</a>
+- — <a href="/wiki/%D8%B9%D8%A7%D9%85%D8%B1_%D8%A7%D9%84%D8%B4%D8%B9%D8%A8%D9%8A" title="عامر الشعبي">الشعبي</a>
 
 
 <!-- QUOTE:END -->
