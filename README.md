@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# وَذَاتُ الْفَتَى -واللَّهِ- بالْعِلْمِ وَالتُّقَى إذا لم يكونا لا اعتبار لذاتهِ
+# كن في الطريقِ عفيف الخطى شريف <a href="/wiki/%D8%B3%D9%85%D8%B9" title="سمع">السمع</a> كريم <a href="/wiki/%D8%A5%D8%AF%D8%B1%D8%A7%D9%83_%D8%A8%D8%B5%D8%B1%D9%8A" title="إدراك بصري">النظر</a> وكن <a href="/wiki/%D8%B1%D8%AC%D9%84" title="رجل">رجلًا</a> إن أتوا بعده يقولون مـــرّ وهذا الأثر
 
-- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF_%D8%A8%D9%86_%D8%A5%D8%AF%D8%B1%D9%8A%D8%B3_%D8%A7%D9%84%D8%B4%D8%A7%D9%81%D8%B9%D9%8A" title="محمد بن إدريس الشافعي">محمد بن إدريس الشافعي</a>
+- — <a href="/wiki/%D8%A3%D8%AD%D9%85%D8%AF_%D8%B4%D9%88%D9%82%D9%8A" title="أحمد شوقي">أحمد شوقي</a>
 
 
 <!-- QUOTE:END -->
