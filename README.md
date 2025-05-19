@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# من علم من أخيه مروءة جميلة فلا يسمعنَّ فيه مقالات الرِّجال، ومن حَسُنت علانيته فنحن لسريرته أرجى.
+# صواب الظَّن، الباب الأكبر من الفراسة.
 
-- — <a href="/wiki/%D8%B9%D9%84%D9%8A_%D8%A8%D9%86_%D8%A3%D8%A8%D9%8A_%D8%B7%D8%A7%D9%84%D8%A8" title="علي بن أبي طالب">علي بن أبي طالب</a>
+- — <a href="/w/index.php?title=%D9%85%D8%AD%D9%85%D8%AF_%D8%A8%D9%86_%D8%AD%D8%B1%D8%A8&amp;action=edit&amp;redlink=1" class="new" title="محمد بن حرب (الصفحة غير موجودة)">محمد بن حرب</a>
 
 
 <!-- QUOTE:END -->
