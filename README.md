@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# صواب الظَّن، الباب الأكبر من الفراسة.
+# <a href="/wiki/%D8%AE%D9%88%D9%81" title="خوف">الخائفون</a> لا يصنعون <a href="/wiki/%D8%AD%D8%B1%D9%8A%D8%A9" title="حرية">الحرية</a>، والمترددون لن تقوى <a href="/wiki/%D9%8A%D8%AF" title="يد">أيديهم</a> المرتعشة على البناء.
 
-- — <a href="/w/index.php?title=%D9%85%D8%AD%D9%85%D8%AF_%D8%A8%D9%86_%D8%AD%D8%B1%D8%A8&amp;action=edit&amp;redlink=1" class="new" title="محمد بن حرب (الصفحة غير موجودة)">محمد بن حرب</a>
+- — <a href="/wiki/%D8%AC%D9%85%D8%A7%D9%84_%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D9%86%D8%A7%D8%B5%D8%B1" title="جمال عبد الناصر">جمال عبد الناصر</a>
 
 
 <!-- QUOTE:END -->
