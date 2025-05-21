@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# <a href="/wiki/%D8%AE%D9%88%D9%81" title="خوف">الخائفون</a> لا يصنعون <a href="/wiki/%D8%AD%D8%B1%D9%8A%D8%A9" title="حرية">الحرية</a>، والمترددون لن تقوى <a href="/wiki/%D9%8A%D8%AF" title="يد">أيديهم</a> المرتعشة على البناء.
+# إذا بلغ <a href="/wiki/%D9%81%D8%B7%D8%A7%D9%85" title="فطام">الفطام</a> لنا صبي تخرّ له الجبابر ساجدينا
 
-- — <a href="/wiki/%D8%AC%D9%85%D8%A7%D9%84_%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D9%86%D8%A7%D8%B5%D8%B1" title="جمال عبد الناصر">جمال عبد الناصر</a>
+- — <a href="/wiki/%D8%B9%D9%85%D8%B1%D9%88_%D8%A8%D9%86_%D9%83%D9%84%D8%AB%D9%88%D9%85" title="عمرو بن كلثوم">عمرو بن كلثوم</a>
 
 
 <!-- QUOTE:END -->
