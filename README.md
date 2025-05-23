@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# ينبغي للرجل أن يكره ولده على العلم فإنه مسؤول عنه.
+# لا طاعة لِمخلُوقٍ في معصية الخالق.
 
-- — <a href="/wiki/%D8%B3%D9%81%D9%8A%D8%A7%D9%86_%D8%A7%D9%84%D8%AB%D9%88%D8%B1%D9%8A" title="سفيان الثوري">سفيان الثوري</a>
+- — النبي <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد</a>
 
 
 <!-- QUOTE:END -->
