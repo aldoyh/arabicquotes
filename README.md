@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أعلل النفس بالآمال أرقبها ما أضيق العيش لولا فسحة الأمل
+# أعظمُ الكرامة لُزوم الاستقامة.
 
-- — <a href="/wiki/%D8%A7%D9%84%D8%B7%D8%BA%D8%B1%D8%A7%D8%A6%D9%8A" title="الطغرائي">الطغرائي</a>
+- — <a href="/wiki/%D8%A7%D8%A8%D9%86_%D8%AA%D9%8A%D9%85%D9%8A%D8%A9" title="ابن تيمية">ابن تيمية</a>
 
 
 <!-- QUOTE:END -->
