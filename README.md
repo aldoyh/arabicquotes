@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# <a href="/wiki/%D8%A7%D8%A8%D8%AA%D8%B3%D8%A7%D9%85%D8%A9" title="ابتسامة">تَبَسُمك</a> في وجه أخيك <a href="/wiki/%D8%B5%D8%AF%D9%82%D8%A9" title="صدقة">صدقة</a>.
+# كل عمل كرهت من أجله الموت فاتركه، ثم لا يضرك متى مت
 
-- — <a href="/wiki/%D9%85%D8%AD%D9%85%D8%AF" title="محمد">محمد بن عبد الله</a>
+- — <a href="/wiki/%D8%B9%D9%85%D8%B1_%D8%A8%D9%86_%D8%A7%D9%84%D8%AE%D8%B7%D8%A7%D8%A8" title="عمر بن الخطاب">عمر بن الخطاب</a>
 
 
 <!-- QUOTE:END -->
