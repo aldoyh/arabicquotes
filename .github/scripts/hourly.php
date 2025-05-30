@@ -132,21 +132,17 @@ class QuoteManager
     public function generateQuoteHtml($quote)
     {
         return '
-        <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between quote-of-the-day">
-            <div class="flex flex-col items-center w-full max-w-xl px-4 py-8 mx-auto bg-white rounded-lg shadow dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
-                <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right">
-                    <div class="flex items-center gap-4">
-                        <div class="quote-header">
-                            <p class="quote-date" style="font-size: smaller;">اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
-                        </div>
-                        <div class="ml-4 text-center text-sm text-gray-500 dark:text-gray-400 sm:text-right sm:ml-0 quote-content" dir="rtl">
-                            <h1 class="quote-text">' . $quote['quote'] . '</h1>
-                        </div>
-                        <div class="quote-footer">
-                            <p class="quote-author">' . $quote['author'] . '</p>
-                        </div>
-                    </div>
+        <div class="flex flex-col items-center">
+            <div class="w-full max-w-2xl bg-amber-50 dark:bg-gray-700 rounded-lg p-8 mb-6 border-r-4 border-amber-500">
+                <div class="text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center leading-relaxed" dir="rtl">
+                    ' . htmlspecialchars($quote['quote']) . '
                 </div>
+                <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center" dir="rtl">
+                    — ' . htmlspecialchars($quote['author']) . '
+                </div>
+            </div>
+            <div class="text-sm text-gray-500 dark:text-gray-400 italic">
+                <p>اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
             </div>
         </div>';
     }

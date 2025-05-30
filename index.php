@@ -219,17 +219,19 @@ class QuoteManager
             $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
             $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
             
-            $html = '<div class="quote-wrapper" style="text-align: center; font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
-                        <div class="quote-text" style="font-size: 24px; color: #333; margin-bottom: 10px;">
+            $html = '<div class="flex flex-col items-center">
+                    <div class="w-full max-w-2xl quote-card rounded-xl p-8 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
+                        <div class="text-3xl font-bold text-gray-800 dark:text-amber-50 mb-6 text-center leading-relaxed quote-text">
                             ' . htmlspecialchars($cleanQuote) . '
                         </div>
-                        <div class="quote-author" style="font-size: 18px; color: #666;">
-                            - ' . htmlspecialchars($cleanAuthor) . '
+                        <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center author-text">
+                            — ' . htmlspecialchars($cleanAuthor) . '
                         </div>
-                        <div class="quote-meta" style="margin-top: 20px; color: #999;">
-                            <p class="quote-date" style="font-size: smaller;">اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
-                        </div>
-                    </div>';
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400 italic">
+                        <p>اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
+                    </div>
+                </div>';
             return $html;
         } catch (Exception $e) {
             error_log("Error generating HTML: " . $e->getMessage());
