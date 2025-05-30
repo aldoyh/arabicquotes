@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أكثروا من العِيال فإنكم لاَ تَدْرون بمن تُرْزَقُون.
+# لا يحملُ <a href="/wiki/%D8%AD%D9%82%D8%AF" title="حقد">الحقدَ</a> من تعلو بهِ الرتبُ ولا ينالُ العلا منْ طبعهُ <a href="/wiki/%D8%BA%D8%B6%D8%A8" title="غضب">الغضبُ</a>
 
-- — <a href="/wiki/%D8%B9%D9%85%D8%B1_%D8%A8%D9%86_%D8%A7%D9%84%D8%AE%D8%B7%D8%A7%D8%A8" title="عمر بن الخطاب">عمر بن الخطاب</a>
+- — <a href="/wiki/%D8%B9%D9%86%D8%AA%D8%B1%D8%A9_%D8%A8%D9%86_%D8%B4%D8%AF%D8%A7%D8%AF" title="عنترة بن شداد">عنترة بن شداد</a>
 
 
 <!-- QUOTE:END -->
