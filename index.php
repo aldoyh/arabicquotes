@@ -219,7 +219,7 @@ class QuoteManager
             $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
             $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
             
-            $html = '<div class="flex flex-col items-center">
+            $html = '<div class="flex flex-col items-center animate-slide-up">
                     <div class="w-full max-w-2xl quote-card rounded-xl p-8 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
                         <div class="text-3xl font-bold text-gray-800 dark:text-amber-50 mb-6 text-center leading-relaxed quote-text">
                             ' . htmlspecialchars($cleanQuote) . '
@@ -232,10 +232,11 @@ class QuoteManager
                         <p>اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
                     </div>
                 </div>';
+            
             return $html;
         } catch (Exception $e) {
-            error_log("Error generating HTML: " . $e->getMessage());
-            return null;
+            error_log('Error generating quote HTML: ' . $e->getMessage());
+            return '';
         }
     }
 }

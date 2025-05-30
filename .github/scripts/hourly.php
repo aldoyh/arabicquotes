@@ -203,7 +203,14 @@ class WikiquoteFetcher
             return !empty(trim($value));
         });
         $randomQuote = preg_replace('/\s+/', ' ', trim($chunk[0]));
-        $author = preg_replace('/\s+/', ' ', trim($chunk[2]));
+        
+        // Clean up the author by removing any HTML tags
+        $author = strip_tags(trim($chunk[2]));
+        // Further clean up by replacing multiple spaces with a single space
+        $author = preg_replace('/\s+/', ' ', $author);
+        // Remove any remaining HTML entities
+        $author = html_entity_decode($author);
+        
         return [
             'quote' => $randomQuote,
             'author' => $author
@@ -233,15 +240,35 @@ $quoteManager = new QuoteManager();
 $wikiquoteFetcher = new WikiquoteFetcher();
 
 if (!$wikiQuote = $wikiquoteFetcher->fetchRandomWikiQuote()) {
-    echo "Failed to update daily quote.\n";
+    echo "Failed to update daily quote from Wikiquote.\n";
 
-    echo "Fetching a random quote from Wikipedia...\n";
-
-    if (!$wikiQuote) {
-        echo "Failed to fetch a random quote from Wikipedia.\n";
+    echo "Fetching a random quote from local database...\n";
+    $localQuote = $quoteManager->getRandomQuote();
+    
+    if (!$localQuote) {
+        echo "Failed to fetch a random quote from local database.\n";
+        exit(1);
+    }
+    
+    // Update README.md with the local quote
+    if ($quoteManager->updateReadme()) {
+        echo "✅ README.md updated with a local quote.\n";
+        echo "Quote: " . $localQuote['quote'] . PHP_EOL;
+        echo "Author: " . $localQuote['author'] . PHP_EOL;
+    } else {
+        echo "❌ Failed to update README.md with local quote.\n";
+        exit(1);
     }
 } else {
-    echo "✅ Daily quote updated successfully.\n";
+    echo "✅ Fetched quote from Wikiquote successfully.\n";
     echo "Quote: " . $wikiQuote['quote'] . PHP_EOL;
     echo "Author: " . $wikiQuote['author'] . PHP_EOL;
+    
+    // Update README.md with the wiki quote
+    if ($quoteManager->updateReadme()) {
+        echo "✅ README.md updated with Wikiquote quote.\n";
+    } else {
+        echo "❌ Failed to update README.md with Wikiquote quote.\n";
+        exit(1);
+    }
 }

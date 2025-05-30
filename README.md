@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# أَثر <a href="/wiki/%D9%81%D8%B1%D8%A7%D8%B4%D8%A9" title="فراشة">الفراشة</a> لا يُرَى .. أَثر الفراشة لا يزولُ .. هو <a href="/wiki/%D8%AC%D8%A7%D8%B0%D8%A8%D9%8A%D8%A9" title="جاذبية">جاذبيّةُ</a> غامضٍ .. يستدرج المعنى، ويرحلُ .. حين يتَّضحُ السبيلُ .. هو خفَّةُ الأبديِّ في اليوميّ .. <a href="/wiki/%D8%B4%D9%88%D9%82" class="mw-disambig" title="شوق">أشواقٌ</a> إلى أَعلى .. وإشراقٌ <a href="/wiki/%D8%AC%D9%85%D8%A7%D9%84" title="جمال">جميلُ</a>.
+# لا يمكن لشيء أن يحَبَ أو يُكرهَ قبل أن يُفهم أولاً
 
-- — من ديوان <a href="/w/index.php?title=%D8%A3%D8%AB%D8%B1_%D8%A7%D9%84%D9%81%D8%B1%D8%A7%D8%B4%D8%A9_(%D8%AF%D9%8A%D9%88%D8%A7%D9%86_%D8%B4%D8%B9%D8%B1)&amp;action=edit&amp;redlink=1" class="new" title="أثر الفراشة (ديوان شعر) (الصفحة غير موجودة)">أثر الفراشة</a> <a href="/wiki/%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%AF%D8%B1%D9%88%D9%8A%D8%B4" title="محمود درويش">لمحمود درويش</a>
+- — <a href="/wiki/%D9%84%D9%8A%D9%88%D9%86%D8%A7%D8%B1%D8%AF%D9%88_%D8%AF%D8%A7_%D9%81%D9%8A%D9%86%D8%B4%D9%8A" title="ليوناردو دا فينشي">ليوناردو دا فينشي</a>
 
 
 <!-- QUOTE:END -->

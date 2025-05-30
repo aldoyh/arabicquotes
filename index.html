@@ -8,11 +8,11 @@
     <meta property="og:title" content="مقولات من خيرة العرب">
     <meta property="og:description" content="مقولات من خيرة العرب - مجموعة من الاقتباسات الجميلة من أدب وحكمة العرب">
     <meta property="og:image" content="assets/arabicquotes-header.jpg">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,effects"></script>
     <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script type="text/javascript">
         window.tailwind.config = {
             darkMode: ['class'],
@@ -23,6 +23,7 @@
                         'naskh': ['Noto Naskh Arabic', 'serif'],
                         'amiri': ['Amiri', 'serif'],
                         'ruqaa': ['Aref Ruqaa', 'serif'],
+                        'reem': ['Reem Kufi', 'sans-serif'],
                     },
                     colors: {
                         border: 'hsl(var(--border))',
@@ -59,6 +60,21 @@
                             foreground: 'hsl(var(--card-foreground))'
                         },
                     },
+                    animation: {
+                        'fade-in': 'fade-in 0.5s ease-in-out',
+                        'slide-up': 'slide-up 0.5s ease-out',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        'fade-in': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        'slide-up': {
+                            '0%': { transform: 'translateY(10px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                    },
                 }
             }
         }
@@ -66,7 +82,7 @@
     <style type="text/tailwindcss">
         @layer base {
             :root {
-                --background: 35 30% 96%;
+                --background: 36 30% 97%;
                 --foreground: 36 40% 12%;
                 --card: 0 0% 100%;
                 --card-foreground: 36 40% 12%;
@@ -89,22 +105,22 @@
             }
 
             .dark {
-                --background: 36 25% 8%;
-                --foreground: 36 15% 90%;
-                --card: 36 20% 12%;
-                --card-foreground: 36 15% 90%;
-                --popover: 36 20% 12%;
-                --popover-foreground: 36 15% 90%;
+                --background: 36 28% 7%;
+                --foreground: 36 20% 95%;
+                --card: 36 22% 12%;
+                --card-foreground: 36 20% 95%;
+                --popover: 36 22% 12%;
+                --popover-foreground: 36 20% 95%;
                 --primary: 32 90% 48%;
-                --primary-foreground: 36 15% 97%;
-                --secondary: 36 15% 18%;
-                --secondary-foreground: 36 15% 90%;
-                --muted: 36 15% 18%;
-                --muted-foreground: 36 15% 65%;
+                --primary-foreground: 36 20% 97%;
+                --secondary: 36 18% 18%;
+                --secondary-foreground: 36 20% 95%;
+                --muted: 36 18% 18%;
+                --muted-foreground: 36 20% 65%;
                 --accent: 32 40% 22%;
-                --accent-foreground: 36 15% 90%;
+                --accent-foreground: 36 20% 95%;
                 --destructive: 0 72.2% 50.6%;
-                --destructive-foreground: 36 15% 90%;
+                --destructive-foreground: 36 20% 95%;
                 --border: 36 25% 25%;
                 --input: 36 25% 20%;
                 --ring: 32 90% 50%;
@@ -112,6 +128,7 @@
             
             html {
                 font-family: 'Noto Naskh Arabic', serif;
+                scroll-behavior: smooth;
             }
             
             body {
@@ -119,16 +136,21 @@
                 background-attachment: fixed;
                 background-size: cover;
                 background-position: center;
+                min-height: 100vh;
+                position: relative;
             }
             
             .dark body {
-                background-image: linear-gradient(rgba(20, 15, 10, 0.85), rgba(20, 15, 10, 0.95)), url('assets/scrollbg.jpg');
+                background-image: linear-gradient(rgba(20, 15, 10, 0.88), rgba(15, 10, 5, 0.95)), url('assets/scrollbg.jpg');
             }
             
             .quote-text {
                 font-family: 'Amiri', serif;
-                line-height: 1.8;
+                line-height: 1.9;
                 letter-spacing: 0.01em;
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                position: relative;
+                z-index: 1;
             }
             
             .author-text {
@@ -136,18 +158,85 @@
             }
             
             .page-title {
-                font-family: 'Noto Kufi Arabic', sans-serif;
+                font-family: 'Reem Kufi', sans-serif;
             }
             
             .quote-card {
-                box-shadow: 0 10px 25px -5px rgba(100, 70, 40, 0.1);
-                background-image: linear-gradient(to bottom right, rgba(255, 252, 245, 0.9), rgba(255, 250, 240, 0.8));
+                box-shadow: 0 15px 40px -10px rgba(120, 80, 40, 0.18), 0 8px 12px -5px rgba(120, 80, 40, 0.08);
+                background-image: linear-gradient(135deg, rgba(255, 252, 246, 0.96), rgba(255, 248, 235, 0.92));
+                position: relative;
+                overflow: hidden;
+                transition: all 0.3s ease;
+                border-radius: 1rem;
+                transform: rotate(-0.5deg);
+            }
+            
+            .quote-card::before {
+                content: '"';
+                position: absolute;
+                top: -30px;
+                right: 20px;
+                font-size: 180px;
+                line-height: 1;
+                font-family: 'Amiri', serif;
+                color: rgba(180, 140, 60, 0.08);
+                z-index: 0;
+            }
+            
+            .quote-card::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 8px;
+                background: linear-gradient(90deg, #e2c488, #d4a657, #e2c488);
+                opacity: 0.2;
+                transform: scaleX(0.9);
+                border-bottom-left-radius: 1rem;
+                border-bottom-right-radius: 1rem;
+                transition: transform 0.3s ease;
+            }
+            
+            .quote-card:hover {
+                transform: translateY(-3px) rotate(0deg);
+                box-shadow: 0 15px 35px -5px rgba(100, 70, 40, 0.18), 0 5px 10px -2px rgba(100, 70, 40, 0.08);
+            }
+            
+            .quote-card:hover::after {
+                transform: scaleX(1);
+                opacity: 0.3;
             }
             
             .dark .quote-card {
-                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
-                background-image: linear-gradient(to bottom right, rgba(40, 30, 20, 0.7), rgba(35, 25, 15, 0.8));
-                border-color: rgba(180, 140, 100, 0.3);
+                box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+                background-image: linear-gradient(135deg, rgba(45, 35, 25, 0.85), rgba(35, 25, 15, 0.95));
+                border-color: rgba(180, 140, 100, 0.25);
+            }
+            
+            .dark .quote-card::before {
+                color: rgba(180, 140, 60, 0.06);
+            }
+            
+            .dark .quote-card::after {
+                background: linear-gradient(90deg, #b89355, #8d6b32, #b89355);
+                opacity: 0.15;
+            }
+            
+            .dark .quote-card:hover {
+                box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.35), 0 5px 10px -2px rgba(0, 0, 0, 0.15);
+            }
+            
+            /* Decorative elements */
+            .arabesque {
+                background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJTNi40OCAyMiAxMiAyMiAyMiAxNy41MiAyMiAxMiAxNy41MiAyIDEyIDJaIiBzdHJva2U9IiNBRDhCNTciIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNOCAxMkMxMCAxMCAxNCAxMCAxNiAxMiIgc3Ryb2tlPSIjQUQ4QjU3IiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTEyIDhDMTAgMTAgMTAgMTQgMTIgMTYiIHN0cm9rZT0iI0FEOEI1NyIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xNiAxMkMxNCAxNCAxMCAxNCA4IDEyIiBzdHJva2U9IiNBRDhCNTciIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNMTIgMTZDMTQgMTQgMTQgMTAgMTIgOCIgc3Ryb2tlPSIjQUQ4QjU3IiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+');
+                background-repeat: repeat-x;
+                height: 24px;
+                opacity: 0.5;
+            }
+            
+            .dark .arabesque {
+                opacity: 0.3;
             }
         }
     </style>
@@ -156,7 +245,7 @@
     <div class="container mx-auto p-4 md:p-6 xl:p-8 max-w-5xl">
         <!-- Theme toggle button -->
         <div class="flex justify-end mb-4">
-            <button id="theme-toggle" class="p-2 rounded-full bg-amber-100 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-300 hover:bg-amber-200 dark:hover:bg-gray-600">
+            <button id="theme-toggle" class="p-2 rounded-full bg-amber-100 dark:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-300 hover:bg-amber-200 dark:hover:bg-gray-600/70 shadow-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600 dark:text-amber-400 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                 </svg>
@@ -165,55 +254,63 @@
                 </svg>
             </button>
         </div>
-        <div class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-amber-100 dark:border-amber-900/30">
-            <header class="bg-gradient-to-r from-amber-500/90 to-amber-600/90 dark:from-amber-800/90 dark:to-amber-900/90 py-6 px-6 md:px-8">
-                <h1 class="text-3xl md:text-4xl font-bold text-white text-center page-title">ما قيل من خيرة العرب</h1>
-            </header>
-            <div class="p-6 md:p-8">
-                <h2 class="text-2xl font-bold text-center mb-8 text-amber-800 dark:text-amber-300 page-title">اقتباس اليوم:</h2>
-                <div class="flex flex-col items-center">
-                    <div class="w-full max-w-2xl quote-card rounded-xl p-8 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
-                <div class="text-3xl font-bold text-gray-800 dark:text-amber-50 mb-6 text-center leading-relaxed quote-text">
-                    أَثر &lt;a href=&quot;/wiki/%D9%81%D8%B1%D8%A7%D8%B4%D8%A9&quot; title=&quot;فراشة&quot;&gt;الفراشة&lt;/a&gt;
-                    لا يُرَى .. أَثر الفراشة لا يزولُ .. هو &lt;a href=&quot;/wiki/%D8%AC%D8%A7%D8%B0%D8%A8%D9%8A%D8%A9&quot;
-                        title=&quot;جاذبية&quot;&gt;جاذبيّةُ&lt;/a&gt; غامضٍ ..
-                    يستدرج المعنى، ويرحلُ .. حين يتَّضحُ السبيلُ .. هو خفَّةُ الأبديِّ في اليوميّ .. &lt;a
-                        href=&quot;/wiki/%D8%B4%D9%88%D9%82&quot; class=&quot;mw-disambig&quot; title=&quot;شوق&quot;&gt;أشواقٌ&lt;/a&gt; إلى أَعلى ..
-                    وإشراقٌ &lt;a href=&quot;/wiki/%D8%AC%D9%85%D8%A7%D9%84&quot; title=&quot;جمال&quot;&gt;جميلُ&lt;/a&gt;.
+        
+        <!-- Main content -->
+        <div class="bg-white/80 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-amber-100/50 dark:border-amber-900/30 animate-fade-in">
+            <!-- Header -->
+            <header class="relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-600/90 to-amber-700/90 dark:from-amber-800/90 dark:to-amber-900/90"></div>
+                <div class="relative z-10 py-8 px-6 md:px-8">
+                    <div class="arabesque mb-4"></div>
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center page-title mb-2">ما قيل من خيرة العرب</h1>
+                    <p class="text-amber-100/80 text-center text-sm md:text-base">مجموعة من أجمل الأقوال المأثورة والحكم العربية</p>
+                    <div class="arabesque mt-4"></div>
                 </div>
-                <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center author-text">
-                    — — من ديوان &lt;a
-                        href=&quot;/w/index.php?title=%D8%A3%D8%AB%D8%B1_%D8%A7%D9%84%D9%81%D8%B1%D8%A7%D8%B4%D8%A9_(%D8%AF%D9%8A%D9%88%D8%A7%D9%86_%D8%B4%D8%B9%D8%B1)&amp;amp;action=edit&amp;amp;redlink=1&quot;
-                        class=&quot;new&quot; title=&quot;أثر الفراشة (ديوان شعر) (الصفحة غير موجودة)&quot;&gt;أثر الفراشة&lt;/a&gt; &lt;a
-                        href=&quot;/wiki/%D9%85%D8%AD%D9%85%D9%88%D8%AF_%D8%AF%D8%B1%D9%88%D9%8A%D8%B4&quot;
-                        title=&quot;محمود درويش&quot;&gt;لمحمود درويش&lt;/a&gt;
+            </header>
+            
+            <!-- Quote section -->
+            <div class="p-6 md:p-8 lg:p-10">
+                <h2 class="text-2xl font-bold text-center mb-8 text-amber-800 dark:text-amber-300 page-title">اقتباس اليوم:</h2>
+                
+                <div class="flex flex-col items-center animate-slide-up">
+                <div class="w-full max-w-2xl quote-card rounded-xl p-8 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
+                    <div class="text-3xl font-bold text-gray-800 dark:text-amber-50 mb-6 text-center leading-relaxed quote-text">
+                        لا يمكن لشيء أن يحَبَ أو يُكرهَ قبل أن يُفهم أولاً
+                    </div>
+                    <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center author-text">
+                        — ليوناردو دا فينشي
+                    </div>
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 italic">
+                    <p>اليوم: Friday 30th of May 2025 - 08:59 🎯 المشاهدات: 0</p>
                 </div>
             </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400 italic">
-                <p>اليوم: Friday 30th of May 2025 - 07:55 🎯 المشاهدات: 0</p>
+                
+                <!-- Decorative element -->
+                <div class="flex justify-center mt-12">
+                    <div class="w-40 h-0.5 bg-gradient-to-r from-amber-300/10 via-amber-400/40 to-amber-300/10 dark:from-amber-700/10 dark:via-amber-600/30 dark:to-amber-700/10 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="mt-12 pb-6">
+            <div class="container mx-auto px-4 max-w-5xl">
+                <div class="flex flex-col items-center">
+                    <div class="text-sm text-amber-800 dark:text-amber-400 mb-4">
+                        <p class="text-center">مقولات من خيرة العرب © 2025</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/aldoyh/arabicquotes" class="text-amber-700 hover:text-amber-600 dark:text-amber-500 dark:hover:text-amber-400 transition-colors duration-200" aria-label="GitHub Repository">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
     </div>
-    
-    <!-- Footer -->
-    <footer class="mt-12 pb-6">
-        <div class="container mx-auto px-4 max-w-5xl">
-            <div class="flex flex-col items-center">
-                <div class="text-sm text-amber-800 dark:text-amber-400 mb-4">
-                    <p class="text-center">مقولات من خيرة العرب © 2025</p>
-                </div>
-                <div class="flex space-x-4">
-                    <a href="https://github.com/aldoyh/arabicquotes" class="text-amber-700 hover:text-amber-600 dark:text-amber-500 dark:hover:text-amber-400 transition-colors duration-200">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </footer>
     
     <script>
         // Theme toggle functionality
@@ -236,6 +333,16 @@
                 localStorage.theme = 'dark';
             } else {
                 localStorage.theme = 'light';
+            }
+        });
+        
+        // Add simple animation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const quoteCard = document.querySelector('.quote-card');
+            if (quoteCard) {
+                setTimeout(() => {
+                    quoteCard.classList.add('transform', 'translate-y-0', 'opacity-100');
+                }, 100);
             }
         });
     </script>
