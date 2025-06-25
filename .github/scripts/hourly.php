@@ -227,21 +227,33 @@ class WikiquoteFetcher
 }
 
 
-// Main execution
+// Main execution (only if script is run directly)
+if (basename(__FILE__) === basename($_SERVER['PHP_SELF'])) {
+    error_log("hourly.php executed as main script.");
+    $quoteManager = new QuoteManager(); // Uses SQLite
+    $wikiquoteFetcher = new WikiquoteFetcher(); // Uses HTML stripping
 
-$quoteManager = new QuoteManager();
-$wikiquoteFetcher = new WikiquoteFetcher();
-
-if (!$wikiQuote = $wikiquoteFetcher->fetchRandomWikiQuote()) {
-    echo "Failed to update daily quote.\n";
-
-    echo "Fetching a random quote from Wikipedia...\n";
+    // The following block appears to be for diagnostic purposes or a separate task,
+    // as QuoteManager->updateReadme() is the typical way to update the display quote.
+    // If this is intended to fetch and display a *different* quote than what updateReadme does,
+    // its purpose should be clarified.
+    // For now, just ensuring it only runs when hourly.php is executed directly.
+    $wikiQuote = $wikiquoteFetcher->fetchRandomWikiQuote();
 
     if (!$wikiQuote) {
-        echo "Failed to fetch a random quote from Wikipedia.\n";
+        echo "hourly.php: Failed to fetch a random quote using WikiquoteFetcher.\n";
+    } else {
+        echo "hourly.php: ✅ WikiquoteFetcher successfully fetched a quote.\n";
+        echo "hourly.php: Quote: " . $wikiQuote['quote'] . PHP_EOL;
+        echo "hourly.php: Author: " . $wikiQuote['author'] . PHP_EOL;
     }
-} else {
-    echo "✅ Daily quote updated successfully.\n";
-    echo "Quote: " . $wikiQuote['quote'] . PHP_EOL;
-    echo "Author: " . $wikiQuote['author'] . PHP_EOL;
+
+    // Example of how one might use QuoteManager to update README if hourly.php is run directly:
+    // echo "hourly.php: Attempting to update README via QuoteManager...\n";
+    // $updatedDisplayQuote = $quoteManager->updateReadme();
+    // if ($updatedDisplayQuote) {
+    //     echo "hourly.php: ✅ README updated successfully via QuoteManager.\n";
+    // } else {
+    //     echo "hourly.php: ❌ Failed to update README via QuoteManager.\n";
+    // }
 }

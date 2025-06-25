@@ -1,10 +1,20 @@
 <?php
-require_once __DIR__ . '/index.php';
+require_once __DIR__ . '/index.php'; // This should include QuoteManager via hourly.php
+require_once __DIR__ . '/inc/db-utils.php'; // For getDB, ensureQuotesTableExists if QuoteManager needs it explicitly
+
+// If QuoteManager's constructor or getRandomQuote ensures DB & table existence,
+// explicit calls here might be redundant. Assuming QuoteManager handles this.
 
 try {
+    // QuoteManager is defined in .github/scripts/hourly.php, included via index.php
+    // It's configured to use assets/QuotesDB.sqlite3 and increment hits.
     $quoteManager = new QuoteManager();
     $selectedQuote = $quoteManager->getRandomQuote();
+
     if (!$selectedQuote) {
+        // If the database is empty and this is the first run, this might happen.
+        // The scrape_and_store_quotes.php script is responsible for populating the DB.
+        // For robust display, one might want a fallback quote here, or ensure scraper runs first.
         throw new Exception('Failed to get random quote');
     }
 
