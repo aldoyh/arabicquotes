@@ -1,0 +1,6 @@
+services:
+  arabicquotes:
+    image: arabicquotes
+    build:
+      context: .
+      dockerfile: ./Dockerfile
