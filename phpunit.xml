@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php"
+<phpunit bootstrap="tests/bootstrap.php"
          colors="true"
          verbose="true"
          stopOnFailure="false">
@@ -24,4 +24,7 @@
             <text outputFile="coverage.txt"/>
         </report>
     </coverage>
+    <php>
+        <ini name="include_path" value=".:/Users/aldoyh/Herd/arabicquotes/.github/scripts"/>
+    </php>
 </phpunit>

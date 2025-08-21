@@ -23,7 +23,7 @@ class WikiquoteFetcherTest extends TestCase
     public function testFetchFromWiki()
     {
         // Test the private fetchFromWiki method using Reflection
-        $method = new ReflectionMethod(WikiquoteFetcher::class, 'fetchFromWiki');
+        $method = new ReflectionMethod(WikiquoteFetcher::class, 'fetchFromWikiWithRetry');
         $method->setAccessible(true);
         
         $result = $method->invoke($this->wikiquoteFetcher);

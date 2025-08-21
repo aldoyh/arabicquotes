@@ -1,10 +1,19 @@
 <?php
 
-define("DB_NAME", __DIR__ . "/assets/QuotesDB.db");
+if (defined('TEST_MODE') && TEST_MODE) {
+    define("DB_NAME", __DIR__ . "/" . TEST_DB_FILE);
+} else {
+    define("DB_NAME", __DIR__ . "/assets/QuotesDB.db");
+}
 
 function getDB()
 {
-    $db = new SQLite3(DB_NAME);
+    if (!file_exists(DB_NAME)) {
+        $db = new SQLite3(DB_NAME);
+        create_table($db);
+    } else {
+        $db = new SQLite3(DB_NAME);
+    }
 
     if (!$db) {
         error_log("Failed to connect to the DB");
@@ -16,7 +25,12 @@ function getDB()
 
 function getDBSQLite()
 {
-    $db = new SQLite3(DB_NAME);
+    if (!file_exists(DB_NAME)) {
+        $db = new SQLite3(DB_NAME);
+        create_table($db);
+    } else {
+        $db = new SQLite3(DB_NAME);
+    }
 
     if (!$db) {
         error_log("Failed to connect to the DB");
@@ -49,14 +63,8 @@ function makeDBClone()
  *
  * @return void
  */
-function create_table()
+function create_table($db)
 {
-    $json = file_get_contents(DB_NAME);
-
-    $data = json_decode($json, true);
-
-    $db = getDBSQLite();
-
     // Drop the table if it exists
     $db->query("DROP TABLE IF EXISTS quotes;");
 
@@ -70,35 +78,6 @@ function create_table()
         category TEXT DEFAULT 'General'
     
   )") or die("Failed to create table");
-
-    // bulk insert into tables from json
-    foreach ($data as $row) {
-        try {
-            // generate a random numeric ID for each quote
-            $row['id'] = rand(100000, 999999);
-
-            // $db->exec("INSERT INTO quotes (head, quote, author, hits) VALUES (
-            $db->query("INSERT INTO quotes (id, head, quote, author, hits, category) VALUES (
-                " . $row['id'] . ",
-                '" . $row['head'] . "',
-                '" . $row['quote'] . "',
-                '" . $row['author'] . "',
-                " . $row['hits'] . ",
-                \"General\"
-            )");
-        } catch (Exception $e) {
-            error_log("Error: " . $e->getMessage());
-        }
-
-        // $db->query("INSERT INTO quotes (head, quote, author, hits) VALUES (
-        //     '" . $row['head'] . "',
-        //     '" . $row['quote'] . "',
-        //     '" . $row['author'] . "',
-        //     " . $row['hits'] . "
-        // )");
-    }
-
-    $db->close();
 }
 
 
@@ -123,7 +102,7 @@ function import_data()
         $row['hits'] = random_int(0, 100);
 
         // cleanup the quote
-        $row['quote'] = preg_replace('/\s*\.[\w-]+\s*{[^}]+}/', '', $row['quote']);
+        $row['quote'] = preg_replace('/\s*\.["w-]+\s*{[^}]+}/', '', $row['quote']);
 
         // . print_r($row, true) . "\n";
 

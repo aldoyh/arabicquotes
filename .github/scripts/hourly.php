@@ -49,25 +49,22 @@ class QuoteManager
     public function logQuoteUpdate($logMessage)
     {
         $logEntry = date('Y-m-d H:i:s') . " - " . $logMessage . "\n";
-        file_put_contents($this->basePath . "assets/DEPLOYMENT.log", $logEntry, FILE_APPEND);
+        $result = file_put_contents($this->basePath . "assets/DEPLOYMENT.log", $logEntry, FILE_APPEND);
+        return $result !== false;
     }
 
     /**
      * Updates the README.md file with a new quote.
      *
-     * @return array|false The selected quote, or false if an error occurs.
+     * @param array $selectedQuote The selected quote.
+     * @return bool True on success, false on failure.
      */
-    public function updateReadme()
+    public function updateReadme($selectedQuote)
     {
-        $selectedQuote = $this->getRandomQuote();
-
         if (!$selectedQuote) {
             error_log("No quote found");
             return false;
         }
-
-        $selectedQuote['hits']++;
-        $selectedQuote['quote'] = str_replace("\n", " ", $selectedQuote['quote']);
 
         $quoteMarkdown = $this->generateQuoteMarkdown($selectedQuote);
         $readmePath = $this->basePath . "README.md";
@@ -100,8 +97,8 @@ class QuoteManager
             return false;
         }
 
-        $this->logQuoteUpdate($selectedQuote['id'] . " - " . $selectedQuote['hits']);
-        return $selectedQuote;
+        $this->logQuoteUpdate($selectedQuote['quote'] . " - " . $selectedQuote['author']);
+        return true;
     }
 
     /**
@@ -110,11 +107,13 @@ class QuoteManager
      * @param array $quote The quote data.
      * @return string The Markdown representation of the quote.
      */
-    private function generateQuoteMarkdown($quote)
+    public function generateQuoteMarkdown($quote)
     {
         // Clean up quote text by removing newlines and extra spaces
-        $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
-        $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
+        $cleanQuote = preg_replace('/
++/', ' ', trim($quote['quote']));
+        $cleanAuthor = preg_replace('/
++/', ' ', trim($quote['author']));
         
         $quoteMarkdown = PHP_EOL . "# " . $cleanQuote . PHP_EOL . PHP_EOL . "- " . $cleanAuthor . PHP_EOL . PHP_EOL;
         if (isset($quote['image'])) {
@@ -142,9 +141,56 @@ class QuoteManager
                 </div>
             </div>
             <div class="text-sm text-gray-500 dark:text-gray-400 italic">
-                <p>اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
+                <p>اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . @$quote['hits'] . '</p>
             </div>
         </div>';
+    }
+
+    /**
+     * Updates the index.html file with a new quote.
+     *
+     * @param array $selectedQuote The selected quote.
+     * @return bool True on success, false on failure.
+     */
+    public function updateIndexHtml($selectedQuote)
+    {
+        if (!$selectedQuote) {
+            error_log("No quote found");
+            return false;
+        }
+
+        $quoteHtml = $this->generateQuoteHtml($selectedQuote);
+        $htmlPath = $this->basePath . "index.html";
+
+        if (!file_exists($htmlPath)) {
+            error_log("index.html file not found");
+            return false;
+        }
+
+        $htmlContent = file_get_contents($htmlPath);
+        if (!$htmlContent) {
+            error_log("Failed to read index.html");
+            return false;
+        }
+
+        // Replace the quote section in index.html
+        $updatedHtml = preg_replace(
+            '/<div id="quote-container">.*?<\/div>/s',
+            '<div id="quote-container">' . $quoteHtml . '</div>',
+            $htmlContent
+        );
+
+        if ($updatedHtml === null || $updatedHtml === $htmlContent) {
+            error_log("Failed to replace quote section in index.html");
+            return false;
+        }
+
+        if (file_put_contents($htmlPath, $updatedHtml) === false) {
+            error_log("Failed to write to index.html");
+            return false;
+        }
+
+        return true;
     }
 }
 
@@ -155,66 +201,85 @@ class QuoteManager
  */
 class WikiquoteFetcher
 {
-
-    public $updatedQuote;
+    private $cacheFile = '';
+    private $cacheTime = 24 * 60 * 60; // 24 hours
 
     public function __construct()
     {
-        $this->updatedQuote = $this->fetchRandomWikiQuote();
+        $this->cacheFile = __DIR__ . '/../../assets/wikiquote_cache.json';
     }
 
     /**
-     * Fetches a random quote from Wikiquote.
+     * Fetches a random quote from Wikiquote, using cache if available.
      *
      * @return array|null The fetched quote, or null if an error occurs.
      */
     public function fetchRandomWikiQuote()
     {
-        $htmlChunk = $this->fetchFromWiki();
-        if (!$htmlChunk) {
-            return null;
+        if (file_exists($this->cacheFile) && (time() - filemtime($this->cacheFile) < $this->cacheTime)) {
+            $cachedQuote = json_decode(file_get_contents($this->cacheFile), true);
+            if ($cachedQuote) {
+                echo "Fetching quote from cache.\n";
+                return $cachedQuote;
+            }
         }
 
-        return [
-            'quote' => $htmlChunk['quote'],
-            'author' => $htmlChunk['author']
-        ];
+        echo "Fetching a new quote from Wikiquote.\n";
+        $quote = $this->fetchFromWikiWithRetry();
+        if ($quote) {
+            file_put_contents($this->cacheFile, json_encode($quote));
+        }
+        return $quote;
     }
 
     /**
-     * Fetches and parses a quote from Wikiquote.
+     * Fetches and parses a quote from Wikiquote with retry mechanism.
      *
+     * @param int $retries Number of retries.
+     * @param int $delay Delay between retries in seconds.
      * @return array|null The parsed quote, or null if an error occurs.
      */
-    public function fetchFromWiki()
+    public function fetchFromWikiWithRetry($retries = 3, $delay = 2)
     {
-        $html = $this->fetchRaw();
-        if (!$html) {
-            return null;
+        for ($i = 0; $i < $retries; $i++) {
+            $html = $this->fetchRaw();
+            if ($html) {
+                $quote = $this->parseQuote($html);
+                if ($quote) {
+                    return $quote;
+                }
+            }
+            sleep($delay * ($i + 1)); // Exponential backoff
         }
+        return null;
+    }
 
+    /**
+     * Parses the quote from the HTML content.
+     *
+     * @param string $html The HTML content.
+     * @return array|null The parsed quote, or null if an error occurs.
+     */
+    private function parseQuote($html)
+    {
         $dom = new DOMDocument();
         @$dom->loadHTML($html);
         $xpath = new DOMXPath($dom);
 
-        $chunk = $xpath->query('/html/body/div[2]/div/div[3]/main/div[3]/div[3]/div[1]/table[1]/tbody/tr[1]/td/div[2]/div[2]/center/table/tbody/tr/td[3]');
-        $chunk = explode("\n", trim($chunk->item(0)->textContent));
-        $chunk = array_filter($chunk, function ($value) {
-            return !empty(trim($value));
-        });
-        $randomQuote = preg_replace('/\s+/', ' ', trim($chunk[0]));
-        
-        // Clean up the author by removing any HTML tags
-        $author = strip_tags(trim($chunk[2]));
-        // Further clean up by replacing multiple spaces with a single space
-        $author = preg_replace('/\s+/', ' ', $author);
-        // Remove any remaining HTML entities
-        $author = html_entity_decode($author);
-        
-        return [
-            'quote' => $randomQuote,
-            'author' => $author
-        ];
+        // More flexible XPath to find the quote
+        $nodes = $xpath->query('//div[contains(@class, "mw-parser-output")]//table//td[3]');
+        if ($nodes->length > 0) {
+            $textContent = trim($nodes->item(0)->textContent);
+            $lines = explode("\n", $textContent);
+            $lines = array_filter($lines, 'trim');
+            if (count($lines) >= 2) {
+                return [
+                    'quote' => trim($lines[0]),
+                    'author' => trim($lines[count($lines) - 1])
+                ];
+            }
+        }
+        return null;
     }
 
     /**
@@ -225,11 +290,12 @@ class WikiquoteFetcher
     private function fetchRaw()
     {
         $url = "https://ar.wikiquote.org/wiki/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9";
-        if (!$html = file_get_contents($url)) {
-            return null;
-        }
-
-        return $html;
+        $context = stream_context_create([
+            'http' => [
+                'timeout' => 10, // 10 seconds timeout
+            ],
+        ]);
+        return @file_get_contents($url, false, $context);
     }
 }
 
@@ -239,36 +305,30 @@ class WikiquoteFetcher
 $quoteManager = new QuoteManager();
 $wikiquoteFetcher = new WikiquoteFetcher();
 
-if (!$wikiQuote = $wikiquoteFetcher->fetchRandomWikiQuote()) {
-    echo "Failed to update daily quote from Wikiquote.\n";
+$quote = $wikiquoteFetcher->fetchRandomWikiQuote();
 
-    echo "Fetching a random quote from local database...\n";
-    $localQuote = $quoteManager->getRandomQuote();
-    
-    if (!$localQuote) {
-        echo "Failed to fetch a random quote from local database.\n";
-        exit(1);
-    }
-    
-    // Update README.md with the local quote
-    if ($quoteManager->updateReadme()) {
-        echo "✅ README.md updated with a local quote.\n";
-        echo "Quote: " . $localQuote['quote'] . PHP_EOL;
-        echo "Author: " . $localQuote['author'] . PHP_EOL;
+if (!$quote) {
+    echo "Failed to fetch quote from Wikiquote, falling back to local database.\n";
+    $quote = $quoteManager->getRandomQuote();
+}
+
+if ($quote) {
+    echo "✅ Quote fetched successfully.\n";
+    echo "Quote: " . $quote['quote'] . PHP_EOL;
+    echo "Author: " . $quote['author'] . PHP_EOL;
+
+    if ($quoteManager->updateReadme($quote)) {
+        echo "✅ README.md updated successfully.\n";
     } else {
-        echo "❌ Failed to update README.md with local quote.\n";
-        exit(1);
+        echo "❌ Failed to update README.md.\n";
+    }
+
+    if ($quoteManager->updateIndexHtml($quote)) {
+        echo "✅ index.html updated successfully.\n";
+    } else {
+        echo "❌ Failed to update index.html.\n";
     }
 } else {
-    echo "✅ Fetched quote from Wikiquote successfully.\n";
-    echo "Quote: " . $wikiQuote['quote'] . PHP_EOL;
-    echo "Author: " . $wikiQuote['author'] . PHP_EOL;
-    
-    // Update README.md with the wiki quote
-    if ($quoteManager->updateReadme()) {
-        echo "✅ README.md updated with Wikiquote quote.\n";
-    } else {
-        echo "❌ Failed to update README.md with Wikiquote quote.\n";
-        exit(1);
-    }
+    echo "❌ Failed to fetch any quote.\n";
+    exit(1);
 }

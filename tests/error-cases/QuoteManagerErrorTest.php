@@ -24,7 +24,7 @@ class QuoteManagerErrorTest extends TestCase
         $reflectionClass = new ReflectionClass(QuoteManager::class);
         $property = $reflectionClass->getProperty('basePath');
         $property->setAccessible(true);
-        $property->setValue($this->quoteManager, '/invalid/path/');
+        $property->setValue($this->quoteManager, sys_get_temp_dir() . '/invalid_path/');
         
         $result = $this->quoteManager->logQuoteUpdate('Test message');
         $this->assertFalse($result);

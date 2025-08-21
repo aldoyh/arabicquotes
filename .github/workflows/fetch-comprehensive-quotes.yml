@@ -1,39 +1,10 @@
-name: Fetch Comprehensive Quotes
+name: Deprecated - Fetch Comprehensive Quotes
 
 on:
-  workflow_dispatch:  # Allow manual triggering
-  schedule:
-    - cron: '0 0 1 * *'  # Run monthly on the 1st at midnight
+  workflow_dispatch:
 
 jobs:
-  fetch-quotes:
+  noop:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: sqlite3, json, mbstring, dom
-      
-      - name: Run comprehensive quote fetcher
-        run: |
-          ./fetch-comprehensive-quotes.sh
-      
-      - name: Commit changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add quotes.db assets/*.log assets/quote-stats.txt README.md index.html
-          git commit -m "Update quotes database with comprehensive fetch [skip ci]" || echo "No changes to commit"
-      
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+      - run: echo "This workflow is deprecated. Use 'Update Daily Quote' or local scripts."

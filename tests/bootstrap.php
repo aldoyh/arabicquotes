@@ -5,9 +5,9 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 // Include necessary files
-require_once __DIR__ . '/../index.php';
 require_once __DIR__ . '/../calIngest.php';
 require_once __DIR__ . '/../inc/db-utils.php';
+require_once __DIR__ . '/../.github/scripts/hourly.php';
 
 // Setup test database
 defined('TEST_MODE') or define('TEST_MODE', true);

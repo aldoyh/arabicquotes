@@ -18,18 +18,15 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.2'
-          extensions: json, mbstring
+          extensions: json, mbstring, dom
 
       - name: Update Quote
         run: php .github/scripts/hourly.php
-        
-      - name: Hydrate HTML Page
-        run: php hydrate-quote.php
         
       - name: Commit and push if changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md index.html assets/DEPLOYMENT.log
+          git add README.md index.html assets/DEPLOYMENT.log assets/wikiquote_cache.json
           git commit -m "🔄 Update daily quote [skip ci]" || echo "No changes to commit"
           git push
