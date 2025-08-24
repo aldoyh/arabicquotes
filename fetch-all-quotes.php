@@ -79,9 +79,11 @@ class WikiquoteBulkFetcher extends WikiquoteFetcher
         $urls = [];
         
         foreach ($categoryLinks as $link) {
-            $href = $link->getAttribute('href');
-            if (strpos($href, '/wiki/') === 0) {
-                $urls[] = $href;
+            if ($link instanceof DOMElement) {
+                $href = $link->getAttribute('href');
+                if (strpos($href, '/wiki/') === 0) {
+                    $urls[] = $href;
+                }
             }
         }
         

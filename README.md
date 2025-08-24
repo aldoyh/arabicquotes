@@ -7,41 +7,14 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# ابذل لصديقك دمك ومالك، ولمعرفتك رفدك ومحضرك، وللعامَّة بشرك وتحيَّتك، ولعدوك عدلك، وضنَّ بدينك وعرضك عن كلِّ أحد.
+# تسامحُ النفس معنىً من مروءتها … بل المروءةُ في أسمى معانيها
 
-- — <a href="/wiki/%D8%B9%D8%A8%D8%AF_%D8%A7%D9%84%D9%84%D9%87_%D8%A8%D9%86_%D8%A7%D9%84%D9%85%D9%82%D9%81%D8%B9" title="عبد الله بن المقفع">ابن المقفع</a>
-
+- التسامح
 
 <!-- QUOTE:END -->
 </div>
 
 ---
-
-## من أقوال العرب
-
-<div id="gallery" style="display: grid; grid-template-columns: repeat(5, 1fr); grid-gap: 2rem;">
-
-<img src="https://i.ibb.co/7CFzDHp/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-1.jpg" />
-
-<img src="https://i.ibb.co/NnFpS1Z/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-0.jpg" />
-
-<img src="https://i.ibb.co/YLLXFz7/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-4.jpg" />
-
-<img src="https://i.ibb.co/Z2PgV09/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-5.jpg" />
-
-<img src="https://i.ibb.co/HV1tCpZ/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-6.jpg" />
-
-<img src="https://i.ibb.co/bHP93gw/Photo-Real-a-magical-ancient-scroll-in-a-dark-temple-streak-of-7.jpg" />
-
-<img src="https://i.ibb.co/ZJ9Vb0Y/Photo-Real-the-daily-quote-0.jpg" />
-
-<img src="https://i.ibb.co/sFs2LTF/Photo-Real-the-daily-quote-2.jpg" />
-
-<img src="https://i.ibb.co/Ms2KVnb/Photo-Real-the-daily-quote-1.jpg" />
-
-</div>
-
-<hr>
 
 <div class="flex-row">
 
@@ -97,102 +70,3 @@
     in Bahrain 🇧🇭 في البحرين
 </div>
 </summary>
-
----
-
-<style type="text/css">
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap');
-body {
-    font-family: 'Cairo', sans-serif;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #374151;
-    text-align: left;
-    background-image: url(https://github.com/aldoyh/arabicquotes/blob/master/assets/PhotoReal_scroll_0.jpg?raw%3Dtrue);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    direction: rtl;
-}
-.quote-of-the-day {
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-.quote-header {
-    width: 100%;
-    text-align: left;
-}
-.quote-footer {
-    width: 100%;
-    text-align: right;
-}
-.quote-text {
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-    /* color: #374151; */
-}
-.quote-author {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #6B7280;
-}
-.quote-date {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: orange;
-}
-.quote-content {
-    width: 100%;
-    text-align: right;
-}
-.quote-content p {
-    font-size: 1.5rem;
-    font-weight: 600;
-    line-height: 1.2;
-    margin-bottom: 0.75rem;
-    color: #374151;
-}
-.quote-content a {
-    color: #374151;
-}
-.quote-content a:hover {
-    color: #374151;
-    text-decoration: underline;
-}
-.quote-content a:visited {
-    color: #374151;
-}
-.quote-content a:active {
-    color: #374151;
-}
-.quote-content a:focus {
-    color: #374151;
-}
-.quote-content a:link {
-    color: #374151;
-}
-.quote-content a:target {
-    color: #374151;
-}
-.quote-content a:-webkit-any-link {
-    color: #374151;
-}
-.quote-content a:-webkit-any-link:visited {
-    color: #374151;
-}
-.quote-content a:-webkit-any-link:hover {
-    color: #374151;
-    text-decoration: underline;
-}
-.quote-content a:-webkit-any-link:active {
-    color: #374151;
-}
-.quote-content a:-webkit-any-link:focus {
-    color: #374151;
-}
-
-</style>
-

@@ -8,11 +8,65 @@
     <meta property="og:title" content="مقولات من خيرة العرب">
     <meta property="og:description" content="مقولات من خيرة العرب - مجموعة من الاقتباسات الجميلة من أدب وحكمة العرب">
     <meta property="og:image" content="assets/arabicquotes-header.jpg">
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,effects"></script>
-    <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div class="container mx-auto p-4 md:p-6 xl:p-8 max-w-5xl">
+        <!-- Theme toggle button -->
+        <div class="flex justify-end mb-4">
+            <button id="theme-toggle" class="p-2 rounded-full bg-amber-100 dark:bg-gray-700/50 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-300 hover:bg-amber-200 dark:hover:bg-gray-600/70 shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-600 dark:text-amber-400 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-amber-800 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Main content -->
+        <div class="bg-white/80 dark:bg-gray-800/60 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-amber-100/50 dark:border-amber-900/30 animate-fade-in">
+            <!-- Header -->
+            <header class="relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-600/90 to-amber-700/90 dark:from-amber-800/90 dark:to-amber-900/90"></div>
+                <div class="relative z-10 py-8 px-6 md:px-8">
+                    <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center page-title mb-2">ما قيل من خيرة العرب</h1>
+                    <p class="text-amber-100/80 text-center text-sm md:text-base">مجموعة من أجمل الأقوال المأثورة والحكم العربية</p>
+                </div>
+            </header>
+            
+            <!-- Quote section -->
+            <div class="p-6 md:p-8 lg:p-10">
+                <h2 class="text-2xl font-bold text-center mb-8 text-amber-800 dark:text-amber-300 page-title">اقتباس اليوم:</h2>
+                
+                <div id="quote-container">
+                    <!-- QUOTE_OF_THE_DAY -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="mt-12 pb-6">
+            <div class="container mx-auto px-4 max-w-5xl">
+                <div class="flex flex-col items-center">
+                    <div class="text-sm text-amber-800 dark:text-amber-400 mb-4">
+                        <p class="text-center">مقولات من خيرة العرب © 2025</p>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/aldoyh/arabicquotes" class="text-amber-700 hover:text-amber-600 dark:text-amber-500 dark:hover:text-amber-400 transition-colors duration-200" aria-label="GitHub Repository">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
     <script type="text/javascript">
         window.tailwind.config = {
             darkMode: ['class'],
@@ -132,16 +186,9 @@
             }
             
             body {
-                background-image: url('assets/scrollbg.jpg');
-                background-attachment: fixed;
-                background-size: cover;
-                background-position: center;
+                background-color: hsl(var(--background));
                 min-height: 100vh;
                 position: relative;
-            }
-            
-            .dark body {
-                background-image: linear-gradient(rgba(20, 15, 10, 0.88), rgba(15, 10, 5, 0.95)), url('assets/scrollbg.jpg');
             }
             
             .quote-text {
@@ -168,7 +215,6 @@
                 overflow: hidden;
                 transition: all 0.3s ease;
                 border-radius: 1rem;
-                transform: rotate(-0.5deg);
             }
             
             .quote-card::before {
@@ -199,7 +245,7 @@
             }
             
             .quote-card:hover {
-                transform: translateY(-3px) rotate(0deg);
+                transform: translateY(-3px);
                 box-shadow: 0 15px 35px -5px rgba(100, 70, 40, 0.18), 0 5px 10px -2px rgba(100, 70, 40, 0.08);
             }
             
@@ -226,18 +272,6 @@
             .dark .quote-card:hover {
                 box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.35), 0 5px 10px -2px rgba(0, 0, 0, 0.15);
             }
-            
-            /* Decorative elements */
-            .arabesque {
-                background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJTNi40OCAyMiAxMiAyMiAyMiAxNy41MiAyMiAxMiAxNy41MiAyIDEyIDJaIiBzdHJva2U9IiNBRDhCNTciIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNOCAxMkMxMCAxMCAxNCAxMCAxNiAxMiIgc3Ryb2tlPSIjQUQ4QjU3IiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTEyIDhDMTAgMTAgMTAgMTQgMTIgMTYiIHN0cm9rZT0iI0FEOEI1NyIgc3Ryb2tlLXdpZHRoPSIwLjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xNiAxMkMxNCAxNCAxMCAxNCA4IDEyIiBzdHJva2U9IiNBRDhCNTciIHN0cm9rZS13aWR0aD0iMC41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz48cGF0aCBkPSJNMTIgMTZDMTQgMTQgMTQgMTAgMTIgOCIgc3Ryb2tlPSIjQUQ4QjU3IiBzdHJva2Utd2lkdGg9IjAuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+');
-                background-repeat: repeat-x;
-                height: 24px;
-                opacity: 0.5;
-            }
-            
-            .dark .arabesque {
-                opacity: 0.3;
-            }
         }
     </style>
 </head>
@@ -261,10 +295,8 @@
             <header class="relative overflow-hidden">
                 <div class="absolute inset-0 bg-gradient-to-r from-amber-600/90 to-amber-700/90 dark:from-amber-800/90 dark:to-amber-900/90"></div>
                 <div class="relative z-10 py-8 px-6 md:px-8">
-                    <div class="arabesque mb-4"></div>
                     <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center page-title mb-2">ما قيل من خيرة العرب</h1>
                     <p class="text-amber-100/80 text-center text-sm md:text-base">مجموعة من أجمل الأقوال المأثورة والحكم العربية</p>
-                    <div class="arabesque mt-4"></div>
                 </div>
             </header>
             
@@ -273,63 +305,20 @@
                 <h2 class="text-2xl font-bold text-center mb-8 text-amber-800 dark:text-amber-300 page-title">اقتباس اليوم:</h2>
                 
                 <div id="quote-container">
-        <div class="flex flex-col items-center">
-            <div class="w-full max-w-2xl bg-amber-50 dark:bg-gray-700 rounded-lg p-8 mb-6 border-r-4 border-amber-500">
-                <div class="text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center leading-relaxed" dir="rtl">
-                    مَن تأنَّى وتثبَّت تهيَّأ له مِن الصَّواب ما لا يتهيَّأ لصاحب البديهة.
+                    
+        <div class="flex flex-col items-center animate-slide-up">
+            <div class="w-full max-w-2xl quote-card rounded-xl p-8 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
+                <div class="text-3xl font-bold text-gray-800 dark:text-amber-50 mb-6 text-center leading-relaxed quote-text">
+                    تسامحُ النفس معنىً من مروءتها … بل المروءةُ في أسمى معانيها
                 </div>
-                <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center" dir="rtl">
-                    — — &lt;a
-                        href=&quot;/w/index.php?title=%D8%A3%D8%A8%D9%88_%D8%B9%D8%AB%D9%85%D8%A7%D9%86_%D8%A8%D9%86_%D8%A7%D9%84%D8%AD%D8%AF%D8%A7%D8%AF&amp;amp;action=edit&amp;amp;redlink=1&quot;
-                        class=&quot;new&quot; title=&quot;أبو عثمان بن الحداد (الصفحة غير موجودة)&quot;&gt;أبو عثمان بن الحداد&lt;/a&gt;
-                </div>
-            </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400 italic">
-                <p>اليوم: Wednesday 20th of August 2025 - 19:18 🎯 المشاهدات: 0</p>
-            </div>
-        </div></div>
-                <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center" dir="rtl">
-                    — — &lt;a
-                        href=&quot;/wiki/%D8%B2%D9%87%D9%8A%D8%B1_%D8%A8%D9%86_%D8%A3%D8%A8%D9%8A_%D8%B3%D9%84%D9%85%D9%89&quot;
-                        title=&quot;زهير بن أبي سلمى&quot;&gt;زهير بن أبي سلمى&lt;/a&gt;
+                <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center author-text">
+                    — التسامح
                 </div>
             </div>
             <div class="text-sm text-gray-500 dark:text-gray-400 italic">
-                <p>اليوم: Wednesday 20th of August 2025 - 19:17 🎯 المشاهدات: 0</p>
+                <p>اليوم: Sunday 24th of August 2025 - 19:00 🎯 المشاهدات: 0</p>
             </div>
-        </div></div>
-                <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center" dir="rtl">
-                    — — &lt;a href=&quot;/wiki/%D8%AF%D9%8A%D9%81%D9%8A%D8%AF_%D8%A3%D9%84%D9%8A%D9%86&quot;
-                        title=&quot;ديفيد ألين&quot;&gt;ديفيد ألين&lt;/a&gt;
-                </div>
-            </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400 italic">
-                <p>اليوم: Wednesday 20th of August 2025 - 19:15 🎯 المشاهدات: 0</p>
-            </div>
-        </div></div>
-                <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center" dir="rtl">
-                    — — &lt;a
-                        href=&quot;/wiki/%D8%A3%D9%83%D8%AB%D9%85_%D8%A8%D9%86_%D8%B5%D9%8A%D9%81%D9%8A_%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%85%D9%8A&quot;
-                        title=&quot;أكثم بن صيفي التميمي&quot;&gt;أكثم بن صيفي&lt;/a&gt;
-                </div>
-            </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400 italic">
-                <p>اليوم: Wednesday 20th of August 2025 - 19:14 🎯 المشاهدات: 0</p>
-            </div>
-        </div></div>
-                            <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center author-text">
-                                — ليوناردو دا فينشي
-                            </div>
-                        </div>
-                        <div class="text-sm text-gray-500 dark:text-gray-400 italic">
-                            <p>اليوم: Friday 30th of May 2025 - 08:59 🎯 المشاهدات: 0</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Decorative element -->
-                <div class="flex justify-center mt-12">
-                    <div class="w-40 h-0.5 bg-gradient-to-r from-amber-300/10 via-amber-400/40 to-amber-300/10 dark:from-amber-700/10 dark:via-amber-600/30 dark:to-amber-700/10 rounded-full"></div>
+        </div>
                 </div>
             </div>
         </div>
@@ -356,34 +345,17 @@
     <script>
         // Theme toggle functionality
         const themeToggle = document.getElementById('theme-toggle');
-        
-        // Check for saved theme preference or use the system preference
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
         } else {
             document.documentElement.classList.remove('dark');
         }
-        
-        // Add event listener to toggle button
         themeToggle.addEventListener('click', function() {
-            // Toggle dark class on html element
             document.documentElement.classList.toggle('dark');
-            
-            // Update localStorage
             if (document.documentElement.classList.contains('dark')) {
                 localStorage.theme = 'dark';
             } else {
                 localStorage.theme = 'light';
-            }
-        });
-        
-        // Add simple animation when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            const quoteCard = document.querySelector('.quote-card');
-            if (quoteCard) {
-                setTimeout(() => {
-                    quoteCard.classList.add('transform', 'translate-y-0', 'opacity-100');
-                }, 100);
             }
         });
     </script>

@@ -16,6 +16,38 @@ error_reporting(E_ALL);
  */
 class QuoteManager
 {
+    /**
+     * Get the last N valid daily quotes from the deployment log.
+     *
+     * @param int $n Number of days/quotes to retrieve.
+     * @return array Array of ['date' => ..., 'quote' => ..., 'author' => ...]
+     */
+    public function getLastNDailyQuotes($n = 5)
+    {
+        $logPath = $this->basePath . "assets/DEPLOYMENT.log";
+        if (!file_exists($logPath)) return [];
+        $lines = file($logPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        $quotes = [];
+        $seenDates = [];
+        for ($i = count($lines) - 1; $i >= 0 && count($quotes) < $n; $i--) {
+            $line = $lines[$i];
+            if (preg_match('/^(\d{4}-\d{2}-\d{2}) \d{2}:\d{2}:\d{2} - (.+?) - — (.+)$/u', $line, $m)) {
+                $date = $m[1];
+                $quote = trim($m[2]);
+                $author = trim($m[3]);
+                if (!isset($seenDates[$date])) {
+                    $quotes[] = [
+                        'date' => $date,
+                        'quote' => $quote,
+                        'author' => $author
+                    ];
+                    $seenDates[$date] = true;
+                }
+            }
+        }
+        return array_reverse($quotes);
+    }
+
     private $basePath = '';
 
     /**
@@ -80,7 +112,7 @@ class QuoteManager
             return false;
         }
 
-        // Use the same specific markers for consistency
+     
         $updatedContent = preg_replace(
             '/<!-- QUOTE:START -->.*?<!-- QUOTE:END -->/s',
             "<!-- QUOTE:START -->\n" . $quoteMarkdown . "\n<!-- QUOTE:END -->",
@@ -110,11 +142,9 @@ class QuoteManager
     public function generateQuoteMarkdown($quote)
     {
         // Clean up quote text by removing newlines and extra spaces
-        $cleanQuote = preg_replace('/
-+/', ' ', trim($quote['quote']));
-        $cleanAuthor = preg_replace('/
-+/', ' ', trim($quote['author']));
-        
+        $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
+        $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
+
         $quoteMarkdown = PHP_EOL . "# " . $cleanQuote . PHP_EOL . PHP_EOL . "- " . $cleanAuthor . PHP_EOL . PHP_EOL;
         if (isset($quote['image'])) {
             $quoteMarkdown .= PHP_EOL . "![Quote Image](" . $quote['image'] . ")";
@@ -152,44 +182,62 @@ class QuoteManager
      * @param array $selectedQuote The selected quote.
      * @return bool True on success, false on failure.
      */
-    public function updateIndexHtml($selectedQuote)
+    public function updateIndexHtml($selectedQuote = null)
     {
-        if (!$selectedQuote) {
-            error_log("No quote found");
+        // Get last 5 daily quotes (most recent last)
+        $quotes = $this->getLastNDailyQuotes(5);
+        if (empty($quotes)) {
+            error_log("No daily quotes found");
             return false;
         }
 
-        $quoteHtml = $this->generateQuoteHtml($selectedQuote);
-        $htmlPath = $this->basePath . "index.html";
+        // Generate HTML for slides
+        $slidesHtml = '';
+        foreach ($quotes as $i => $q) {
+            $slidesHtml .= '<section class="quote-slide flex flex-col justify-center items-center min-h-screen w-full px-4 py-12" data-slide="' . $i . '">
+                <div class="w-full max-w-2xl bg-amber-50 dark:bg-gray-700 rounded-lg p-8 mb-6 border-r-4 border-amber-500 shadow-xl quote-card animate-fade-in">
+                    <div class="text-3xl font-bold text-gray-800 dark:text-white mb-6 text-center leading-relaxed quote-text" dir="rtl">' . $q['quote'] . '</div>
+                    <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center author-text" dir="rtl">&mdash; ' . $q['author'] . '</div>
+                </div>
+                <div class="text-sm text-gray-500 dark:text-gray-400 italic mb-2">' . $q['date'] . '</div>
+            </section>';
+        }
 
+        // Add slider navigation (arrows and dots)
+        $sliderNav = '<div class="flex justify-center items-center gap-4 mt-4">
+            <button id="prev-slide" class="p-2 rounded-full bg-amber-200 dark:bg-gray-600 hover:bg-amber-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-500" aria-label="السابق">&#8592;</button>
+            <div id="slide-dots" class="flex gap-2">' .
+            str_repeat('<span class="slide-dot w-3 h-3 rounded-full bg-amber-400 dark:bg-amber-700 opacity-50 cursor-pointer"></span>', count($quotes)) .
+            '</div>
+            <button id="next-slide" class="p-2 rounded-full bg-amber-200 dark:bg-gray-600 hover:bg-amber-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-amber-500" aria-label="التالي">&#8594;</button>
+        </div>';
+
+        $allSlides = '<div id="quote-slider" class="relative w-full overflow-hidden">' . $slidesHtml . $sliderNav . '</div>';
+
+        $htmlPath = $this->basePath . "index.html";
         if (!file_exists($htmlPath)) {
             error_log("index.html file not found");
             return false;
         }
-
         $htmlContent = file_get_contents($htmlPath);
         if (!$htmlContent) {
             error_log("Failed to read index.html");
             return false;
         }
-
         // Replace the quote section in index.html
         $updatedHtml = preg_replace(
             '/<div id="quote-container">.*?<\/div>/s',
-            '<div id="quote-container">' . $quoteHtml . '</div>',
+            '<div id="quote-container">' . $allSlides . '</div>',
             $htmlContent
         );
-
         if ($updatedHtml === null || $updatedHtml === $htmlContent) {
             error_log("Failed to replace quote section in index.html");
             return false;
         }
-
         if (file_put_contents($htmlPath, $updatedHtml) === false) {
             error_log("Failed to write to index.html");
             return false;
         }
-
         return true;
     }
 }
@@ -302,33 +350,17 @@ class WikiquoteFetcher
 
 // Main execution
 
-$quoteManager = new QuoteManager();
-$wikiquoteFetcher = new WikiquoteFetcher();
+require_once __DIR__ . '/update-quote.php';
 
-$quote = $wikiquoteFetcher->fetchRandomWikiQuote();
-
-if (!$quote) {
-    echo "Failed to fetch quote from Wikiquote, falling back to local database.\n";
-    $quote = $quoteManager->getRandomQuote();
-}
-
-if ($quote) {
-    echo "✅ Quote fetched successfully.\n";
-    echo "Quote: " . $quote['quote'] . PHP_EOL;
-    echo "Author: " . $quote['author'] . PHP_EOL;
-
-    if ($quoteManager->updateReadme($quote)) {
-        echo "✅ README.md updated successfully.\n";
+try {
+    $updater = new QuoteUpdater();
+    $updatedQuote = $updater->updateQuoteOfTheDay();
+    if ($updatedQuote) {
+        echo "✅ Quote of the day updated successfully!\n";
     } else {
-        echo "❌ Failed to update README.md.\n";
+        echo "❌ Failed to update quote of the day.\n";
     }
-
-    if ($quoteManager->updateIndexHtml($quote)) {
-        echo "✅ index.html updated successfully.\n";
-    } else {
-        echo "❌ Failed to update index.html.\n";
-    }
-} else {
-    echo "❌ Failed to fetch any quote.\n";
-    exit(1);
+} catch (Exception $e) {
+    error_log("Error in main execution: " . $e->getMessage());
+    echo "❌ Error: " . $e->getMessage() . "\n";
 }
