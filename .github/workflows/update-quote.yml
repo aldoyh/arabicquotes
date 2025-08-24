@@ -27,6 +27,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add README.md index.html assets/DEPLOYMENT.log assets/wikiquote_cache.json
+          # git add README.md index.html assets/DEPLOYMENT.log assets/wikiquote_cache.json
           git commit -m "🔄 Update daily quote [skip ci]" || echo "No changes to commit"
           git push
