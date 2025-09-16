@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# تسامحُ النفس معنىً من مروءتها … بل المروءةُ في أسمى معانيها
+# الأمثال: الأمثال العربية
 
-- التسامح
+- الأمثال التركية
 
 <!-- QUOTE:END -->
 </div>
