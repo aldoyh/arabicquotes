@@ -26,6 +26,7 @@ class QuoteUpdater
 
             $this->updateIndexHtml($quoteData);
             $this->updateReadme($quoteData);
+            $this->logQuoteUpdate($quoteData);
 
             return $quoteData;
         } catch (Exception $e) {
@@ -53,9 +54,10 @@ class QuoteUpdater
 
         $quoteHtml = $this->generateQuoteHtml($quote);
 
+        // Replace the content inside the quote-container div
         $updatedHtml = preg_replace(
-            '/<!-- QUOTE_OF_THE_DAY -->/s',
-            $quoteHtml,
+            '/(<div id="quote-container">).*?(<\/div>)/s',
+            '$1' . $quoteHtml . '$2',
             $htmlContent
         );
 
@@ -95,16 +97,16 @@ class QuoteUpdater
     
     private function generateQuoteHtml($quote)
     {
-        $cleanQuote = htmlspecialchars(preg_replace('/\s+/', ' ', trim($quote['quote'])));
-        $cleanAuthor = htmlspecialchars(preg_replace('/\s+/', ' ', trim($quote['author'])));
+        $cleanQuote = $this->cleanTextContent($quote['quote']);
+        $cleanAuthor = $this->cleanTextContent($quote['author']);
         return '
         <div class="flex flex-col items-center animate-slide-up">
             <div class="w-full max-w-2xl quote-card rounded-xl p-8 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
                 <div class="text-3xl font-bold text-gray-800 dark:text-amber-50 mb-6 text-center leading-relaxed quote-text">
-                    ' . $cleanQuote . '
+                    ' . htmlspecialchars($cleanQuote) . '
                 </div>
                 <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center author-text">
-                    — ' . $cleanAuthor . '
+                    — ' . htmlspecialchars($cleanAuthor) . '
                 </div>
             </div>
             <div class="text-sm text-gray-500 dark:text-gray-400 italic">
@@ -115,9 +117,40 @@ class QuoteUpdater
 
     private function generateQuoteMarkdown($quote)
     {
-        $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
-        $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
+        $cleanQuote = $this->cleanTextContent($quote['quote']);
+        $cleanAuthor = $this->cleanTextContent($quote['author']);
         return "\n# " . $cleanQuote . "\n\n- " . $cleanAuthor . "\n";
+    }
+
+    private function cleanTextContent($text)
+    {
+        // Remove HTML tags
+        $text = strip_tags($text);
+        // Remove any remaining encoded HTML entities
+        $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        // Remove extra whitespace
+        $text = preg_replace('/\s+/', ' ', trim($text));
+        // Remove leading dashes and clean up
+        $text = preg_replace('/^[—\-\s]+/', '', $text);
+        return $text;
+    }
+
+    private function logQuoteUpdate($quote)
+    {
+        try {
+            $cleanQuote = $this->cleanTextContent($quote['quote']);
+            $cleanAuthor = $this->cleanTextContent($quote['author']);
+            $logMessage = $cleanQuote . " — " . $cleanAuthor;
+            $logEntry = date('Y-m-d H:i:s') . " - " . $logMessage . "\n";
+            
+            if (file_put_contents($this->basePath . "assets/DEPLOYMENT.log", $logEntry, FILE_APPEND) === false) {
+                throw new Exception("Failed to write to log file");
+            }
+            return true;
+        } catch (Exception $e) {
+            error_log("Error in logQuoteUpdate: " . $e->getMessage());
+            return false;
+        }
     }
 }
 

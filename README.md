@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# تسامحُ النفس معنىً من مروءتها … بل المروءةُ في أسمى معانيها
+# ثلاثة لا يعرفون إلا فى ثلاثة مواطن: الحليم عند الغضب، والشجاع عند الحرب، والصديق عند الحاجة.
 
-- التسامح
+- لقمان الحكيم
 
 <!-- QUOTE:END -->
 </div>
