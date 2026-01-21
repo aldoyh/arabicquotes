@@ -47,4 +47,5 @@ private_*/.env
 private_*/.env.local
 .codegpt
 
-vendor/index.html.backup
+vendor/
+*.backup
