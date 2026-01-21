@@ -7,9 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# الأمثال: الأمثال العربية
+# من يقتر على نفسه يكدس الثروة لغيره
 
-- الأمثال التركية
+- البخل
 
 <!-- QUOTE:END -->
 </div>
