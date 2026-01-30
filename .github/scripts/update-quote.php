@@ -55,8 +55,9 @@ class QuoteUpdater
         $quoteHtml = $this->generateQuoteHtml($quote);
 
         // Replace the content inside the quote-container div
+        // The closing tag is </div></div> (closes both flex container and quote-container)
         $updatedHtml = preg_replace(
-            '/(<div id="quote-container">).*?(<\/div>)/s',
+            '/(<div id="quote-container">).*?(<\/div><\/div>)/s',
             '$1' . $quoteHtml . '$2',
             $htmlContent
         );
@@ -94,7 +95,6 @@ class QuoteUpdater
             throw new Exception('Failed to write to README.md');
         }
     }
-    
     private function generateQuoteHtml($quote)
     {
         $cleanQuote = $this->cleanTextContent($quote['quote']);
@@ -112,7 +112,7 @@ class QuoteUpdater
             <div class="text-sm text-gray-500 dark:text-gray-400 italic">
                 <p>اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
             </div>
-        </div>';
+        ';
     }
 
     private function generateQuoteMarkdown($quote)
