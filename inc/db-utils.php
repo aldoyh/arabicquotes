@@ -76,7 +76,7 @@ function create_table($db)
         hits INTEGER DEFAULT 0,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         category TEXT DEFAULT 'General'
-    
+
   )") or die("Failed to create table");
 }
 

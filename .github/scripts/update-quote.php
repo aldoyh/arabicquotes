@@ -117,7 +117,7 @@ class QuoteUpdater
             throw new Exception('Failed to write to README.md');
         }
     }
-    
+
     private function generateQuoteHtml($quote)
     {
         $cleanQuote = $this->cleanTextContent($quote['quote']);
@@ -165,7 +165,7 @@ class QuoteUpdater
             $cleanAuthor = $this->cleanTextContent($quote['author']);
             $logMessage = $cleanQuote . " — " . $cleanAuthor;
             $logEntry = date('Y-m-d H:i:s') . " - " . $logMessage . "\n";
-            
+
             if (file_put_contents($this->basePath . "assets/DEPLOYMENT.log", $logEntry, FILE_APPEND) === false) {
                 throw new Exception("Failed to write to log file");
             }

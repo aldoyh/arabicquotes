@@ -12,7 +12,7 @@ class QuoteManager
 {
     private $dbFile;
     private $basePath;
-    
+
     public function __construct($dbFile = 'quotes.db')
     {
         $this->dbFile = $dbFile;
@@ -129,7 +129,7 @@ class QuoteManager
             }
 
             $readmePath = $this->basePath . "README.md";
-            
+
             if (!file_exists($readmePath)) {
                 throw new Exception('README.md not found');
             }
@@ -140,7 +140,7 @@ class QuoteManager
             }
 
             $quoteMarkdown = $this->generateQuoteMarkdown($selectedQuote);
-            
+
             // Use specific markers to replace only the quote section
             $updatedContent = preg_replace(
                 '/<!-- QUOTE:START -->.*?<!-- QUOTE:END -->/s',
@@ -225,7 +225,7 @@ class QuoteManager
             // Clean up quote text by removing newlines and extra spaces
             $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
             $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
-            
+
             $quoteMarkdown = PHP_EOL . "# " . $cleanQuote . PHP_EOL . PHP_EOL . "- " . $cleanAuthor . PHP_EOL . PHP_EOL;
             if (isset($quote['image'])) {
                 $quoteMarkdown .= "![" . $cleanAuthor . "](" . $quote['image'] . ")" . PHP_EOL . PHP_EOL;
