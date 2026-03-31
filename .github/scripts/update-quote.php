@@ -26,6 +26,7 @@ class QuoteUpdater
 
             $this->updateIndexHtml($quoteData);
             $this->updateReadme($quoteData);
+            $this->incrementQuoteHits($quoteData);
             $this->logQuoteUpdate($quoteData);
 
             return $quoteData;
@@ -35,13 +36,35 @@ class QuoteUpdater
         }
     }
 
+    /**
+     * Selects a random quote prioritising those with the fewest appearances.
+     * Among quotes that share the minimum hit count the selection is random.
+     */
     private function getRandomQuote()
     {
         $db = new SQLite3($this->dbFile);
-        $result = $db->query("SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1");
+        $result = $db->query(
+            "SELECT * FROM quotes WHERE hits = (SELECT MIN(hits) FROM quotes) ORDER BY RANDOM() LIMIT 1"
+        );
         $quote = $result->fetchArray(SQLITE3_ASSOC);
         $db->close();
         return $quote;
+    }
+
+    /**
+     * Increments the hit counter for the given quote in the database.
+     */
+    private function incrementQuoteHits($quote)
+    {
+        try {
+            $db = new SQLite3($this->dbFile);
+            $stmt = $db->prepare('UPDATE quotes SET hits = hits + 1 WHERE id = :id');
+            $stmt->bindValue(':id', $quote['id'], SQLITE3_INTEGER);
+            $stmt->execute();
+            $db->close();
+        } catch (Exception $e) {
+            error_log("Error incrementing quote hits: " . $e->getMessage());
+        }
     }
 
     private function updateIndexHtml($quote)
@@ -54,10 +77,10 @@ class QuoteUpdater
 
         $quoteHtml = $this->generateQuoteHtml($quote);
 
-        // Replace the content inside the quote-container div
+        // Replace content between stable comment markers to avoid HTML corruption
         $updatedHtml = preg_replace(
-            '/(<div id="quote-container">).*?(<\/div>)/s',
-            '$1' . $quoteHtml . '$2',
+            '/<!-- QUOTE_CONTAINER:START -->.*?<!-- QUOTE_CONTAINER:END -->/s',
+            "<!-- QUOTE_CONTAINER:START -->\n" . $quoteHtml . "\n<!-- QUOTE_CONTAINER:END -->",
             $htmlContent
         );
 
