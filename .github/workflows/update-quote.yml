@@ -1,33 +1,33 @@
-name: Update Daily Quote
+name: Update Quote of the Day
 
 on:
   schedule:
-    # Runs every hour
-    - cron: '0 * * * *'
-  # Allow manual triggering
-  workflow_dispatch:
+    - cron: '0 0 * * *' # Runs every day at midnight UTC
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   update-quote:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          ref: master
-          token: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/checkout@v4
 
-      - name: Setup PHP
+      - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
-          extensions: json, mbstring, dom
+          php-version: '8.2'
+          extensions: sqlite3
 
-      - name: Update Quote
-        run: php .github/scripts/hourly.php
-        
-      - name: Commit and push if changed
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+
+      - name: Update quote
+        run: php .github/scripts/update-quote.php
+
+      - name: Commit changes
         run: |
-          git add .
-          git commit -m "🔄 Update daily quote [skip ci]" || echo "No changes to commit"
-          git push origin master
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add README.md index.html assets/DEPLOYMENT.log
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update quote of the day"
+          git push
