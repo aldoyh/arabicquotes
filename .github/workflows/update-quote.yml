@@ -15,11 +15,8 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: '8.4'
           extensions: sqlite3
-
-      - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
 
       - name: Update quote
         run: php .github/scripts/update-quote.php
