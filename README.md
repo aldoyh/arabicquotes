@@ -7,10 +7,9 @@
 <div id="hero" style="display: grid; grid-template-rows: 1fr; grid-gap: 2rem; text-align: center">
 <!-- QUOTE:START -->
 
-# تربية الطفل يجب أن تبدأ قبل ولادته بعشرين عاما، وذلك بتربية أمه. سيمور
+# الأم مدرسة إذا أعددتها أعددت شعبا طيب الأعراق
 
-- التربية
-
+- حافظ إبراهيم
 
 <!-- QUOTE:END -->
 </div>
