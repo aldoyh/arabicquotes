@@ -124,16 +124,17 @@ class QuoteUpdater
         $cleanAuthor = $this->cleanTextContent($quote['author']);
         return '
         <div class="flex flex-col items-center animate-slide-up">
-            <div class="w-full max-w-2xl quote-card rounded-xl p-8 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
-                <div class="text-3xl font-bold text-gray-800 dark:text-amber-50 mb-6 text-center leading-relaxed quote-text">
+            <div class="quote-card w-full rounded-2xl p-8 md:p-10 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
+                <div class="quote-text text-2xl md:text-3xl font-bold text-gray-800 dark:text-amber-50 mb-7 text-center leading-loose">
                     ' . htmlspecialchars($cleanQuote) . '
                 </div>
-                <div class="text-xl font-semibold text-amber-700 dark:text-amber-300 text-center author-text">
+                <div class="author-text text-lg md:text-xl font-semibold text-amber-700 dark:text-amber-400 text-center">
                     — ' . htmlspecialchars($cleanAuthor) . '
                 </div>
             </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400 italic">
-                <p>اليوم: ' . date('l jS \of F Y - H:i') . ' 🎯 المشاهدات: ' . $quote['hits'] . '</p>
+            <div class="flex items-center gap-2 text-sm text-gray-400 dark:text-gray-500 italic">
+                <span>🎯</span>
+                <span>المشاهدات: ' . (int)$quote['hits'] . '</span>
             </div>
         </div>';
     }
