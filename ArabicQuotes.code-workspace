@@ -31,7 +31,8 @@
 		"peacock.remoteColor": "#1857a4",
 		"github-actions.workflows.pinned.workflows": [
 			".github/workflows/ci.yml",
-			".github/workflows/deploy-pages.yml"
+			".github/workflows/deploy-pages.yml",
+			".github/workflows/update-quote.yml"
 		]
 	}
 }
