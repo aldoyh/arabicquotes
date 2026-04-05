@@ -148,14 +148,16 @@ class QuoteUpdater
 
     private function cleanTextContent($text)
     {
-        // Remove HTML tags
+        // Remove HTML tags first
         $text = strip_tags($text);
-        // Remove any remaining encoded HTML entities
+        // Decode any HTML entities
         $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
-        // Remove extra whitespace
+        // Remove extra whitespace and newlines
         $text = preg_replace('/\s+/', ' ', trim($text));
-        // Remove leading dashes and clean up
-        $text = preg_replace('/^[—\-\s]+/', '', $text);
+        // Remove leading dashes, whitespace, and special characters
+        $text = preg_replace('/^[—\-–\s]+/u', '', $text);
+        // Remove trailing whitespace
+        $text = trim($text);
         return $text;
     }
 

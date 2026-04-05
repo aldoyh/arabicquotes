@@ -15,7 +15,7 @@ jobs:
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.4'
+          php-version: '8.5'
           extensions: sqlite3
 
       - name: Install dependencies
@@ -31,6 +31,20 @@ jobs:
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
-          git add README.md index.html assets/DEPLOYMENT.log assets/QuotesDB.db assets/quotes.json
+          
+          # Add files that should be committed
+          git add index.html assets/QuotesDB.db assets/quotes.json
+          
+          # Add README.md only if it exists
+          if [ -f README.md ]; then
+            git add README.md
+          fi
+          
+          # Add DEPLOYMENT.log only if it exists
+          if [ -f assets/DEPLOYMENT.log ]; then
+            git add assets/DEPLOYMENT.log
+          fi
+          
+          # Commit only if there are changes
           git diff --quiet && git diff --staged --quiet || git commit -m "Update quote of the day"
           git push
