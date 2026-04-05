@@ -138,6 +138,22 @@
             }
         }
     </style>
+    <style>
+        /* Intro overlay styles (rebuilt to mirror full-quotes behavior) */
+        .intro-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: linear-gradient(135deg,#1a1410 0%,#2d2418 50%,#1a1410 100%); z-index:9999; display:flex; align-items:center; justify-content:center; opacity:1; transition:opacity 1.5s ease-out; }
+        .intro-content { text-align:center; color:#e8c96a; max-width:600px; padding:0 20px; }
+        .intro-logo { font-size:3rem; font-family:'Reem Kufi',sans-serif; margin-bottom:1rem; opacity:0; transform:scale(.6) translateY(30px); animation:logo-entrance 1.8s ease-out .3s forwards; }
+        .intro-subtitle, .intro-quote { opacity:0; animation:text-entrance 1.8s ease-out 1.1s forwards; }
+        .intro-progress { width:300px; height:6px; background:rgba(232,201,106,0.18); border-radius:4px; overflow:hidden; margin-top:1rem; }
+        .intro-progress-bar { height:100%; background:linear-gradient(90deg,#c9922a,#e8c96a); width:0%; animation:progress-fill 10s linear 0s forwards; }
+        @keyframes logo-entrance { 0%{opacity:0;transform:scale(.6) translateY(30px)} 100%{opacity:1;transform:scale(1) translateY(0)} }
+        @keyframes text-entrance { 0%{opacity:0; transform:translateY(20px)} 100%{opacity:1; transform:translateY(0)} }
+        @keyframes progress-fill { 0%{width:0%} 100%{width:100%} }
+        .intro-overlay.fade-out { opacity:0; pointer-events:none; }
+        .main-content { opacity:0; animation:content-entrance 1.5s ease-out 11.5s forwards; }
+        @keyframes content-entrance { 0%{opacity:0} 100%{opacity:1} }
+        .main-content.revealed { opacity:1; animation:none !important; }
+    </style>
 </head>
 <body class="bg-[#faf7f0] dark:bg-[#1a1410] transition-colors duration-300">
     <!-- Intro overlay (10s) -->
@@ -170,6 +186,11 @@
                     function hideOverlay(){
                         if (!overlay) return;
                         overlay.classList.add('fade-out');
+                        var main = document.querySelector('.main-content');
+                        if (main) {
+                            main.classList.add('revealed');
+                            try { main.style.opacity = '1'; } catch (e) {}
+                        }
                         setTimeout(function(){ try{ overlay.parentNode.removeChild(overlay); }catch(e){} }, 1500);
                     }
 

@@ -151,6 +151,7 @@
             .intro-overlay.fade-out { opacity:0; pointer-events:none }
             .main-content { opacity:0; animation:content-entrance 1.5s ease-out 11.5s forwards }
             @keyframes content-entrance { 0%{opacity:0} 100%{opacity:1} }
+            .main-content.revealed { opacity:1; animation:none !important; }
         }
     </style>
 </head>
@@ -360,6 +361,11 @@
             function hideOverlay(){
                 if (!overlay) return;
                 overlay.classList.add('fade-out');
+                var main = document.querySelector('.main-content');
+                if (main) {
+                    main.classList.add('revealed');
+                    try { main.style.opacity = '1'; } catch (e) {}
+                }
                 setTimeout(function(){ try{ overlay.parentNode.removeChild(overlay); }catch(e){} }, 1500);
             }
 
