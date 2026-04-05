@@ -11,6 +11,7 @@
         ]
     },
     "require": {
-        "spatie/crawler": "*"
+        "spatie/crawler": "*",
+        "farasa/farasa": "^1.0"
     }
 }

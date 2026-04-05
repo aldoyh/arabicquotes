@@ -1,0 +1,35 @@
+## Prior Art
+- [Digital Colonialism by Nick Couldry and Ulises Mejias (2021)](https://www.politybooks.com/bookdetail?book_slug=digital-colonialism--the-new-frontier-for-capitalist-expansion--9781509547610): A comprehensive analysis of how digital platforms extract value from Global South data and cultures, including linguistic resources, for Northern corporate benefit. It highlights how NLP tools trained on diverse corpora can perpetuate extraction without reciprocity.
+- [Arabic NLP Bias Studies (e.g., "Biases in Arabic Language Processing" by researchers at NYU Abu Dhabi)](https://arxiv.org/abs/2104.09920): Academic work showing how Arabic NLP models, even those developed in the region, often prioritize Modern Standard Arabic over dialects, reflecting colonial legacies of linguistic standardization that marginalize oral traditions and regional variations.
+- [ALECSO AI Ethics Charter (2023)](https://www.alecso.org/publications/wp-content/uploads/2025/07/%D9%85%D9%8A%D8%AB%D8%A7%D9%82-%D8%A7%D9%84%D8%A7%D9%84%D9%83%D8%B3%D9%88-%D9%84%D9%84%D8%B0%D9%83%D8%A7%D8%A1-%D8%A7%D9%84%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A-isbn.pdf): The Arab League's framework for ethical AI in cultural contexts, which attempts to establish regional standards but operates within intergovernmental structures that may prioritize state interests over community-driven approaches.
+
+## Assumptions Under Examination
+- Assumption that regional Arabic NLP tools like Farasa inherently mitigate digital colonialism: This presumes Gulf-state research institutions operate independently of geopolitical interests, but ignores how Qatar's strategic positioning and labor policies may influence tool development in ways that serve state surveillance or standardization agendas rather than cultural pluralism.
+- Assumption that institutional partnerships with ALECSO create sovereign cultural ecosystems: This overlooks how Arab League bodies, composed of member states with varying authoritarian tendencies, may institutionalize state control over digital heritage, potentially excluding grassroots or diaspora contributions to Arabic wisdom traditions.
+- Assumption that academic textual criticism tools like OpenITI's are neutral scholarly resources: This assumes Western-funded digital humanities projects approach Islamic texts without the extractive legacies of orientalism, but doesn't account for how digitization efforts can commodify manuscripts for algorithmic processing without benefiting source communities.
+
+## Strongest Objections
+1. Objection to Farasa integration: Farasa's superior Arabic processing capabilities could democratize text analysis for cultural projects, but its development by QCRI (Qatar Computing Research Institute) introduces colonial dynamics where Gulf wealth funds tools that may standardize Arabic dialects in ways favoring state-approved linguistic norms, potentially marginalizing Bedouin, African Arabic, or other non-elite variants that don't align with Qatar's cultural export strategies.
+2. Objection to ALECSO partnership: ALECSO's AI ethics charter and cultural partnerships offer a regional alternative to Western frameworks, but as an Arab League institution, it risks embedding state nationalism into digital heritage, where cultural authenticity gets defined by intergovernmental consensus rather than diverse scholarly or community perspectives, potentially silencing critical voices within Arab societies.
+3. Objection to OpenITI tools adoption: OpenITI's textual collation methods provide rigorous scholarly foundations for quote verification, but applying them in a web-based project may perpetuate the colonial extraction of Islamic knowledge, where manuscripts digitized for Western academic consumption get repurposed for commercial algorithms without addressing historical inequities in how these texts were collected and preserved.
+
+## Vulnerabilities
+- Farasa dependency vulnerability: Building core functionality around a single toolkit from QCRI creates geopolitical risk, where access could be disrupted by Qatar's international relations or policy changes, leaving the project vulnerable to tool obsolescence if funding priorities shift.
+- ALECSO partnership vulnerability: Institutional collaborations may introduce bureaucratic overhead and political sensitivities, where content moderation or feature development gets influenced by Arab League member states' agendas, potentially compromising the project's independence.
+- OpenITI integration vulnerability: Academic tools designed for scholarly research may not scale for real-time web applications, creating technical debt where textual criticism pipelines slow down user-facing features or require specialized expertise that's not sustainable for a volunteer-driven project.
+
+## What Survives Scrutiny
+- Farasa's technical superiority: This holds up because it directly addresses the Arabic text processing challenges identified in earlier rounds, providing faster and more accurate morphological analysis than generic Unicode approaches, even if institutional origins warrant ongoing scrutiny.
+- ALECSO's ethical framework: This survives because it offers concrete guidelines for responsible AI in cultural contexts, bridging the gap between technical implementation and cultural sensitivity in ways that Western standards don't address.
+- OpenITI's scholarly methods: These hold up because they provide evidence-based approaches to textual authenticity, ensuring the project's quotes maintain scholarly integrity rather than relying on crowd-sourced validation alone.
+
+## Productive Contradictions
+- Tension between regional authenticity and global accessibility: Using Farasa and ALECSO frameworks grounds the project in Arab institutional expertise, but hosting on GitHub Pages maintains Western-platform accessibility, forcing a productive negotiation between sovereignty and dissemination that could model hybrid digital cultural practices.
+- Tension between academic rigor and user engagement: OpenITI's textual criticism methods ensure scholarly accuracy, but the project's daily quote format demands simplified presentation, creating a dialectic where depth and approachability mutually sharpen each other rather than compromise.
+
+## Unanswered Objections
+1. The integration of any NLP tool, regardless of regional origin, fundamentally participates in digital colonialism by reducing Arabic cultural wisdom to algorithmic data points optimized for computational efficiency, rather than preserving the holistic, contextual richness of Islamic intellectual traditions.
+2. Institutional partnerships with Arab League bodies like ALECSO may appear decolonial on the surface, but they risk institutionalizing state-centric cultural narratives that marginalize transnational Islamic identities, diaspora communities, and non-conforming scholarly voices in favor of politically palatable representations of Arab heritage.
+
+---
+**Timing**: Started 2026-04-05 12:00:00 · Finished 2026-04-05 13:00:00

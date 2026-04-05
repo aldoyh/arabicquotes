@@ -3,7 +3,7 @@
 if (defined('TEST_MODE') && TEST_MODE) {
     define("DB_NAME", __DIR__ . "/" . TEST_DB_FILE);
 } else {
-    define("DB_NAME", __DIR__ . "/assets/QuotesDB.db");
+    define("DB_NAME", __DIR__ . "/../assets/QuotesDB.db");
 }
 
 function getDB()
@@ -130,11 +130,59 @@ function import_data()
             error_log("Error: " . $e->getMessage());
         }
 
-        // $db->query("INSERT INTO quotes (head, quote, author, hits) VALUES (
-        //     '" . $row['head'] . "',
-        //     '" . $row['quote'] . "',
-        //     '" . $row['author'] . "',
-        //     " . $row['hits'] . "
-        // )");
+/**
+ * Add quotes to the database
+ *
+ * @param array $quotes Array of quotes, each with 'head', 'quote', 'author', 'category' (optional)
+ * @return void
+ */
+function addQuotesToDatabase($quotes)
+{
+    $db = getDB();
+
+    foreach ($quotes as $row) {
+        $row['hits'] = random_int(0, 100);
+
+        // cleanup the quote
+        $row['quote'] = preg_replace('/\s*\.["w-]+\s*{[^}]+}/', '', $row['quote']);
+
+        $category = isset($row['category']) ? $row['category'] : 'General';
+
+        try {
+            $sql_query = "INSERT INTO quotes (head, quote, author, hits, category) VALUES (?, ?, ?, ?, ?)";
+
+            $stmt = $db->prepare($sql_query);
+            $stmt->bindValue(1, $row['head'], SQLITE3_TEXT);
+            $stmt->bindValue(2, $row['quote'], SQLITE3_TEXT);
+            $stmt->bindValue(3, $row['author'], SQLITE3_TEXT);
+            $stmt->bindValue(4, $row['hits'], SQLITE3_INTEGER);
+            $stmt->bindValue(5, $category, SQLITE3_TEXT);
+
+            $stmt->execute();
+
+        } catch (Exception $e) {
+            error_log("Error adding quote: " . $e->getMessage());
+        }
     }
+
+    $db->close();
+}
+
+/**
+ * Export quotes to JSON file
+ *
+ * @return void
+ */
+function exportQuotesToJson()
+{
+    $db = getDB();
+    $result = $db->query('SELECT * FROM quotes ORDER BY id');
+    $quotes = [];
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $quotes[] = $row;
+    }
+    $db->close();
+
+    $json = json_encode($quotes, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    file_put_contents(__DIR__ . '/../assets/quotes.json', $json);
 }

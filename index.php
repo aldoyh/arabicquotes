@@ -13,7 +13,7 @@ class QuoteManager
     private $dbFile;
     private $basePath;
 
-    public function __construct($dbFile = 'quotes.db')
+    public function __construct($dbFile = 'assets/QuotesDB.db')
     {
         $this->dbFile = $dbFile;
         $this->basePath = __DIR__ . '/';

@@ -33,7 +33,7 @@ class GoodreadsQuoteFetcher
     {
         echo "Starting Goodreads quote fetching process...\n";
         
-        $db = new SQLite3('quotes.db');
+        $db = new SQLite3(__DIR__ . '/assets/QuotesDB.db');
         $db->exec('BEGIN TRANSACTION');
         
         foreach ($this->tags as $tag) {
@@ -124,6 +124,10 @@ class GoodreadsQuoteFetcher
         $db->close();
         
         echo "Goodreads fetching process completed. Total quotes fetched: " . $this->fetchedQuotes . "\n";
+        
+        // Export to JSON
+        require_once __DIR__ . '/inc/db-utils.php';
+        exportQuotesToJson();
     }
     
     /**

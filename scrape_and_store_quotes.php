@@ -95,12 +95,16 @@ try {
     $db->close();
     echo "Database connection closed.\n";
 
+    // Export to JSON
+    exportQuotesToJson();
+
     // 4. Commit and push changes to the repository
     echo "Attempting to commit and push database changes...\n";
     $dbRepoRelativePath = "assets/QuotesDB.db"; // Path relative to repository root
-    $commitMessage = "Update quotes database with new scrape on " . date("Y-m-d H:i:s");
+    $jsonRepoRelativePath = "assets/quotes.json"; // Path relative to repository root
+    $commitMessage = "Update quotes database and JSON with new scrape on " . date("Y-m-d H:i:s");
 
-    $gitAddCommand = "git add " . escapeshellarg($dbRepoRelativePath);
+    $gitAddCommand = "git add " . escapeshellarg($dbRepoRelativePath) . " " . escapeshellarg($jsonRepoRelativePath);
     $gitCommitCommand = "git commit -m " . escapeshellarg($commitMessage);
     // $checkoutBranch should be set from the Git configuration logic above
     $gitPushCommand = "git push --set-upstream origin " . escapeshellarg($checkoutBranch);

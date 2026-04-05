@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../inc/db-utils.php';
+
 // Get environment variables
 $issueTitle = getenv('ISSUE_TITLE');
 $issueBody = getenv('ISSUE_BODY');
@@ -13,15 +16,45 @@ if (preg_match('/^ARQUOTES\|New$/', $issueTitle)) {
 
     // Process each line
     foreach ($lines as $line) {
-        if (!empty($line)) {
-            $payload[] = ['quote' => $line];
+        if (!empty(trim($line))) {
+            // Validate the quote
+            if (isAuthenticArabicQuote($line)) {
+                $payload[] = [
+                    'head' => '',
+                    'quote' => trim($line),
+                    'author' => 'User Submitted'
+                ];
+            } else {
+                // Log invalid quote or skip
+                error_log("Invalid quote skipped: " . $line);
+            }
         }
     }
 
-    // Convert the payload to JSON
-    $jsonPayload = json_encode($payload, JSON_UNESCAPED_UNICODE);
+    // Add valid quotes to database
+    if (!empty($payload)) {
+        addQuotesToDatabase($payload);
+    }
+}
 
-    // TODO: Send the JSON payload to your endpoint to add it to the MySQL database
+/**
+ * Validates if a quote is authentic Arabic text
+ * Uses basic checks for Arabic characters and structure
+ */
+function isAuthenticArabicQuote($text) {
+    // Remove punctuation and numbers for analysis
+    $cleanText = preg_replace('/[^\p{Arabic}\s]/u', '', $text);
+    
+    // Check if at least 70% of characters are Arabic
+    $arabicChars = preg_match_all('/\p{Arabic}/u', $cleanText);
+    $totalChars = mb_strlen($cleanText);
+    
+    if ($totalChars == 0) return false;
+    
+    $arabicRatio = $arabicChars / $totalChars;
+    
+    // Must be mostly Arabic and have reasonable length
+    return $arabicRatio > 0.7 && mb_strlen($text) > 10 && mb_strlen($text) < 500;
 }
 
 /**
