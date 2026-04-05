@@ -190,4 +190,95 @@ function exportQuotesToJson()
     $json = json_encode($quotes, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     file_put_contents(__DIR__ . '/../assets/quotes.json', $json);
 }
+
+/**
+ * Get all quotes from the database
+ * 
+ * @return array Array of quotes, each with 'id', 'head', 'quote', 'author', 'hits', 'created_at', 'category'
+ * 
+ */
+function getAllQuotes()
+{
+    $db = getDB();
+    $result = $db->query('SELECT * FROM quotes ORDER BY id');
+    $quotes = [];
+
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $quotes[] = $row;
+    }
+
+    $db->close();
+    return $quotes;
+}
+
+/**
+ * Get a random quote from the database
+ * 
+ * @return array|null Quote data with 'id', 'head', 'quote', 'author', 'hits', 'created_at', 'category' or null if no quotes
+ */
+function getRandomQuote()
+{
+    $db = getDB();
+    $result = $db->query('SELECT * FROM quotes ORDER BY RANDOM() LIMIT 1');
+    $quote = $result->fetchArray(SQLITE3_ASSOC);
+    $db->close();
+    return $quote;
+}
+
+/**
+ * Get quotes by category
+ * 
+ * @param string $category Category name
+ * @return array Array of quotes in the given category
+ */
+function getQuotesByCategory($category)
+{
+    $db = getDB();
+    $result = $db->query("SELECT * FROM quotes WHERE category = ? ORDER BY RANDOM()", [$category]);
+    $quotes = [];   
+
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $quotes[] = $row;
+    }
+
+    $db->close();
+    return $quotes;
+}
+
+/**
+ * Ensures the quotes table exists and is properly structured
+ *
+ * @param SQLite3 $db Database connection (optional, will create one if not provided)
+ * @return bool True if table exists or was created successfully
+ */
+function ensureQuotesTableExists($db = null)
+{
+    $shouldClose = false;
+    if ($db === null) {
+        $db = getDB();
+        $shouldClose = true;
+    }
     
+    try {
+        // Check if table exists
+        $result = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='quotes'");
+        $tableExists = $result->fetchArray();
+        
+        if (!$tableExists) {
+            // Table doesn't exist, create it
+            create_table($db);
+        }
+        
+        if ($shouldClose) {
+            $db->close();
+        }
+        
+        return true;
+    } catch (Exception $e) {
+        error_log("Error ensuring quotes table exists: " . $e->getMessage());
+        if ($shouldClose) {
+            $db->close();
+        }
+        return false;
+    }
+}
