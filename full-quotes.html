@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +12,9 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
     <script>
         window.tailwind = window.tailwind || {};
@@ -155,6 +158,7 @@
         }
     </style>
 </head>
+
 <body class="bg-[#faf7f0] dark:bg-[#1a1410] transition-colors duration-300">
     <!-- Intro overlay (10s) -->
     <div id="intro-overlay" class="intro-overlay" role="dialog" aria-label="مقدمة الموقع">
@@ -162,24 +166,29 @@
             <div class="intro-logo">مقولات من خيرة العرب</div>
             <div class="intro-subtitle">اكتشف حكمة جديدة من تراثنا العربي</div>
             <div class="intro-quote">تصفح، اقتبس، وشارك</div>
-            <div class="intro-progress"><div id="intro-progress-bar" class="intro-progress-bar"></div></div>
-            <button id="skip-intro" class="px-4 py-2 mt-4 rounded-full bg-amber-100 text-amber-800">تخطي المقدمة</button>
+            <div class="intro-progress">
+                <div id="intro-progress-bar" class="intro-progress-bar"></div>
+            </div>
+            <button id="skip-intro" class="px-4 py-2 mt-4 rounded-full bg-amber-100 text-amber-800">تخطي
+                المقدمة</button>
         </div>
     </div>
 
     <!-- Theme toggle -->
     <div class="fixed top-4 left-4 z-50">
-        <button
-            id="theme-toggle"
-            aria-label="تبديل السمة"
+        <button id="theme-toggle" aria-label="تبديل السمة"
             class="p-2.5 rounded-full bg-amber-100/90 dark:bg-gray-800/90 backdrop-blur shadow-md focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-300 hover:scale-110">
             <!-- Sun icon (shown in dark mode) -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-500 hidden dark:block" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
             <!-- Moon icon (shown in light mode) -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-800 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-amber-800 dark:hidden" fill="none"
+                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
             </svg>
         </button>
     </div>
@@ -188,16 +197,24 @@
 
         <!-- Hero header -->
         <header class="relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-bl from-amber-700 via-amber-600 to-amber-800 dark:from-amber-900 dark:via-amber-800 dark:to-stone-900"></div>
+            <div
+                class="absolute inset-0 bg-gradient-to-bl from-amber-700 via-amber-600 to-amber-800 dark:from-amber-900 dark:via-amber-800 dark:to-stone-900">
+            </div>
 
             <!-- Islamic Arabesque Patterns -->
-            <div class="absolute inset-0 opacity-20" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M60 60c0-16.569-13.431-30-30-30S0 43.431 0 60s13.431 30 30 30 30-13.431 30-30zm15 0c0 24.853-20.147 45-45 45S-15 84.853-15 60s20.147-45 45-45 45 20.147 45 45z'/%3E%3Cpath d='M60 15c0-8.284-6.716-15-15-15S30 6.716 30 15s6.716 15 15 15 15-6.716 15-15zm0 90c0-8.284-6.716-15-15-15S30 96.716 30 105s6.716 15 15 15 15-6.716 15-15z'/%3E%3Cpath d='M105 60c0-8.284-6.716-15-15-15s-15 6.716-15 15 6.716 15 15 15 15-6.716 15-15zM15 60c0-8.284-6.716-15-15-15S-15 51.716-15 60s6.716 15 15 15 15-6.716 15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;)"></div>
+            <div class="absolute inset-0 opacity-20"
+                style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M60 60c0-16.569-13.431-30-30-30S0 43.431 0 60s13.431 30 30 30 30-13.431 30-30zm15 0c0 24.853-20.147 45-45 45S-15 84.853-15 60s20.147-45 45-45 45 20.147 45 45z'/%3E%3Cpath d='M60 15c0-8.284-6.716-15-15-15S30 6.716 30 15s6.716 15 15 15 15-6.716 15-15zm0 90c0-8.284-6.716-15-15-15S30 96.716 30 105s6.716 15 15 15 15-6.716 15-15z'/%3E%3Cpath d='M105 60c0-8.284-6.716-15-15-15s-15 6.716-15 15 6.716 15 15 15 15-6.716 15-15zM15 60c0-8.284-6.716-15-15-15S-15 51.716-15 60s6.716 15 15 15 15-6.716 15-15z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;)">
+            </div>
 
             <!-- Additional geometric patterns -->
-            <div class="absolute inset-0 opacity-10" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M40 40l20-20v40L40 40zm0 0l-20 20V20l20 20z'/%3E%3Cpath d='M20 20l20 20 20-20L40 0 20 20zm0 40l20-20 20 20L40 80 20 60z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;)"></div>
+            <div class="absolute inset-0 opacity-10"
+                style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.08'%3E%3Cpath d='M40 40l20-20v40L40 40zm0 0l-20 20V20l20 20z'/%3E%3Cpath d='M20 20l20 20 20-20L40 0 20 20zm0 40l20-20 20 20L40 80 20 60z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;)">
+            </div>
 
             <!-- Decorative border pattern -->
-            <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-amber-300/30 to-transparent"></div>
+            <div
+                class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-amber-300/30 to-transparent">
+            </div>
             <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-200/50 to-transparent"></div>
 
             <div class="relative z-10 py-12 px-6 md:px-8 text-center">
@@ -214,7 +231,8 @@
         <!-- Main content -->
         <main class="flex-1 container mx-auto px-4 py-10 md:py-16 max-w-3xl">
 
-            <h2 class="page-title text-xl font-semibold text-center mb-10 text-amber-800 dark:text-amber-400 tracking-wide">
+            <h2
+                class="page-title text-xl font-semibold text-center mb-10 text-amber-800 dark:text-amber-400 tracking-wide">
                 ✦ مقولة عشوائية ✦
             </h2>
 
@@ -225,21 +243,19 @@
 
             <!-- Action buttons -->
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
-                <button
-                    id="new-quote-btn"
-                    aria-label="مقولة جديدة"
+                <button id="new-quote-btn" aria-label="مقولة جديدة"
                     class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-100 dark:bg-gray-800 text-amber-800 dark:text-amber-300 text-sm font-medium hover:bg-amber-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-200 shadow-sm">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
                     مقولة جديدة
                 </button>
-                <button
-                    id="copy-btn"
-                    aria-label="نسخ الاقتباس"
+                <button id="copy-btn" aria-label="نسخ الاقتباس"
                     class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-100 dark:bg-gray-800 text-amber-800 dark:text-amber-300 text-sm font-medium hover:bg-amber-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-200 shadow-sm">
                     <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
                     نسخ الاقتباس
                 </button>
@@ -249,18 +265,18 @@
 
         <!-- Footer -->
         <footer class="py-8 px-4 border-t border-amber-100/50 dark:border-amber-900/30">
-            <div class="container mx-auto max-w-4xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+            <div
+                class="container mx-auto max-w-4xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
                 <p class="text-amber-800/70 dark:text-amber-500/70">
                     مقولات من خيرة العرب &copy; 2026
                 </p>
-                <a
-                    href="https://github.com/aldoyh/arabicquotes"
+                <a href="https://github.com/aldoyh/arabicquotes"
                     class="flex items-center gap-2 text-amber-700 hover:text-amber-600 dark:text-amber-500 dark:hover:text-amber-400 transition-colors duration-200"
-                    aria-label="مستودع GitHub"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                    aria-label="مستودع GitHub" target="_blank" rel="noopener noreferrer">
                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                            clip-rule="evenodd" />
                     </svg>
                     GitHub
                 </a>
@@ -300,12 +316,12 @@
                 if (authorEl) {
                     text += '\n— ' + (authorEl.textContent || '').trim();
                 }
-                navigator.clipboard.writeText(text).then(function() {
+                navigator.clipboard.writeText(text).then(function () {
                     // Show feedback
                     var btn = document.getElementById('copy-btn');
                     var original = btn.innerHTML;
                     btn.innerHTML = '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> تم النسخ!';
-                    setTimeout(function() {
+                    setTimeout(function () {
                         btn.innerHTML = original;
                     }, 2000);
                 });
@@ -352,27 +368,28 @@
     </script>
 
     <script>
-        (function(){
+        (function () {
             var overlay = document.getElementById('intro-overlay');
             if (!overlay) return;
             var skipBtn = document.getElementById('skip-intro');
             var timer = setTimeout(hideOverlay, 10000);
 
-            function hideOverlay(){
+            function hideOverlay() {
                 if (!overlay) return;
                 overlay.classList.add('fade-out');
                 var main = document.querySelector('.main-content');
                 if (main) {
                     main.classList.add('revealed');
-                    try { main.style.opacity = '1'; } catch (e) {}
+                    try { main.style.opacity = '1'; } catch (e) { }
                 }
-                setTimeout(function(){ try{ overlay.parentNode.removeChild(overlay); }catch(e){} }, 1500);
+                setTimeout(function () { try { overlay.parentNode.removeChild(overlay); } catch (e) { } }, 1500);
             }
 
-            if (skipBtn) skipBtn.addEventListener('click', function(){ clearTimeout(timer); hideOverlay(); });
-            document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { clearTimeout(timer); hideOverlay(); }});
+            if (skipBtn) skipBtn.addEventListener('click', function () { clearTimeout(timer); hideOverlay(); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { clearTimeout(timer); hideOverlay(); } });
         })();
     </script>
 
 </body>
+
 </html>

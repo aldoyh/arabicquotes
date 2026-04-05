@@ -28,6 +28,10 @@
 			"statusBar.debuggingForeground": "#15202b"
 		},
 		"peacock.color": "#007fff",
-		"peacock.remoteColor": "#1857a4"
+		"peacock.remoteColor": "#1857a4",
+		"github-actions.workflows.pinned.workflows": [
+			".github/workflows/ci.yml",
+			".github/workflows/deploy-pages.yml"
+		]
 	}
 }
