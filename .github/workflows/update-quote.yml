@@ -24,10 +24,13 @@ jobs:
       - name: Update quote
         run: php .github/scripts/update-quote.php
 
+      - name: Export quotes to JSON
+        run: php -r "require 'inc/db-utils.php'; exportQuotesToJson();"
+
       - name: Commit changes
         run: |
           git config --global user.name 'GitHub Actions'
           git config --global user.email 'actions@github.com'
-          git add README.md index.html assets/DEPLOYMENT.log
+          git add README.md index.html assets/DEPLOYMENT.log assets/QuotesDB.db assets/quotes.json
           git diff --quiet && git diff --staged --quiet || git commit -m "Update quote of the day"
           git push

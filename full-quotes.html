@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مقولات من خيرة العرب</title>
-    <meta name="description" content="مقولات من خيرة العرب — مجموعة من أجمل الأقوال المأثورة والحكم العربية">
-    <meta property="og:title" content="مقولات من خيرة العرب">
-    <meta property="og:description" content="مقولات من خيرة العرب — مجموعة من أجمل الأقوال المأثورة والحكم العربية">
+    <title>مقولة عشوائية - مقولات من خيرة العرب</title>
+    <meta name="description" content="اقرأ مقولة عشوائية من مجموعة الأقوال العربية المأثورة">
+    <meta property="og:title" content="جميع المقولات - مقولات من خيرة العرب">
+    <meta property="og:description" content="جميع المقولات المأثورة والحكم العربية في مجموعة واحدة">
     <meta property="og:image" content="assets/arabicquotes-header.jpg">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -172,15 +172,15 @@
 
             <!-- Decorative border pattern -->
             <div class="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-transparent via-amber-300/30 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-200/50 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-200/50 to-transparent"></div>
 
             <div class="relative z-10 py-12 px-6 md:px-8 text-center">
                 <h1 class="page-title text-3xl md:text-5xl font-bold text-white mb-3 drop-shadow-sm">
-                    ما قيل من خيرة العرب
+                    مقولة عشوائية
                 </h1>
                 <div class="gold-bar w-24 mx-auto mb-4"></div>
                 <p class="text-amber-100/80 text-sm md:text-base max-w-xl mx-auto">
-                    مجموعة من أجمل الأقوال المأثورة والحكم العربية عبر العصور
+                    اكتشف حكمة جديدة من تراثنا العربي الغني
                 </p>
             </div>
         </header>
@@ -189,32 +189,25 @@
         <main class="flex-1 container mx-auto px-4 py-10 md:py-16 max-w-3xl">
 
             <h2 class="page-title text-xl font-semibold text-center mb-10 text-amber-800 dark:text-amber-400 tracking-wide">
-                ✦ اقتباس اليوم ✦
+                ✦ مقولة عشوائية ✦
             </h2>
 
-            <!-- Quote container — updated by PHP between the markers below -->
+            <!-- Quote container -->
             <div id="quote-container" class="animate-fade-in">
-<!-- QUOTE_CONTAINER:START -->
-
-        <div class="flex flex-col items-center animate-slide-up">
-            <div class="quote-card w-full rounded-2xl p-8 md:p-10 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
-                <div class="quote-text text-2xl md:text-3xl font-bold text-gray-800 dark:text-amber-50 mb-7 text-center leading-loose">
-                    الأم مدرسة إذا أعددتها أعددت شعبا طيب الأعراق
-                </div>
-                <div class="author-text text-lg md:text-xl font-semibold text-amber-700 dark:text-amber-400 text-center">
-                    — حافظ إبراهيم
-                </div>
-            </div>
-            <div class="flex items-center gap-2 text-sm text-gray-400 dark:text-gray-500 italic">
-                <span>🎯</span>
-                <span>المشاهدات: 0</span>
-            </div>
-        </div>
-<!-- QUOTE_CONTAINER:END -->
+                <!-- Quote will be loaded here -->
             </div>
 
             <!-- Action buttons -->
             <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-10">
+                <button
+                    id="new-quote-btn"
+                    aria-label="مقولة جديدة"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-amber-100 dark:bg-gray-800 text-amber-800 dark:text-amber-300 text-sm font-medium hover:bg-amber-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all duration-200 shadow-sm">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    مقولة جديدة
+                </button>
                 <button
                     id="copy-btn"
                     aria-label="نسخ الاقتباس"
@@ -230,7 +223,7 @@
 
         <!-- Footer -->
         <footer class="py-8 px-4 border-t border-amber-100/50 dark:border-amber-900/30">
-            <div class="container mx-auto max-w-3xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+            <div class="container mx-auto max-w-4xl flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
                 <p class="text-amber-800/70 dark:text-amber-500/70">
                     مقولات من خيرة العرب &copy; 2025
                 </p>
@@ -266,23 +259,71 @@
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
             });
 
+            // Load random quote
+            loadRandomQuote();
+
+            // New quote button
+            document.getElementById('new-quote-btn').addEventListener('click', loadRandomQuote);
+
             // Copy quote button
             document.getElementById('copy-btn').addEventListener('click', function () {
                 var quoteEl = document.querySelector('.quote-text');
                 var authorEl = document.querySelector('.author-text');
                 if (!quoteEl) return;
-                var text = (quoteEl.innerText || quoteEl.textContent).trim();
+                var text = (quoteEl.textContent || '').trim();
                 if (authorEl) {
-                    text += '\n' + (authorEl.innerText || authorEl.textContent).trim();
+                    text += '\n— ' + (authorEl.textContent || '').trim();
                 }
-                navigator.clipboard.writeText(text).then(function () {
+                navigator.clipboard.writeText(text).then(function() {
+                    // Show feedback
                     var btn = document.getElementById('copy-btn');
                     var original = btn.innerHTML;
                     btn.innerHTML = '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg> تم النسخ!';
-                    setTimeout(function () { btn.innerHTML = original; }, 2000);
+                    setTimeout(function() {
+                        btn.innerHTML = original;
+                    }, 2000);
                 });
             });
         });
+
+        function loadRandomQuote() {
+            fetch('assets/quotes.json')
+                .then(response => response.json())
+                .then(quotes => {
+                    if (quotes.length === 0) {
+                        document.getElementById('quote-container').innerHTML = '<p class="text-center text-red-600 dark:text-red-400">لا توجد مقولات متاحة</p>';
+                        return;
+                    }
+                    var randomIndex = Math.floor(Math.random() * quotes.length);
+                    var quote = quotes[randomIndex];
+                    displayQuote(quote);
+                })
+                .catch(error => {
+                    console.error('Error loading quotes:', error);
+                    document.getElementById('quote-container').innerHTML = '<p class="text-center text-red-600 dark:text-red-400">خطأ في تحميل المقولات</p>';
+                });
+        }
+
+        function displayQuote(quote) {
+            const container = document.getElementById('quote-container');
+            container.innerHTML = `
+                <div class="flex flex-col items-center animate-slide-up">
+                    <div class="quote-card w-full rounded-2xl p-8 md:p-10 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
+                        <div class="quote-text text-2xl md:text-3xl font-bold text-gray-800 dark:text-amber-50 mb-7 text-center leading-loose">
+                            ${quote.quote}
+                        </div>
+                        <div class="author-text text-lg md:text-xl font-semibold text-amber-700 dark:text-amber-400 text-center">
+                            — ${quote.author || 'مجهول'}
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-gray-400 dark:text-gray-500 italic">
+                        <span>🎯</span>
+                        <span>المشاهدات: ${quote.hits || 0}</span>
+                    </div>
+                </div>
+            `;
+        }
     </script>
+
 </body>
 </html>
