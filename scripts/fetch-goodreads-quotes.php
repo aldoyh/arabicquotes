@@ -33,7 +33,7 @@ class GoodreadsQuoteFetcher
     {
         echo "Starting Goodreads quote fetching process...\n";
         
-        $db = new SQLite3(__DIR__ . '/assets/QuotesDB.db');
+        $db = new SQLite3(__DIR__ . '/../assets/QuotesDB.db');
         $db->exec('BEGIN TRANSACTION');
         
         foreach ($this->tags as $tag) {
@@ -126,7 +126,7 @@ class GoodreadsQuoteFetcher
         echo "Goodreads fetching process completed. Total quotes fetched: " . $this->fetchedQuotes . "\n";
         
         // Export to JSON
-        require_once __DIR__ . '/inc/db-utils.php';
+        require_once __DIR__ . '/../inc/db-utils.php';
         exportQuotesToJson();
     }
     
@@ -184,7 +184,7 @@ try {
     
     // Backup the database first
     echo "Backing up the database...\n";
-    copy('quotes.db', 'quotes.db.goodreads-backup-' . date('Y-m-d-H-i-s'));
+    copy(__DIR__ . '/../assets/QuotesDB.db', __DIR__ . '/../assets/QuotesDB.db.goodreads-backup-' . date('Y-m-d-H-i-s'));
     
     // Start fetching
     $fetcher = new GoodreadsQuoteFetcher();
@@ -195,7 +195,7 @@ try {
     echo "\nFetching completed in " . round($endTime - $startTime, 2) . " seconds\n";
     
     // Print database stats
-    $db = new SQLite3('quotes.db');
+    $db = new SQLite3(__DIR__ . '/../assets/QuotesDB.db');
     $quoteCount = $db->querySingle("SELECT COUNT(*) FROM quotes");
     $authorCount = $db->querySingle("SELECT COUNT(DISTINCT author) FROM quotes");
     $db->close();

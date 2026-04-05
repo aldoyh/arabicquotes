@@ -6,8 +6,9 @@ echo "Arabic Quotes Mass Fetcher"
 echo "==================================="
 echo ""
 
-# Make sure we're in the correct directory
-cd "$(dirname "$0")"
+# Determine repository root (script may be in scripts/)
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$ROOT_DIR"
 
 # Check if database exists, if not create it
 if [ ! -f "quotes.db" ]; then
@@ -68,7 +69,7 @@ esac
 
 # Backup database before starting
 echo "Creating database backup..."
-cp quotes.db "quotes.db.backup-$(date +%Y%m%d-%H%M%S)"
+cp "$ROOT_DIR/quotes.db" "$ROOT_DIR/quotes.db.backup-$(date +%Y%m%d-%H%M%S)"
 echo "Backup created."
 
 # Start fetching
@@ -81,21 +82,21 @@ for source in "${sources[@]}"; do
             echo "==================================="
             echo "Fetching quotes from Wikiquote..."
             echo "==================================="
-            php fetch-all-quotes.php
+            php "$ROOT_DIR/scripts/fetch-all-quotes.php"
             ;;
         "goodreads")
             echo ""
             echo "==================================="
             echo "Fetching quotes from Goodreads..."
             echo "==================================="
-            php fetch-goodreads-quotes.php
+            php "$ROOT_DIR/scripts/fetch-goodreads-quotes.php"
             ;;
         "wikimedia")
             echo ""
             echo "==================================="
             echo "Fetching quotes from Wikimedia Commons..."
             echo "==================================="
-            php fetch-wikimedia-quotes.php
+            php "$ROOT_DIR/scripts/fetch-wikimedia-quotes.php"
             ;;
     esac
 done
@@ -111,9 +112,9 @@ echo "==================================="
 echo "Time taken: $((duration / 60)) minutes and $((duration % 60)) seconds"
 
 # Get database stats
-quote_count=$(sqlite3 quotes.db "SELECT COUNT(*) FROM quotes;")
-author_count=$(sqlite3 quotes.db "SELECT COUNT(DISTINCT author) FROM quotes;")
-category_count=$(sqlite3 quotes.db "SELECT COUNT(DISTINCT category) FROM quotes;")
+quote_count=$(sqlite3 "$ROOT_DIR/quotes.db" "SELECT COUNT(*) FROM quotes;")
+author_count=$(sqlite3 "$ROOT_DIR/quotes.db" "SELECT COUNT(DISTINCT author) FROM quotes;")
+category_count=$(sqlite3 "$ROOT_DIR/quotes.db" "SELECT COUNT(DISTINCT category) FROM quotes;")
 
 echo "Database now contains:"
 echo "- $quote_count quotes"
@@ -124,7 +125,7 @@ echo "- $category_count categories"
 read -p "Export quotes to JSON? (y/n): " export_json
 if [[ $export_json =~ ^[Yy]$ ]]; then
     echo "Exporting to JSON..."
-    sqlite3 -json quotes.db "SELECT * FROM quotes;" > assets/quotes.json
+    sqlite3 -json "$ROOT_DIR/quotes.db" "SELECT * FROM quotes;" > "$ROOT_DIR/assets/quotes.json"
     echo "Export completed. File saved to assets/quotes.json"
 fi
 

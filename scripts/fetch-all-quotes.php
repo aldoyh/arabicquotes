@@ -10,8 +10,8 @@ ini_set('display_errors', 1);
 ini_set('max_execution_time', 0); // No time limit for execution
 ini_set('memory_limit', '512M');  // Increase memory limit
 
-require_once __DIR__ . '/index.php';
-require_once __DIR__ . '/.github/scripts/hourly.php';
+require_once __DIR__ . '/../index.php';
+require_once __DIR__ . '/../.github/scripts/hourly.php';
 
 /**
  * Fetches quotes from Wikiquote pages
@@ -123,11 +123,14 @@ class WikiquoteBulkFetcher extends WikiquoteFetcher
             // Look for the "next page" link if available
             $nextPageLinks = $xpath->query('//a[contains(text(), "الصفحة التالية")]');
             if ($nextPageLinks->length > 0) {
-                $nextPageUrl = $nextPageLinks->item(0)->getAttribute('href');
-                if (!in_array($nextPageUrl, $this->fetchedPages)) {
-                    $this->fetchedPages[] = $nextPageUrl;
-                    $subCategoryUrls = [$nextPageUrl];
-                    $authorUrls = array_merge($authorUrls, $this->getAuthorPages($subCategoryUrls));
+                $nextPageLink = $nextPageLinks->item(0);
+                if ($nextPageLink instanceof DOMElement) {
+                    $nextPageUrl = $nextPageLink->getAttribute('href');
+                    if (!in_array($nextPageUrl, $this->fetchedPages)) {
+                        $this->fetchedPages[] = $nextPageUrl;
+                        $subCategoryUrls = [$nextPageUrl];
+                        $authorUrls = array_merge($authorUrls, $this->getAuthorPages($subCategoryUrls));
+                    }
                 }
             }
             
@@ -143,7 +146,7 @@ class WikiquoteBulkFetcher extends WikiquoteFetcher
      */
     private function fetchQuotesFromAuthors($authorUrls)
     {
-        $db = new SQLite3('quotes.db');
+        $db = new SQLite3(__DIR__ . '/../quotes.db');
         
         foreach ($authorUrls as $authorUrl) {
             echo "Processing author: " . $authorUrl . "\n";
@@ -237,7 +240,7 @@ class WikiquoteBulkFetcher extends WikiquoteFetcher
         // Get quote of the day
         $quoteElements = $xpath->query('//div[contains(@class, "quotation")]');
         
-        $db = new SQLite3('quotes.db');
+        $db = new SQLite3(__DIR__ . '/../quotes.db');
         
         foreach ($quoteElements as $quoteElement) {
             $quoteText = trim($quoteElement->textContent);
@@ -318,246 +321,6 @@ class WikiquoteBulkFetcher extends WikiquoteFetcher
     }
 }
 
-/**
- * Alternate method that uses API to fetch quotes
- */
-class WikiquoteApiFetcher
-{
-    private $apiUrl = 'https://ar.wikiquote.org/w/api.php';
-    private $fetchedQuotes = 0;
-    
-    public function fetchAllQuotes()
-    {
-        echo "Starting API-based quote fetching process...\n";
-        
-        // Step 1: Get all categories
-        echo "Fetching categories...\n";
-        $categories = $this->getCategories();
-        echo "Found " . count($categories) . " categories.\n";
-        
-        // Step 2: Get pages in each category
-        echo "Fetching pages in categories...\n";
-        $pages = $this->getPagesInCategories($categories);
-        echo "Found " . count($pages) . " pages.\n";
-        
-        // Step 3: Get content from each page
-        echo "Fetching content from pages...\n";
-        $this->getQuotesFromPages($pages);
-        
-        echo "API fetching process completed. Total quotes fetched: " . $this->fetchedQuotes . "\n";
-    }
-    
-    /**
-     * Get all categories related to quotes
-     */
-    private function getCategories()
-    {
-        $params = [
-            'action' => 'query',
-            'list' => 'categorymembers',
-            'cmtitle' => 'تصنيف:مقولات_بحسب_الموضوع',
-            'cmlimit' => 500,
-            'format' => 'json'
-        ];
-        
-        $response = $this->makeApiRequest($params);
-        
-        $categories = [];
-        if (isset($response['query']['categorymembers'])) {
-            foreach ($response['query']['categorymembers'] as $category) {
-                $categories[] = $category['title'];
-            }
-        }
-        
-        return $categories;
-    }
-    
-    /**
-     * Get all pages in given categories
-     */
-    private function getPagesInCategories($categories)
-    {
-        $allPages = [];
-        
-        foreach ($categories as $category) {
-            echo "Processing category: " . $category . "\n";
-            
-            $params = [
-                'action' => 'query',
-                'list' => 'categorymembers',
-                'cmtitle' => $category,
-                'cmlimit' => 500,
-                'format' => 'json'
-            ];
-            
-            $response = $this->makeApiRequest($params);
-            
-            if (isset($response['query']['categorymembers'])) {
-                foreach ($response['query']['categorymembers'] as $page) {
-                    if ($page['ns'] === 0) { // Only include main namespace pages
-                        $allPages[$page['pageid']] = $page['title'];
-                    }
-                }
-            }
-            
-            // Add a small delay
-            usleep(500000);
-        }
-        
-        return $allPages;
-    }
-    
-    /**
-     * Get quotes from each page
-     */
-    private function getQuotesFromPages($pages)
-    {
-        $db = new SQLite3('quotes.db');
-        $db->exec('BEGIN TRANSACTION');
-        
-        $count = 0;
-        foreach ($pages as $pageId => $pageTitle) {
-            echo "Processing page: " . $pageTitle . " (" . $pageId . ")\n";
-            
-            $params = [
-                'action' => 'query',
-                'prop' => 'extracts',
-                'pageids' => $pageId,
-                'explaintext' => true,
-                'format' => 'json'
-            ];
-            
-            $response = $this->makeApiRequest($params);
-            
-            if (isset($response['query']['pages'][$pageId]['extract'])) {
-                $content = $response['query']['pages'][$pageId]['extract'];
-                
-                // Split content into potential quotes
-                $lines = explode("\n", $content);
-                
-                foreach ($lines as $line) {
-                    $line = trim($line);
-                    
-                    // Skip empty lines or very short text
-                    if (empty($line) || mb_strlen($line) < 15) {
-                        continue;
-                    }
-                    
-                    // Check if this looks like a quote
-                    if ($this->isLikelyQuote($line)) {
-                        // Clean up the quote
-                        $line = $this->cleanText($line);
-                        
-                        // Try to extract author
-                        $author = $pageTitle;
-                        $parts = explode('—', $line);
-                        if (count($parts) > 1) {
-                            $line = trim($parts[0]);
-                            // If there's an extracted author, use it, otherwise use page title
-                            $extractedAuthor = trim($parts[1]);
-                            if (!empty($extractedAuthor)) {
-                                $author = $extractedAuthor;
-                            }
-                        }
-                        
-                        // Skip if the quote already exists in the database
-                        $existingQuote = $db->querySingle("SELECT id FROM quotes WHERE quote = '" . SQLite3::escapeString($line) . "'");
-                        if ($existingQuote) {
-                            continue;
-                        }
-                        
-                        // Insert the quote into the database
-                        $stmt = $db->prepare('INSERT INTO quotes (quote, author, hits) VALUES (:quote, :author, 0)');
-                        $stmt->bindValue(':quote', $line, SQLITE3_TEXT);
-                        $stmt->bindValue(':author', $author, SQLITE3_TEXT);
-                        $stmt->execute();
-                        
-                        $this->fetchedQuotes++;
-                        $count++;
-                        
-                        if ($count % 100 === 0) {
-                            $db->exec('COMMIT');
-                            $db->exec('BEGIN TRANSACTION');
-                            echo "Inserted " . $count . " quotes so far...\n";
-                        }
-                    }
-                }
-            }
-            
-            // Add a small delay
-            usleep(500000);
-        }
-        
-        $db->exec('COMMIT');
-        $db->close();
-    }
-    
-    /**
-     * Check if text is likely a quote
-     */
-    private function isLikelyQuote($text)
-    {
-        // This is a simple heuristic - you might need to improve it
-        if (mb_strlen($text) < 15 || mb_strlen($text) > 500) {
-            return false;
-        }
-        
-        // If it contains punctuation typical of quotes
-        if (strpos($text, '«') !== false || strpos($text, '»') !== false || 
-            strpos($text, '"') !== false || strpos($text, '"') !== false ||
-            strpos($text, ':') !== false) {
-            return true;
-        }
-        
-        // If it ends with a period, question mark, or exclamation mark
-        if (preg_match('/[.?!]$/', $text)) {
-            return true;
-        }
-        
-        return false;
-    }
-    
-    /**
-     * Clean up text
-     */
-    private function cleanText($text)
-    {
-        // Remove citation references [1], [2], etc.
-        $text = preg_replace('/\[\d+\]/', '', $text);
-        
-        // Remove extra spaces and newlines
-        $text = preg_replace('/\s+/', ' ', $text);
-        
-        // Remove leading/trailing spaces
-        $text = trim($text);
-        
-        return $text;
-    }
-    
-    /**
-     * Make API request
-     */
-    private function makeApiRequest($params)
-    {
-        $url = $this->apiUrl . '?' . http_build_query($params);
-        
-        $context = stream_context_create([
-            'http' => [
-                'timeout' => 30,
-                'user_agent' => 'QuoteFetcher/1.0 (https://github.com/aldoyh/arabicquotes)'
-            ]
-        ]);
-        
-        try {
-            $response = file_get_contents($url, false, $context);
-            return json_decode($response, true);
-        } catch (Exception $e) {
-            echo "API request error: " . $e->getMessage() . "\n";
-            return [];
-        }
-    }
-}
-
 // Main execution
 try {
     echo "Arabic Quotes Bulk Fetcher\n";
@@ -565,7 +328,7 @@ try {
     
     // Backup the database first
     echo "Backing up the database...\n";
-    copy('quotes.db', 'quotes.db.backup-' . date('Y-m-d-H-i-s'));
+    copy(__DIR__ . '/../quotes.db', __DIR__ . '/../quotes.db.backup-' . date('Y-m-d-H-i-s'));
     
     // Ask the user which method to use
     echo "Choose fetching method:\n";
@@ -588,16 +351,11 @@ try {
     echo "\nFetching completed in " . round($endTime - $startTime, 2) . " seconds\n";
     
     // Print database stats
-    $db = new SQLite3('quotes.db');
+    $db = new SQLite3(__DIR__ . '/../quotes.db');
     $quoteCount = $db->querySingle("SELECT COUNT(*) FROM quotes");
     $authorCount = $db->querySingle("SELECT COUNT(DISTINCT author) FROM quotes");
-    $db->close();
-    
-    echo "Database now contains:\n";
-    echo "- $quoteCount total quotes\n";
-    echo "- $authorCount unique authors\n";
+    /* Lines 597-602 omitted */
     
 } catch (Exception $e) {
-    echo "Error: " . $e->getMessage() . "\n";
-    exit(1);
+    /* ... */
 }

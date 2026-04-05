@@ -34,7 +34,7 @@ class WikimediaCommonsQuoteFetcher
     {
         echo "Starting Wikimedia Commons quote fetching process...\n";
         
-        $db = new SQLite3(__DIR__ . '/assets/QuotesDB.db');
+        $db = new SQLite3(__DIR__ . '/../assets/QuotesDB.db');
         $db->exec('BEGIN TRANSACTION');
         
         foreach ($this->searchTerms as $term) {
@@ -80,7 +80,7 @@ class WikimediaCommonsQuoteFetcher
         echo "Wikimedia Commons fetching process completed. Total quotes fetched: " . $this->fetchedQuotes . "\n";
         
         // Export to JSON
-        require_once __DIR__ . '/inc/db-utils.php';
+        require_once __DIR__ . '/../inc/db-utils.php';
         exportQuotesToJson();
     }
     
@@ -164,7 +164,7 @@ class WikimediaCommonsQuoteFetcher
                 if (preg_match('/^(.+?)\s*[-–—]\s*(.+)$/u', $line, $matches)) {
                     $quote = trim($matches[1]);
                     $author = trim($matches[2]);
-                } elseif (preg_match('/^(.+?)\s*[,:]\s*(.+)$/u', $line, $matches)) {
+                } elseif (preg_match('/^(.+?)\s*[:,]\s*(.+)$/u', $line, $matches)) {
                     // Format: "Author: Quote" or "Author, Quote"
                     $author = trim($matches[1]);
                     $quote = trim($matches[2]);
@@ -268,7 +268,7 @@ try {
     
     // Backup the database first
     echo "Backing up the database...\n";
-    copy('quotes.db', 'quotes.db.wikimedia-backup-' . date('Y-m-d-H-i-s'));
+    copy(__DIR__ . '/../assets/QuotesDB.db', __DIR__ . '/../assets/QuotesDB.db.wikimedia-backup-' . date('Y-m-d-H-i-s'));
     
     // Start fetching
     $fetcher = new WikimediaCommonsQuoteFetcher();
@@ -279,7 +279,7 @@ try {
     echo "\nFetching completed in " . round($endTime - $startTime, 2) . " seconds\n";
     
     // Print database stats
-    $db = new SQLite3('quotes.db');
+    $db = new SQLite3(__DIR__ . '/../assets/QuotesDB.db');
     $quoteCount = $db->querySingle("SELECT COUNT(*) FROM quotes");
     $authorCount = $db->querySingle("SELECT COUNT(DISTINCT author) FROM quotes");
     $db->close();

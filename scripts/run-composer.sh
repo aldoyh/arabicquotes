@@ -1,5 +1,7 @@
 #!/bin/bash
 
+ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+
 # Check if composer is installed
 if ! command -v composer &> /dev/null; then
     echo "Installing composer..."
@@ -9,8 +11,9 @@ if ! command -v composer &> /dev/null; then
 fi
 
 # Install dependencies
+cd "$ROOT_DIR"
 composer install
 
 # Verify installation
 echo "Verifying PHPUnit installation..."
-./vendor/bin/phpunit --version
+"$ROOT_DIR/vendor/bin/phpunit" --version

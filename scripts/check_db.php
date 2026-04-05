@@ -1,5 +1,5 @@
 <?php
-require_once 'inc/db-utils.php';
+require_once __DIR__ . '/../inc/db-utils.php';
 
 $db = getDB();
 if (!$db) {

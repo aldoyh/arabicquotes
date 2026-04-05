@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/vendor/autoload.php'; // Assuming PSR-4 autoloader
-require_once __DIR__ . '/inc/db-utils.php';
-require_once __DIR__ . '/.github/scripts/hourly.php'; // Include hourly.php to access WikiquoteFetcher
+require_once __DIR__ . '/../vendor/autoload.php'; // Assuming PSR-4 autoloader
+require_once __DIR__ . '/../inc/db-utils.php';
+require_once __DIR__ . '/../.github/scripts/hourly.php'; // Include hourly.php to access WikiquoteFetcher
 
 echo "Starting to scrape and store quotes...\n";
 

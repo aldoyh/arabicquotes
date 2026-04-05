@@ -23,7 +23,7 @@ class QuoteDbCleaner
     
     public function __construct()
     {
-        $this->db = new SQLite3('quotes.db');
+        $this->db = new SQLite3(__DIR__ . '/../quotes.db');
         $this->db->exec('PRAGMA foreign_keys = ON');
     }
     
@@ -41,7 +41,7 @@ class QuoteDbCleaner
         
         // Backup database first
         echo "Creating backup...\n";
-        copy('quotes.db', 'quotes.db.cleanup-backup-' . date('Y-m-d-H-i-s'));
+        copy(__DIR__ . '/../quotes.db', __DIR__ . '/../quotes.db.cleanup-backup-' . date('Y-m-d-H-i-s'));
         
         // Start transaction for faster operations
         $this->db->exec('BEGIN TRANSACTION');

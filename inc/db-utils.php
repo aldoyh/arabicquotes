@@ -129,6 +129,10 @@ function import_data()
         } catch (Exception $e) {
             error_log("Error: " . $e->getMessage());
         }
+    }
+
+    $db->close();
+}
 
 /**
  * Add quotes to the database
@@ -186,3 +190,4 @@ function exportQuotesToJson()
     $json = json_encode($quotes, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     file_put_contents(__DIR__ . '/../assets/quotes.json', $json);
 }
+    

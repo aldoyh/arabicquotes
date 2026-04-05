@@ -1,7 +1,7 @@
 <?php
 // test-wiki-quote.php - A simple test script to verify WikiquoteFetcher handling of HTML entities
 
-require_once __DIR__ . '/.github/scripts/hourly.php';
+require_once __DIR__ . '/../.github/scripts/hourly.php';
 
 $wikiquoteFetcher = new WikiquoteFetcher();
 $quote = $wikiquoteFetcher->fetchRandomWikiQuote();
