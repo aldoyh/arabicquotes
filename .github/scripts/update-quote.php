@@ -187,11 +187,14 @@ if (basename(__FILE__) === basename($_SERVER['PHP_SELF'])) {
         if ($updatedQuote) {
             echo "✅ Quote of the day updated successfully!\n";
             echo json_encode($updatedQuote, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n";
+            exit(0);
         } else {
             echo "❌ Failed to update quote of the day.\n";
+            exit(1);
         }
     } catch (Exception $e) {
         error_log("Error in main execution: " . $e->getMessage());
         echo "❌ Error: " . $e->getMessage() . "\n";
+        exit(1);
     }
 }

@@ -19,7 +19,15 @@ jobs:
           extensions: sqlite3
 
       - name: Update quote
-        run: php .github/scripts/update-quote.php
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Files in root:"
+          ls -la | head -20
+          echo ""
+          echo "Database file check:"
+          ls -la assets/QuotesDB.db
+          echo ""
+          php .github/scripts/update-quote.php
 
       - name: Export quotes to JSON
         run: php -r "require 'inc/db-utils.php'; exportQuotesToJson();"
