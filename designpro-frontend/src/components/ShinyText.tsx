@@ -8,7 +8,7 @@ interface ShinyTextProps {
 export const ShinyText = ({ text, className = '' }: ShinyTextProps) => {
   return (
     <motion.div
-      className={`inline-block ${className}`}
+      className={`inline-block w-full ${className}`}
       initial={{ backgroundPosition: '200% center' }}
       animate={{ backgroundPosition: '-200% center' }}
       transition={{
@@ -22,6 +22,7 @@ export const ShinyText = ({ text, className = '' }: ShinyTextProps) => {
         WebkitBackgroundClip: 'text',
         backgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
+        display: 'inline-block',
       }}
     >
       {text}

@@ -35,3 +35,35 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@layer components {
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
+
+/* Improve tap feedback on mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  button {
+    @apply active:opacity-75;
+  }
+
+  a {
+    @apply active:opacity-75;
+  }
+}
+
+/* Optimize for small screens */
+@media (max-width: 640px) {
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Prevent font size increase on landscape orientation */
+  @media (max-height: 500px) {
+    html {
+      font-size: 14px;
+    }
+  }
+}
