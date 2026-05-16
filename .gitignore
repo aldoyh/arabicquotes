@@ -5,6 +5,11 @@
 node_modules
 /dist
 .sass-cache/
+_site/
+.herenow/
+.phpunit.result.cache
+.aider*
+.aider.tags.cache.v4/
 
 # Lock
 yarn.lock

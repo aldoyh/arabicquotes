@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>توثيق مقولات من خيرة العرب</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Reem+Kufi:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --paper: #f8f1e3; --ink: #22201d; --muted: #72695f; --line: rgba(34,32,29,.16); --teal: #15746d; --gold: #ba7b18; }
+        * { box-sizing: border-box; }
+        body { margin: 0; color: var(--ink); background: var(--paper); font-family: "Noto Naskh Arabic", serif; }
+        main { width: min(920px, calc(100% - 28px)); margin: 0 auto; padding: 52px 0; }
+        a { color: inherit; }
+        h1, h2 { font-family: "Reem Kufi", sans-serif; line-height: 1.25; }
+        h1 { margin: 0 0 18px; font-size: clamp(34px, 7vw, 72px); }
+        h2 { margin: 34px 0 12px; font-size: 28px; }
+        p, li { color: var(--muted); font-size: 18px; line-height: 1.85; }
+        .card { margin: 18px 0; padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,250,240,.75); }
+        .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+        .metric b { display: block; color: var(--teal); font-size: 30px; font-family: "Reem Kufi", sans-serif; }
+        .links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+        .links a { border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; text-decoration: none; font-weight: 700; background: #fffaf0; }
+        code { direction: ltr; unicode-bidi: plaintext; background: rgba(34,32,29,.08); padding: 2px 6px; border-radius: 5px; }
+        @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <main>
+        <a href="../">العودة إلى الموقع</a>
+        <h1>توثيق النشر والاستيراد</h1>
+        <p>هذه الصفحة منشورة مع الموقع حتى يكون مسار البيانات والنشر واضحا من نفس نسخة GitHub Pages وhere.now.</p>
+
+        <section class="card">
+            <h2>استيراد البيانات</h2>
+            <p>تم استيراد Dataset <code>HeshamHaroon/arabic-quotes</code> من Hugging Face إلى SQLite مع منع التكرار عبر مفاتيح تطبيع للنص والقائل.</p>
+            <div class="grid">
+                <div class="metric"><b>3,778</b><span>صفا مقروءا</span></div>
+                <div class="metric"><b>3,740</b><span>صفا جديدا</span></div>
+                <div class="metric"><b>38</b><span>تكرارا تم تخطيه</span></div>
+                <div class="metric"><b>4,235</b><span>اقتباسا في القاعدة</span></div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>النشر</h2>
+            <p>يتم بناء مجلد <code>_site</code> أولا، ثم تستخدمه GitHub Pages وhere.now حتى تكون النسختان من نفس المصدر المنشور.</p>
+            <p>يتطلب here.now السر <code>HERENOW_API_KEY</code> حتى يكون الموقع دائما، ويمكن ضبط <code>HERENOW_SLUG</code> لتحديث موقع قائم.</p>
+            <p>الموقع الدائم الحالي على here.now: <a href="https://blissful-hazel-gdhm.here.now/">https://blissful-hazel-gdhm.here.now/</a></p>
+        </section>
+
+        <div class="links">
+            <a href="DATASET_IMPORT.md">DATASET_IMPORT.md</a>
+            <a href="DEPLOYMENT.md">DEPLOYMENT.md</a>
+            <a href="../assets/quotes.json">quotes.json</a>
+        </div>
+    </main>
+</body>
+</html>

@@ -18,7 +18,9 @@ class QuoteManager
         $this->dbFile = $dbFile;
         $this->basePath = __DIR__ . '/';
         if (!file_exists($this->dbFile)) {
-            throw new Exception("Database file not found: " . $this->dbFile);
+            $db = new SQLite3($this->dbFile);
+            $db->exec('CREATE TABLE IF NOT EXISTS quotes (id INTEGER PRIMARY KEY AUTOINCREMENT, head TEXT, quote TEXT, author TEXT, hits INTEGER DEFAULT 0, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, category TEXT DEFAULT "General", source TEXT DEFAULT "manual", quote_key TEXT, author_key TEXT)');
+            $db->close();
         }
         if (!is_writable($this->dbFile)) {
             throw new Exception("Database file is not writable: " . $this->dbFile);
@@ -37,7 +39,7 @@ class QuoteManager
         }
 
         // populate the database if empty
-        if ($this->getQuoteCount() === 0) {
+        if ($this->dbFile === 'assets/QuotesDB.db' && $this->getQuoteCount() === 0) {
             $this->populateDatabase();
         }
     }
@@ -59,7 +61,7 @@ class QuoteManager
             }
             $quote = $result->fetchArray(SQLITE3_ASSOC);
             $db->close();
-            return $quote;
+            return is_array($quote) ? $quote : null;
         } catch (Exception $e) {
             error_log("Error in getRandomQuote: " . $e->getMessage());
             return null;
@@ -156,11 +158,12 @@ class QuoteManager
                 throw new Exception('Failed to write to README.md');
             }
 
-            // Update index.html quote container using stable comment markers
-            $this->updateIndexHtml($selectedQuote);
-
             // Increment hits in database
             $this->updateQuoteHits($selectedQuote);
+            $selectedQuote['hits'] = (int) $selectedQuote['hits'] + 1;
+
+            // Update index.html quote container using stable comment markers
+            $this->updateIndexHtml($selectedQuote);
 
             return $selectedQuote;
         } catch (Exception $e) {
@@ -254,19 +257,15 @@ class QuoteManager
             // Remove leading dashes that sometimes appear in author fields
             $cleanAuthor = preg_replace('/^[—\-\s]+/', '', $cleanAuthor);
 
+            $selectionCount = (int) ($quote['hits'] ?? 0);
+
             $html = '
-        <div class="flex flex-col items-center animate-slide-up">
-            <div class="quote-card w-full rounded-2xl p-8 md:p-10 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
-                <div class="quote-text text-2xl md:text-3xl font-bold text-gray-800 dark:text-amber-50 mb-7 text-center leading-loose">
-                    ' . htmlspecialchars($cleanQuote) . '
-                </div>
-                <div class="author-text text-lg md:text-xl font-semibold text-amber-700 dark:text-amber-400 text-center">
-                    — ' . htmlspecialchars($cleanAuthor) . '
-                </div>
-            </div>
-            <div class="flex items-center gap-2 text-sm text-gray-400 dark:text-gray-500 italic">
-                <span>🎯</span>
-                <span>المشاهدات: ' . (int)$quote['hits'] . '</span>
+        <div class="daily-quote-card" data-quote-id="' . (int) $quote['id'] . '" data-hits="' . $selectionCount . '">
+            <div class="quote-mark" aria-hidden="true">"</div>
+            <p class="quote-text">' . htmlspecialchars($cleanQuote, ENT_QUOTES, 'UTF-8') . '</p>
+            <div class="quote-meta">
+                <strong class="author-text">' . htmlspecialchars($cleanAuthor, ENT_QUOTES, 'UTF-8') . '</strong>
+                <span class="selection-count">اختيرت ' . number_format($selectionCount) . ' مرة</span>
             </div>
         </div>';
 

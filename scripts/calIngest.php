@@ -58,7 +58,7 @@ function validateCalendarData($data) {
 }
 
 // Main execution block
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
     try {
         $input = file_get_contents('php://input');
         if (!$input) {

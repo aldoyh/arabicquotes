@@ -1,221 +1,310 @@
 <?php
 
 if (defined('TEST_MODE') && TEST_MODE) {
-    define("DB_NAME", __DIR__ . "/" . TEST_DB_FILE);
+    define('DB_NAME', __DIR__ . '/' . TEST_DB_FILE);
 } else {
-    define("DB_NAME", __DIR__ . "/../assets/QuotesDB.db");
+    define('DB_NAME', __DIR__ . '/../assets/QuotesDB.db');
 }
 
 function getDB()
 {
-    if (!file_exists(DB_NAME)) {
-        $db = new SQLite3(DB_NAME);
-        create_table($db);
-    } else {
-        $db = new SQLite3(DB_NAME);
-    }
-
+    $db = new SQLite3(DB_NAME);
     if (!$db) {
-        error_log("Failed to connect to the DB");
+        error_log('Failed to connect to the DB');
         return false;
     }
 
+    ensureQuotesTableExists($db);
     return $db;
 }
 
 function getDBSQLite()
 {
-    if (!file_exists(DB_NAME)) {
-        $db = new SQLite3(DB_NAME);
-        create_table($db);
-    } else {
-        $db = new SQLite3(DB_NAME);
-    }
-
-    if (!$db) {
-        error_log("Failed to connect to the DB");
-        return false;
-    }
-
-    return $db;
+    return getDB();
 }
-
 
 function makeDBClone()
 {
     $db = getDB();
-
-    // Clone a SQLite DB
-    // $db->exec("ATTACH DATABASE 'backup/QuotesDB.db' AS backup");
-    $db->query("CREATE DATABASE IF NOT EXISTS backup");
-
-    // $db->exec("CREATE TABLE backup.quotes AS SELECT * FROM quotes");
-    $db->query("CREATE TABLE IF NOT EXISTS backup.quotes AS SELECT * FROM `quotes`");
-
-    // $db->exec("DETACH DATABASE backup");
-    // $db->query("DROP DATABASE backup");
-
+    $backupPath = __DIR__ . '/../assets/QuotesDB.backup-' . date('Ymd-His') . '.db';
+    copy(DB_NAME, $backupPath);
     $db->close();
 }
 
-/**
- * Reads the json and creates a DB Table with exact structure
- *
- * @return void
- */
 function create_table($db)
 {
-    // Drop the table if it exists
-    $db->query("DROP TABLE IF EXISTS quotes;");
-
+    $db->query('DROP TABLE IF EXISTS quotes;');
     $db->query("CREATE TABLE quotes (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         head TEXT,
-        quote TEXT,
-        author TEXT,
+        quote TEXT NOT NULL,
+        author TEXT NOT NULL,
         hits INTEGER DEFAULT 0,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        category TEXT DEFAULT 'General'
-
-  )") or die("Failed to create table");
+        category TEXT DEFAULT 'General',
+        source TEXT DEFAULT 'manual',
+        quote_key TEXT,
+        author_key TEXT
+    )") or die('Failed to create table');
+    $db->exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_quotes_unique_keys ON quotes (quote_key, author_key)');
 }
 
-
-/**
- * Import data from the json file to the DB
- *
- * @return void
- */
-function import_data()
+function ensureQuotesTableExists($db = null)
 {
-
-    $json =  file_get_contents(DB_NAME);
-
-    $data = json_decode($json, true);
-
-    $db = getDB();
-
-    // bulk insert into tables from json
-    foreach ($data as $row) {
-        echo "Importing " . $row['id'] . "\n";
-
-        $row['hits'] = random_int(0, 100);
-
-        // cleanup the quote
-        $row['quote'] = preg_replace('/\s*\.["w-]+\s*{[^}]+}/', '', $row['quote']);
-
-        // . print_r($row, true) . "\n";
-
-        try {
-            // generate a random numeric ID for each quote
-            // $row['id'] = rand(100000, 999999);
-
-            $sql_query = "INSERT INTO quotes (head, quote, author, hits) VALUES (
-                '" . $row['head'] . "',
-                '" . $row['quote'] . "',
-                '" . $row['author'] . "', " . $row['hits'] . ")";
-
-            // pepare the query
-            $stmt = $db->prepare($sql_query);
-
-            // execute the query
-            $stmt->execute();
-
-
-            // $db->exec("INSERT INTO quotes (head, quote, author, hits) VALUES (
-            // $db->query($sql_query);
-
-
-        } catch (Exception $e) {
-            error_log("Error: " . $e->getMessage());
-        }
+    $shouldClose = false;
+    if ($db === null) {
+        $db = new SQLite3(DB_NAME);
+        $shouldClose = true;
     }
 
-    $db->close();
+    try {
+        $result = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='quotes'");
+        $tableExists = $result && $result->fetchArray();
+
+        if (!$tableExists) {
+            create_table($db);
+        } else {
+            ensureQuoteColumns($db);
+            backfillQuoteKeys($db);
+            removeDuplicateQuotes($db);
+            $db->exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_quotes_unique_keys ON quotes (quote_key, author_key)');
+        }
+
+        if ($shouldClose) {
+            $db->close();
+        }
+        return true;
+    } catch (Exception $e) {
+        error_log('Error ensuring quotes table exists: ' . $e->getMessage());
+        if ($shouldClose) {
+            $db->close();
+        }
+        return false;
+    }
 }
 
-/**
- * Add quotes to the database
- *
- * @param array $quotes Array of quotes, each with 'head', 'quote', 'author', 'category' (optional)
- * @return void
- */
-function addQuotesToDatabase($quotes)
+function ensureQuoteColumns($db)
+{
+    $columns = [];
+    $result = $db->query('PRAGMA table_info(quotes)');
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $columns[$row['name']] = true;
+    }
+
+    $definitions = [
+        'head' => 'TEXT',
+        'hits' => 'INTEGER DEFAULT 0',
+        'created_at' => 'DATETIME DEFAULT CURRENT_TIMESTAMP',
+        'category' => "TEXT DEFAULT 'General'",
+        'source' => "TEXT DEFAULT 'manual'",
+        'quote_key' => 'TEXT',
+        'author_key' => 'TEXT',
+    ];
+
+    foreach ($definitions as $column => $definition) {
+        if (!isset($columns[$column])) {
+            $db->exec("ALTER TABLE quotes ADD COLUMN {$column} {$definition}");
+        }
+    }
+}
+
+function cleanQuoteText($text)
+{
+    $text = html_entity_decode((string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $text = strip_tags($text);
+    $text = preg_replace('/\s+/u', ' ', trim($text));
+    $text = preg_replace('/^[—\-–\s]+/u', '', $text);
+    return trim($text);
+}
+
+function normalizeQuoteKey($text)
+{
+    $text = cleanQuoteText($text);
+    $text = mb_strtolower($text, 'UTF-8');
+    $text = preg_replace('/[ًٌٍَُِّْـ]/u', '', $text);
+    $text = str_replace(['أ', 'إ', 'آ', 'ٱ'], 'ا', $text);
+    $text = str_replace(['ى'], 'ي', $text);
+    $text = str_replace(['ؤ'], 'و', $text);
+    $text = str_replace(['ئ'], 'ي', $text);
+    $text = preg_replace('/[^\p{Arabic}\p{L}\p{N}]+/u', '', $text);
+    return $text;
+}
+
+function quoteHash($text)
+{
+    return hash('sha256', normalizeQuoteKey($text));
+}
+
+function prepareQuoteRow($row)
+{
+    $quote = cleanQuoteText($row['quote'] ?? '');
+    $author = cleanQuoteText($row['author'] ?? 'غير معروف');
+
+    if ($quote === '') {
+        return null;
+    }
+
+    $category = $row['category'] ?? $row['tags'] ?? 'General';
+    if (is_array($category)) {
+        $category = implode('، ', array_values(array_filter(array_map('trim', $category))));
+    }
+    $category = cleanQuoteText($category ?: 'General');
+
+    return [
+        'head' => cleanQuoteText($row['head'] ?? ''),
+        'quote' => $quote,
+        'author' => $author,
+        'hits' => max(0, (int) ($row['hits'] ?? 0)),
+        'category' => $category ?: 'General',
+        'source' => cleanQuoteText($row['source'] ?? 'manual'),
+        'quote_key' => quoteHash($quote),
+        'author_key' => quoteHash($author),
+    ];
+}
+
+function backfillQuoteKeys($db)
+{
+    $result = $db->query("SELECT id, quote, author FROM quotes WHERE quote_key IS NULL OR quote_key = '' OR author_key IS NULL OR author_key = ''");
+    $stmt = $db->prepare('UPDATE quotes SET quote = :quote, author = :author, quote_key = :quote_key, author_key = :author_key WHERE id = :id');
+
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $quote = cleanQuoteText($row['quote']);
+        $author = cleanQuoteText($row['author']);
+        $stmt->bindValue(':quote', $quote, SQLITE3_TEXT);
+        $stmt->bindValue(':author', $author, SQLITE3_TEXT);
+        $stmt->bindValue(':quote_key', quoteHash($quote), SQLITE3_TEXT);
+        $stmt->bindValue(':author_key', quoteHash($author), SQLITE3_TEXT);
+        $stmt->bindValue(':id', (int) $row['id'], SQLITE3_INTEGER);
+        $stmt->execute();
+        $stmt->reset();
+    }
+}
+
+function removeDuplicateQuotes($db)
+{
+    $result = $db->query("SELECT quote_key, author_key, MIN(id) AS keep_id, SUM(COALESCE(hits, 0)) AS merged_hits, COUNT(*) AS total
+        FROM quotes
+        WHERE quote_key IS NOT NULL AND author_key IS NOT NULL
+        GROUP BY quote_key, author_key
+        HAVING total > 1");
+
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $update = $db->prepare('UPDATE quotes SET hits = :hits WHERE id = :id');
+        $update->bindValue(':hits', (int) $row['merged_hits'], SQLITE3_INTEGER);
+        $update->bindValue(':id', (int) $row['keep_id'], SQLITE3_INTEGER);
+        $update->execute();
+
+        $delete = $db->prepare('DELETE FROM quotes WHERE quote_key = :quote_key AND author_key = :author_key AND id != :keep_id');
+        $delete->bindValue(':quote_key', $row['quote_key'], SQLITE3_TEXT);
+        $delete->bindValue(':author_key', $row['author_key'], SQLITE3_TEXT);
+        $delete->bindValue(':keep_id', (int) $row['keep_id'], SQLITE3_INTEGER);
+        $delete->execute();
+    }
+}
+
+function addQuotesToDatabase($quotes, $source = 'manual')
 {
     $db = getDB();
+    $stats = ['inserted' => 0, 'skipped' => 0, 'invalid' => 0];
+
+    $stmt = $db->prepare('INSERT OR IGNORE INTO quotes
+        (head, quote, author, hits, category, source, quote_key, author_key)
+        VALUES (:head, :quote, :author, :hits, :category, :source, :quote_key, :author_key)');
 
     foreach ($quotes as $row) {
-        $row['hits'] = random_int(0, 100);
-
-        // cleanup the quote
-        $row['quote'] = preg_replace('/\s*\.["w-]+\s*{[^}]+}/', '', $row['quote']);
-
-        $category = isset($row['category']) ? $row['category'] : 'General';
-
-        try {
-            $sql_query = "INSERT INTO quotes (head, quote, author, hits, category) VALUES (?, ?, ?, ?, ?)";
-
-            $stmt = $db->prepare($sql_query);
-            $stmt->bindValue(1, $row['head'], SQLITE3_TEXT);
-            $stmt->bindValue(2, $row['quote'], SQLITE3_TEXT);
-            $stmt->bindValue(3, $row['author'], SQLITE3_TEXT);
-            $stmt->bindValue(4, $row['hits'], SQLITE3_INTEGER);
-            $stmt->bindValue(5, $category, SQLITE3_TEXT);
-
-            $stmt->execute();
-
-        } catch (Exception $e) {
-            error_log("Error adding quote: " . $e->getMessage());
+        if (!isset($row['source'])) {
+            $row['source'] = $source;
         }
+        $prepared = prepareQuoteRow($row);
+        if ($prepared === null) {
+            $stats['invalid']++;
+            continue;
+        }
+
+        foreach ($prepared as $key => $value) {
+            $type = $key === 'hits' ? SQLITE3_INTEGER : SQLITE3_TEXT;
+            $stmt->bindValue(':' . $key, $value, $type);
+        }
+
+        $stmt->execute();
+        if ($db->changes() > 0) {
+            $stats['inserted']++;
+        } else {
+            $stats['skipped']++;
+        }
+        $stmt->reset();
     }
 
     $db->close();
+    return $stats;
 }
 
-/**
- * Export quotes to JSON file
- *
- * @return void
- */
+function import_data($db = null, $data = null)
+{
+    $shouldClose = false;
+    if ($db === null) {
+        $db = getDB();
+        $shouldClose = true;
+    } else {
+        ensureQuotesTableExists($db);
+    }
+
+    if ($data === null) {
+        $jsonPath = __DIR__ . '/../assets/quotes.json';
+        $data = file_exists($jsonPath) ? json_decode(file_get_contents($jsonPath), true) : [];
+    }
+
+    $stats = ['inserted' => 0, 'skipped' => 0, 'invalid' => 0];
+    $stmt = $db->prepare('INSERT OR IGNORE INTO quotes
+        (head, quote, author, hits, category, source, quote_key, author_key)
+        VALUES (:head, :quote, :author, :hits, :category, :source, :quote_key, :author_key)');
+
+    foreach ($data as $row) {
+        $prepared = prepareQuoteRow($row);
+        if ($prepared === null) {
+            $stats['invalid']++;
+            continue;
+        }
+        foreach ($prepared as $key => $value) {
+            $stmt->bindValue(':' . $key, $value, $key === 'hits' ? SQLITE3_INTEGER : SQLITE3_TEXT);
+        }
+        $stmt->execute();
+        $stats[$db->changes() > 0 ? 'inserted' : 'skipped']++;
+        $stmt->reset();
+    }
+
+    if ($shouldClose) {
+        $db->close();
+    }
+    return $stats;
+}
+
 function exportQuotesToJson()
 {
     $db = getDB();
-    $result = $db->query('SELECT * FROM quotes ORDER BY id');
+    $result = $db->query('SELECT id, head, quote, author, hits, created_at, category, source FROM quotes ORDER BY id');
     $quotes = [];
     while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         $quotes[] = $row;
     }
     $db->close();
 
-    $json = json_encode($quotes, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
-    file_put_contents(__DIR__ . '/../assets/quotes.json', $json);
+    $json = json_encode($quotes, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+    file_put_contents(__DIR__ . '/../assets/quotes.json', $json . PHP_EOL);
 }
 
-/**
- * Get all quotes from the database
- * 
- * @return array Array of quotes, each with 'id', 'head', 'quote', 'author', 'hits', 'created_at', 'category'
- * 
- */
 function getAllQuotes()
 {
     $db = getDB();
     $result = $db->query('SELECT * FROM quotes ORDER BY id');
     $quotes = [];
-
     while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         $quotes[] = $row;
     }
-
     $db->close();
     return $quotes;
 }
 
-/**
- * Get a random quote from the database
- * 
- * @return array|null Quote data with 'id', 'head', 'quote', 'author', 'hits', 'created_at', 'category' or null if no quotes
- */
 function getRandomQuote()
 {
     $db = getDB();
@@ -225,60 +314,16 @@ function getRandomQuote()
     return $quote;
 }
 
-/**
- * Get quotes by category
- * 
- * @param string $category Category name
- * @return array Array of quotes in the given category
- */
 function getQuotesByCategory($category)
 {
     $db = getDB();
-    $result = $db->query("SELECT * FROM quotes WHERE category = ? ORDER BY RANDOM()", [$category]);
-    $quotes = [];   
-
+    $stmt = $db->prepare('SELECT * FROM quotes WHERE category = :category ORDER BY RANDOM()');
+    $stmt->bindValue(':category', $category, SQLITE3_TEXT);
+    $result = $stmt->execute();
+    $quotes = [];
     while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         $quotes[] = $row;
     }
-
     $db->close();
     return $quotes;
-}
-
-/**
- * Ensures the quotes table exists and is properly structured
- *
- * @param SQLite3 $db Database connection (optional, will create one if not provided)
- * @return bool True if table exists or was created successfully
- */
-function ensureQuotesTableExists($db = null)
-{
-    $shouldClose = false;
-    if ($db === null) {
-        $db = getDB();
-        $shouldClose = true;
-    }
-    
-    try {
-        // Check if table exists
-        $result = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='quotes'");
-        $tableExists = $result->fetchArray();
-        
-        if (!$tableExists) {
-            // Table doesn't exist, create it
-            create_table($db);
-        }
-        
-        if ($shouldClose) {
-            $db->close();
-        }
-        
-        return true;
-    } catch (Exception $e) {
-        error_log("Error ensuring quotes table exists: " . $e->getMessage());
-        if ($shouldClose) {
-            $db->close();
-        }
-        return false;
-    }
 }
