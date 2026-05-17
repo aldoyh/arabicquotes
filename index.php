@@ -222,9 +222,31 @@ class QuoteManager
             if (!isset($quote['quote']) || !isset($quote['author'])) {
                 throw new Exception('Invalid quote data');
             }
-            // Clean up quote text by removing newlines and extra spaces
-            $cleanQuote = preg_replace('/\s+/', ' ', trim($quote['quote']));
-            $cleanAuthor = preg_replace('/\s+/', ' ', trim($quote['author']));
+
+            // Comprehensive HTML/Entity cleaning (same as HTML generation):
+            // 1. Decode HTML entities
+            // 2. Remove escaped slashes
+            // 3. Strip all HTML tags
+            // 4. Remove any remaining HTML-like patterns
+            // 5. Normalize whitespace
+            // 6. Trim whitespace
+
+            $cleanQuote = $quote['quote'];
+            $cleanQuote = html_entity_decode($cleanQuote, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            $cleanQuote = str_replace('\\/', '/', $cleanQuote);
+            $cleanQuote = strip_tags($cleanQuote);
+            $cleanQuote = preg_replace('/<[^>]*>/', '', $cleanQuote);
+            $cleanQuote = preg_replace('/\s+/', ' ', $cleanQuote);
+            $cleanQuote = trim($cleanQuote);
+
+            $cleanAuthor = $quote['author'];
+            $cleanAuthor = html_entity_decode($cleanAuthor, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            $cleanAuthor = str_replace('\\/', '/', $cleanAuthor);
+            $cleanAuthor = strip_tags($cleanAuthor);
+            $cleanAuthor = preg_replace('/<[^>]*>/', '', $cleanAuthor);
+            $cleanAuthor = preg_replace('/\s+/', ' ', $cleanAuthor);
+            $cleanAuthor = trim($cleanAuthor);
+            $cleanAuthor = preg_replace('/^[—\-\s]+/', '', $cleanAuthor);
 
             $quoteMarkdown = PHP_EOL . "# " . $cleanQuote . PHP_EOL . PHP_EOL . "- " . $cleanAuthor . PHP_EOL . PHP_EOL;
             if (isset($quote['image'])) {
@@ -248,20 +270,47 @@ class QuoteManager
             if (!isset($quote['quote']) || !isset($quote['author']) || !isset($quote['hits'])) {
                 throw new Exception('Invalid quote data for HTML generation');
             }
-            // Strip any HTML tags and normalise whitespace
-            $cleanQuote = preg_replace('/\s+/', ' ', trim(strip_tags(html_entity_decode($quote['quote'], ENT_QUOTES | ENT_HTML5, 'UTF-8'))));
-            $cleanAuthor = preg_replace('/\s+/', ' ', trim(strip_tags(html_entity_decode($quote['author'], ENT_QUOTES | ENT_HTML5, 'UTF-8'))));
-            // Remove leading dashes that sometimes appear in author fields
+
+            // Comprehensive HTML/Entity cleaning:
+            // 1. Decode HTML entities to actual characters
+            // 2. Strip all HTML tags
+            // 3. Remove escaped forward slashes from URLs
+            // 4. Normalize whitespace (including newlines)
+            // 5. Trim leading/trailing whitespace
+
+            $cleanQuote = $quote['quote'];
+            // First, decode all HTML entities
+            $cleanQuote = html_entity_decode($cleanQuote, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            // Remove escaped slashes from URLs like \/
+            $cleanQuote = str_replace('\\/', '/', $cleanQuote);
+            // Strip all HTML tags completely
+            $cleanQuote = strip_tags($cleanQuote);
+            // Remove any remaining HTML-like patterns (in case of malformed tags)
+            $cleanQuote = preg_replace('/<[^>]*>/', '', $cleanQuote);
+            // Normalize all whitespace (including newlines, tabs, multiple spaces)
+            $cleanQuote = preg_replace('/\s+/', ' ', $cleanQuote);
+            // Trim leading/trailing whitespace
+            $cleanQuote = trim($cleanQuote);
+
+            $cleanAuthor = $quote['author'];
+            // Apply same cleaning to author
+            $cleanAuthor = html_entity_decode($cleanAuthor, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+            $cleanAuthor = str_replace('\\/', '/', $cleanAuthor);
+            $cleanAuthor = strip_tags($cleanAuthor);
+            $cleanAuthor = preg_replace('/<[^>]*>/', '', $cleanAuthor);
+            $cleanAuthor = preg_replace('/\s+/', ' ', $cleanAuthor);
+            $cleanAuthor = trim($cleanAuthor);
+            // Remove leading dashes/em-dashes that sometimes appear
             $cleanAuthor = preg_replace('/^[—\-\s]+/', '', $cleanAuthor);
 
             $html = '
         <div class="flex flex-col items-center animate-slide-up">
             <div class="quote-card w-full rounded-2xl p-8 md:p-10 mb-6 border-r-4 border-amber-500 dark:border-amber-600">
                 <div class="quote-text text-2xl md:text-3xl font-bold text-gray-800 dark:text-amber-50 mb-7 text-center leading-loose">
-                    ' . htmlspecialchars($cleanQuote) . '
+                    ' . htmlspecialchars($cleanQuote, ENT_QUOTES | ENT_HTML5, 'UTF-8') . '
                 </div>
                 <div class="author-text text-lg md:text-xl font-semibold text-amber-700 dark:text-amber-400 text-center">
-                    — ' . htmlspecialchars($cleanAuthor) . '
+                    — ' . htmlspecialchars($cleanAuthor, ENT_QUOTES | ENT_HTML5, 'UTF-8') . '
                 </div>
             </div>
             <div class="flex items-center gap-2 text-sm text-gray-400 dark:text-gray-500 italic">
