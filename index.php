@@ -98,6 +98,65 @@ class QuoteManager
     }
 
     /**
+     * Cleans up all quotes in the database by removing HTML tags and entities.
+     * This fixes quotes imported from Wikipedia that contain HTML markup.
+     * @return int Number of quotes cleaned.
+     */
+    public function cleanupQuotesInDatabase()
+    {
+        try {
+            $db = new SQLite3($this->dbFile);
+            $result = $db->query('SELECT id, quote, author FROM quotes');
+            if (!$result) {
+                throw new Exception("Failed to query quotes from DB");
+            }
+
+            $cleaned = 0;
+            while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+                $cleanedQuote = $this->cleanHtmlFromText($row['quote']);
+                $cleanedAuthor = $this->cleanHtmlFromText($row['author']);
+
+                // Only update if something changed
+                if ($cleanedQuote !== $row['quote'] || $cleanedAuthor !== $row['author']) {
+                    $stmt = $db->prepare('UPDATE quotes SET quote = :quote, author = :author WHERE id = :id');
+                    $stmt->bindValue(':quote', $cleanedQuote, SQLITE3_TEXT);
+                    $stmt->bindValue(':author', $cleanedAuthor, SQLITE3_TEXT);
+                    $stmt->bindValue(':id', $row['id'], SQLITE3_INTEGER);
+                    $stmt->execute();
+                    $cleaned++;
+                }
+            }
+            $db->close();
+            return $cleaned;
+        } catch (Exception $e) {
+            error_log("Error in cleanupQuotesInDatabase: " . $e->getMessage());
+            return 0;
+        }
+    }
+
+    /**
+     * Cleans HTML tags and entities from text.
+     * @param string $text Text to clean.
+     * @return string Cleaned text.
+     */
+    private function cleanHtmlFromText($text)
+    {
+        // Decode HTML entities
+        $cleaned = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        // Remove escaped slashes
+        $cleaned = str_replace('\\/', '/', $cleaned);
+        // Strip all HTML tags
+        $cleaned = strip_tags($cleaned);
+        // Remove any remaining HTML-like patterns
+        $cleaned = preg_replace('/<[^>]*>/', '', $cleaned);
+        // Normalize whitespace
+        $cleaned = preg_replace('/\s+/', ' ', $cleaned);
+        // Trim
+        $cleaned = trim($cleaned);
+        return $cleaned;
+    }
+
+    /**
      * Logs quote updates to a deployment log file.
      * @param string $logMessage Message to log.
      * @return bool True if successful, false otherwise.
@@ -327,16 +386,25 @@ class QuoteManager
     }
 }
 
-// Initialize database if running as main script
+// Initialize database if running as main script or via CLI
 if (basename(__FILE__) === basename($_SERVER['PHP_SELF'])) {
     try {
         $quoteManager = new QuoteManager();
-        $updatedQuote = $quoteManager->updateReadme();
-        if ($updatedQuote) {
-            echo "✅ Quote updated successfully!\n";
-            // echo json_encode($updatedQuote, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n";
+
+        // Check for cleanup command
+        if ($argc > 1 && $argv[1] === 'cleanup') {
+            echo "🧹 Cleaning up HTML tags from quotes in database...\n";
+            $cleaned = $quoteManager->cleanupQuotesInDatabase();
+            echo "✅ Cleaned $cleaned quotes\n";
         } else {
-            echo "❌ Failed to update quote.\n";
+            // Default: update quote
+            $updatedQuote = $quoteManager->updateReadme();
+            if ($updatedQuote) {
+                echo "✅ Quote updated successfully!\n";
+                // echo json_encode($updatedQuote, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) . "\n";
+            } else {
+                echo "❌ Failed to update quote.\n";
+            }
         }
     } catch (Exception $e) {
         error_log("Error in main execution: " . $e->getMessage());
