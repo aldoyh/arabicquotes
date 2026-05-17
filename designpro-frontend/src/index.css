@@ -51,6 +51,11 @@ body {
   a {
     @apply active:opacity-75;
   }
+
+  /* Better visual feedback for buttons */
+  button {
+    @apply active:scale-95;
+  }
 }
 
 /* Optimize for small screens */
@@ -66,4 +71,17 @@ body {
       font-size: 14px;
     }
   }
+
+  /* Better text rendering on mobile */
+  h1, h2, h3, h4, h5, h6, p {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Improve video loading on mobile */
+video {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
