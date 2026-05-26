@@ -1,0 +1,194 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - link "العودة للرئيسية" [ref=e3] [cursor=pointer]:
+      - /url: ./
+      - generic [ref=e4]: ع
+      - generic [ref=e5]: مقولات من خيرة العرب
+    - navigation "روابط الموقع" [ref=e6]:
+      - link "الأرشيف" [ref=e7] [cursor=pointer]:
+        - /url: "#archive"
+      - link "العرض العشوائي" [ref=e8] [cursor=pointer]:
+        - /url: full-quotes.html
+      - link "التوثيق" [ref=e9] [cursor=pointer]:
+        - /url: docs/
+      - link "GitHub" [ref=e10] [cursor=pointer]:
+        - /url: https://github.com/aldoyh/arabicquotes
+  - main [ref=e11]:
+    - region "حكمة عربية جاهزة للقراءة والنشر." [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: اختيار يومي عادل من قاعدة بيانات مفتوحة
+        - heading "حكمة عربية جاهزة للقراءة والنشر." [level=1] [ref=e15]
+        - paragraph [ref=e16]: واجهة ثابتة للنشر على GitHub Pages وhere.now، تعرض اقتباس اليوم مع عداد الاختيار، وتفتح الأرشيف للبحث حسب النص أو القائل أو التصنيف.
+      - generic [ref=e17]:
+        - generic [ref=e19]:
+          - generic [ref=e20]: "\""
+          - paragraph [ref=e21]: إذا جاءك الطعن من الخلف فهذا يعني انك في المقدمة .
+          - generic [ref=e22]:
+            - strong [ref=e23]: مقولة فرنسية
+            - generic [ref=e24]: اختيرت 1 مرة
+        - generic [ref=e25]:
+          - button "نسخ اقتباس اليوم" [ref=e26] [cursor=pointer]
+          - button "اعرض اقتباسا آخر" [ref=e27] [cursor=pointer]
+    - region "إحصاءات الأرشيف" [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]: 4,235
+        - text: اقتباس منشور
+      - generic [ref=e31]:
+        - generic [ref=e32]: 1,209
+        - text: قائل مختلف
+      - generic [ref=e33]:
+        - generic [ref=e34]: "35"
+        - text: تصنيف
+      - generic [ref=e35]:
+        - generic [ref=e36]: "0"
+        - text: أقل عداد اختيار
+    - region "الأرشيف" [ref=e37]:
+      - generic [ref=e38]:
+        - heading "الأرشيف" [level=2] [ref=e39]
+        - button "عرض المزيد" [active] [ref=e40] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: بحث
+          - searchbox "بحث" [ref=e44]
+        - generic [ref=e45]:
+          - generic [ref=e46]: التصنيف
+          - combobox "التصنيف" [ref=e47]:
+            - option "كل التصنيفات" [selected]
+            - option "General"
+            - option "آراء، عام"
+            - option "أباء، أبناء"
+            - option "أخرى"
+            - option "أمثال"
+            - option "إدارة"
+            - option "النفس"
+            - option "الهزائم ، و أخبار المواليد و الوفيات ... و لـكن التاريخ شئ آخر وراء هذا الظاهر ، وهو أن تعرف ما المقدمات التي انتظمت حتى انتهت بالنصر أو الهزيمة .، تاريخ"
+            - option "تأملات"
+            - option "تاريخ"
+            - option "تجديد، إبداع"
+            - option "تفاؤل ، أمـل"
+            - option "تفكير، تغيير"
+            - option "تميز، شجاعة"
+            - option "تنمية الذات، تحفيز"
+            - option "حرب"
+            - option "حرية"
+            - option "حقيقة"
+            - option "حكمة"
+            - option "حوار، تعامل"
+            - option "حياة"
+            - option "خواطر"
+            - option "دروس، اسلام"
+            - option "رجال أعمال"
+            - option "رياضة"
+            - option "سعادة"
+            - option "سياسة"
+            - option "صداقة"
+            - option "طرائف"
+            - option "طموح، نجاح"
+            - option "علم، معرفة"
+            - option "قيادة"
+            - option "كفاح، الصبر"
+            - option "مشاكل،حلول"
+            - option "نصائح، اخلاق"
+      - generic [ref=e57]:
+        - article [ref=e103]:
+          - paragraph [ref=e104]: باسم العرب نحيا... وباسم العرب نموت
+          - generic [ref=e105]:
+            - generic [ref=e106]: محمد جمجوم وعطا الزير وفؤاد حجازي قبل إعدامهم في سجن عكا
+            - generic [ref=e107]: General
+        - article [ref=e108]:
+          - paragraph [ref=e109]: امش ببطء لكي تصل سريعًا.
+          - generic [ref=e110]:
+            - generic [ref=e111]: سعد زغلول
+            - generic [ref=e112]: General
+        - article [ref=e113]:
+          - paragraph [ref=e114]: يتسلى الإنجليز بالنزهة، والألمان بالجري، والفرنسيون بالمقاهي، أما نحن فنتسلى بالنميمة السياسية.
+          - generic [ref=e115]:
+            - generic [ref=e116]: فالح عبد الجبار
+            - generic [ref=e117]: General
+        - article [ref=e118]:
+          - paragraph [ref=e119]: إذا كان أبغض الحلال عند الله الطلاق، فإن أبغض الحلال عند الناس الزواج!
+          - generic [ref=e120]:
+            - generic [ref=e121]: أنيس منصور
+            - generic [ref=e122]: General
+        - article [ref=e123]:
+          - paragraph [ref=e124]: قدر الثقافة أن تكون جسرًا لا سدًّا، وأن تبني ما يهدمه الساسة والمصالح، فالثقافة هي آية العقل وخلاصة الحكمة.
+          - generic [ref=e125]:
+            - generic [ref=e126]: سعاد الصباح
+            - generic [ref=e127]: General
+        - article [ref=e128]:
+          - paragraph [ref=e129]: وَمهما تَكن عند امرئٍ مَنْ خليقـةٍ وإِنْ خالها تخفى على الناس تُعْلَـمٍِ
+          - generic [ref=e130]:
+            - generic [ref=e131]: زهير بن أبي سلمى
+            - generic [ref=e132]: General
+        - article [ref=e133]:
+          - paragraph [ref=e134]: إن اختلاف الرأي لا يفسد للود قضية
+          - generic [ref=e135]:
+            - generic [ref=e136]: أحمد شوقي
+            - generic [ref=e137]: General
+        - article [ref=e138]:
+          - paragraph [ref=e139]: من ليس يسخو بما تسخو الحياة به *** فإنّه أحمق بالحرص ينتحر
+          - generic [ref=e140]:
+            - generic [ref=e141]: إيليا أبو ماضي
+            - generic [ref=e142]: General
+        - article [ref=e143]:
+          - paragraph [ref=e144]: لا تقولوا لي الرأي الذي تظنونه يوافق رأيي، بل قولوا الرأي الذي تحسبونه موافقاً للحق.
+          - generic [ref=e145]:
+            - generic [ref=e146]: عمر بن الخطاب
+            - generic [ref=e147]: General
+        - article [ref=e148]:
+          - paragraph [ref=e149]: خلق الله لنا أذنين ولسانًا واحدًا ..لنسمع أكثر مما نقول
+          - generic [ref=e150]:
+            - generic [ref=e151]: سقراط
+            - generic [ref=e152]: General
+        - article [ref=e153]:
+          - paragraph [ref=e154]: تَبَسُمك في وجه أخيك صدقة.
+          - generic [ref=e155]:
+            - generic [ref=e156]: محمد بن عبد الله
+            - generic [ref=e157]: General
+        - article [ref=e158]:
+          - paragraph [ref=e159]: زوامل للأخبار لا علم عندها بمثقلها إلاّ كعلم الأباعرِ لعمرك ما يدري البعير إذا غدا بأوساقه أو راح ما في الغرائرِ
+          - generic [ref=e160]:
+            - generic [ref=e161]: الحطيئة
+            - generic [ref=e162]: General
+        - article [ref=e163]:
+          - paragraph [ref=e164]: لا أحد يفهم لبنان، لا أصحابه المجازيون ولا صناعه، لا مدمروه ولا أبناؤه، لا الداخلون إليه ولا الخارجون منه. لن نفهم لبنان إلى الأبد.
+          - generic [ref=e165]:
+            - generic [ref=e166]: محمود درويش
+            - generic [ref=e167]: General
+        - article [ref=e168]:
+          - paragraph [ref=e169]: مَا كلُّ ما يَتَمَنّى المَرْءُ يُدْرِكُهُ تجرِي الرّياحُ بمَا لا تَشتَهي السّفُنُ
+          - generic [ref=e170]:
+            - generic [ref=e171]: أبو الطيب المتنبي
+            - generic [ref=e172]: General
+        - article [ref=e173]:
+          - paragraph [ref=e174]: ضع يدك على صفيح ساخن لمدة دقيقة وستشعر أنها ساعة، اجلس مع محبوبتك لمدة ساعة وستشعر أنها دقيقة، هذه هي النسبية.
+          - generic [ref=e175]:
+            - generic [ref=e176]: ألبرت أينشتاين
+            - generic [ref=e177]: General
+        - article [ref=e178]:
+          - paragraph [ref=e179]: لو كان لديك تفاحة ولدي تفاحة مثلها وتبادلناهما فيما بيننا سيبقى لدى كل منا تفاحة واحدة. لكن لو كان لديك فكرة ولدي فكرة وتبادلناهما، فسيكون لدى كل منا فكرتان.
+          - generic [ref=e180]:
+            - generic [ref=e181]: جورج برنارد شو
+            - generic [ref=e182]: General
+        - article [ref=e183]:
+          - paragraph [ref=e184]: اتقوا الظلم فإنه ظلماتٌ يوم القيامة.
+          - generic [ref=e185]:
+            - generic [ref=e186]: محمد بن عبد الله
+            - generic [ref=e187]: General
+        - article [ref=e188]:
+          - paragraph [ref=e189]: إنني جاهل، لا أعرف إلا حقيقة واحدة، وهي أنني لا أعرف شيئاً.
+          - generic [ref=e190]:
+            - generic [ref=e191]: إسحاق نيوتن
+            - generic [ref=e192]: General
+    - region "التوثيق والتشغيل" [ref=e48]:
+      - heading "التوثيق والتشغيل" [level=2] [ref=e49]
+      - paragraph [ref=e50]: تم توثيق مسار الاستيراد، إزالة التكرارات، وعدة النشر المشتركة بين GitHub Pages وhere.now في صفحات التوثيق المنشورة مع الموقع.
+      - generic [ref=e51]:
+        - link "فتح التوثيق" [ref=e52] [cursor=pointer]:
+          - /url: docs/
+        - link "استيراد البيانات" [ref=e53] [cursor=pointer]:
+          - /url: docs/DATASET_IMPORT.md
+        - link "النشر" [ref=e54] [cursor=pointer]:
+          - /url: docs/DEPLOYMENT.md
+  - contentinfo [ref=e55]: مقولات من خيرة العرب. البيانات مستوردة من مصادر مفتوحة مع حفظ عداد الظهور محليا داخل SQLite.
+  - status [ref=e56]

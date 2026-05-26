@@ -1,0 +1,149 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "العودة للرئيسية" [ref=e3] [cursor=pointer]:
+      - /url: ./
+      - generic [ref=e4]: ع
+      - generic [ref=e5]: مقولات من خيرة العرب
+    - navigation "روابط الموقع" [ref=e6]:
+      - link "الأرشيف" [ref=e7] [cursor=pointer]:
+        - /url: "#archive"
+      - link "العرض العشوائي" [ref=e8] [cursor=pointer]:
+        - /url: full-quotes.html
+      - link "التوثيق" [ref=e9] [cursor=pointer]:
+        - /url: docs/
+      - link "GitHub" [ref=e10] [cursor=pointer]:
+        - /url: https://github.com/aldoyh/arabicquotes
+  - main [ref=e11]:
+    - region "حكمة عربية جاهزة للقراءة والنشر." [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]: اختيار يومي عادل من قاعدة بيانات مفتوحة
+        - heading "حكمة عربية جاهزة للقراءة والنشر." [level=1] [ref=e15]
+        - paragraph [ref=e16]: واجهة ثابتة للنشر على GitHub Pages وhere.now، تعرض اقتباس اليوم مع عداد الاختيار، وتفتح الأرشيف للبحث حسب النص أو القائل أو التصنيف.
+      - generic [ref=e17]:
+        - generic [ref=e19]:
+          - generic [ref=e20]: "\""
+          - paragraph [ref=e21]: يقدر الإنسان نفسه حسب الاعمال التي يعتقد انه يستطيع إنجازها ولكن العالم يقدره حسب الاعمال التي ينجزها في الواقع .
+          - generic [ref=e22]:
+            - strong [ref=e23]: لونجفلو
+            - generic [ref=e24]: اختيرت 1 مرة
+        - generic [ref=e25]:
+          - button "نسخ اقتباس اليوم" [ref=e26] [cursor=pointer]
+          - button "اعرض اقتباسا آخر" [ref=e27] [cursor=pointer]
+    - region "إحصاءات الأرشيف" [ref=e28]:
+      - generic [ref=e29]:
+        - generic [ref=e30]: 4,235
+        - text: اقتباس منشور
+      - generic [ref=e31]:
+        - generic [ref=e32]: 1,209
+        - text: قائل مختلف
+      - generic [ref=e33]:
+        - generic [ref=e34]: "35"
+        - text: تصنيف
+      - generic [ref=e35]:
+        - generic [ref=e36]: "0"
+        - text: أقل عداد اختيار
+    - region "الأرشيف" [ref=e37]:
+      - generic [ref=e38]:
+        - heading "الأرشيف" [level=2] [ref=e39]
+        - button "عرض المزيد" [ref=e40] [cursor=pointer]
+      - generic [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]: بحث
+          - searchbox "بحث" [ref=e44]
+        - generic [ref=e45]:
+          - generic [ref=e46]: التصنيف
+          - combobox "التصنيف" [ref=e47]:
+            - option "كل التصنيفات" [selected]
+            - option "General"
+            - option "آراء، عام"
+            - option "أباء، أبناء"
+            - option "أخرى"
+            - option "أمثال"
+            - option "إدارة"
+            - option "النفس"
+            - option "الهزائم ، و أخبار المواليد و الوفيات ... و لـكن التاريخ شئ آخر وراء هذا الظاهر ، وهو أن تعرف ما المقدمات التي انتظمت حتى انتهت بالنصر أو الهزيمة .، تاريخ"
+            - option "تأملات"
+            - option "تاريخ"
+            - option "تجديد، إبداع"
+            - option "تفاؤل ، أمـل"
+            - option "تفكير، تغيير"
+            - option "تميز، شجاعة"
+            - option "تنمية الذات، تحفيز"
+            - option "حرب"
+            - option "حرية"
+            - option "حقيقة"
+            - option "حكمة"
+            - option "حوار، تعامل"
+            - option "حياة"
+            - option "خواطر"
+            - option "دروس، اسلام"
+            - option "رجال أعمال"
+            - option "رياضة"
+            - option "سعادة"
+            - option "سياسة"
+            - option "صداقة"
+            - option "طرائف"
+            - option "طموح، نجاح"
+            - option "علم، معرفة"
+            - option "قيادة"
+            - option "كفاح، الصبر"
+            - option "مشاكل،حلول"
+            - option "نصائح، اخلاق"
+      - generic [ref=e48]:
+        - article [ref=e49]:
+          - paragraph [ref=e50]: باسم العرب نحيا... وباسم العرب نموت
+          - generic [ref=e51]:
+            - generic [ref=e52]: محمد جمجوم وعطا الزير وفؤاد حجازي قبل إعدامهم في سجن عكا
+            - generic [ref=e53]: General
+        - article [ref=e54]:
+          - paragraph [ref=e55]: امش ببطء لكي تصل سريعًا.
+          - generic [ref=e56]:
+            - generic [ref=e57]: سعد زغلول
+            - generic [ref=e58]: General
+        - article [ref=e59]:
+          - paragraph [ref=e60]: يتسلى الإنجليز بالنزهة، والألمان بالجري، والفرنسيون بالمقاهي، أما نحن فنتسلى بالنميمة السياسية.
+          - generic [ref=e61]:
+            - generic [ref=e62]: فالح عبد الجبار
+            - generic [ref=e63]: General
+        - article [ref=e64]:
+          - paragraph [ref=e65]: إذا كان أبغض الحلال عند الله الطلاق، فإن أبغض الحلال عند الناس الزواج!
+          - generic [ref=e66]:
+            - generic [ref=e67]: أنيس منصور
+            - generic [ref=e68]: General
+        - article [ref=e69]:
+          - paragraph [ref=e70]: قدر الثقافة أن تكون جسرًا لا سدًّا، وأن تبني ما يهدمه الساسة والمصالح، فالثقافة هي آية العقل وخلاصة الحكمة.
+          - generic [ref=e71]:
+            - generic [ref=e72]: سعاد الصباح
+            - generic [ref=e73]: General
+        - article [ref=e74]:
+          - paragraph [ref=e75]: ".mw-parser-output .abyat-wrapper { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; text-align: justify; text-align-last: justify; margin: auto } .mw-parser-output .abyat-wrapper.mashtoor { grid-template-columns: 1fr; padding-left: 0 } .mw-parser-output .abyat-single_bayt { grid-column: 2/4; padding-left: 0.5em; padding-right: 0.5em } .mw-parser-output .abyat-wrapper>div { white-space: nowrap; break-inside: avoid; page-break-inside: avoid } .mw-parser-output .abyat-sdr { grid-column: 1/3; padding-left: 1em } .mw-parser-output .abyat-ajz { grid-column: 3/5; padding-right: 1em } .mw-parser-output .abyat-wrapper.abyat-shaterbyshater { grid-template-columns: 1fr } .mw-parser-output .abyat-shaterbyshater .abyat-single_bayt { grid-column: unset; padding-left: 2.5em; padding-right: 2.5em } .mw-parser-output .abyat-shaterbyshater .abyat-sdr { grid-column: unset; padding-left: 5em } .mw-parser-output .abyat-shaterbyshater .abyat-ajz { grid-column: unset; padding-right: 5em } @media screen and (max-width:600px) { .mw-parser-output .abyat-wrapper { grid-template-columns: 1fr } .mw-parser-output .abyat-single_bayt { grid-column: unset; padding-left: 2.5em; padding-right: 2.5em } .mw-parser-output .abyat-sdr { grid-column: unset; padding-left: 5em } .mw-parser-output .abyat-ajz { grid-column: unset; padding-right: 5em } } وَمهما تَكن عند امرئٍ مَنْ خليقـةٍ وإِنْ خالها تخفى على الناس تُعْلَـمٍِ"
+          - generic [ref=e76]:
+            - generic [ref=e77]: زهير بن أبي سلمى
+            - generic [ref=e78]: General
+        - article [ref=e79]:
+          - paragraph [ref=e80]: إن اختلاف الرأي لا يفسد للود قضية
+          - generic [ref=e81]:
+            - generic [ref=e82]: أحمد شوقي
+            - generic [ref=e83]: General
+        - article [ref=e84]:
+          - paragraph [ref=e85]: من ليس يسخو بما تسخو الحياة به *** فإنّه أحمق بالحرص ينتحر
+          - generic [ref=e86]:
+            - generic [ref=e87]: إيليا أبو ماضي
+            - generic [ref=e88]: General
+        - article [ref=e89]:
+          - paragraph [ref=e90]: لا تقولوا لي الرأي الذي تظنونه يوافق رأيي، بل قولوا الرأي الذي تحسبونه موافقاً للحق.
+          - generic [ref=e91]:
+            - generic [ref=e92]: عمر بن الخطاب
+            - generic [ref=e93]: General
+    - region "التوثيق والتشغيل" [ref=e94]:
+      - heading "التوثيق والتشغيل" [level=2] [ref=e95]
+      - paragraph [ref=e96]: تم توثيق مسار الاستيراد، إزالة التكرارات، وعدة النشر المشتركة بين GitHub Pages وhere.now في صفحات التوثيق المنشورة مع الموقع.
+      - generic [ref=e97]:
+        - link "فتح التوثيق" [ref=e98] [cursor=pointer]:
+          - /url: docs/
+        - link "استيراد البيانات" [ref=e99] [cursor=pointer]:
+          - /url: docs/DATASET_IMPORT.md
+        - link "النشر" [ref=e100] [cursor=pointer]:
+          - /url: docs/DEPLOYMENT.md
+  - contentinfo [ref=e101]: مقولات من خيرة العرب. البيانات مستوردة من مصادر مفتوحة مع حفظ عداد الظهور محليا داخل SQLite.
+  - status [ref=e102]
