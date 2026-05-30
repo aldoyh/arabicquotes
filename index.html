@@ -8,6 +8,7 @@
     <meta property="og:title" content="مقولات من خيرة العرب">
     <meta property="og:description" content="أرشيف عربي مفتوح للحكم والمقولات، مع اختيار يومي عادل وواجهة بحث جاهزة للنشر.">
     <meta property="og:image" content="assets/arabicquotes-header.jpg">
+    <meta property="og:url" content="https://aq.aldoy.net/">
     <meta property="og:type" content="website">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -542,13 +543,19 @@
             const text = clean(quote.quote);
             const author = clean(quote.author) || "غير معروف";
             const category = clean(quote.category) || "عام";
-            article.innerHTML = `
-                <p>${text}</p>
-                <footer>
-                    <span>${author}</span>
-                    <span class="tag">${category}</span>
-                </footer>
-            `;
+
+            const p = document.createElement("p");
+            p.textContent = text;
+
+            const footer = document.createElement("footer");
+            const authorSpan = document.createElement("span");
+            authorSpan.textContent = author;
+            const categorySpan = document.createElement("span");
+            categorySpan.className = "tag";
+            categorySpan.textContent = category;
+            footer.append(authorSpan, categorySpan);
+
+            article.append(p, footer);
             return article;
         }
 
@@ -580,16 +587,33 @@
             if (!state.quotes.length) return;
             const quote = state.quotes[Math.floor(Math.random() * state.quotes.length)];
             const container = document.getElementById("quote-container");
-            container.innerHTML = `
-                <div class="daily-quote-card" data-quote-id="${quote.id || ""}" data-hits="${Number(quote.hits || 0)}">
-                    <div class="quote-mark" aria-hidden="true">"</div>
-                    <p class="quote-text">${clean(quote.quote)}</p>
-                    <div class="quote-meta">
-                        <strong class="author-text">${clean(quote.author) || "غير معروف"}</strong>
-                        <span class="selection-count">اختيرت ${formatNumber(Number(quote.hits || 0))} مرة</span>
-                    </div>
-                </div>
-            `;
+
+            const card = document.createElement("div");
+            card.className = "daily-quote-card";
+            card.dataset.quoteId = quote.id || "";
+            card.dataset.hits = Number(quote.hits || 0);
+
+            const mark = document.createElement("div");
+            mark.className = "quote-mark";
+            mark.setAttribute("aria-hidden", "true");
+            mark.textContent = "“";
+
+            const p = document.createElement("p");
+            p.className = "quote-text";
+            p.textContent = clean(quote.quote);
+
+            const meta = document.createElement("div");
+            meta.className = "quote-meta";
+            const strong = document.createElement("strong");
+            strong.className = "author-text";
+            strong.textContent = clean(quote.author) || "غير معروف";
+            const count = document.createElement("span");
+            count.className = "selection-count";
+            count.textContent = "اختيرت " + formatNumber(Number(quote.hits || 0)) + " مرة";
+            meta.append(strong, count);
+
+            card.append(mark, p, meta);
+            container.replaceChildren(card);
         }
 
         function copyDailyQuote() {
