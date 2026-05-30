@@ -35,6 +35,12 @@ jobs:
         with:
           ref: master
 
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: sqlite3
+
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
