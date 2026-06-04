@@ -2,6 +2,12 @@
 
 واجهة عربية ثابتة لعرض اقتباس يومي وأرشيف قابل للبحث، جاهزة للنشر على GitHub Pages وhere.now.
 
+## الموقع الحي
+
+<!-- HERENOW_URL:START -->
+🌐 [blissful-hazel-gdhm.here.now](https://blissful-hazel-gdhm.here.now/)
+<!-- HERENOW_URL:END -->
+
 ## اقتباس اليوم
 <!-- QUOTE:START -->
 

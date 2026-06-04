@@ -21,7 +21,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: "herenow"
@@ -57,3 +57,46 @@ jobs:
         env:
           HERENOW_API_KEY: ${{ secrets.HERENOW_API_KEY }}
           HERENOW_SLUG: ${{ vars.HERENOW_SLUG }}
+
+      - name: Update production URL in README
+        if: steps.herenow.outputs.site_url != ''
+        env:
+          SITE_URL: ${{ steps.herenow.outputs.site_url }}
+        run: |
+          python3 - <<'EOF'
+          import re, os
+          url = os.environ['SITE_URL']
+          label = url.removeprefix('https://').rstrip('/')
+          replacement = (
+              '<!-- HERENOW_URL:START -->\n'
+              f'🌐 [{label}]({url})\n'
+              '<!-- HERENOW_URL:END -->'
+          )
+          with open('README.md') as f:
+              content = f.read()
+          content = re.sub(
+              r'<!-- HERENOW_URL:START -->.*?<!-- HERENOW_URL:END -->',
+              replacement,
+              content,
+              flags=re.DOTALL,
+          )
+          with open('README.md', 'w') as f:
+              f.write(content)
+          EOF
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update here.now production URL [skip ci]"
+            git push
+          fi
+
+      - name: Update repository description
+        if: steps.herenow.outputs.site_url != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SITE_URL: ${{ steps.herenow.outputs.site_url }}
+        run: |
+          gh api repos/${{ github.repository }} \
+            --method PATCH \
+            -f description="مقولات من خيرة العرب — ${SITE_URL}"
