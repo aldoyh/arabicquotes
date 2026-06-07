@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [opaque-ponder-ysn6.here.now](https://opaque-ponder-ysn6.here.now/)
+🌐 [mossy-laurel-82jh.here.now](https://mossy-laurel-82jh.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
