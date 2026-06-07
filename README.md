@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [mossy-laurel-82jh.here.now](https://mossy-laurel-82jh.here.now/)
+🌐 [saffron-koan-n6qp.here.now](https://saffron-koan-n6qp.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
