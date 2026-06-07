@@ -46,7 +46,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '26'
 
       - name: Build clean static site
         run: php scripts/build-site.php _site
@@ -82,3 +82,4 @@ jobs:
           gh api repos/${{ github.repository }} \
             --method PATCH \
             -f description="مقولات من خيرة العرب — ${SITE_URL}"
+
