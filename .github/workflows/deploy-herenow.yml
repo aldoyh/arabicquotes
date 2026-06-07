@@ -33,18 +33,18 @@ jobs:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
         with:
           ref: master
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.5'
+          php-version: '8.3'
           extensions: sqlite3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
 
@@ -68,8 +68,10 @@ jobs:
           url = os.environ['SITE_URL']
           label = url.removeprefix('https://').rstrip('/')
           replacement = (
-              '<!-- HERENOW_URL:START -->\n'
-              f'🌐 [{label}]({url})\n'
+              '<!-- HERENOW_URL:START -->
+'
+              f'🌐 [{label}]({url})
+'
               '<!-- HERENOW_URL:END -->'
           )
           with open('README.md') as f:
