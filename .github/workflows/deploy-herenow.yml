@@ -22,6 +22,7 @@ on:
 
 permissions:
   contents: write
+  metadata: write
 
 concurrency:
   group: "herenow"
@@ -84,6 +85,7 @@ jobs:
 
       - name: Update repository description
         if: steps.herenow.outputs.site_url != ''
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SITE_URL: ${{ steps.herenow.outputs.site_url }}
