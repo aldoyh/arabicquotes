@@ -22,7 +22,6 @@ on:
 
 permissions:
   contents: write
-  metadata: write
 
 concurrency:
   group: "herenow"
@@ -64,17 +63,7 @@ jobs:
         env:
           SITE_URL: ${{ steps.herenow.outputs.site_url }}
         run: |
-          python3 -c "
-          import re, os
-          url = os.environ['SITE_URL']
-          label = url.removeprefix('https://').rstrip('/')
-          replacement = '<!-- HERENOW_URL:START -->\n\U0001f310 [' + label + '](' + url + ')\n<!-- HERENOW_URL:END -->'
-          with open('README.md') as f:
-              content = f.read()
-          content = re.sub(r'<!-- HERENOW_URL:START -->.*?<!-- HERENOW_URL:END -->', replacement, content, flags=re.DOTALL)
-          with open('README.md', 'w') as f:
-              f.write(content)
-          "
+          python3 .github/scripts/update-readme-url.py
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
