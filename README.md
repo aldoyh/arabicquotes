@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [blissful-hazel-gdhm.here.now](https://blissful-hazel-gdhm.here.now/)
+🌐 [opaque-ponder-ysn6.here.now](https://opaque-ponder-ysn6.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
