@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [saffron-koan-n6qp.here.now](https://saffron-koan-n6qp.here.now/)
+🌐 [marine-island-pryp.here.now](https://marine-island-pryp.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
