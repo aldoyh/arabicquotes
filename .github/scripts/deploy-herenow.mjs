@@ -101,9 +101,24 @@ const body = {
   }
 };
 
-const publish = slug
-  ? await request(`/api/v1/publish/${encodeURIComponent(slug)}`, { method: "PUT", body: JSON.stringify(body) })
-  : await request("/api/v1/publish", { method: "POST", body: JSON.stringify(body) });
+let publish;
+if (slug) {
+  try {
+    // Try to update existing persistent slug
+    publish = await request(`/api/v1/publish/${encodeURIComponent(slug)}`, { method: "PUT", body: JSON.stringify(body) });
+  } catch (error) {
+    // If slug doesn't exist (404), create it as new persistent deployment
+    if (error.message.includes("404")) {
+      console.log(`Creating new persistent slug: ${slug}`);
+      publish = await request(`/api/v1/publish`, { method: "POST", body: JSON.stringify({ ...body, slug: encodeURIComponent(slug) }) });
+    } else {
+      throw error;
+    }
+  }
+} else {
+  // Create ephemeral deployment
+  publish = await request("/api/v1/publish", { method: "POST", body: JSON.stringify(body) });
+}
 
 const uploadByPath = new Map((publish.upload?.uploads || []).map((upload) => [upload.path, upload]));
 
