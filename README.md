@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [stellar-flint-77w9.here.now](https://stellar-flint-77w9.here.now/)
+🌐 [calm-mirage-22a8.here.now](https://calm-mirage-22a8.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
