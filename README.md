@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [marine-island-pryp.here.now](https://marine-island-pryp.here.now/)
+🌐 [stellar-flint-77w9.here.now](https://stellar-flint-77w9.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
