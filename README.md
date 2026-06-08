@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [silken-nutmeg-tn3j.here.now](https://silken-nutmeg-tn3j.here.now/)
+🌐 [present-bridge-tzsm.here.now](https://present-bridge-tzsm.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
