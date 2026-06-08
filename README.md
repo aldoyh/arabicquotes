@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [silken-savoy-sy7y.here.now](https://silken-savoy-sy7y.here.now/)
+🌐 [distant-prana-9nb2.here.now](https://distant-prana-9nb2.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
