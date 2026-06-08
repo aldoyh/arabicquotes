@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [present-bridge-tzsm.here.now](https://present-bridge-tzsm.here.now/)
+🌐 [lapis-waffle-fytj.here.now](https://lapis-waffle-fytj.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
