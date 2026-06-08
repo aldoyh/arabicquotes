@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [calm-mirage-22a8.here.now](https://calm-mirage-22a8.here.now/)
+🌐 [silken-savoy-sy7y.here.now](https://silken-savoy-sy7y.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
