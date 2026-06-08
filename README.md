@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [distant-prana-9nb2.here.now](https://distant-prana-9nb2.here.now/)
+🌐 [silken-nutmeg-tn3j.here.now](https://silken-nutmeg-tn3j.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
