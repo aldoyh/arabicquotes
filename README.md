@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [present-lichen-mnan.here.now](https://present-lichen-mnan.here.now/)
+🌐 [starry-realm-txjm.here.now](https://starry-realm-txjm.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
