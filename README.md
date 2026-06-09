@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [lapis-waffle-fytj.here.now](https://lapis-waffle-fytj.here.now/)
+🌐 [present-lichen-mnan.here.now](https://present-lichen-mnan.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
