@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [zephyr-pulsar-qqap.here.now](https://zephyr-pulsar-qqap.here.now/)
+🌐 [amber-igloo-3ygq.here.now](https://amber-igloo-3ygq.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
