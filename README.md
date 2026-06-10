@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [starry-realm-txjm.here.now](https://starry-realm-txjm.here.now/)
+🌐 [zephyr-pulsar-qqap.here.now](https://zephyr-pulsar-qqap.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
