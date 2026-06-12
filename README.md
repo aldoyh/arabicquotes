@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [silken-cipher-kz6b.here.now](https://silken-cipher-kz6b.here.now/)
+🌐 [clever-pickle-kdmt.here.now](https://clever-pickle-kdmt.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
