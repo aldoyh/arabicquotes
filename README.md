@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [amber-igloo-3ygq.here.now](https://amber-igloo-3ygq.here.now/)
+🌐 [silken-cipher-kz6b.here.now](https://silken-cipher-kz6b.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
