@@ -56,7 +56,7 @@ jobs:
         run: node .github/scripts/deploy-herenow.mjs _site
         env:
           HERENOW_API_KEY: ${{ secrets.HERENOW_API_KEY }}
-          HERENOW_SLUG: arabicquotes
+          HERENOW_SLUG: lapis-waffle-fytj
 
       - name: Update production URL in README
         if: steps.herenow.outputs.site_url != ''
