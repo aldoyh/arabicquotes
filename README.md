@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [mystic-birch-r3mq.here.now](https://mystic-birch-r3mq.here.now/)
+🌐 [plush-quiche-wef3.here.now](https://plush-quiche-wef3.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
