@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [plush-quiche-wef3.here.now](https://plush-quiche-wef3.here.now/)
+🌐 [flowing-lagoon-8v7g.here.now](https://flowing-lagoon-8v7g.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
