@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [clever-pickle-kdmt.here.now](https://clever-pickle-kdmt.here.now/)
+🌐 [mystic-birch-r3mq.here.now](https://mystic-birch-r3mq.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
