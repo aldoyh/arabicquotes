@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [flowing-lagoon-8v7g.here.now](https://flowing-lagoon-8v7g.here.now/)
+🌐 [misty-grace-xa9r.here.now](https://misty-grace-xa9r.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
