@@ -34,7 +34,7 @@ The workflow builds the same `_site` directory and publishes it with `.github/sc
 
 Current persistent here.now site:
 
-- `https://blissful-hazel-gdhm.here.now/`
+- `https://lapis-waffle-fytj.here.now/`
 
 Required repository secret:
 
@@ -42,6 +42,6 @@ Required repository secret:
 
 Optional repository variable:
 
-- `HERENOW_SLUG`: existing here.now slug to update. Set this to `blissful-hazel-gdhm` to update the current persistent site.
+- `HERENOW_SLUG`: existing here.now slug to update. Set this to `lapis-waffle-fytj` to update the current persistent site.
 
 The workflow writes the final here.now URL to the GitHub Actions step summary.

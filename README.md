@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [misty-grace-xa9r.here.now](https://misty-grace-xa9r.here.now/)
+🌐 [lapis-waffle-fytj.here.now](https://lapis-waffle-fytj.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم

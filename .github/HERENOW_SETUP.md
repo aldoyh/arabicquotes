@@ -6,11 +6,11 @@ This guide explains how to configure persistent here.now deployment (same URL on
 
 - **Deployment Script**: `.github/scripts/deploy-herenow.mjs` ✅ (ready)
 - **API Key Secret**: `HERENOW_API_KEY` ✅ (required)
-- **Persistent Slug**: `HERENOW_SLUG` ❌ (NOT SET - causing ephemeral deployments)
+- **Persistent Slug**: `HERENOW_SLUG` ✅ (SET to `lapis-waffle-fytj`)
 
 ## How It Works
 
-### Ephemeral Deployment (Current - Creates New URL Each Time)
+### Ephemeral Deployment (Previous - Creates New URL Each Time)
 ```
 HERENOW_SLUG = not set (empty)
     ↓
@@ -19,47 +19,56 @@ POST /api/v1/publish
 Result: Random URL like "saffron-koan-n6qp.here.now"
 ```
 
-### Persistent Deployment (Target - Same URL Every Time)
+### Persistent Deployment (Current - Same URL Every Time)
 ```
-HERENOW_SLUG = "arabicquotes" (example)
+HERENOW_SLUG = "lapis-waffle-fytj" (production)
     ↓
-PUT /api/v1/publish/arabicquotes
+PUT /api/v1/publish/lapis-waffle-fytj
     ↓
-Result: Always "arabicquotes.here.now"
+Result: Always "lapis-waffle-fytj.here.now"
 ```
 
 ## Setup Instructions
 
-### Step 1: Choose a Slug
-Pick a memorable slug for your site. Examples:
-- `arabicquotes` → `arabicquotes.here.now`
-- `aq` → `aq.here.now`
-- `quotes-ar` → `quotes-ar.here.now`
+### Step 1: Slug Configuration (Already Set)
 
-### Step 2: Set Repository Variable in GitHub
+The persistent slug is currently configured as:
+- **Slug**: `lapis-waffle-fytj`
+- **URL**: `https://lapis-waffle-fytj.here.now/`
+- **Domain**: Bound to `maqeel.aldoy.net`
 
-1. Go to: **Settings → Secrets and variables → Actions → Variables**
-2. Click **New repository variable**
-3. Configure:
-   - **Name**: `HERENOW_SLUG`
-   - **Value**: `arabicquotes` (or your chosen slug)
-4. Click **Add variable**
+To change it, follow these steps:
+
+1. Choose a new memorable slug (examples: `arabicquotes`, `aq`, `quotes-ar`)
+2. Go to: **Settings → Secrets and variables → Actions → Variables**
+3. Edit the `HERENOW_SLUG` variable
+4. Set **Value** to your chosen slug
+
+### Step 2: Deploy to New Slug
+
+After updating the slug variable, trigger the workflow to deploy to the new persistent site.
 
 ### Step 3: Clean Up Old Sites (Optional)
 
-To clean up the old ephemeral deployments on here.now:
+To clean up old ephemeral deployments on here.now:
 
 1. Go to https://here.now/
 2. Log in with your account
-3. Delete the old sites (keep the one you want to use)
+3. Delete the old temporary sites
 4. The next workflow run will deploy to your persistent slug
+
+To list and delete sites via CLI:
+```bash
+HERENOW_API_KEY=your_key node .github/scripts/cleanup-herenow.mjs list
+HERENOW_API_KEY=your_key node .github/scripts/cleanup-herenow.mjs delete <slug>
+```
 
 ### Step 4: Verify
 
-After setting up:
+After setup:
 1. Trigger workflow: **Actions → Deploy to here.now → Run workflow**
 2. Check the deployment log
-3. Verify URL is consistent: `https://arabicquotes.here.now/`
+3. Verify URL is consistent: `https://lapis-waffle-fytj.here.now/`
 4. Confirm subsequent deployments update the same URL
 
 ## Environment Variables
@@ -68,7 +77,7 @@ After setting up:
 - `HERENOW_API_KEY` - Your here.now API key (must be set)
 
 ### Optional Variables
-- `HERENOW_SLUG` - Persistent deployment slug (optional, but recommended)
+- `HERENOW_SLUG` - Persistent deployment slug (currently set to `lapis-waffle-fytj`)
 
 ## Workflow Triggers
 
