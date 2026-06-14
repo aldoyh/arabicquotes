@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [pure-castle-d6se.here.now](https://pure-castle-d6se.here.now/)
+🌐 [indigo-marvel-5nej.here.now](https://indigo-marvel-5nej.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
