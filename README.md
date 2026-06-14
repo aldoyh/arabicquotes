@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [indigo-marvel-5nej.here.now](https://indigo-marvel-5nej.here.now/)
+🌐 [sable-desert-vce9.here.now](https://sable-desert-vce9.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
