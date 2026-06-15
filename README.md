@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [sable-desert-vce9.here.now](https://sable-desert-vce9.here.now/)
+🌐 [stellar-silence-mj8t.here.now](https://stellar-silence-mj8t.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
