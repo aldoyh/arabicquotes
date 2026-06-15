@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [stellar-silence-mj8t.here.now](https://stellar-silence-mj8t.here.now/)
+🌐 [sacred-brook-z836.here.now](https://sacred-brook-z836.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
