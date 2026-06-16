@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [vowful-turret-bxwx.here.now](https://vowful-turret-bxwx.here.now/)
+🌐 [earthy-drift-zqex.here.now](https://earthy-drift-zqex.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
