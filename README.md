@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [sacred-brook-z836.here.now](https://sacred-brook-z836.here.now/)
+🌐 [vowful-turret-bxwx.here.now](https://vowful-turret-bxwx.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
