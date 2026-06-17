@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [earthy-drift-zqex.here.now](https://earthy-drift-zqex.here.now/)
+🌐 [mellow-tundra-b4aw.here.now](https://mellow-tundra-b4aw.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
