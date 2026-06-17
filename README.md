@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [mellow-tundra-b4aw.here.now](https://mellow-tundra-b4aw.here.now/)
+🌐 [glacial-mantle-39wz.here.now](https://glacial-mantle-39wz.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
