@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [glacial-mantle-39wz.here.now](https://glacial-mantle-39wz.here.now/)
+🌐 [bitter-gazebo-kea3.here.now](https://bitter-gazebo-kea3.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
