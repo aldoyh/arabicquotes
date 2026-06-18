@@ -56,7 +56,10 @@ jobs:
         run: node .github/scripts/deploy-herenow.mjs _site
         env:
           HERENOW_API_KEY: ${{ secrets.HERENOW_API_KEY }}
-          HERENOW_SLUG: lapis-waffle-fytj
+          # Read from a repo variable so the persistent slug can be changed
+          # in Settings → Variables without editing this workflow. The hardcoded
+          # value below is only a fallback if the variable is missing.
+          HERENOW_SLUG: ${{ vars.HERENOW_SLUG || 'lapis-waffle-fytj' }}
 
       - name: Update production URL in README
         if: steps.herenow.outputs.site_url != ''

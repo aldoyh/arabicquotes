@@ -40,8 +40,12 @@ Required repository secret:
 
 - `HERENOW_API_KEY`: here.now API key. This is required for a persistent site.
 
-Optional repository variable:
+Required repository variable:
 
-- `HERENOW_SLUG`: existing here.now slug to update. Set this to `lapis-waffle-fytj` to update the current persistent site.
+- `HERENOW_SLUG`: existing here.now slug to update. The workflow reads this
+  variable and **falls back** to `lapis-waffle-fytj` if unset. The deploy
+  script refuses to run if neither the variable nor the fallback is
+  available, and refuses to silently create a new site on a 404 — this is
+  the safeguard that prevents a new here.now URL on every deploy.
 
 The workflow writes the final here.now URL to the GitHub Actions step summary.

@@ -11,6 +11,16 @@ if (!apiKey) {
   throw new Error("HERENOW_API_KEY is required for a persistent here.now deployment.");
 }
 
+// A persistent here.now site MUST be identified by a stable slug, otherwise
+// every run will mint a brand-new site and URL. Refuse to deploy unless one is
+// provided so the operator is forced to fix the configuration instead of
+// silently leaking a new ephemeral site.
+if (!slug) {
+  throw new Error(
+    "HERENOW_SLUG is required. Set the repository variable HERENOW_SLUG to the persistent slug you want to update (e.g. 'lapis-waffle-fytj'). Without it this run would create a new here.now site on every deploy."
+  );
+}
+
 const contentTypes = {
   ".css": "text/css; charset=utf-8",
   ".db": "application/vnd.sqlite3",
@@ -101,24 +111,16 @@ const body = {
   }
 };
 
-let publish;
-if (slug) {
-  try {
-    // Try to update existing persistent slug
-    publish = await request(`/api/v1/publish/${encodeURIComponent(slug)}`, { method: "PUT", body: JSON.stringify(body) });
-  } catch (error) {
-    // If slug doesn't exist (404), create it as new persistent deployment
-    if (error.message.includes("404")) {
-      console.log(`Creating new persistent slug: ${slug}`);
-      publish = await request(`/api/v1/publish`, { method: "POST", body: JSON.stringify({ ...body, slug: encodeURIComponent(slug) }) });
-    } else {
-      throw error;
-    }
-  }
-} else {
-  // Create ephemeral deployment
-  publish = await request("/api/v1/publish", { method: "POST", body: JSON.stringify(body) });
-}
+// Update the persistent site. A 404 here means the slug has never been
+// claimed under this here.now account (or was deleted). We deliberately do
+// NOT fall back to POST /api/v1/publish, because that would silently mint a
+// brand-new site and URL — the exact behavior we are trying to prevent. The
+// operator must investigate and either restore the slug on here.now or fix
+// HERENOW_SLUG in the repository variables.
+const publish = await request(
+  `/api/v1/publish/${encodeURIComponent(slug)}`,
+  { method: "PUT", body: JSON.stringify(body) }
+);
 
 const uploadByPath = new Map((publish.upload?.uploads || []).map((upload) => [upload.path, upload]));
 

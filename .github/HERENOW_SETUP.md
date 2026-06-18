@@ -10,23 +10,25 @@ This guide explains how to configure persistent here.now deployment (same URL on
 
 ## How It Works
 
-### Ephemeral Deployment (Previous - Creates New URL Each Time)
-```
-HERENOW_SLUG = not set (empty)
-    ↓
-POST /api/v1/publish
-    ↓
-Result: Random URL like "saffron-koan-n6qp.here.now"
-```
-
 ### Persistent Deployment (Current - Same URL Every Time)
 ```
-HERENOW_SLUG = "lapis-waffle-fytj" (production)
+HERENOW_SLUG = "lapis-waffle-fytj" (read from repo variable)
     ↓
 PUT /api/v1/publish/lapis-waffle-fytj
     ↓
 Result: Always "lapis-waffle-fytj.here.now"
 ```
+
+### Refusal To Deploy (Safeguard)
+The deploy script will now **fail the workflow run** instead of creating a
+new site if either of these is true:
+
+- `HERENOW_SLUG` is empty/missing (would have produced a brand-new random
+  URL on every run).
+- `PUT /api/v1/publish/<slug>` returns 404 (the persistent site has been
+  deleted on here.now, or the slug was changed). The script will NOT fall
+  back to `POST /api/v1/publish`, because that is exactly the behavior
+  that was leaking new sites.
 
 ## Setup Instructions
 
@@ -88,20 +90,30 @@ The `deploy-herenow.yml` workflow runs on:
 
 ## Troubleshooting
 
+### Workflow fails with "HERENOW_SLUG is required"
+- The repo variable is unset. The script refuses to run without it because
+  it would otherwise mint a brand-new here.now site on every deploy.
+- Set it: **Settings → Secrets and variables → Actions → Variables →
+  `HERENOW_SLUG`** = `lapis-waffle-fytj` (or whatever slug you own).
+
+### Workflow fails with `here.now API 404: ...`
+- The persistent slug has been deleted on here.now, or `HERENOW_SLUG` was
+  changed to a slug that has never been claimed under this API key.
+- Recover by creating the site manually (via the here.now dashboard with
+  the API key), or update `HERENOW_SLUG` to a slug that already exists in
+  your account. The script will no longer auto-create a new site for you.
+
 ### "Slug already exists"
 - The slug may already be registered on here.now
 - Choose a different slug name
 - Or delete the existing deployment first
 
 ### "New URL on each deploy"
-- `HERENOW_SLUG` variable is not set
+- `HERENOW_SLUG` variable is not set, **or** the slug it points to has
+  been deleted on here.now. Both cases now fail loudly (see above)
+  instead of producing a new URL. Restore the slug or update the variable.
 - Check: Settings → Secrets and variables → Actions → Variables
 - Verify the variable name is exactly `HERENOW_SLUG`
-
-### Deployment still shows as POST (ephemeral)
-- Wait for next scheduled run or manually trigger
-- GitHub Actions may cache the environment
-- Force a re-run to pick up new variables
 
 ## References
 
