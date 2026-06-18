@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [bitter-gazebo-kea3.here.now](https://bitter-gazebo-kea3.here.now/)
+🌐 [bright-ivory-e977.here.now](https://bright-ivory-e977.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
