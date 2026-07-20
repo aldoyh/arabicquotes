@@ -32,20 +32,19 @@ Workflow: `.github/workflows/deploy-herenow.yml`
 
 The workflow builds the same `_site` directory and publishes it with `.github/scripts/deploy-herenow.mjs`.
 
-Current persistent here.now site:
-
-- `https://lapis-waffle-fytj.here.now/`
+The persistent slug is tracked in `.github/herenow-site.json` (checked into
+the repo), not hardcoded in the workflow. If the slug is ever deleted on
+here.now's side, the script self-heals by creating a new site and committing
+the newly discovered slug back to that file — see `.github/HERENOW_SETUP.md`
+for the full mechanism.
 
 Required repository secret:
 
 - `HERENOW_API_KEY`: here.now API key. This is required for a persistent site.
 
-Required repository variable:
+Optional repository variable:
 
-- `HERENOW_SLUG`: existing here.now slug to update. The workflow reads this
-  variable and **falls back** to `lapis-waffle-fytj` if unset. The deploy
-  script refuses to run if neither the variable nor the fallback is
-  available, and refuses to silently create a new site on a 404 — this is
-  the safeguard that prevents a new here.now URL on every deploy.
+- `HERENOW_SLUG`: manual override for the persistent slug. Leave unset in
+  normal operation.
 
 The workflow writes the final here.now URL to the GitHub Actions step summary.
