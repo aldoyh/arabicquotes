@@ -1,122 +1,86 @@
 # here.now Persistent Deployment Setup
 
-This guide explains how to configure persistent here.now deployment (same URL on every publish, instead of creating new URLs).
-
-## Current Status
-
-- **Deployment Script**: `.github/scripts/deploy-herenow.mjs` ✅ (ready)
-- **API Key Secret**: `HERENOW_API_KEY` ✅ (required)
-- **Persistent Slug**: `HERENOW_SLUG` ✅ (SET to `lapis-waffle-fytj`)
+This guide explains how persistent here.now deployment works (same URL on
+every publish, instead of a brand-new URL each time).
 
 ## How It Works
 
-### Persistent Deployment (Current - Same URL Every Time)
+The working slug is tracked in **`.github/herenow-site.json`**, a file
+checked into the repo — not a hardcoded value in the workflow. Every deploy:
+
+1. Reads the slug from `HERENOW_SLUG` (optional manual override, set as a
+   repo variable) or falls back to `.github/herenow-site.json`.
+2. Sends `PUT /api/v1/publish/<slug>` to update that site in place.
+3. If here.now returns 404 (the slug was deleted, or none exists yet),
+   the script **self-heals**: it creates a new site with
+   `POST /api/v1/publish`, then commits the newly assigned slug back into
+   `.github/herenow-site.json` so every future run stays pinned to it.
+4. When the slug rotates, the workflow prints a `::warning::` annotation and
+   a step-summary notice — if you point a custom domain at here.now, that's
+   your signal to update the DNS/CNAME target.
+
 ```
-HERENOW_SLUG = "lapis-waffle-fytj" (read from repo variable)
+.github/herenow-site.json { "slug": "..." }
     ↓
-PUT /api/v1/publish/lapis-waffle-fytj
-    ↓
-Result: Always "lapis-waffle-fytj.here.now"
+PUT /api/v1/publish/<slug>
+    ├─ 200 → done, same URL as before
+    └─ 404 → POST /api/v1/publish (mints a new site)
+             → write the new slug back to herenow-site.json
+             → commit it, warn about the URL change
 ```
 
-### Refusal To Deploy (Safeguard)
-The deploy script will now **fail the workflow run** instead of creating a
-new site if either of these is true:
+This replaces an earlier design that hardcoded the slug in the workflow YAML
+and simply failed the run on a 404. That was safer against silently leaking
+sites, but useless once the configured slug was actually gone — it just
+failed forever with no path to recovery. Self-healing plus committing the
+discovered slug back to the repo gives both: no silent leaks (the slug is
+always visible in git history) and no permanently-broken deploys.
 
-- `HERENOW_SLUG` is empty/missing (would have produced a brand-new random
-  URL on every run).
-- `PUT /api/v1/publish/<slug>` returns 404 (the persistent site has been
-  deleted on here.now, or the slug was changed). The script will NOT fall
-  back to `POST /api/v1/publish`, because that is exactly the behavior
-  that was leaking new sites.
+## Environment Variables
 
-## Setup Instructions
+### Required Secrets
+- `HERENOW_API_KEY` — your here.now API key.
 
-### Step 1: Slug Configuration (Already Set)
+### Optional Variables
+- `HERENOW_SLUG` — manual override for the persistent slug. Leave unset in
+  normal operation; the script reads `.github/herenow-site.json` instead.
 
-The persistent slug is currently configured as:
-- **Slug**: `lapis-waffle-fytj`
-- **URL**: `https://lapis-waffle-fytj.here.now/`
-- **Domain**: Bound to `maqeel.aldoy.net`
+## Workflow Triggers
 
-To change it, follow these steps:
+The `deploy-herenow.yml` workflow runs on:
+- Daily schedule (00:15 UTC)
+- After a successful `update-quote.yml` run
+- Push to `master` touching site content
+- Manual trigger via GitHub Actions UI
 
-1. Choose a new memorable slug (examples: `arabicquotes`, `aq`, `quotes-ar`)
-2. Go to: **Settings → Secrets and variables → Actions → Variables**
-3. Edit the `HERENOW_SLUG` variable
-4. Set **Value** to your chosen slug
+## Cleaning Up Old Sites
 
-### Step 2: Deploy to New Slug
+To list and delete stray/ephemeral here.now deployments:
 
-After updating the slug variable, trigger the workflow to deploy to the new persistent site.
-
-### Step 3: Clean Up Old Sites (Optional)
-
-To clean up old ephemeral deployments on here.now:
-
-1. Go to https://here.now/
-2. Log in with your account
-3. Delete the old temporary sites
-4. The next workflow run will deploy to your persistent slug
-
-To list and delete sites via CLI:
 ```bash
 HERENOW_API_KEY=your_key node .github/scripts/cleanup-herenow.mjs list
 HERENOW_API_KEY=your_key node .github/scripts/cleanup-herenow.mjs delete <slug>
 ```
 
-### Step 4: Verify
-
-After setup:
-1. Trigger workflow: **Actions → Deploy to here.now → Run workflow**
-2. Check the deployment log
-3. Verify URL is consistent: `https://lapis-waffle-fytj.here.now/`
-4. Confirm subsequent deployments update the same URL
-
-## Environment Variables
-
-### Required Secrets
-- `HERENOW_API_KEY` - Your here.now API key (must be set)
-
-### Optional Variables
-- `HERENOW_SLUG` - Persistent deployment slug (currently set to `lapis-waffle-fytj`)
-
-## Workflow Triggers
-
-The `deploy-herenow.yml` workflow runs on:
-- Daily schedule (15:00 UTC)
-- After successful `update-quote.yml` run
-- Manual trigger via GitHub Actions UI
+Double-check the slug in `.github/herenow-site.json` before deleting
+anything — deleting the currently-active site will trigger the self-heal
+path (a new URL) on the next deploy.
 
 ## Troubleshooting
 
-### Workflow fails with "HERENOW_SLUG is required"
-- The repo variable is unset. The script refuses to run without it because
-  it would otherwise mint a brand-new here.now site on every deploy.
-- Set it: **Settings → Secrets and variables → Actions → Variables →
-  `HERENOW_SLUG`** = `lapis-waffle-fytj` (or whatever slug you own).
+### Workflow fails with "HERENOW_API_KEY is required"
+- The `HERENOW_API_KEY` repository secret is missing. Set it under
+  **Settings → Secrets and variables → Actions → Secrets**.
 
-### Workflow fails with `here.now API 404: ...`
-- The persistent slug has been deleted on here.now, or `HERENOW_SLUG` was
-  changed to a slug that has never been claimed under this API key.
-- Recover by creating the site manually (via the here.now dashboard with
-  the API key), or update `HERENOW_SLUG` to a slug that already exists in
-  your account. The script will no longer auto-create a new site for you.
-
-### "Slug already exists"
-- The slug may already be registered on here.now
-- Choose a different slug name
-- Or delete the existing deployment first
-
-### "New URL on each deploy"
-- `HERENOW_SLUG` variable is not set, **or** the slug it points to has
-  been deleted on here.now. Both cases now fail loudly (see above)
-  instead of producing a new URL. Restore the slug or update the variable.
-- Check: Settings → Secrets and variables → Actions → Variables
-- Verify the variable name is exactly `HERENOW_SLUG`
+### The site URL changed unexpectedly
+- Check the latest `deploy-herenow.yml` run's step summary for a
+  "slug changed" warning, and check `.github/herenow-site.json`'s git
+  history — the previous slug was likely deleted on here.now. If you point
+  a custom domain at the site, update it to the new slug shown there.
 
 ## References
 
 - Deployment script: `.github/scripts/deploy-herenow.mjs`
 - Workflow: `.github/workflows/deploy-herenow.yml`
+- Slug state: `.github/herenow-site.json`
 - here.now API docs: https://here.now/docs
