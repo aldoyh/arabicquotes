@@ -5,7 +5,7 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [bright-ivory-e977.here.now](https://bright-ivory-e977.here.now/)
+🌐 [gentle-hollow-zwks.here.now](https://gentle-hollow-zwks.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
