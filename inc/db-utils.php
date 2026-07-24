@@ -110,8 +110,24 @@ function ensureQuoteColumns($db)
 
 function cleanQuoteText($text)
 {
-    $text = html_entity_decode((string) $text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+    $text = (string) $text;
+    // strip_tags() only removes the tag markup, not the content between
+    // <script>/<style> tags — that's how MediaWiki CSS blocks (e.g. poetry
+    // layout templates) ended up baked directly into quote text.
+    $text = preg_replace('/<(script|style)\b[^>]*>.*?<\/\1>/is', '', $text);
+    // Some scrapes lost the <style> tags themselves but kept the raw CSS
+    // text (e.g. MediaWiki's "abyat-wrapper" poetry template). Recognize the
+    // signature and strip the "selector { ... }" blocks, innermost first.
+    if (preg_match('/mw-parser-output|grid-template-columns|abyat-wrapper/', $text)) {
+        do {
+            $text = preg_replace('/[^{}]*\{[^{}]*\}/u', '', $text, -1, $braceCount);
+        } while ($braceCount > 0);
+    }
+    $text = html_entity_decode($text, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     $text = strip_tags($text);
+    // Purify: tatweel/kashida (ـ) and zero-width/BOM characters are wiki
+    // justification artifacts that render as stray marks mid-word.
+    $text = preg_replace('/[\x{0640}\x{200B}\x{200C}\x{200D}\x{FEFF}]/u', '', $text);
     $text = preg_replace('/\s+/u', ' ', trim($text));
     $text = preg_replace('/^[—\-–\s]+/u', '', $text);
     return trim($text);
