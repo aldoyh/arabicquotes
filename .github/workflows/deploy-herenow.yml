@@ -56,7 +56,11 @@ jobs:
         run: node .github/scripts/deploy-herenow.mjs _site
         env:
           HERENOW_API_KEY: ${{ secrets.HERENOW_API_KEY }}
-          HERENOW_SLUG: arabicquotes
+          # Optional manual override. Normally leave this repo variable unset —
+          # the deploy script reads the working slug from the checked-in
+          # .github/herenow-site.json instead, and self-heals that file if the
+          # slug is ever deleted on here.now's side.
+          HERENOW_SLUG: ${{ vars.HERENOW_SLUG }}
 
       - name: Update production URL in README
         if: steps.herenow.outputs.site_url != ''
@@ -66,11 +70,18 @@ jobs:
           python3 .github/scripts/update-readme-url.py
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md
+          git add README.md .github/herenow-site.json
           if ! git diff --staged --quiet; then
             git commit -m "chore: update here.now production URL [skip ci]"
             git push
           fi
+
+      - name: Warn on slug rotation
+        if: steps.herenow.outputs.slug_rotated == 'true'
+        env:
+          SITE_URL: ${{ steps.herenow.outputs.site_url }}
+        run: |
+          echo "::warning::The here.now persistent slug changed to ${SITE_URL}. If a custom domain points at the old slug, update its DNS/CNAME target now."
 
       - name: Update repository description
         if: steps.herenow.outputs.site_url != ''

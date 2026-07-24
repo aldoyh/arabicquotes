@@ -32,9 +32,11 @@ Workflow: `.github/workflows/deploy-herenow.yml`
 
 The workflow builds the same `_site` directory and publishes it with `.github/scripts/deploy-herenow.mjs`.
 
-Current persistent here.now site:
-
-- `https://blissful-hazel-gdhm.here.now/`
+The persistent slug is tracked in `.github/herenow-site.json` (checked into
+the repo), not hardcoded in the workflow. If the slug is ever deleted on
+here.now's side, the script self-heals by creating a new site and committing
+the newly discovered slug back to that file — see `.github/HERENOW_SETUP.md`
+for the full mechanism.
 
 Required repository secret:
 
@@ -42,6 +44,7 @@ Required repository secret:
 
 Optional repository variable:
 
-- `HERENOW_SLUG`: existing here.now slug to update. Set this to `blissful-hazel-gdhm` to update the current persistent site.
+- `HERENOW_SLUG`: manual override for the persistent slug. Leave unset in
+  normal operation.
 
 The workflow writes the final here.now URL to the GitHub Actions step summary.

@@ -5,15 +5,15 @@
 ## الموقع الحي
 
 <!-- HERENOW_URL:START -->
-🌐 [amber-igloo-3ygq.here.now](https://amber-igloo-3ygq.here.now/)
+🌐 [gentle-hollow-zwks.here.now](https://gentle-hollow-zwks.here.now/)
 <!-- HERENOW_URL:END -->
 
 ## اقتباس اليوم
 <!-- QUOTE:START -->
 
-# جادك الغيث إذا الغيث همى يا زمان الوصل بالأندلس لم يكن وصلك إلا حلمًا في الكرى أو خلسة المختلس
+# عندما تصل الى عمق معنى كلمة النجاح تجد أنها ببساطة تعني الإصرار.
 
-- لسان الدين بن الخطيب
+- انطوني روبنـز
 
 <!-- QUOTE:END -->
 
