@@ -16,16 +16,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Reem+Kufi:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --paper: #f8f1e3;
-            --paper-soft: #fffaf0;
-            --ink: #22201d;
+            --paper: #faf8f3;
+            --paper-soft: #ffffff;
+            --ink: #2c2c2c;
             --muted: #72695f;
-            --line: rgba(57, 48, 37, 0.16);
-            --gold: #ba7b18;
-            --teal: #15746d;
+            --line: rgba(34, 34, 34, 0.12);
+            --gold: #d4a574;
+            --teal: #0a7d7a;
             --carmine: #9d3042;
-            --shadow: 0 24px 70px rgba(59, 43, 20, 0.14);
+            --accent: #d4a574;
+            --shadow: 0 10px 40px rgba(44, 44, 44, 0.08);
             color-scheme: light;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --paper: #0f0f1e;
+                --paper-soft: #1a1a2e;
+                --ink: #f0ebe0;
+                --muted: #a59f93;
+                --line: rgba(240, 235, 224, 0.12);
+                --gold: #d4a574;
+                --teal: #4dd4cf;
+                --carmine: #ff6b7a;
+                --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            }
         }
 
         * { box-sizing: border-box; }
@@ -40,29 +55,15 @@
             min-height: 100vh;
             color: var(--ink);
             font-family: "Noto Naskh Arabic", serif;
-            background:
-                linear-gradient(135deg, rgba(21, 116, 109, 0.08), transparent 34%),
-                linear-gradient(315deg, rgba(157, 48, 66, 0.08), transparent 28%),
-                radial-gradient(circle at 50% 0, rgba(186, 123, 24, 0.15), transparent 32%),
-                var(--paper);
+            background: var(--paper);
+            line-height: 1.6;
         }
 
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background-image:
-                linear-gradient(rgba(34, 32, 29, 0.035) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(34, 32, 29, 0.025) 1px, transparent 1px);
-            background-size: 36px 36px;
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 76%);
-        }
-
-        a { color: inherit; }
+        a { color: inherit; text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
         .shell {
-            width: min(1180px, calc(100% - 32px));
+            width: min(1200px, calc(100% - 32px));
             margin: 0 auto;
         }
 
@@ -70,8 +71,13 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
-            padding: 22px 0;
+            gap: 20px;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            background: var(--paper);
+            z-index: 10;
         }
 
         .brand {
@@ -79,26 +85,28 @@
             align-items: center;
             gap: 12px;
             text-decoration: none;
+            font-weight: 700;
         }
 
         .brand-mark {
             display: grid;
             place-items: center;
-            width: 44px;
+            width: 40px;
             aspect-ratio: 1;
-            border: 1px solid var(--line);
-            border-radius: 8px;
-            background: var(--paper-soft);
-            color: var(--gold);
+            border: 2px solid var(--accent);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--accent);
             font-family: "Amiri", serif;
-            font-size: 30px;
-            box-shadow: 0 10px 30px rgba(59, 43, 20, 0.08);
+            font-size: 24px;
+            font-weight: 700;
         }
 
         .brand-text {
             font-family: "Reem Kufi", sans-serif;
-            font-size: clamp(18px, 2vw, 24px);
+            font-size: 18px;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .nav {
@@ -106,165 +114,224 @@
             align-items: center;
             gap: 8px;
             flex-wrap: wrap;
+            flex-grow: 1;
+            justify-content: flex-end;
         }
 
         .nav a, .button {
             border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 9px 13px;
-            background: rgba(255, 250, 240, 0.66);
+            border-radius: 6px;
+            padding: 8px 14px;
+            background: transparent;
             color: var(--ink);
             text-decoration: none;
-            font: 700 14px "Noto Naskh Arabic", serif;
+            font: 600 14px "Noto Naskh Arabic", serif;
             cursor: pointer;
+            transition: all 200ms ease;
+        }
+
+        .nav a:hover, .button:hover {
+            background: var(--line);
+            border-color: var(--muted);
         }
 
         .button.primary {
             background: var(--ink);
-            color: var(--paper-soft);
+            color: var(--paper);
             border-color: var(--ink);
         }
 
-        .hero {
+        .button.primary:hover {
+            background: var(--muted);
+            border-color: var(--muted);
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            width: 40px;
+            height: 40px;
             display: grid;
-            grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-            gap: clamp(24px, 5vw, 64px);
-            align-items: end;
-            padding: clamp(30px, 7vw, 82px) 0 46px;
+            place-items: center;
+            border-radius: 6px;
+            transition: background 200ms ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--line);
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            padding: clamp(40px, 10vw, 80px) 0;
+            text-align: center;
+        }
+
+        .hero-subtitle {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle::before, .hero-subtitle::after {
+            content: "";
+            display: block;
+            width: 30px;
+            height: 2px;
+            background: var(--accent);
         }
 
         .hero h1 {
             margin: 0;
-            max-width: 780px;
-            font-family: "Reem Kufi", sans-serif;
-            font-size: clamp(46px, 8vw, 104px);
-            line-height: 1.05;
+            max-width: 900px;
+            font-family: "Amiri", serif;
+            font-size: clamp(42px, 7vw, 72px);
+            line-height: 1.2;
             letter-spacing: 0;
-        }
-
-        .hero-kicker {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 18px;
-            color: var(--teal);
             font-weight: 700;
-        }
-
-        .hero-kicker::before {
-            content: "";
-            display: block;
-            width: 42px;
-            height: 2px;
-            background: var(--teal);
+            margin-bottom: 20px;
         }
 
         .hero-copy {
-            margin: 22px 0 0;
-            max-width: 640px;
+            margin: 0;
+            max-width: 700px;
             color: var(--muted);
-            font-size: clamp(18px, 2.2vw, 23px);
-            line-height: 1.9;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 40px;
         }
 
         .daily-quote-card {
             position: relative;
             isolation: isolate;
-            padding: clamp(26px, 5vw, 48px);
-            border: 1px solid rgba(34, 32, 29, 0.18);
+            padding: clamp(32px, 6vw, 56px);
+            border: 1px solid var(--line);
             border-radius: 8px;
-            background:
-                linear-gradient(145deg, rgba(255, 250, 240, 0.96), rgba(245, 232, 207, 0.92)),
-                url("assets/scrollbg.jpg");
-            background-size: cover;
+            background: var(--paper-soft);
             box-shadow: var(--shadow);
+            max-width: 800px;
+            margin: 0 auto 40px;
             overflow: hidden;
         }
 
-        .daily-quote-card::after {
+        .daily-quote-card::before {
             content: "";
             position: absolute;
             inset-inline-start: 0;
             top: 0;
-            width: 7px;
+            width: 4px;
             height: 100%;
-            background: linear-gradient(var(--teal), var(--gold), var(--carmine));
+            background: linear-gradient(180deg, var(--teal), var(--accent), var(--carmine));
         }
 
         .quote-mark {
             position: absolute;
-            top: -22px;
-            inset-inline-end: 20px;
-            z-index: -1;
-            color: rgba(186, 123, 24, 0.12);
-            font: 700 160px/1 "Amiri", serif;
+            top: -20px;
+            inset-inline-end: 16px;
+            z-index: 0;
+            color: rgba(212, 165, 116, 0.08);
+            font: 700 140px/1 "Amiri", serif;
+            line-height: 0.8;
         }
 
         .quote-text {
+            position: relative;
+            z-index: 1;
             margin: 0;
             font-family: "Amiri", serif;
-            font-size: clamp(26px, 4vw, 44px);
+            font-size: clamp(28px, 5vw, 48px);
             font-weight: 700;
-            line-height: 1.9;
+            line-height: 1.8;
+            color: var(--ink);
         }
 
         .quote-meta {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 12px;
+            justify-content: center;
+            gap: 20px;
             flex-wrap: wrap;
-            margin-top: 26px;
-            padding-top: 18px;
+            margin-top: 28px;
+            padding-top: 24px;
             border-top: 1px solid var(--line);
+            flex-direction: column;
         }
 
         .author-text {
-            color: var(--teal);
-            font-size: 20px;
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: 700;
         }
 
         .selection-count {
             display: inline-flex;
             align-items: center;
-            min-height: 34px;
-            padding: 5px 12px;
-            border-radius: 7px;
-            background: rgba(34, 32, 29, 0.08);
+            min-height: 32px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: var(--line);
             color: var(--muted);
-            font-weight: 700;
+            font-weight: 600;
+            font-size: 13px;
         }
 
         .actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 18px;
+            gap: 12px;
+            margin-top: 24px;
+            justify-content: center;
         }
 
         .stats {
             display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 12px;
-            margin: 28px 0 54px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 60px 0;
         }
 
         .stat {
-            min-height: 104px;
-            padding: 18px;
+            min-height: 120px;
+            padding: 24px;
             border: 1px solid var(--line);
             border-radius: 8px;
-            background: rgba(255, 250, 240, 0.72);
+            background: var(--paper-soft);
+            text-align: center;
+            transition: all 200ms ease;
+        }
+
+        .stat:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
         }
 
         .stat b {
             display: block;
-            font: 700 clamp(26px, 4vw, 42px) "Reem Kufi", sans-serif;
+            margin-bottom: 8px;
+            font: 700 clamp(28px, 4vw, 42px) "Reem Kufi", sans-serif;
+            color: var(--accent);
         }
 
         .stat span {
             color: var(--muted);
-            font-weight: 700;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        #archive {
+            margin: 60px 0;
         }
 
         .section-title {
@@ -272,53 +339,73 @@
             align-items: end;
             justify-content: space-between;
             gap: 16px;
-            margin: 0 0 18px;
+            margin: 0 0 28px;
         }
 
         .section-title h2 {
             margin: 0;
-            font-family: "Reem Kufi", sans-serif;
-            font-size: clamp(28px, 4vw, 48px);
+            font-family: "Amiri", serif;
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 700;
         }
 
         .search-panel {
             display: grid;
-            grid-template-columns: 1fr 220px;
+            grid-template-columns: 1fr 200px;
             gap: 12px;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
         }
 
         input, select {
             width: 100%;
-            min-height: 48px;
+            min-height: 44px;
             border: 1px solid var(--line);
-            border-radius: 8px;
+            border-radius: 6px;
             padding: 10px 14px;
-            background: rgba(255, 250, 240, 0.86);
+            background: var(--paper-soft);
             color: var(--ink);
-            font: 700 16px "Noto Naskh Arabic", serif;
+            font: 600 16px "Noto Naskh Arabic", serif;
+            transition: border-color 200ms ease;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.1);
+        }
+
+        input::placeholder {
+            color: var(--muted);
         }
 
         .quote-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
             margin-bottom: 44px;
         }
 
         .mini-card {
             display: flex;
             flex-direction: column;
-            min-height: 250px;
-            padding: 20px;
+            min-height: 280px;
+            padding: 24px;
             border: 1px solid var(--line);
             border-radius: 8px;
-            background: rgba(255, 250, 240, 0.78);
+            background: var(--paper-soft);
+            transition: all 200ms ease;
+        }
+
+        .mini-card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow);
+            transform: translateY(-4px);
         }
 
         .mini-card p {
-            margin: 0 0 18px;
-            font: 700 21px/1.85 "Amiri", serif;
+            margin: 0 0 20px;
+            font: 700 20px/1.8 "Amiri", serif;
+            flex-grow: 1;
         }
 
         .mini-card footer {
@@ -326,39 +413,52 @@
             align-items: center;
             justify-content: space-between;
             gap: 10px;
-            margin-top: auto;
-            color: var(--muted);
-            font-weight: 700;
+            padding-top: 16px;
+            border-top: 1px solid var(--line);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .mini-card footer span:first-child {
+            color: var(--ink);
+            flex-grow: 1;
         }
 
         .tag {
-            color: var(--carmine);
-            font-size: 14px;
+            color: var(--accent);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .docs-band {
-            margin: 34px 0 62px;
-            padding: 26px;
-            border: 1px solid rgba(21, 116, 109, 0.26);
+            margin: 60px 0;
+            padding: 32px;
+            border: 1px solid rgba(212, 165, 116, 0.3);
             border-radius: 8px;
-            background: rgba(21, 116, 109, 0.08);
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.06), transparent);
         }
 
         .docs-band h2 {
-            margin: 0 0 8px;
-            font-family: "Reem Kufi", sans-serif;
+            margin: 0 0 12px;
+            font-family: "Amiri", serif;
+            font-size: 28px;
+            font-weight: 700;
         }
 
         .docs-band p {
-            margin: 0 0 18px;
+            margin: 0 0 20px;
             color: var(--muted);
             line-height: 1.8;
+            max-width: 600px;
         }
 
         .footer {
-            padding: 28px 0 36px;
+            padding: 40px 0;
             border-top: 1px solid var(--line);
             color: var(--muted);
+            text-align: center;
+            font-size: 14px;
         }
 
         .toast {
@@ -366,12 +466,14 @@
             inset-inline-start: 20px;
             bottom: 20px;
             transform: translateY(120%);
-            padding: 11px 14px;
-            border-radius: 8px;
+            padding: 12px 16px;
+            border-radius: 6px;
             background: var(--ink);
-            color: var(--paper-soft);
-            transition: transform 180ms ease;
+            color: var(--paper);
+            transition: transform 200ms ease;
             z-index: 20;
+            font-weight: 600;
+            font-size: 14px;
         }
 
         .toast.show { transform: translateY(0); }
@@ -388,43 +490,54 @@
             border: 0;
         }
 
-        @media (max-width: 880px) {
-            .hero, .search-panel { grid-template-columns: 1fr; }
-            .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-            .quote-grid { grid-template-columns: 1fr; }
-            .topbar { align-items: flex-start; flex-direction: column; }
+        @media (max-width: 900px) {
+            .hero { min-height: 50vh; }
+            .search-panel { grid-template-columns: 1fr; }
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .quote-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .topbar { flex-wrap: wrap; }
+            .nav { order: 3; width: 100%; justify-content: flex-end; }
         }
 
-        @media (max-width: 520px) {
-            .shell { width: min(100% - 22px, 1180px); }
-            .nav a, .button { width: 100%; text-align: center; }
+        @media (max-width: 640px) {
+            .shell { width: min(100% - 20px, 1200px); }
+            .nav a, .button { padding: 8px 10px; font-size: 12px; }
             .stats { grid-template-columns: 1fr; }
-            .daily-quote-card { padding: 24px 18px; }
+            .quote-grid { grid-template-columns: 1fr; }
+            .daily-quote-card { padding: 24px 20px; }
+            .hero { min-height: 40vh; }
+            .hero h1 { font-size: clamp(28px, 6vw, 48px); }
+            .quote-text { font-size: clamp(20px, 4vw, 36px); }
+            .topbar { padding: 16px 0; }
+            .section-title { flex-direction: column; align-items: flex-start; }
+            .section-title h2 { font-size: clamp(24px, 5vw, 36px); }
         }
     </style>
 </head>
 <body>
-    <header class="shell topbar">
-        <a class="brand" href="./" aria-label="العودة للرئيسية">
-            <span class="brand-mark">ع</span>
-            <span class="brand-text">مقولات من خيرة العرب</span>
-        </a>
-        <nav class="nav" aria-label="روابط الموقع">
-            <a href="#archive">الأرشيف</a>
-            <a href="full-quotes.html">العرض العشوائي</a>
-            <a href="docs/">التوثيق</a>
-            <a href="https://github.com/aldoyh/arabicquotes" rel="noopener noreferrer">GitHub</a>
-        </nav>
+    <header class="topbar">
+        <div class="shell" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%;">
+            <a class="brand" href="./" aria-label="العودة للرئيسية">
+                <span class="brand-mark">ع</span>
+                <span class="brand-text">مقولات من خيرة العرب</span>
+            </a>
+            <nav class="nav" aria-label="روابط الموقع">
+                <a href="#archive">الأرشيف</a>
+                <a href="full-quotes.html">العشوائي</a>
+                <a href="docs/">التوثيق</a>
+                <a href="https://github.com/aldoyh/arabicquotes" rel="noopener noreferrer">GitHub</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="تبديل المظهر">🌙</button>
+            </nav>
+        </div>
     </header>
 
-    <main class="shell">
-        <section class="hero" aria-labelledby="page-title">
-            <div>
-                <div class="hero-kicker">اختيار يومي عادل من قاعدة بيانات مفتوحة</div>
-                <h1 id="page-title">حكمة عربية جاهزة للقراءة والنشر.</h1>
-                <p class="hero-copy">واجهة ثابتة للنشر على GitHub Pages وhere.now، تعرض اقتباس اليوم مع عداد الاختيار، وتفتح الأرشيف للبحث حسب النص أو القائل أو التصنيف.</p>
-            </div>
-            <div>
+    <main>
+        <section class="hero">
+            <div class="shell">
+                <div class="hero-subtitle">اختيار يومي عادل من مكتبة مفتوحة</div>
+                <h1>حكمة عربية جاهزة كل يوم</h1>
+                <p class="hero-copy">أرشيف يضم آلاف الحكم والمقولات العربية، مع تحديث يومي عادل وواجهة بحث قوية.</p>
+
                 <div id="quote-container">
 <!-- QUOTE_CONTAINER:START -->
 
@@ -439,52 +552,68 @@
 <!-- QUOTE_CONTAINER:END -->
                 </div>
                 <div class="actions">
-                    <button class="button primary" type="button" id="copy-daily">نسخ اقتباس اليوم</button>
-                    <button class="button" type="button" id="random-quote">اعرض اقتباسا آخر</button>
+                    <button class="button primary" type="button" id="copy-daily">نسخ الاقتباس</button>
+                    <button class="button" type="button" id="random-quote">اقتباس آخر</button>
                 </div>
             </div>
         </section>
 
-        <section class="stats" aria-label="إحصاءات الأرشيف">
-            <div class="stat"><b id="stat-total">...</b><span>اقتباس منشور</span></div>
-            <div class="stat"><b id="stat-authors">...</b><span>قائل مختلف</span></div>
-            <div class="stat"><b id="stat-categories">...</b><span>تصنيف</span></div>
-            <div class="stat"><b id="stat-lowest">...</b><span>أقل عداد اختيار</span></div>
-        </section>
+        <div class="shell">
+            <section class="stats" aria-label="إحصاءات الأرشيف">
+                <div class="stat">
+                    <b id="stat-total">...</b>
+                    <span>اقتباس</span>
+                </div>
+                <div class="stat">
+                    <b id="stat-authors">...</b>
+                    <span>قائل</span>
+                </div>
+                <div class="stat">
+                    <b id="stat-categories">...</b>
+                    <span>تصنيف</span>
+                </div>
+                <div class="stat">
+                    <b id="stat-lowest">...</b>
+                    <span>أقل ظهور</span>
+                </div>
+            </section>
 
-        <section id="archive" aria-labelledby="archive-title">
-            <div class="section-title">
-                <h2 id="archive-title">الأرشيف</h2>
-                <button class="button" type="button" id="load-more">عرض المزيد</button>
-            </div>
-            <div class="search-panel">
-                <label>
-                    <span class="sr-only">بحث</span>
-                    <input id="search" type="search" placeholder="ابحث في النص أو القائل">
-                </label>
-                <label>
-                    <span class="sr-only">التصنيف</span>
-                    <select id="category-filter">
-                        <option value="">كل التصنيفات</option>
-                    </select>
-                </label>
-            </div>
-            <div id="quote-grid" class="quote-grid" aria-live="polite"></div>
-        </section>
+            <section id="archive" aria-labelledby="archive-title">
+                <div class="section-title">
+                    <div>
+                        <h2 id="archive-title">الأرشيف الكامل</h2>
+                        <p style="color: var(--muted); font-size: 14px; margin: 8px 0 0; font-weight: 500;">ابحث واستكشف مكتبة الحكم العربية</p>
+                    </div>
+                    <button class="button" type="button" id="load-more">عرض المزيد</button>
+                </div>
+                <div class="search-panel">
+                    <label>
+                        <span class="sr-only">بحث</span>
+                        <input id="search" type="search" placeholder="ابحث في النص أو القائل...">
+                    </label>
+                    <label>
+                        <span class="sr-only">التصنيف</span>
+                        <select id="category-filter">
+                            <option value="">كل التصنيفات</option>
+                        </select>
+                    </label>
+                </div>
+                <div id="quote-grid" class="quote-grid" aria-live="polite"></div>
+            </section>
 
-        <section class="docs-band" aria-labelledby="docs-title">
-            <h2 id="docs-title">التوثيق والتشغيل</h2>
-            <p>تم توثيق مسار الاستيراد، إزالة التكرارات، وعدة النشر المشتركة بين GitHub Pages وhere.now في صفحات التوثيق المنشورة مع الموقع.</p>
-            <div class="actions">
-                <a class="button primary" href="docs/">فتح التوثيق</a>
-                <a class="button" href="docs/DATASET_IMPORT.md">استيراد البيانات</a>
-                <a class="button" href="docs/DEPLOYMENT.md">النشر</a>
-            </div>
-        </section>
+            <section class="docs-band" aria-labelledby="docs-title">
+                <h2 id="docs-title">حول المشروع</h2>
+                <p>مكتبة مفتوحة المصدر للحكم والمقولات العربية. تجمع أكثر من 4000 اقتباس من مصادر موثوقة، مع نشر مستقر على GitHub Pages و here.now.</p>
+                <div class="actions">
+                    <a class="button primary" href="docs/">تصفح التوثيق</a>
+                    <a class="button" href="https://github.com/aldoyh/arabicquotes" rel="noopener noreferrer">المستودع على GitHub</a>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer class="shell footer">
-        <span>مقولات من خيرة العرب. البيانات مستوردة من مصادر مفتوحة مع حفظ عداد الظهور محليا داخل SQLite.</span>
+        <span>مقولات من خيرة العرب © 2024 • بيانات مفتوحة المصدر • <a href="https://github.com/aldoyh/arabicquotes" rel="noopener noreferrer">المشروع على GitHub</a></span>
     </footer>
 
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
@@ -493,44 +622,68 @@
         const state = {
             quotes: [],
             filtered: [],
-            visible: 9
+            visible: 12
         };
 
-        const grid = document.getElementById("quote-grid");
-        const search = document.getElementById("search");
-        const categoryFilter = document.getElementById("category-filter");
-        const toast = document.getElementById("toast");
+        const grid = document.getElementById(“quote-grid”);
+        const search = document.getElementById(“search”);
+        const categoryFilter = document.getElementById(“category-filter”);
+        const toast = document.getElementById(“toast”);
+        const themeToggle = document.getElementById(“theme-toggle”);
+
+        // Dark mode management
+        function initTheme() {
+            const stored = localStorage.getItem(“theme”);
+            const prefersDark = window.matchMedia(“(prefers-color-scheme: dark)”).matches;
+            const isDark = stored === “dark” || (!stored && prefersDark);
+
+            if (isDark) {
+                document.documentElement.style.colorScheme = “dark”;
+                themeToggle.textContent = “☀️”;
+            } else {
+                document.documentElement.style.colorScheme = “light”;
+                themeToggle.textContent = “🌙”;
+            }
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.style.colorScheme === “dark”;
+            const newScheme = isDark ? “light” : “dark”;
+            document.documentElement.style.colorScheme = newScheme;
+            localStorage.setItem(“theme”, newScheme);
+            themeToggle.textContent = newScheme === “dark” ? “☀️” : “🌙”;
+        }
 
         function clean(value) {
-            const div = document.createElement("div");
-            div.innerHTML = value || "";
-            return (div.textContent || div.innerText || "").replace(/\s+/g, " ").replace(/^[—\-\s]+/, "").trim();
+            const div = document.createElement(“div”);
+            div.innerHTML = value || “”;
+            return (div.textContent || div.innerText || “”).replace(/\s+/g, “ “).replace(/^[—\-\s]+/, “”).trim();
         }
 
         function showToast(message) {
             toast.textContent = message;
-            toast.classList.add("show");
-            window.setTimeout(() => toast.classList.remove("show"), 1800);
+            toast.classList.add(“show”);
+            window.setTimeout(() => toast.classList.remove(“show”), 2000);
         }
 
         function formatNumber(value) {
-            return new Intl.NumberFormat("ar").format(value);
+            return new Intl.NumberFormat(“ar”).format(value);
         }
 
         function updateStats() {
             const authors = new Set(state.quotes.map((quote) => clean(quote.author)).filter(Boolean));
             const categories = new Set(state.quotes.map((quote) => clean(quote.category)).filter(Boolean));
             const lowest = state.quotes.reduce((min, quote) => Math.min(min, Number(quote.hits || 0)), Infinity);
-            document.getElementById("stat-total").textContent = formatNumber(state.quotes.length);
-            document.getElementById("stat-authors").textContent = formatNumber(authors.size);
-            document.getElementById("stat-categories").textContent = formatNumber(categories.size);
-            document.getElementById("stat-lowest").textContent = Number.isFinite(lowest) ? formatNumber(lowest) : "0";
+            document.getElementById(“stat-total”).textContent = formatNumber(state.quotes.length);
+            document.getElementById(“stat-authors”).textContent = formatNumber(authors.size);
+            document.getElementById(“stat-categories”).textContent = formatNumber(categories.size);
+            document.getElementById(“stat-lowest”).textContent = Number.isFinite(lowest) ? formatNumber(lowest) : “0”;
         }
 
         function populateCategories() {
             const categories = [...new Set(state.quotes.map((quote) => clean(quote.category)).filter(Boolean))].sort();
             for (const category of categories) {
-                const option = document.createElement("option");
+                const option = document.createElement(“option”);
                 option.value = category;
                 option.textContent = category;
                 categoryFilter.appendChild(option);
@@ -538,20 +691,20 @@
         }
 
         function quoteCard(quote) {
-            const article = document.createElement("article");
-            article.className = "mini-card";
+            const article = document.createElement(“article”);
+            article.className = “mini-card”;
             const text = clean(quote.quote);
-            const author = clean(quote.author) || "غير معروف";
-            const category = clean(quote.category) || "عام";
+            const author = clean(quote.author) || “غير معروف”;
+            const category = clean(quote.category) || “عام”;
 
-            const p = document.createElement("p");
+            const p = document.createElement(“p”);
             p.textContent = text;
 
-            const footer = document.createElement("footer");
-            const authorSpan = document.createElement("span");
+            const footer = document.createElement(“footer”);
+            const authorSpan = document.createElement(“span”);
             authorSpan.textContent = author;
-            const categorySpan = document.createElement("span");
-            categorySpan.className = "tag";
+            const categorySpan = document.createElement(“span”);
+            categorySpan.className = “tag”;
             categorySpan.textContent = category;
             footer.append(authorSpan, categorySpan);
 
@@ -560,15 +713,15 @@
         }
 
         function render() {
-            grid.innerHTML = "";
+            grid.innerHTML = “”;
             const visibleQuotes = state.filtered.slice(0, state.visible);
             for (const quote of visibleQuotes) {
                 grid.appendChild(quoteCard(quote));
             }
             if (visibleQuotes.length === 0) {
-                grid.innerHTML = '<article class="mini-card"><p>لا توجد نتائج مطابقة.</p><footer><span>جرّب كلمة أخرى</span></footer></article>';
+                grid.innerHTML = '<article class=”mini-card”><p>لا توجد نتائج مطابقة.</p><footer><span>جرّب بحث آخر</span></footer></article>';
             }
-            document.getElementById("load-more").style.display = state.visible < state.filtered.length ? "inline-block" : "none";
+            document.getElementById(“load-more”).style.display = state.visible < state.filtered.length ? “inline-block” : “none”;
         }
 
         function applyFilters() {
@@ -579,50 +732,55 @@
                 const quoteCategory = clean(quote.category);
                 return (!term || text.includes(term)) && (!category || quoteCategory === category);
             });
-            state.visible = 9;
+            state.visible = 12;
             render();
         }
 
         function setRandomQuote() {
             if (!state.quotes.length) return;
             const quote = state.quotes[Math.floor(Math.random() * state.quotes.length)];
-            const container = document.getElementById("quote-container");
+            const container = document.getElementById(“quote-container”);
 
-            const card = document.createElement("div");
-            card.className = "daily-quote-card";
-            card.dataset.quoteId = quote.id || "";
+            const card = document.createElement(“div”);
+            card.className = “daily-quote-card”;
+            card.dataset.quoteId = quote.id || “”;
             card.dataset.hits = Number(quote.hits || 0);
 
-            const mark = document.createElement("div");
-            mark.className = "quote-mark";
-            mark.setAttribute("aria-hidden", "true");
-            mark.textContent = "“";
+            const mark = document.createElement(“div”);
+            mark.className = “quote-mark”;
+            mark.setAttribute(“aria-hidden”, “true”);
+            mark.textContent = “””;
 
-            const p = document.createElement("p");
-            p.className = "quote-text";
+            const p = document.createElement(“p”);
+            p.className = “quote-text”;
             p.textContent = clean(quote.quote);
 
-            const meta = document.createElement("div");
-            meta.className = "quote-meta";
-            const strong = document.createElement("strong");
-            strong.className = "author-text";
-            strong.textContent = clean(quote.author) || "غير معروف";
-            const count = document.createElement("span");
-            count.className = "selection-count";
-            count.textContent = "اختيرت " + formatNumber(Number(quote.hits || 0)) + " مرة";
+            const meta = document.createElement(“div”);
+            meta.className = “quote-meta”;
+            const strong = document.createElement(“strong”);
+            strong.className = “author-text”;
+            strong.textContent = clean(quote.author) || “غير معروف”;
+            const count = document.createElement(“span”);
+            count.className = “selection-count”;
+            count.textContent = “اختيرت “ + formatNumber(Number(quote.hits || 0)) + “ مرة”;
             meta.append(strong, count);
 
             card.append(mark, p, meta);
             container.replaceChildren(card);
+            showToast(“تم تحديث الاقتباس”);
         }
 
         function copyDailyQuote() {
-            const text = clean(document.querySelector("#quote-container .quote-text")?.textContent || "");
-            const author = clean(document.querySelector("#quote-container .author-text")?.textContent || "");
-            navigator.clipboard.writeText(`${text}\n${author}`).then(() => showToast("تم نسخ الاقتباس"));
+            const text = clean(document.querySelector(“#quote-container .quote-text”)?.textContent || “”);
+            const author = clean(document.querySelector(“#quote-container .author-text”)?.textContent || “”);
+            navigator.clipboard.writeText(`${text}\n— ${author}`).then(() => showToast(“✓ تم نسخ الاقتباس”));
         }
 
-        fetch("assets/quotes.json", { cache: "no-store" })
+        // Initialize
+        initTheme();
+        themeToggle.addEventListener(“click”, toggleTheme);
+
+        fetch(“assets/quotes.json”, { cache: “no-store” })
             .then((response) => response.json())
             .then((quotes) => {
                 state.quotes = quotes.map((quote) => ({
@@ -637,17 +795,17 @@
                 render();
             })
             .catch(() => {
-                grid.innerHTML = '<article class="mini-card"><p>تعذر تحميل الأرشيف الآن.</p><footer><span>assets/quotes.json</span></footer></article>';
+                grid.innerHTML = '<article class=”mini-card”><p>تعذر تحميل الأرشيف الآن.</p><footer><span>assets/quotes.json</span></footer></article>';
             });
 
-        search.addEventListener("input", applyFilters);
-        categoryFilter.addEventListener("change", applyFilters);
-        document.getElementById("load-more").addEventListener("click", () => {
-            state.visible += 9;
+        search.addEventListener(“input”, applyFilters);
+        categoryFilter.addEventListener(“change”, applyFilters);
+        document.getElementById(“load-more”).addEventListener(“click”, () => {
+            state.visible += 12;
             render();
         });
-        document.getElementById("random-quote").addEventListener("click", setRandomQuote);
-        document.getElementById("copy-daily").addEventListener("click", copyDailyQuote);
+        document.getElementById(“random-quote”).addEventListener(“click”, setRandomQuote);
+        document.getElementById(“copy-daily”).addEventListener(“click”, copyDailyQuote);
     </script>
 </body>
 </html>
