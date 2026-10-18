@@ -53,3 +53,16 @@ private_*/.env.local
 .codegpt
 
 vendor/
+
+# SQLite databases & backups
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.sqlite
+*.sqlite3
+*.db.backup*
+*.db.*backup*
+quotes.db
+test_quotes.db
+assets/QuotesDB.db

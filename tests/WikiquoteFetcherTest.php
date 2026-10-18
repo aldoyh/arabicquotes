@@ -24,7 +24,7 @@ class WikiquoteFetcherTest extends TestCase
     {
         // Test the private fetchFromWiki method using Reflection
         $method = new ReflectionMethod(WikiquoteFetcher::class, 'fetchFromWikiWithRetry');
-        $method->setAccessible(true);
+        @$method->setAccessible(true);
         
         $result = $method->invoke($this->wikiquoteFetcher);
         $this->assertNotEmpty($result);
@@ -35,7 +35,7 @@ class WikiquoteFetcherTest extends TestCase
         $slowFetcher = new WikiquoteFetcher(1, 1); // 1 retry, 1 second timeout
         $this->expectException(Exception::class);
         $method = new ReflectionMethod(WikiquoteFetcher::class, 'fetchRaw');
-        $method->setAccessible(true);
+        @$method->setAccessible(true);
         $method->invoke($slowFetcher);
     }
 }

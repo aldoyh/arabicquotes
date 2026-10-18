@@ -14,6 +14,8 @@ ini_set('display_errors', 1);
 ini_set('max_execution_time', 0);
 ini_set('memory_limit', '512M');
 
+require_once __DIR__ . '/../inc/db-utils.php';
+
 class QuoteDbCleaner
 {
     private $db;
@@ -23,13 +25,13 @@ class QuoteDbCleaner
     
     public function __construct()
     {
-        $this->db = new SQLite3(__DIR__ . '/../quotes.db');
+        $this->db = getDB();
         $this->db->exec('PRAGMA foreign_keys = ON');
     }
     
     public function __destruct()
     {
-        $this->db->close();
+        @$this->db->close();
     }
     
     /**
@@ -41,7 +43,7 @@ class QuoteDbCleaner
         
         // Backup database first
         echo "Creating backup...\n";
-        copy(__DIR__ . '/../quotes.db', __DIR__ . '/../quotes.db.cleanup-backup-' . date('Y-m-d-H-i-s'));
+        copy(DB_NAME, DB_NAME . '.cleanup-backup-' . date('Y-m-d-H-i-s'));
         
         // Start transaction for faster operations
         $this->db->exec('BEGIN TRANSACTION');

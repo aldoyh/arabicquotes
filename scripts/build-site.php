@@ -76,7 +76,7 @@ foreach ($rootFiles as $file) {
     copyFileToSite($root, $output, $file);
 }
 
-copyDirectoryToSite($root, $output, 'assets', ['css', 'db', 'html', 'jpg', 'jpeg', 'json', 'png', 'sqlite3', 'svg', 'webp']);
+copyDirectoryToSite($root, $output, 'assets', ['css', 'html', 'jpg', 'jpeg', 'json', 'png', 'svg', 'webp']);
 copyDirectoryToSite($root, $output, 'docs', ['html', 'md', 'css', 'jpg', 'jpeg', 'png', 'svg', 'webp']);
 
 $marker = [

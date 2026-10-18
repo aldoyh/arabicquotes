@@ -1,13 +1,19 @@
 # Initial Setup Instructions
 
-1. First, create and initialize the database:
+## Database & Migrations
+
+The SQLite database file (`assets/QuotesDB.db`) is generated locally and is excluded from Git source control. The source of truth for the quotes data is `assets/quotes.json` and the migrations in `database/migrations/`.
+
+1. Run migrations and seed the database from JSON:
 ```bash
-./start.sh
+composer run migrate -- --seed
+# Or: php scripts/migrate.php --seed
 ```
 
-2. Verify the database was created:
+2. Check migration status:
 ```bash
-ls -l quotes.db
+composer run db:status
+# Or: php scripts/migrate.php status
 ```
 
 3. Run the application:
@@ -15,8 +21,8 @@ ls -l quotes.db
 php index.php
 ```
 
-If you need to recreate the database at any time, simply delete quotes.db and run db-update.sh again:
+If you need to reset and recreate the database from scratch at any time:
 ```bash
-rm -f quotes.db
-./db-update.sh
+composer run db:fresh
+# Or: php scripts/migrate.php fresh --seed
 ```

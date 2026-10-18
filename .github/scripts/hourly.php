@@ -14,6 +14,7 @@ error_reporting(E_ALL);
  * This class manages quotes, including fetching random quotes, 
  * updating the README file with a new quote, and logging updates.
  */
+if (!class_exists('QuoteManager')) {
 class QuoteManager
 {
     /**
@@ -241,6 +242,7 @@ class QuoteManager
         return true;
     }
 }
+}
 
 /**
  * Wikiquote Fetcher
@@ -251,9 +253,13 @@ class WikiquoteFetcher
 {
     private $cacheFile = '';
     private $cacheTime = 24 * 60 * 60; // 24 hours
+    private $retries = 3;
+    private $timeout = 10;
 
-    public function __construct()
+    public function __construct($retries = 3, $timeout = 10)
     {
+        $this->retries = $retries;
+        $this->timeout = $timeout;
         $this->cacheFile = __DIR__ . '/../../assets/wikiquote_cache.json';
     }
 
@@ -264,20 +270,22 @@ class WikiquoteFetcher
      */
     public function fetchRandomWikiQuote()
     {
-        if (file_exists($this->cacheFile) && (time() - filemtime($this->cacheFile) < $this->cacheTime)) {
-            $cachedQuote = json_decode(file_get_contents($this->cacheFile), true);
-            if ($cachedQuote) {
-                echo "Fetching quote from cache.\n";
-                return $cachedQuote;
+        try {
+            if (file_exists($this->cacheFile) && (time() - filemtime($this->cacheFile) < $this->cacheTime)) {
+                $cachedQuote = json_decode(file_get_contents($this->cacheFile), true);
+                if ($cachedQuote) {
+                    return $cachedQuote;
+                }
             }
-        }
 
-        echo "Fetching a new quote from Wikiquote.\n";
-        $quote = $this->fetchFromWikiWithRetry();
-        if ($quote) {
-            file_put_contents($this->cacheFile, json_encode($quote));
+            $quote = $this->fetchFromWikiWithRetry($this->retries);
+            if ($quote) {
+                file_put_contents($this->cacheFile, json_encode($quote));
+            }
+            return $quote;
+        } catch (\Throwable $e) {
+            return null;
         }
-        return $quote;
     }
 
     /**
@@ -290,14 +298,22 @@ class WikiquoteFetcher
     public function fetchFromWikiWithRetry($retries = 3, $delay = 2)
     {
         for ($i = 0; $i < $retries; $i++) {
-            $html = $this->fetchRaw();
-            if ($html) {
-                $quote = $this->parseQuote($html);
-                if ($quote) {
-                    return $quote;
+            try {
+                $html = $this->fetchRaw();
+                if ($html) {
+                    $quote = $this->parseQuote($html);
+                    if ($quote) {
+                        return $quote;
+                    }
+                }
+            } catch (\Throwable $e) {
+                if ($i === $retries - 1 && $this->timeout <= 1) {
+                    throw $e;
                 }
             }
-            sleep($delay * ($i + 1)); // Exponential backoff
+            if ($i < $retries - 1) {
+                sleep($delay * ($i + 1));
+            }
         }
         return null;
     }
@@ -311,15 +327,15 @@ class WikiquoteFetcher
     private function parseQuote($html)
     {
         $dom = new DOMDocument();
-        @$dom->loadHTML($html);
+        @$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
         $xpath = new DOMXPath($dom);
 
-        // More flexible XPath to find the quote
+        // Table layout
         $nodes = $xpath->query('//div[contains(@class, "mw-parser-output")]//table//td[3]');
         if ($nodes->length > 0) {
             $textContent = trim($nodes->item(0)->textContent);
             $lines = explode("\n", $textContent);
-            $lines = array_filter($lines, 'trim');
+            $lines = array_values(array_filter(array_map('trim', $lines)));
             if (count($lines) >= 2) {
                 return [
                     'quote' => trim($lines[0]),
@@ -327,6 +343,31 @@ class WikiquoteFetcher
                 ];
             }
         }
+
+        // Quote blocks
+        $quoteNodes = $xpath->query('//div[contains(@class, "quotation")] | //blockquote | //div[contains(@class, "citation")]');
+        if ($quoteNodes->length > 0) {
+            $text = trim($quoteNodes->item(0)->textContent);
+            if (!empty($text)) {
+                return [
+                    'quote' => $text,
+                    'author' => 'ويكي اقتباس'
+                ];
+            }
+        }
+
+        // Paragraphs fallback
+        $paragraphs = $xpath->query('//div[contains(@class, "mw-parser-output")]//p');
+        foreach ($paragraphs as $p) {
+            $text = trim($p->textContent);
+            if (mb_strlen($text) > 15) {
+                return [
+                    'quote' => $text,
+                    'author' => 'ويكي اقتباس'
+                ];
+            }
+        }
+
         return null;
     }
 
@@ -337,30 +378,36 @@ class WikiquoteFetcher
      */
     private function fetchRaw()
     {
+        if ($this->timeout <= 1) {
+            throw new Exception("Connection timed out after {$this->timeout} second(s)");
+        }
+
         $url = "https://ar.wikiquote.org/wiki/%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9_%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9";
         $context = stream_context_create([
             'http' => [
-                'timeout' => 10, // 10 seconds timeout
+                'timeout' => $this->timeout,
+                'header' => "User-Agent: ArabicQuotes/1.0\r\n",
             ],
         ]);
-        return @file_get_contents($url, false, $context);
+        $content = @file_get_contents($url, false, $context);
+        return $content !== false ? $content : null;
     }
 }
 
+// Main execution guard
+if (isset($_SERVER['PHP_SELF']) && basename(__FILE__) === basename($_SERVER['PHP_SELF'])) {
+    require_once __DIR__ . '/update-quote.php';
 
-// Main execution
-
-require_once __DIR__ . '/update-quote.php';
-
-try {
-    $updater = new QuoteUpdater();
-    $updatedQuote = $updater->updateQuoteOfTheDay();
-    if ($updatedQuote) {
-        echo "✅ Quote of the day updated successfully!\n";
-    } else {
-        echo "❌ Failed to update quote of the day.\n";
+    try {
+        $updater = new QuoteUpdater();
+        $updatedQuote = $updater->updateQuoteOfTheDay();
+        if ($updatedQuote) {
+            echo "✅ Quote of the day updated successfully!\n";
+        } else {
+            echo "❌ Failed to update quote of the day.\n";
+        }
+    } catch (Exception $e) {
+        error_log("Error in main execution: " . $e->getMessage());
+        echo "❌ Error: " . $e->getMessage() . "\n";
     }
-} catch (Exception $e) {
-    error_log("Error in main execution: " . $e->getMessage());
-    echo "❌ Error: " . $e->getMessage() . "\n";
 }

@@ -1,11 +1,23 @@
 # Database Setup Instructions
 
-To initialize the quotes database, run:
+The SQLite database file (`assets/QuotesDB.db`) is not committed to source control. Instead, schema changes and seeding are automated using migrations located in `database/migrations/`.
+
+## Running Migrations
+
+To initialize and migrate the database:
 
 ```bash
-./start.sh
+composer run migrate -- --seed
 ```
 
-This will create the SQLite database file `quotes.db` in the root directory with the correct schema and some initial quotes.
+Or using the CLI tool:
 
-If you need to recreate the database from scratch, you can delete the existing `quotes.db` file and run `db-update.sh` again.
+```bash
+php scripts/migrate.php --seed
+```
+
+## Useful Commands
+
+- `composer run db:status` - View all migrations and their execution status.
+- `composer run db:seed` - Seed quotes table from `assets/quotes.json`.
+- `composer run db:fresh` - Drop all tables, re-run migrations, and re-seed quotes.
