@@ -66,6 +66,7 @@ mkdir($output, 0775, true);
 $rootFiles = [
     'index.html',
     'full-quotes.html',
+    'startup.html',
     'README.md',
     'LICENSE',
     'CNAME',

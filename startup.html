@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بداية المتصفح — مقولات من خيرة العرب</title>
+    <meta name="description" content="صفحة بداية متصفح فاخرة وهادئة تجمع بين الساعة الرقمية، التاريخ الهجري والميلادي، حكمة عربية متجددة، وشريط بحث ذكي.">
+    <meta name="theme-color" content="#0C0B09">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;500;600;700&family=Reem+Kufi:wght@400;500;600;700&family=Cinzel:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Obsidian & Imperial Gold Palette */
+            --bg: #0C0B09;
+            --surface: #14120E;
+            --surface-elevated: #191612;
+            --border: #26211A;
+            --border-highlight: rgba(201, 169, 74, 0.35);
+            --gold: #C9A94A;
+            --gold-hover: #DDB84F;
+            --gold-glow: rgba(201, 169, 74, 0.16);
+            --gold-subtle: rgba(201, 169, 74, 0.08);
+            --text: #EDE8DC;
+            --text-secondary: #A8A194;
+            --muted: #6B6358;
+            --shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            --font-display: 'Reem Kufi', sans-serif;
+            --font-quote: 'Reem Kufi', 'Amiri', serif;
+            --font-body: 'Cairo', sans-serif;
+            --font-clock: 'Cinzel', 'Cairo', serif;
+            color-scheme: dark;
+        }
+
+        [data-theme="light"] {
+            /* Royal Parchment & Antique Gold Palette */
+            --bg: #FAF7F2;
+            --surface: #F2ECE1;
+            --surface-elevated: #FFFFFF;
+            --border: #E2DBD0;
+            --border-highlight: rgba(166, 124, 30, 0.35);
+            --gold: #A67C1E;
+            --gold-hover: #8F6915;
+            --gold-glow: rgba(166, 124, 30, 0.12);
+            --gold-subtle: rgba(166, 124, 30, 0.06);
+            --text: #1C1917;
+            --text-secondary: #57534E;
+            --muted: #78716C;
+            --shadow: 0 16px 40px rgba(44, 36, 24, 0.08);
+            color-scheme: light;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font-body);
+            direction: rtl;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        ::selection {
+            background: var(--gold-glow);
+            color: var(--text);
+        }
+
+        button, input {
+            font-family: inherit;
+            border: none;
+            outline: none;
+            background: none;
+            color: inherit;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Ambient Watermark & Lighting */
+        .ambient-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .ambient-glow {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 500px;
+            background: radial-gradient(ellipse at center, var(--gold-glow) 0%, transparent 70%);
+            filter: blur(90px);
+            opacity: 0.7;
+        }
+
+        .ambient-calligraphy {
+            position: absolute;
+            bottom: -80px;
+            left: -40px;
+            font-family: var(--font-display);
+            font-size: clamp(300px, 45vw, 600px);
+            color: var(--gold);
+            opacity: 0.024;
+            line-height: 1;
+            user-select: none;
+        }
+
+        /* Startup Container Layout */
+        .startup-container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 24px 32px;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .dates-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .date-gregorian {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .date-hijri {
+            font-size: 12px;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-top {
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            font-size: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-top:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-1px);
+        }
+
+        .btn-top.active {
+            background: var(--gold-subtle);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Center Content Area */
+        .center-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px 10px;
+            gap: 32px;
+            width: 100%;
+        }
+
+        /* Clock & Greeting */
+        .clock-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .time-display {
+            font-family: var(--font-clock);
+            font-size: clamp(56px, 10vw, 84px);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1;
+            letter-spacing: 0.03em;
+            text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .time-seconds {
+            font-size: 0.4em;
+            color: var(--gold);
+            margin-right: 4px;
+            font-weight: 500;
+        }
+
+        .greeting-text {
+            font-family: var(--font-display);
+            font-size: clamp(15px, 2.5vw, 19px);
+            color: var(--gold);
+            letter-spacing: 0.04em;
+        }
+
+        /* Central Wisdom / Quote Card */
+        .quote-box {
+            width: 100%;
+            max-width: 800px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 36px 40px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .quote-box:hover {
+            border-color: var(--border-highlight);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Corner L-brackets */
+        .corner {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .corner-tr { top: 12px; right: 12px; border-top: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+        .corner-tl { top: 12px; left: 12px; border-top: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+        .corner-br { bottom: 12px; right: 12px; border-bottom: 1.5px solid var(--gold); border-right: 1.5px solid var(--gold); }
+        .corner-bl { bottom: 12px; left: 12px; border-bottom: 1.5px solid var(--gold); border-left: 1.5px solid var(--gold); }
+
+        .quote-glyph {
+            font-family: var(--font-display);
+            font-size: 42px;
+            color: var(--gold);
+            line-height: 0.7;
+            opacity: 0.4;
+            margin-bottom: 14px;
+        }
+
+        .quote-text {
+            font-family: var(--font-quote);
+            font-size: clamp(19px, 3.2vw, 26px);
+            font-weight: 700;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 20px;
+            text-wrap: pretty;
+        }
+
+        .ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+
+        .ornament-line {
+            width: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold));
+        }
+
+        .ornament-line.right {
+            background: linear-gradient(90deg, var(--gold), transparent);
+        }
+
+        .ornament-dot {
+            width: 4px;
+            height: 4px;
+            transform: rotate(45deg);
+            background: var(--gold);
+        }
+
+        .quote-meta-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .quote-author {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .quote-category {
+            font-size: 11px;
+            color: var(--muted);
+            padding: 2px 12px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--bg);
+        }
+
+        /* Quote Floating Toolbar */
+        .quote-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border);
+        }
+
+        .tool-btn {
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tool-btn:hover {
+            color: var(--gold);
+            background: var(--gold-subtle);
+        }
+
+        .tool-btn.highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Unified Smart Search Bar */
+        .search-container {
+            width: 100%;
+            max-width: 640px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: opacity 0.3s ease;
+        }
+
+        .search-engine-toggles {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .engine-pill {
+            font-size: 11px;
+            padding: 3px 12px;
+            border-radius: 12px;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .engine-pill.active {
+            background: var(--surface-elevated);
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .search-bar {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 10px 22px;
+            gap: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transition: all 0.25s ease;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px var(--gold-glow);
+            background: var(--surface-elevated);
+        }
+
+        .search-icon {
+            color: var(--gold);
+            font-size: 15px;
+        }
+
+        .search-input {
+            width: 100%;
+            font-size: 14px;
+            color: var(--text);
+        }
+
+        .search-input::placeholder {
+            color: var(--muted);
+        }
+
+        .search-submit-btn {
+            color: var(--muted);
+            font-size: 14px;
+            cursor: pointer;
+            padding: 4px;
+            transition: color 0.2s;
+        }
+
+        .search-submit-btn:hover {
+            color: var(--gold);
+        }
+
+        /* Speed Dial / Shortcuts Grid */
+        .shortcuts-grid {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            width: 100%;
+            max-width: 680px;
+            transition: opacity 0.3s ease;
+        }
+
+        .shortcut-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            width: 72px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .shortcut-item:hover {
+            transform: translateY(-3px);
+        }
+
+        .shortcut-icon-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--text);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
+        }
+
+        .shortcut-item:hover .shortcut-icon-circle {
+            border-color: var(--gold);
+            color: var(--gold);
+            box-shadow: 0 6px 18px var(--gold-glow);
+        }
+
+        .shortcut-title {
+            font-size: 11px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        /* Zen Mode (Focus) */
+        body.zen-mode .search-container,
+        body.zen-mode .shortcuts-grid {
+            opacity: 0;
+            pointer-events: none;
+            display: none;
+        }
+
+        body.zen-mode .center-area {
+            justify-content: center;
+            min-height: 70vh;
+        }
+
+        /* Bottom Footer */
+        .bottom-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-size: 11px;
+            color: var(--muted);
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .bottom-brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bottom-brand span.emblem {
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: var(--gold);
+        }
+
+        .kbd-hint {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        kbd {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            padding: 1px 5px;
+            font-size: 10px;
+            color: var(--gold);
+        }
+
+        /* Toast Feedback */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(40px);
+            opacity: 0;
+            background: rgba(20, 18, 14, 0.96);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--gold);
+            color: var(--text);
+            padding: 9px 22px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+            z-index: 1000;
+        }
+
+        [data-theme="light"] .toast {
+            background: rgba(255, 255, 255, 0.96);
+            color: #1C1917;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 640px) {
+            .startup-container {
+                padding: 16px;
+            }
+            .time-display {
+                font-size: 52px;
+            }
+            .quote-box {
+                padding: 24px 20px;
+            }
+            .quote-text {
+                font-size: 17px;
+            }
+            .shortcuts-grid {
+                gap: 12px;
+            }
+            .shortcut-item {
+                width: 60px;
+            }
+            .shortcut-icon-circle {
+                width: 42px;
+                height: 42px;
+                font-size: 16px;
+            }
+            .bottom-bar {
+                flex-direction: column;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glow & Watermark -->
+    <div class="ambient-layer" aria-hidden="true">
+        <div class="ambient-glow"></div>
+        <div class="ambient-calligraphy">ع</div>
+    </div>
+
+    <div class="startup-container">
+        <!-- ─── TOP BAR ─── -->
+        <header class="top-bar">
+            <div class="dates-wrapper">
+                <span class="date-gregorian" id="current-gregorian-date">...</span>
+                <span class="date-hijri" id="current-hijri-date">...</span>
+            </div>
+
+            <div class="top-actions">
+                <button id="btn-zen" class="btn-top" type="button" title="وضع التركيز الهادئ (Z)">
+                    <span>وضع التركيز</span>
+                </button>
+                <button id="btn-theme" class="btn-top" type="button" title="تبديل المظهر">
+                    <span id="theme-icon">🌙</span>
+                </button>
+                <a href="index.html" class="btn-top" title="الموقع الكامل والأرشيف">
+                    <span>الموقع الكامل</span>
+                    <span>↗</span>
+                </a>
+            </div>
+        </header>
+
+        <!-- ─── CENTER AREA ─── -->
+        <main class="center-area">
+            <!-- Digital Clock -->
+            <section class="clock-section">
+                <div class="time-display" id="clock-time">
+                    <span id="time-hours-mins">00:00</span><span class="time-seconds" id="time-period"></span>
+                </div>
+                <div class="greeting-text" id="greeting-text">طاب يومك بكل خير</div>
+            </section>
+
+            <!-- Wisdom / Quote Card -->
+            <article class="quote-box" id="quote-card">
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-br"></div>
+                <div class="corner corner-bl"></div>
+
+                <div class="quote-glyph">“</div>
+                <p class="quote-text" id="quote-text">جاري تحميل حكمة البداية...</p>
+                <div class="ornament">
+                    <span class="ornament-line"></span>
+                    <span class="ornament-dot"></span>
+                    <span class="ornament-line right"></span>
+                </div>
+                <div class="quote-meta-row">
+                    <strong class="quote-author" id="quote-author">...</strong>
+                    <span class="quote-category" id="quote-category">حكمة</span>
+                </div>
+
+                <div class="quote-toolbar">
+                    <button id="btn-next-quote" class="tool-btn highlight" type="button" title="اقتباس آخر (Space)">
+                        <span>حكمة أخرى</span>
+                        <span>↺</span>
+                    </button>
+                    <button id="btn-copy-quote" class="tool-btn" type="button" title="نسخ للحافظة (C)">
+                        <span>نسخ</span>
+                        <span>📋</span>
+                    </button>
+                    <button id="btn-fav-quote" class="tool-btn" type="button" title="إضافة للمفضلة">
+                        <span id="fav-icon">♡</span>
+                        <span>حفظ</span>
+                    </button>
+                    <a id="btn-card-studio" href="index.html#card" class="tool-btn" title="تصميم ومشاركة كبطاقة">
+                        <span>تصميم بطاقة</span>
+                        <span>✨</span>
+                    </a>
+                </div>
+            </article>
+
+            <!-- Search Bar Widget -->
+            <section class="search-container" id="search-section">
+                <div class="search-engine-toggles">
+                    <button type="button" class="engine-pill active" data-engine="google">بحث الويب (Google)</button>
+                    <button type="button" class="engine-pill" data-engine="quotes">أرشيف المقولات</button>
+                </div>
+
+                <form id="search-form" class="search-bar" action="https://www.google.com/search" method="get">
+                    <span class="search-icon">🔍</span>
+                    <input id="search-input" name="q" class="search-input" type="search" placeholder="ابحث في الإنترنت أو اضغط Enter..." autocomplete="off">
+                    <button type="submit" class="search-submit-btn" aria-label="بحث">↵</button>
+                </form>
+            </section>
+
+            <!-- Speed Dial Shortcuts -->
+            <section class="shortcuts-grid" id="shortcuts-section" aria-label="الوصول السريع">
+                <a href="https://www.google.com" class="shortcut-item" target="_blank" rel="noopener">
+                    <div class="shortcut-icon-circle">G</div>
+                    <span class="shortcut-title">Google</span>
+                </a>
+                <a href="https://github.com/aldoyh/arabicquotes" class="shortcut-item" target="_blank" rel="noopener">
+                    <div class="shortcut-icon-circle">⌘</div>
+                    <span class="shortcut-title">GitHub</span>
+                </a>
+                <a href="https://ar.wikipedia.org" class="shortcut-item" target="_blank" rel="noopener">
+                    <div class="shortcut-icon-circle">W</div>
+                    <span class="shortcut-title">ويكيبيديا</span>
+                </a>
+                <a href="https://www.youtube.com" class="shortcut-item" target="_blank" rel="noopener">
+                    <div class="shortcut-icon-circle">▶</div>
+                    <span class="shortcut-title">YouTube</span>
+                </a>
+                <a href="index.html#archive" class="shortcut-item">
+                    <div class="shortcut-icon-circle" style="color:var(--gold);">ع</div>
+                    <span class="shortcut-title">الأرشيف</span>
+                </a>
+                <a href="index.html#card" class="shortcut-item">
+                    <div class="shortcut-icon-circle" style="color:var(--gold);">❖</div>
+                    <span class="shortcut-title">البطاقات</span>
+                </a>
+            </section>
+        </main>
+
+        <!-- ─── BOTTOM FOOTER ─── -->
+        <footer class="bottom-bar">
+            <div class="bottom-brand">
+                <span class="emblem">ع</span>
+                <span>مقولات من خيرة العرب • صفحة بداية المتصفح</span>
+            </div>
+
+            <div class="kbd-hint">
+                <span>اختصارات:</span>
+                <kbd>مسافة</kbd><span>حكمة أخرى</span> •
+                <kbd>C</kbd><span>نسخ</span> •
+                <kbd>Z</kbd><span>تركيز</span>
+            </div>
+
+            <div>
+                <a href="index.html" style="color:var(--gold);">aq.aldoy.net</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" role="status" aria-live="polite">✓ تم النسخ إلى الحافظة</div>
+
+    <script>
+    /**
+     * Browser Startup & New Tab Controller
+     */
+    const StartupApp = {
+        quotes: [],
+        currentQuote: null,
+        favorites: [],
+        searchEngine: 'google', // 'google' or 'quotes'
+
+        init() {
+            this.initTheme();
+            this.initClockAndDates();
+            this.initFavorites();
+            this.bindEvents();
+            this.loadQuotes();
+            this.initZenMode();
+        },
+
+        // Theme management
+        initTheme() {
+            const saved = localStorage.getItem('aq_theme') || 'dark';
+            this.setTheme(saved);
+        },
+
+        setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('aq_theme', theme);
+            const icon = document.getElementById('theme-icon');
+            if (icon) icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        },
+
+        toggleTheme() {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const next = current === 'dark' ? 'light' : 'dark';
+            this.setTheme(next);
+            this.showToast(next === 'dark' ? 'الوضع الليلي' : 'الوضع النهاري');
+        },
+
+        // Clock & Date Engine
+        initClockAndDates() {
+            const updateClock = () => {
+                const now = new Date();
+                const hours = String(now.getHours()).padStart(2, '0');
+                const mins = String(now.getMinutes()).padStart(2, '0');
+                const timeEl = document.getElementById('time-hours-mins');
+                if (timeEl) timeEl.textContent = `${hours}:${mins}`;
+
+                // Greeting update
+                const hr = now.getHours();
+                const greetingEl = document.getElementById('greeting-text');
+                if (greetingEl) {
+                    if (hr >= 4 && hr < 12) {
+                        greetingEl.textContent = 'صباح الخير، طاب يومك بكل حكمة ونور';
+                    } else if (hr >= 12 && hr < 17) {
+                        greetingEl.textContent = 'مساء الخير، أهلاً بك وطاب مساؤك';
+                    } else {
+                        greetingEl.textContent = 'مساء مفعم بالسكينة وجميل الأثر';
+                    }
+                }
+            };
+
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            // Dates: Gregorian & Hijri in Arabic
+            const now = new Date();
+            try {
+                const gregEl = document.getElementById('current-gregorian-date');
+                const hijriEl = document.getElementById('current-hijri-date');
+
+                if (gregEl) {
+                    gregEl.textContent = new Intl.DateTimeFormat('ar-SA', {
+                        weekday: 'long',
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    }).format(now);
+                }
+
+                if (hijriEl) {
+                    hijriEl.textContent = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric'
+                    }).format(now);
+                }
+            } catch (e) {
+                console.warn('Date formatting error', e);
+            }
+        },
+
+        // Zen Focus Mode
+        initZenMode() {
+            const isZen = localStorage.getItem('aq_zen') === 'true';
+            if (isZen) {
+                document.body.classList.add('zen-mode');
+                const btn = document.getElementById('btn-zen');
+                if (btn) btn.classList.add('active');
+            }
+        },
+
+        toggleZenMode() {
+            const isZen = document.body.classList.toggle('zen-mode');
+            localStorage.setItem('aq_zen', isZen ? 'true' : 'false');
+            const btn = document.getElementById('btn-zen');
+            if (btn) btn.classList.toggle('active', isZen);
+            this.showToast(isZen ? 'تم تفعيل وضع التركيز' : 'تم إلغاء وضع التركيز');
+        },
+
+        // Favorites
+        initFavorites() {
+            try {
+                this.favorites = JSON.parse(localStorage.getItem('aq_favorites') || '[]');
+            } catch (e) {
+                this.favorites = [];
+            }
+        },
+
+        toggleFavorite() {
+            if (!this.currentQuote) return;
+            const q = this.currentQuote;
+            const id = q.id || q.quote.substring(0, 20);
+            const idx = this.favorites.findIndex(f => String(f.id) === String(id));
+
+            if (idx >= 0) {
+                this.favorites.splice(idx, 1);
+                this.showToast('تمت الإزالة من المفضلة');
+            } else {
+                this.favorites.push(q);
+                this.showToast('✓ حُفظت في المفضلة');
+            }
+            localStorage.setItem('aq_favorites', JSON.stringify(this.favorites));
+            this.updateFavIcon();
+        },
+
+        updateFavIcon() {
+            const icon = document.getElementById('fav-icon');
+            if (!icon || !this.currentQuote) return;
+            const isFav = this.favorites.some(f => String(f.id) === String(this.currentQuote.id));
+            icon.textContent = isFav ? '♥' : '♡';
+            icon.style.color = isFav ? '#E24A4A' : 'inherit';
+        },
+
+        // Load Quotes Library
+        loadQuotes() {
+            fetch('assets/quotes.json')
+                .then(r => r.json())
+                .then(data => {
+                    this.quotes = data.map(q => ({
+                        id: q.id,
+                        quote: (q.quote || '').trim(),
+                        author: (q.author || 'غير معروف').trim(),
+                        category: (q.category || 'حكمة').trim()
+                    })).filter(q => q.quote.length > 0);
+
+                    // Pick Daily or Random
+                    this.pickDailyOrRandom();
+                })
+                .catch(() => {
+                    // Fallback classical quotes
+                    this.quotes = [
+                        { id: 1, quote: 'يمكن للإنسان أن يدخل قلوب الآخرين دون أن ينطق بكلمة واحدة، إذ يكفيه سلوكه الناطق بالأخلاق الحميدة.', author: 'عبد الله بن المقفع', category: 'أخلاق' },
+                        { id: 2, quote: 'الناس الذين يعرفون القليل يتحدثون كثيراً، أما الذين يعرفون الكثير فلا يتحدثون إلا قليلا.', author: 'جان جاك روسو', category: 'حكمة' },
+                        { id: 3, quote: 'إذا أنت أكرمت الكريم ملكته، وإن أنت أكرمت اللئيم تمردا.', author: 'أبو الطيب المتنبي', category: 'شعر' },
+                        { id: 4, quote: 'العلم في الصغر كالنقش على الحجر.', author: 'مثل عربي', category: 'علم' }
+                    ];
+                    this.pickDailyOrRandom();
+                });
+        },
+
+        pickDailyOrRandom() {
+            if (!this.quotes.length) return;
+            // Seed daily index based on day of year
+            const start = new Date(new Date().getFullYear(), 0, 0);
+            const dayOfYear = Math.floor((Date.now() - start) / 86400000);
+            const quote = this.quotes[dayOfYear % this.quotes.length];
+            this.displayQuote(quote);
+        },
+
+        pickNextRandom() {
+            if (!this.quotes.length) return;
+            const idx = Math.floor(Math.random() * this.quotes.length);
+            this.displayQuote(this.quotes[idx]);
+            this.showToast('حكمة جديدة');
+        },
+
+        displayQuote(quote) {
+            this.currentQuote = quote;
+            const card = document.getElementById('quote-card');
+            const textEl = document.getElementById('quote-text');
+            const authorEl = document.getElementById('quote-author');
+            const catEl = document.getElementById('quote-category');
+
+            if (card) {
+                card.style.animation = 'none';
+                void card.offsetWidth;
+                card.style.animation = 'fadeUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both';
+            }
+
+            if (textEl) textEl.textContent = quote.quote;
+            if (authorEl) authorEl.textContent = quote.author;
+            if (catEl) catEl.textContent = quote.category;
+
+            this.updateFavIcon();
+        },
+
+        // Copy Text
+        copyQuote() {
+            if (!this.currentQuote) return;
+            const text = `${this.currentQuote.quote}\n— ${this.currentQuote.author}`;
+            navigator.clipboard.writeText(text)
+                .then(() => this.showToast('✓ تم النسخ إلى الحافظة'))
+                .catch(() => this.showToast('تعذر النسخ'));
+        },
+
+        showToast(msg) {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            toast.textContent = msg;
+            toast.classList.add('show');
+            if (this.toastTimeout) clearTimeout(this.toastTimeout);
+            this.toastTimeout = setTimeout(() => toast.classList.remove('show'), 2000);
+        },
+
+        // Events Binding
+        bindEvents() {
+            document.getElementById('btn-theme').addEventListener('click', () => this.toggleTheme());
+            document.getElementById('btn-zen').addEventListener('click', () => this.toggleZenMode());
+            document.getElementById('btn-next-quote').addEventListener('click', () => this.pickNextRandom());
+            document.getElementById('btn-copy-quote').addEventListener('click', () => this.copyQuote());
+            document.getElementById('btn-fav-quote').addEventListener('click', () => this.toggleFavorite());
+
+            // Search engine switchers
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+            const engineBtns = document.querySelectorAll('.engine-pill');
+
+            engineBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    engineBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    this.searchEngine = btn.dataset.engine;
+
+                    if (this.searchEngine === 'google') {
+                        searchForm.action = 'https://www.google.com/search';
+                        searchInput.name = 'q';
+                        searchInput.placeholder = 'ابحث في الإنترنت عبر Google...';
+                    } else {
+                        searchForm.action = 'index.html#archive';
+                        searchInput.name = '';
+                        searchInput.placeholder = 'ابحث في مكتبة 4,200+ مقولة عربية...';
+                    }
+                });
+            });
+
+            searchForm.addEventListener('submit', (e) => {
+                if (this.searchEngine === 'quotes') {
+                    e.preventDefault();
+                    const q = encodeURIComponent(searchInput.value.trim());
+                    window.location.href = `index.html#archive`;
+                }
+            });
+
+            // Keyboard Shortcuts
+            window.addEventListener('keydown', (e) => {
+                if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+                if (e.code === 'Space' || e.key === ' ') {
+                    e.preventDefault();
+                    this.pickNextRandom();
+                } else if (e.key === 'c' || e.key === 'C' || e.key === 'ؤ') {
+                    this.copyQuote();
+                } else if (e.key === 'z' || e.key === 'Z' || e.key === 'ئ') {
+                    this.toggleZenMode();
+                } else if (e.key === '/') {
+                    e.preventDefault();
+                    searchInput.focus();
+                }
+            });
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => StartupApp.init());
+    </script>
+</body>
+</html>
