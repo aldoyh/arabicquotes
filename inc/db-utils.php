@@ -1,26 +1,32 @@
 <?php
 
-if (defined('TEST_MODE') && TEST_MODE) {
-    define('DB_NAME', __DIR__ . '/' . TEST_DB_FILE);
-} else {
-    define('DB_NAME', __DIR__ . '/../assets/QuotesDB.db');
+require_once __DIR__ . '/../src/Migrator.php';
+
+if (!defined('DB_NAME')) {
+    if (defined('TEST_MODE') && TEST_MODE) {
+        define('DB_NAME', __DIR__ . '/' . (defined('TEST_DB_FILE') ? TEST_DB_FILE : 'test_quotes.db'));
+    } else {
+        $envDb = getenv('QUOTES_DB_PATH');
+        define('DB_NAME', $envDb ?: (__DIR__ . '/../assets/QuotesDB.db'));
+    }
 }
 
-function getDB()
+function getDB($dbPath = null)
 {
-    $db = new SQLite3(DB_NAME);
-    if (!$db) {
-        error_log('Failed to connect to the DB');
+    $path = $dbPath ?: (defined('DB_NAME') ? DB_NAME : (__DIR__ . '/../assets/QuotesDB.db'));
+    try {
+        $migrator = new \ArabicQuotes\Migrator($path);
+        $migrator->autoMigrateAndSeedIfNeeded();
+        return $migrator->getDb();
+    } catch (\Throwable $e) {
+        error_log('Failed to connect to the DB: ' . $e->getMessage());
         return false;
     }
-
-    ensureQuotesTableExists($db);
-    return $db;
 }
 
-function getDBSQLite()
+function getDBSQLite($dbPath = null)
 {
-    return getDB();
+    return getDB($dbPath);
 }
 
 function makeDBClone()
@@ -28,57 +34,23 @@ function makeDBClone()
     $db = getDB();
     $backupPath = __DIR__ . '/../assets/QuotesDB.backup-' . date('Ymd-His') . '.db';
     copy(DB_NAME, $backupPath);
-    $db->close();
 }
 
 function create_table($db)
 {
-    $db->query('DROP TABLE IF EXISTS quotes;');
-    $db->query("CREATE TABLE quotes (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        head TEXT,
-        quote TEXT NOT NULL,
-        author TEXT NOT NULL,
-        hits INTEGER DEFAULT 0,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-        category TEXT DEFAULT 'General',
-        source TEXT DEFAULT 'manual',
-        quote_key TEXT,
-        author_key TEXT
-    )") or die('Failed to create table');
-    $db->exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_quotes_unique_keys ON quotes (quote_key, author_key)');
+    $migrator = new \ArabicQuotes\Migrator($db);
+    $migrator->fresh(false);
 }
 
 function ensureQuotesTableExists($db = null)
 {
-    $shouldClose = false;
-    if ($db === null) {
-        $db = new SQLite3(DB_NAME);
-        $shouldClose = true;
-    }
-
     try {
-        $result = $db->query("SELECT name FROM sqlite_master WHERE type='table' AND name='quotes'");
-        $tableExists = $result && $result->fetchArray();
-
-        if (!$tableExists) {
-            create_table($db);
-        } else {
-            ensureQuoteColumns($db);
-            backfillQuoteKeys($db);
-            removeDuplicateQuotes($db);
-            $db->exec('CREATE UNIQUE INDEX IF NOT EXISTS idx_quotes_unique_keys ON quotes (quote_key, author_key)');
-        }
-
-        if ($shouldClose) {
-            $db->close();
-        }
+        $target = $db ?: (defined('DB_NAME') ? DB_NAME : (__DIR__ . '/../assets/QuotesDB.db'));
+        $migrator = new \ArabicQuotes\Migrator($target);
+        $migrator->autoMigrateAndSeedIfNeeded();
         return true;
-    } catch (Exception $e) {
+    } catch (\Throwable $e) {
         error_log('Error ensuring quotes table exists: ' . $e->getMessage());
-        if ($shouldClose) {
-            $db->close();
-        }
         return false;
     }
 }

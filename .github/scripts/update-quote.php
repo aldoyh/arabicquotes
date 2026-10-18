@@ -11,9 +11,8 @@ class QuoteUpdater
     {
         $this->dbFile = $dbFile;
         $this->basePath = __DIR__ . '/../../';
-        if (!file_exists($this->dbFile)) {
-            throw new Exception("Database file not found: " . $this->dbFile);
-        }
+        $migrator = new \ArabicQuotes\Migrator($this->dbFile);
+        $migrator->autoMigrateAndSeedIfNeeded();
     }
 
     public function updateQuoteOfTheDay()

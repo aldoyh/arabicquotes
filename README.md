@@ -11,20 +11,31 @@
 ## اقتباس اليوم
 <!-- QUOTE:START -->
 
-# عندما تصل الى عمق معنى كلمة النجاح تجد أنها ببساطة تعني الإصرار.
+# الناس الذين يعرفون القليل يتحدثون كثيراً، أما الذين يعرفون الكثير فلا يتحدثون إلا قليلا.
 
-- انطوني روبنـز
+- جان جاك روسو
 
 <!-- QUOTE:END -->
 
-## البيانات
+## البيانات وقاعدة البيانات
 
-- قاعدة البيانات: `assets/QuotesDB.db`
-- التصدير الثابت: `assets/quotes.json`
-- إجمالي الاقتباسات بعد الاستيراد: `4,235`
-- مصدر الاستيراد الجديد: [`HeshamHaroon/arabic-quotes`](https://huggingface.co/datasets/HeshamHaroon/arabic-quotes)
+- قاعدة البيانات المحلية (SQLite): `assets/QuotesDB.db` (مستبعدة من نظام التتبع Git لتفادي تضخم المستودع)
+- التصدير الثابت ومصدر الحقيقة للبيانات: `assets/quotes.json`
+- نظام الهجرات التلقائي: `database/migrations/`
+- إجمالي الاقتباسات: `4,235`
+- مصدر الاستيراد: [`HeshamHaroon/arabic-quotes`](https://huggingface.co/datasets/HeshamHaroon/arabic-quotes)
 
-استيراد البيانات:
+تشغيل الهجرات وبناء قاعدة البيانات محلياً:
+
+```bash
+composer run migrate -- --seed
+# أو فحص حالة الهجرات
+composer run db:status
+# أو إعادة بناء وتعبئة قاعدة البيانات بالكامل
+composer run db:fresh
+```
+
+استيراد البيانات وتحديثها:
 
 ```bash
 php scripts/import-huggingface-quotes.php

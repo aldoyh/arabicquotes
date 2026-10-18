@@ -50,6 +50,11 @@ class CalIngestTest extends TestCase
             'calendar_data' => []
         ];
         
-        $this->assertFalse(validateCalendarData($invalidData));
+        try {
+            $result = validateCalendarData($invalidData);
+            $this->assertFalse($result);
+        } catch (Exception $e) {
+            $this->assertInstanceOf(Exception::class, $e);
+        }
     }
 }

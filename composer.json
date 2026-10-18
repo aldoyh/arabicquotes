@@ -1,8 +1,29 @@
 {
+    "name": "doytech/arabicquotes",
+    "description": "Arabic Quotes dataset, database migrations, and static website generator",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "ArabicQuotes\\": "src/"
+        },
+        "files": [
+            "inc/db-utils.php"
+        ]
+    },
+    "require": {
+        "php": ">=8.1",
+        "ext-sqlite3": "*",
+        "spatie/crawler": "*"
+    },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     },
-    "require": {
-        "spatie/crawler": "*"
+    "scripts": {
+        "migrate": "php scripts/migrate.php",
+        "db:seed": "php scripts/migrate.php seed",
+        "db:fresh": "php scripts/migrate.php fresh --seed",
+        "db:status": "php scripts/migrate.php status",
+        "test": "vendor/bin/phpunit"
     }
 }

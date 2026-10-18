@@ -17,30 +17,19 @@ class QuoteManager
     {
         $this->dbFile = $dbFile;
         $this->basePath = __DIR__ . '/';
-        if (!file_exists($this->dbFile)) {
-            $db = new SQLite3($this->dbFile);
-            $db->exec('CREATE TABLE IF NOT EXISTS quotes (id INTEGER PRIMARY KEY AUTOINCREMENT, head TEXT, quote TEXT, author TEXT, hits INTEGER DEFAULT 0, created_at DATETIME DEFAULT CURRENT_TIMESTAMP, category TEXT DEFAULT "General", source TEXT DEFAULT "manual", quote_key TEXT, author_key TEXT)');
-            $db->close();
-        }
-        if (!is_writable($this->dbFile)) {
-            throw new Exception("Database file is not writable: " . $this->dbFile);
-        }
         $this->initDatabase();
     }
 
     private function initDatabase()
     {
         try {
-            $db = new SQLite3($this->dbFile);
-            $db->exec('CREATE TABLE IF NOT EXISTS quotes (id INTEGER PRIMARY KEY, quote TEXT, author TEXT, image TEXT, hits INTEGER DEFAULT 0)');
-            $db->close();
+            $migrator = new \ArabicQuotes\Migrator($this->dbFile);
+            $migrator->migrate();
+            if (($this->dbFile === 'assets/QuotesDB.db' || $this->dbFile === __DIR__ . '/assets/QuotesDB.db') && $migrator->isQuotesTableEmpty()) {
+                $migrator->seed();
+            }
         } catch (Exception $e) {
             error_log("Error initializing database: " . $e->getMessage());
-        }
-
-        // populate the database if empty
-        if ($this->dbFile === 'assets/QuotesDB.db' && $this->getQuoteCount() === 0) {
-            $this->populateDatabase();
         }
     }
 
@@ -84,16 +73,8 @@ class QuoteManager
     private function populateDatabase()
     {
         try {
-            $db = new SQLite3($this->dbFile);
-            $quotes = json_decode(file_get_contents($this->basePath . 'assets/quotes.json'), true);
-            foreach ($quotes as $quote) {
-                $stmt = $db->prepare('INSERT INTO quotes (quote, author, image) VALUES (:quote, :author, :image)');
-                $stmt->bindValue(':quote', $quote['quote'], SQLITE3_TEXT);
-                $stmt->bindValue(':author', $quote['author'], SQLITE3_TEXT);
-                // $stmt->bindValue(':image', $quote['image'], SQLITE3_TEXT);
-                $stmt->execute();
-            }
-            $db->close();
+            $migrator = new \ArabicQuotes\Migrator($this->dbFile);
+            $migrator->seed();
         } catch (Exception $e) {
             error_log("Error in populateDatabase: " . $e->getMessage());
         }

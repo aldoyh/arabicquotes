@@ -53,7 +53,7 @@ function validateCalendarData($data) {
         return true;
     } catch (Exception $e) {
         error_log("Error validating calendar data: " . $e->getMessage());
-        return false;
+        throw $e;
     }
 }
 

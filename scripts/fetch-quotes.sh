@@ -11,8 +11,8 @@ ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT_DIR"
 
 # Check if database exists, if not create it
-if [ ! -f "quotes.db" ]; then
-    echo "Database does not exist. Creating it..."
+if [ ! -f "assets/QuotesDB.db" ]; then
+    echo "Database does not exist. Initializing migrations..."
     ./inc/db-update.sh
 fi
 
@@ -69,7 +69,7 @@ esac
 
 # Backup database before starting
 echo "Creating database backup..."
-cp "$ROOT_DIR/quotes.db" "$ROOT_DIR/quotes.db.backup-$(date +%Y%m%d-%H%M%S)"
+cp "$ROOT_DIR/assets/QuotesDB.db" "$ROOT_DIR/assets/QuotesDB.db.backup-$(date +%Y%m%d-%H%M%S)"
 echo "Backup created."
 
 # Start fetching
@@ -112,9 +112,9 @@ echo "==================================="
 echo "Time taken: $((duration / 60)) minutes and $((duration % 60)) seconds"
 
 # Get database stats
-quote_count=$(sqlite3 "$ROOT_DIR/quotes.db" "SELECT COUNT(*) FROM quotes;")
-author_count=$(sqlite3 "$ROOT_DIR/quotes.db" "SELECT COUNT(DISTINCT author) FROM quotes;")
-category_count=$(sqlite3 "$ROOT_DIR/quotes.db" "SELECT COUNT(DISTINCT category) FROM quotes;")
+quote_count=$(sqlite3 "$ROOT_DIR/assets/QuotesDB.db" "SELECT COUNT(*) FROM quotes;")
+author_count=$(sqlite3 "$ROOT_DIR/assets/QuotesDB.db" "SELECT COUNT(DISTINCT author) FROM quotes;")
+category_count=$(sqlite3 "$ROOT_DIR/assets/QuotesDB.db" "SELECT COUNT(DISTINCT category) FROM quotes;")
 
 echo "Database now contains:"
 echo "- $quote_count quotes"
@@ -125,7 +125,7 @@ echo "- $category_count categories"
 read -p "Export quotes to JSON? (y/n): " export_json
 if [[ $export_json =~ ^[Yy]$ ]]; then
     echo "Exporting to JSON..."
-    sqlite3 -json "$ROOT_DIR/quotes.db" "SELECT * FROM quotes;" > "$ROOT_DIR/assets/quotes.json"
+    php -r "require '$ROOT_DIR/inc/db-utils.php'; exportQuotesToJson();"
     echo "Export completed. File saved to assets/quotes.json"
 fi
 

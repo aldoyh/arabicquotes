@@ -24,7 +24,4 @@
             <text outputFile="coverage.txt"/>
         </report>
     </coverage>
-    <php>
-        <ini name="include_path" value=".:/Users/aldoyh/Herd/arabicquotes/.github/scripts"/>
-    </php>
 </phpunit>

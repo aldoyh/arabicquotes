@@ -146,7 +146,7 @@ class WikiquoteBulkFetcher extends WikiquoteFetcher
      */
     private function fetchQuotesFromAuthors($authorUrls)
     {
-        $db = new SQLite3(__DIR__ . '/../quotes.db');
+        $db = getDB();
         
         foreach ($authorUrls as $authorUrl) {
             echo "Processing author: " . $authorUrl . "\n";
@@ -240,7 +240,7 @@ class WikiquoteBulkFetcher extends WikiquoteFetcher
         // Get quote of the day
         $quoteElements = $xpath->query('//div[contains(@class, "quotation")]');
         
-        $db = new SQLite3(__DIR__ . '/../quotes.db');
+        $db = getDB();
         
         foreach ($quoteElements as $quoteElement) {
             $quoteText = trim($quoteElement->textContent);
@@ -328,7 +328,7 @@ try {
     
     // Backup the database first
     echo "Backing up the database...\n";
-    copy(__DIR__ . '/../quotes.db', __DIR__ . '/../quotes.db.backup-' . date('Y-m-d-H-i-s'));
+    copy(DB_NAME, DB_NAME . '.backup-' . date('Y-m-d-H-i-s'));
     
     // Ask the user which method to use
     echo "Choose fetching method:\n";
@@ -351,7 +351,7 @@ try {
     echo "\nFetching completed in " . round($endTime - $startTime, 2) . " seconds\n";
     
     // Print database stats
-    $db = new SQLite3(__DIR__ . '/../quotes.db');
+    $db = getDB();
     $quoteCount = $db->querySingle("SELECT COUNT(*) FROM quotes");
     $authorCount = $db->querySingle("SELECT COUNT(DISTINCT author) FROM quotes");
     /* Lines 597-602 omitted */

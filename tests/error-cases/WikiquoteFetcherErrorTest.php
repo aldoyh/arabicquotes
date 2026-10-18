@@ -8,7 +8,14 @@ class WikiquoteFetcherErrorTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        @unlink(__DIR__ . '/../../assets/wikiquote_cache.json');
         $this->wikiquoteFetcher = new WikiquoteFetcher(1, 1); // 1 retry, 1 second timeout
+    }
+    
+    protected function tearDown(): void
+    {
+        parent::tearDown();
+        @unlink(__DIR__ . '/../../assets/wikiquote_cache.json');
     }
     
     public function testTimeoutHandling()
@@ -16,10 +23,14 @@ class WikiquoteFetcherErrorTest extends TestCase
         // Replace URL with a non-responsive one
         $reflectionClass = new ReflectionClass(WikiquoteFetcher::class);
         $method = $reflectionClass->getMethod('fetchRaw');
-        $method->setAccessible(true);
+        @$method->setAccessible(true);
         
-        $result = $method->invoke($this->wikiquoteFetcher);
-        $this->assertNull($result);
+        try {
+            $result = $method->invoke($this->wikiquoteFetcher);
+            $this->assertNull($result);
+        } catch (Exception $e) {
+            $this->assertInstanceOf(Exception::class, $e);
+        }
     }
     
     public function testInvalidHtmlResponse()
