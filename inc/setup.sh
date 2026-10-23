@@ -6,8 +6,8 @@ mkdir -p coverage
 mkdir -p assets
 
 # Set permissions
-chmod +x *.sh
-chmod +x tests/*.php tests/error-cases/*.php tests/*.php tests/error-cases/*.php
+chmod +x scripts/*.sh inc/*.sh
+chmod +x tests/*.php tests/error-cases/*.php
 
 # Initialize Git if not already initialized
 if [ ! -d ".git" ]; then
@@ -15,6 +15,10 @@ if [ ! -d ".git" ]; then
 fi
 
 # Install dependencies
-./run-composer.sh
+if [ -f "scripts/run-composer.sh" ]; then
+    ./scripts/run-composer.sh
+elif [ -f "inc/run-composer.sh" ]; then
+    ./inc/run-composer.sh
+fi
 
 echo "Setup completed successfully!"

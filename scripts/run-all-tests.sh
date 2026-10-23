@@ -4,13 +4,13 @@ set -e
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 
 echo "Setting up test environment..."
-"$ROOT_DIR/setup.sh"
+"$ROOT_DIR/inc/setup.sh"
 
 echo "Creating test database..."
 "$ROOT_DIR/inc/db-update.sh"
 
 echo "Running test suites..."
-"$ROOT_DIR/run-tests.sh"
+"$ROOT_DIR/inc/run-tests.sh"
 
 # Clean up
 if [ -f "$ROOT_DIR/test_quotes.db" ]; then
